@@ -1,0 +1,5 @@
+# Merge this section into ~/.config/umbriel/config.toml when the repository is
+# cloned to ~/.config/umbriel/shaders/community.
+[animation.windows_in]
+enabled = true
+shader = "shaders/community/animation/example/shader.glsl"
