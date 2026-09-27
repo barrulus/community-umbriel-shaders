@@ -8,7 +8,11 @@ Preview rendered from this shader over a synthetic desktop sample; it is not a s
 
 ## Use
 
-Follow the [installation instructions](../../README.md#install), then merge this into `~/.config/umbriel/config.toml`:
+Download [effect.toml](effect.toml) and [shader.glsl](shader.glsl) using GitHub’s **Download raw file** button and save them together in `~/.config/umbriel/shaders/community/border/portal-lava/`. Keep the license notice linked below with your files. See [installation](../../README.md#install) for details.
+
+Also download the companion [effect.toml](../../window/portal-lava-overlay/effect.toml) and [shader.glsl](../../window/portal-lava-overlay/shader.glsl) into `~/.config/umbriel/shaders/community/window/portal-lava-overlay/`. This preset includes those files automatically.
+
+Then merge this into `~/.config/umbriel/config.toml`:
 
 ```toml
 [include]
@@ -20,7 +24,7 @@ border = "portal-lava"
 
 Append the include path to your existing `files` array and merge selectors into existing tables. Including `effect.toml` defines the preset; the selector enables it. [`config.toml`](config.toml) contains the same copyable example.
 
-This preset automatically includes [portal-lava-overlay](../../window/portal-lava-overlay/). Keep that directory too if copying individual effects. Do not include it separately. The overlay follows the focused border; it is not applied to every window.
+The [portal-lava-overlay](../../window/portal-lava-overlay/) follows the focused border; it is not applied to every window.
 
 Borders apply to the focused, decorated window. Fullscreen and urgent windows do not display the border effect. The `ring_padding` constant in the shader must match `padding` in `effect.toml`.
 

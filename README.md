@@ -20,15 +20,35 @@ GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION
 
 ## Install
 
-Clone the repository once:
+### Download individual effects
 
-```sh
-mkdir -p ~/.config/umbriel/shaders
-git clone https://github.com/noctalia-dev/community-umbriel-shaders.git \
-  ~/.config/umbriel/shaders/community
+Choose an effect from the category pages and download its **`effect.toml` and `shader.glsl`**. On GitHub, open each file and use **Download raw file** to save its contents. Keep the linked license notice with your downloaded files.
+
+For example, download [Glow’s preset](cursor/glow/effect.toml) and [shader](cursor/glow/shader.glsl) into:
+
+```text
+~/.config/umbriel/shaders/community/cursor/glow/
+  effect.toml
+  shader.glsl
 ```
 
-Alternatively download the repository ZIP and put its contents in that same directory. Keeping the complete repository preserves the dependencies between border effects and their inner overlays.
+You only need the effects you choose. Their `config.toml` files, READMEs, and previews are references; Umbriel loads the preset and shader files.
+
+Some border effects also need a companion window overlay. Their READMEs link the additional files and show where to save them. Keep the same relative layout; for example, Flowering Vine needs these four files:
+
+```text
+~/.config/umbriel/shaders/community/
+  border/flowering-vine/
+    effect.toml
+    shader.glsl
+  window/flowering-vine-overlay/
+    effect.toml
+    shader.glsl
+```
+
+The border preset includes its companion automatically. You do not need to select or include the overlay separately.
+
+### Enable your chosen effect
 
 Each effect directory contains `shader.glsl`, `effect.toml` (the preset definition), `config.toml` (a copyable activation example), and a README. **Include `effect.toml`, then select its preset name.** For example, merge this into `~/.config/umbriel/config.toml`:
 
@@ -36,12 +56,10 @@ Each effect directory contains `shader.glsl`, `effect.toml` (the preset definiti
 [include]
 files = [
   "shaders/community/cursor/glow/effect.toml",
-  "shaders/community/border/flowering-vine/effect.toml",
 ]
 
 [effects]
 cursor = "glow"
-border = "flowering-vine"
 ```
 
 If those tables already exist, append the include paths to `files` and add the selectors inside the existing `[effects]` table. Do not paste duplicate TOML tables. `config.toml` files are examples to merge, not files to include. A trailing comma in the `files` array is valid TOML.
@@ -56,7 +74,21 @@ umbriel validate
 
 Including a preset makes it available but does not enable it. Do not define the same preset name twice, for example by including both a bundled preset and its community copy. Border presets include their companion overlay automatically; do not include that overlay separately.
 
-To update the collection later:
+To update an individually downloaded effect, download its files again, including any companion files. Keep your own customised copies separately if you want to preserve your edits.
+
+### Optional: download the whole collection
+
+If you want to browse and try the whole collection locally, you can download the repository ZIP or clone it. For a new installation:
+
+```sh
+mkdir -p ~/.config/umbriel/shaders
+git clone https://github.com/noctalia-dev/community-umbriel-shaders.git \
+  ~/.config/umbriel/shaders/community
+```
+
+For the ZIP, extract its contents into `~/.config/umbriel/shaders/community`. Both options use the same include paths as the individual downloads above. If you choose a different location, adjust your include paths accordingly.
+
+To update a Git clone later:
 
 ```sh
 git -C ~/.config/umbriel/shaders/community pull --ff-only

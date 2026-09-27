@@ -8,7 +8,9 @@ Preview rendered from this shader over a synthetic desktop sample; it is not a s
 
 ## Use
 
-Follow the [installation instructions](../../README.md#install), then merge this into `~/.config/umbriel/config.toml`:
+Download [effect.toml](effect.toml) and [shader.glsl](shader.glsl) using GitHub’s **Download raw file** button and save them together in `~/.config/umbriel/shaders/community/animation/example/`. See [installation](../../README.md#install) for details.
+
+Then merge this into `~/.config/umbriel/config.toml`:
 
 ```toml
 [include]
