@@ -168,6 +168,9 @@ A theme or wallpaper-colour generator can write these settings to an included TO
 
 ## Contributing
 
+For assistant-guided shader creation, use [SKILL.md](SKILL.md). It provides
+LLM-agnostic instructions for Umbriel's shader API, preset packaging, and validation.
+
 Use one top-level directory per kind and a lowercase kebab-case directory per effect:
 
 ```text
