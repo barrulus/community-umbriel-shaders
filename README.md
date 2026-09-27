@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes 63 presets from Barrulus’s active upstream configuration, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes 63 community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -14,9 +14,9 @@ This collection includes 63 presets from Barrulus’s active upstream configurat
 
 ## Compatibility
 
-Use upstream Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
+Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
 
-These are the upstream-compatible presets. Historical fork-only Trail/Comet passes, effect pools, and custom drag physics settings are not part of this collection. GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION.md).
+GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION.md).
 
 ## Install
 
@@ -108,7 +108,7 @@ window_effect = "off"
 screen_effect = "off"
 ```
 
-Replace application and output names with your own. Animation selections are global per event, and cursor effects have no per-window override. Upstream does not provide the old fork’s native effect pool/cycle actions.
+Replace application and output names with your own. Animation selections are global per event, and cursor effects have no per-window override.
 
 ## Theme colours
 
@@ -148,7 +148,7 @@ cursor/<name>/
 
 Include `shader.glsl`, `effect.toml`, a copyable `config.toml`, and a README with a preview, compatibility, tuning, cost, attribution, and license. A preset definition should not enable itself. Document any companion effects and use relative paths. Do not include personal keybinds, app assignments, machine paths, or binaries.
 
-Shaders use GLSL ES 1.00 and the entry point for their kind: `vec4 animation(vec2 uv)`, `border`, `window`, `screen`, or `cursor`. Do not supply `#version`, `main`, or precision declarations. Return premultiplied RGBA. See the [upstream effect API](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for uniforms and sampling semantics.
+Shaders use GLSL ES 1.00 and the entry point for their kind: `vec4 animation(vec2 uv)`, `border`, `window`, `screen`, or `cursor`. Do not supply `#version`, `main`, or precision declarations. Return premultiplied RGBA. See the [Umbriel effect API](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for uniforms and sampling semantics.
 
 Check config paths and GLSL compilation, then test the effect in a compositor, including both ends of animation events. Mark any untested behaviour honestly. Keep loops bounded and document previous-frame feedback and other expensive operations.
 

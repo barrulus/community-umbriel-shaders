@@ -4,10 +4,9 @@ The initial collection was checked on 2026-09-27.
 
 ## Scope
 
-- All 63 presets referenced by Barrulus’s active upstream `effects.toml` are included. Their GLSL files are copied byte-for-byte from the deployed, upstream-compatible copies, including their coordinate adapters.
-- Six bundled examples are copied from upstream Umbriel at `c3d0eaafb1e31ee0abd99b547f85b5d52a28d0c7`. The bundled `pulse` preset is named `accent-pulse` here to distinguish it from the cyan community `pulse`; its GLSL is unchanged.
+- The 63 community presets by Barrulus retain their contributed GLSL without changes.
+- Six bundled examples are copied from Umbriel at `c3d0eaafb1e31ee0abd99b547f85b5d52a28d0c7`. The bundled `pulse` preset is named `accent-pulse` here to distinguish it from the cyan community `pulse`; its GLSL is unchanged.
 - Lemmy’s existing animation example retains its original GLSL, with activation instructions updated to the preset API.
-- Old, unused shader variants and the fork-only Trail/Comet feedback passes are not included. No personal config, app assignments, shortcut helper, or effect-pool state is published.
 
 ## Checks performed
 
@@ -15,11 +14,11 @@ The initial collection was checked on 2026-09-27.
 | --- | --- |
 | Individual `config.toml` installation examples | All 70 pass `umbriel validate` |
 | All preset definitions loaded together, including border/overlay dependencies | Pass; no duplicate preset definitions |
-| Shader compilation and linking with upstream’s actual GLES host preamble and kind-specific wrappers | All 70 pass |
+| Shader compilation and linking with Umbriel’s actual GLES host preamble and kind-specific wrappers | All 70 pass |
 | Offscreen rendering over a synthetic input | All 70 render a preview without a GL error |
 | GLSL source comparison against the input collection | All sources unchanged |
 
-Configuration validation used the local upstream build reporting `umbriel 0.1.0 (8e1b84d9f27a-dirty)`. The GPU compilation check used the host wrappers from `umbrielfx/render/fx_renderer/effect_shader.c` at upstream source revision `c3d0eaafb1e31ee0abd99b547f85b5d52a28d0c7`, in a GLES context on Mesa llvmpipe (LLVM 21.1.8, Mesa 26.2.3).
+Configuration validation used the local Umbriel build reporting `umbriel 0.1.0 (8e1b84d9f27a-dirty)`. The GPU compilation check used the host wrappers from `umbrielfx/render/fx_renderer/effect_shader.c` at Umbriel source revision `c3d0eaafb1e31ee0abd99b547f85b5d52a28d0c7`, in a GLES context on Mesa llvmpipe (LLVM 21.1.8, Mesa 26.2.3).
 
 These checks cover parsing, paths, selectors, dependencies, compilation, linking, and an example frame. They do not establish full-session behaviour, performance, compatibility with every GPU, or correct animation endpoints. The shaders were not individually exercised in an interactive compositor session as part of packaging.
 
@@ -27,7 +26,7 @@ Previews are 480×320 synthetic renders at scale 1, time 4.5 seconds, and animat
 
 ## Repeat configuration checks
 
-With Python 3.11+ and a compatible upstream Umbriel installed, run from the repository root:
+With Python 3.11+ and a compatible version of Umbriel installed, run from the repository root:
 
 ```sh
 python3 tools/validate.py

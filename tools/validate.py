@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Barrulus
 """Validate every installation example without touching the user's configuration.
 
-Requires Python 3.11+ and upstream Umbriel with the preset effects API.
+Requires Python 3.11+ and Umbriel with the preset effects API.
 This checks configuration and files, not GPU shader compilation.
 """
 

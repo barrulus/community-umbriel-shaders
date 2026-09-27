@@ -26,10 +26,10 @@ Colours are defined in `shader.glsl`. Setting `palette = true` alone will not re
 
 ## Compatibility and cost
 
-Requires upstream Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. This adds a pass per affected window; applying it globally increases the cost with the number and size of visible windows. The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. This adds a pass per affected window; applying it globally increases the cost with the number and size of visible windows. The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
 
 ## Attribution
 
 Author/contributor: Barrulus. License: [MIT](../../LICENSES/Barrulus-MIT.txt).
 
-Packaged from Barrulus’s active upstream Umbriel preset collection on 2026-09-27. GLSL is unchanged from the deployed copy.
+Contributed by Barrulus on 2026-09-27.
