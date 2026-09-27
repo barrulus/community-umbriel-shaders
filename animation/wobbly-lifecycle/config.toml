@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/wobbly-lifecycle/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "wobbly-lifecycle"
+duration_ms = 620
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "wobbly-lifecycle"
+duration_ms = 460
+curve = "linear"

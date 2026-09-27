@@ -1,5 +1,12 @@
-# Merge this section into ~/.config/umbriel/config.toml when the repository is
-# cloned to ~/.config/umbriel/shaders/community.
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/example/effect.toml"]
+
+[animation]
+enabled = true
+
 [animation.windows_in]
 enabled = true
-shader = "shaders/community/animation/example/shader.glsl"
+effect = "example"
+duration_ms = 250
+curve = "easeout"

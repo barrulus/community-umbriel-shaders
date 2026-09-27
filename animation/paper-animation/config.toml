@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/paper-animation/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "paper-animation"
+duration_ms = 1350
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "paper-animation"
+duration_ms = 1150
+curve = "linear"

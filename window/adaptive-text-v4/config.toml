@@ -1,0 +1,6 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/window/adaptive-text-v4/effect.toml"]
+
+[effects]
+window = "window.adaptive-text-v4"

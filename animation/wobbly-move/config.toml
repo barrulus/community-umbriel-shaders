@@ -1,0 +1,12 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/wobbly-move/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_move]
+enabled = true
+effect = "wobbly-move"
+duration_ms = 650
+curve = "easeout"

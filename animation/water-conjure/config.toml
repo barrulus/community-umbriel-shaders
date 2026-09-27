@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/water-conjure/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "water-conjure"
+duration_ms = 2450
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "water-conjure"
+duration_ms = 2450
+curve = "linear"
