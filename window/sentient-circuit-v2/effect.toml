@@ -1,0 +1,3 @@
+[effects.preset."window.sentient-circuit-v2"]
+kind = "window"
+shader = "shader.glsl"

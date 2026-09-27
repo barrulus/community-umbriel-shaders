@@ -1,0 +1,10 @@
+[include]
+files = ["../../window/beach-surf-overlay/effect.toml"]
+
+[effects.preset."beach-surf"]
+kind = "border"
+shader = "shader.glsl"
+padding = 32
+speed = 1
+animated = true
+overlay = "beach-surf-overlay"

@@ -1,20 +1,84 @@
 # Community Umbriel Shaders
 
-A community collection of reusable GLSL effects for the [Umbriel](https://github.com/noctalia-dev/umbriel) Wayland compositor.
+A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-Umbriel currently loads custom **animation** shaders from files named by an
-animation event's `shader` setting. This repository keeps community effects
-separate from Umbriel's bundled `reveal.glsl` and `squash.glsl`, so they can be
-shared, reviewed, and updated independently.
+This collection includes 63 community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
-> [!IMPORTANT]
-> Umbriel currently exposes custom shaders only for animation events. This
-> repository may grow to cover additional shader categories as Umbriel evolves.
+| Kind | What it affects |
+| --- | --- |
+| [Animation](animation/) | Opening, closing, moving, and resizing windows |
+| [Border](border/) | The focused window’s decoration, with optional inner overlays and light |
+| [Window](window/) | Window content, including companion border overlays |
+| [Screen](screen/) | A whole output |
+| [Cursor](cursor/) | The area around the pointer |
 
-## Use an effect
+## Compatibility
 
-Clone this repository beneath the Umbriel configuration directory (or use any
-other local path):
+Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
+
+GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION.md).
+
+## Install
+
+### Download individual effects
+
+Choose an effect from the category pages and download its **`effect.toml` and `shader.glsl`**. On GitHub, open each file and use **Download raw file** to save its contents. Keep the linked license notice with your downloaded files.
+
+For example, download [Glow’s preset](cursor/glow/effect.toml) and [shader](cursor/glow/shader.glsl) into:
+
+```text
+~/.config/umbriel/shaders/community/cursor/glow/
+  effect.toml
+  shader.glsl
+```
+
+You only need the effects you choose. Their `config.toml` files, READMEs, and previews are references; Umbriel loads the preset and shader files.
+
+Some border effects also need a companion window overlay. Their READMEs link the additional files and show where to save them. Keep the same relative layout; for example, Flowering Vine needs these four files:
+
+```text
+~/.config/umbriel/shaders/community/
+  border/flowering-vine/
+    effect.toml
+    shader.glsl
+  window/flowering-vine-overlay/
+    effect.toml
+    shader.glsl
+```
+
+The border preset includes its companion automatically. You do not need to select or include the overlay separately.
+
+### Enable your chosen effect
+
+Each effect directory contains `shader.glsl`, `effect.toml` (the preset definition), `config.toml` (a copyable activation example), and a README. **Include `effect.toml`, then select its preset name.** For example, merge this into `~/.config/umbriel/config.toml`:
+
+```toml
+[include]
+files = [
+  "shaders/community/cursor/glow/effect.toml",
+]
+
+[effects]
+cursor = "glow"
+```
+
+If those tables already exist, append the include paths to `files` and add the selectors inside the existing `[effects]` table. Do not paste duplicate TOML tables. `config.toml` files are examples to merge, not files to include. A trailing comma in the `files` array is valid TOML.
+
+The paths above assume the standard config location. Relative include paths resolve from the TOML file containing them; shader paths resolve from the TOML file defining the preset. Any readable directory works, including `~/.config`; `/usr/share` is not required. Keep `effect.toml` with its `shader.glsl`, and retain any companion directory listed in its README.
+
+Save the configuration to reload, then run:
+
+```sh
+umbriel validate
+```
+
+Including a preset makes it available but does not enable it. Do not define the same preset name twice, for example by including both a bundled preset and its community copy. Border presets include their companion overlay automatically; do not include that overlay separately.
+
+To update an individually downloaded effect, download its files again, including any companion files. Keep your own customised copies separately if you want to preserve your edits.
+
+### Optional: download the whole collection
+
+If you want to browse and try the whole collection locally, you can download the repository ZIP or clone it. For a new installation:
 
 ```sh
 mkdir -p ~/.config/umbriel/shaders
@@ -22,108 +86,106 @@ git clone https://github.com/noctalia-dev/community-umbriel-shaders.git \
   ~/.config/umbriel/shaders/community
 ```
 
-Reference an effect from the config file that owns the setting. For example, an
-effect stored at
-`~/.config/umbriel/shaders/community/animation/example/shader.glsl` is selected
-like this from `~/.config/umbriel/config.toml`:
+For the ZIP, extract its contents into `~/.config/umbriel/shaders/community`. Both options use the same include paths as the individual downloads above. If you choose a different location, adjust your include paths accordingly.
+
+To update a Git clone later:
+
+```sh
+git -C ~/.config/umbriel/shaders/community pull --ff-only
+```
+
+Keep your own edited copies outside that checkout if you want to update without merging shader edits.
+
+## Selecting and disabling effects
+
+The four persistent selectors live under `[effects]`: `border`, `window`, `screen`, and `cursor`. The preset name is shown in each effect’s README; some names contain a literal dot, such as `"window.crt"`.
 
 ```toml
+[effects]
+window = "window.crt" # after including window/crt/effect.toml
+cursor = ""           # disable the default cursor effect
+```
+
+Animation effects use an event selector instead:
+
+```toml
+[include]
+files = ["shaders/community/animation/wobbly-lifecycle/effect.toml"]
+
+[animation]
+enabled = true
+
 [animation.windows_in]
 enabled = true
-shader = "shaders/community/animation/example/shader.glsl"
+effect = "wobbly-lifecycle"
+duration_ms = 620
+curve = "linear"
 ```
 
-Relative paths resolve from the TOML file containing `shader`, including an
-included configuration file. Umbriel watches shader files: saving a valid edit
-reloads it automatically; `umbriel msg config-reload` reloads it explicitly.
-A missing file or GLSL compilation failure leaves the built-in effect active and
-reports a diagnostic.
+Use `effect = ""` to remove a custom animation selection. Set the event’s `enabled = false` to disable that transition entirely. Each animation README provides suitable events and timing.
 
-See Umbriel's [animation documentation](https://docs.noctalia.dev/umbriel/animation/)
-for the full configuration reference.
+Window rules can select or disable border/window effects, and outputs can override the screen effect:
 
-## Current shader contract
+```toml
+[[window_rule]]
+match.app_id = "^foot$"
+border_effect = "paper"          # include border/paper/effect.toml
+window_effect = "paper-content" # include window/paper-content/effect.toml
 
-Animation effects are GLSL ES 1.00 source files. Each source provides exactly
-this entry point:
+[[window_rule]]
+match.app_id = "^mpv$"
+window_effect = "off"
 
-```glsl
-vec4 animation(vec2 uv) {
-    return umbriel_sample(uv);
-}
+[output."HDMI-A-1"]
+screen_effect = "off"
 ```
 
-Do not declare `#version`, `main`, or precision qualifiers; Umbriel provides
-them. `uv` uses normalized target coordinates, from `(0, 0)` at the top left to
-`(1, 1)` at the bottom right. The most useful supplied values are:
+Replace application and output names with your own. Animation selections are global per event, and cursor effects have no per-window override.
 
-| Interface | Purpose |
-| --- | --- |
-| `umbriel_sample(vec2 uv)` | Samples the current target. Out-of-bounds samples are transparent black. |
-| `umbriel_sample_previous(vec2 uv)` | Samples this effect's prior submitted result. It enables per-target feedback. |
-| `umbriel_size` | Target width and height in logical units. |
-| `umbriel_progress` / `umbriel_clamped_progress` | Eased transition progress, raw or clamped to `0..1`. |
-| `umbriel_linear_progress` | Timeline progress before easing. |
-| `umbriel_direction` | `1` for opening/showing/focusing and `-1` for closing/hiding/unfocusing. |
-| `umbriel_random_seed` | Stable `vec4` of pseudorandom values for one transition. |
+## Theme colours
 
-Return premultiplied RGBA. Preserve sampled alpha when changing color,
-especially for border effects, so transparent parts of a target remain transparent. Effects
-run only during a transition, so their endpoints must agree with the ordinary
-visible or hidden result.
+Presets with `palette = true` can read `accent_primary`, `accent_secondary`, `warning`, and `error` from `[colors]`. `glow` and `accent-pulse` use the primary accent; `cursor-sparkle` uses the palette for its orbiting dots.
 
-`umbriel_sample_previous` allocates feedback buffers while the effect runs.
-Use it only when an effect truly needs temporal feedback. Custom shaders are
-trusted local GPU code: expensive or nonterminating code can stall the renderer,
-and active effects disable direct scanout and opaque-region culling. Prefer
-short, bounded, inexpensive effects.
-
-## Repository layout
-
-Use a directory per effect, grouped first by the compositor rendering contract:
-
-```text
-animation/
-  <effect-name>/
-    shader.glsl       # GLSL source configured in Umbriel
-    README.md         # Preview, intent, constraints, and compatibility
-    config.toml       # Minimal copyable Umbriel configuration
+```toml
+[colors]
+accent_primary = "#CBA6F7"
+accent_secondary = "#89B4FA"
+warning = "#F9E2AF"
+error = "#F38BA8"
 ```
 
-The directory-per-effect layout keeps source, configuration, screenshots, and
-future auxiliary files together without inventing an Umbriel package format.
-It also leaves room for future top-level categories with their own documented
-APIs. Do not create empty category trees or a generic manifest now: a shader
-path is the only current integration contract.
+A theme or wallpaper-colour generator can write these settings to an included TOML file. Umbriel reloads config changes; it does not extract a palette from the wallpaper itself. Values in your main config override included values. Most artistic shaders use their own colour constants: enabling the palette does not recolour them unless their GLSL reads `umbriel_palette_at`.
 
-Use lowercase kebab-case effect names. An effect README should state:
+## Troubleshooting
 
-- intended animation events and visual behavior;
-- the Umbriel version or revision tested;
-- performance-sensitive operations, feedback use, and known GPU caveats;
-- installation/configuration snippet and a representative preview; and
-- the source's author, attribution, and license.
-
-Keep `config.toml` minimal: enable only the event the effect demonstrates and
-set its `shader` path relative to a config placed beside the repository. Avoid
-including an entire personal Umbriel configuration.
+- **`unknown key effects`:** the file was read, but an older Umbriel build does not understand the preset API. Update/rebuild, then log out and back in. Moving the file cannot fix an unrecognised setting.
+- **`include not found` or unreadable shader:** check the path, and download both `effect.toml` and `shader.glsl`. Border dependencies must retain their relative directory layout.
+- **Unknown preset or wrong kind:** check the selector against the effect’s README and make sure its definition is included.
+- **Duplicate preset:** remove the extra definition/include; do not load a bundled preset and its community copy under the same name.
+- **No visible change:** selecting the name is required. Borders need a focused, decorated, non-fullscreen, non-urgent window. Animation effects appear only during their event.
+- **GLSL compile failure:** inspect Umbriel’s logs for the preset name and driver message. `umbriel validate` checks configuration, not GPU compilation.
+- **Effects missing from capture:** window, screen, and cursor effects are excluded from screencopy/image-copy captures by default. Set `[effects] in_capture = true` to include them; this can increase capture cost. Border effects already appear.
 
 ## Contributing
 
-1. Add one self-contained effect under `animation/<effect-name>/`.
-2. Keep the shader valid GLSL ES 1.00 and provide `shader.glsl`, `README.md`,
-   and a minimal `config.toml`.
-3. Test it through the intended Umbriel transition, including both endpoints.
-   For a shared show/hide effect, test both directions.
-4. Document the tested Umbriel revision, target events, resource cost, and
-   license/attribution in the effect README.
+Use one top-level directory per kind and a lowercase kebab-case directory per effect:
 
-Do not submit inline GLSL, generated binaries, personal machine configuration,
-or effects that depend on undocumented compositor behavior. Discuss effects that
-need a new integration point before submitting them.
+```text
+animation/<name>/
+border/<name>/
+window/<name>/
+screen/<name>/
+cursor/<name>/
+```
 
-## References
+Include `shader.glsl`, `effect.toml`, a copyable `config.toml`, and a README with a preview, compatibility, tuning, cost, attribution, and license. A preset definition should not enable itself. Document any companion effects and use relative paths. Do not include personal keybinds, app assignments, machine paths, or binaries.
 
-- [Umbriel](https://github.com/noctalia-dev/umbriel)
-- [Umbriel animation shaders](https://docs.noctalia.dev/umbriel/animation/)
-- [Bundled shader examples](https://github.com/noctalia-dev/umbriel/tree/main/examples/shaders)
+Shaders use GLSL ES 1.00 and the entry point for their kind: `vec4 animation(vec2 uv)`, `border`, `window`, `screen`, or `cursor`. Do not supply `#version`, `main`, or precision declarations. Return premultiplied RGBA. See the [Umbriel effect API](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for uniforms and sampling semantics.
+
+Check config paths and GLSL compilation, then test the effect in a compositor, including both ends of animation events. Mark any untested behaviour honestly. Keep loops bounded and document previous-frame feedback and other expensive operations.
+
+## Attribution and licensing
+
+Barrulus’s 63 contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
+
+The pre-existing `animation/example` shader is by Lemmy; its original contribution did not declare a license, and this contribution does not relicense it.

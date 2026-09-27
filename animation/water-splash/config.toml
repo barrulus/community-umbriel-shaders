@@ -1,0 +1,12 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/water-splash/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_out]
+enabled = true
+effect = "water-splash"
+duration_ms = 850
+curve = "linear"

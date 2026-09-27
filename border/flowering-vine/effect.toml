@@ -1,0 +1,15 @@
+[include]
+files = ["../../window/flowering-vine-overlay/effect.toml"]
+
+[effects.preset."flowering-vine"]
+kind = "border"
+shader = "shader.glsl"
+padding = 8
+speed = 1
+animated = true
+overlay = "flowering-vine-overlay"
+
+[effects.preset."flowering-vine".light]
+spread = 16
+intensity = 0.25
+threshold = 0.75

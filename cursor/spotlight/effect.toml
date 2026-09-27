@@ -1,0 +1,4 @@
+[effects.preset."cursor.spotlight"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 0

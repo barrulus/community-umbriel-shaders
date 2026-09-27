@@ -1,0 +1,6 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/window/beach-surf-overlay/effect.toml"]
+
+[effects]
+window = "beach-surf-overlay"

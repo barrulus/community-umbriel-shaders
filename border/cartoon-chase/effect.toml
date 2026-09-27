@@ -1,0 +1,8 @@
+[include]
+files = ["../../window/cartoon-chase-overlay/effect.toml"]
+
+[effects.preset."cartoon-chase"]
+kind = "border"
+shader = "shader.glsl"
+padding = 48
+overlay = "cartoon-chase-overlay"

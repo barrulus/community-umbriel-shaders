@@ -1,0 +1,6 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/cursor/seeing-stars/effect.toml"]
+
+[effects]
+cursor = "cursor.seeing-stars"
