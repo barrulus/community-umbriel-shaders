@@ -9,6 +9,7 @@
 | <img src="paper-animation/preview.png" width="160" alt="paper-animation preview"> | [paper-animation](paper-animation/) | A sheet falls and unfurls on opening, then scrunches and falls away on closing. |
 | <img src="reveal/preview.png" width="160" alt="reveal preview"> | [reveal](reveal/) | A bundled opening and closing reveal animation. |
 | <img src="squash/preview.png" width="160" alt="squash preview"> | [squash](squash/) | A bundled squash deformation for window movement. |
+| <img src="tv-glitch/preview.png" width="160" alt="tv-glitch preview"> | [tv-glitch](tv-glitch/) | A CRT switching on and off: glitching noise bands, then a collapse to a line and a dot. Ported from Burn-My-Windows. |
 | <img src="water-conjure/preview.png" width="160" alt="water-conjure preview"> | [water-conjure](water-conjure/) | A drop lands, a water column rises, and a foamy frame fills inward; closing reverses into a puddle. |
 | <img src="water-splash/preview.png" width="160" alt="water-splash preview"> | [water-splash](water-splash/) | A water-drop impact seen from above, intended for closing windows. |
 | <img src="wobbly-lifecycle/preview.png" width="160" alt="wobbly-lifecycle preview"> | [wobbly-lifecycle](wobbly-lifecycle/) | Elastic-sheet deformation for opening and closing windows. |
