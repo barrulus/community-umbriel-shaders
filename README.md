@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes 63 community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes 73 community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -11,6 +11,10 @@ This collection includes 63 community presets by Barrulus, six bundled Umbriel e
 | [Window](window/) | Window content, including companion border overlays |
 | [Screen](screen/) | A whole output |
 | [Cursor](cursor/) | The area around the pointer |
+
+Ten new [paired window transitions](animation/) include Shattered Glass, Wet Paint,
+Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
+Use the [interactive preview](preview/) to play or scrub both directions locally.
 
 ## Compatibility
 
@@ -189,6 +193,6 @@ Check config paths and GLSL compilation, then test the effect in a compositor, i
 
 ## Attribution and licensing
 
-Barrulus’s 63 contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
+Barrulus’s 73 contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
 
 The pre-existing `animation/example` shader is by Lemmy; its original contribution did not declare a license, and this contribution does not relicense it.

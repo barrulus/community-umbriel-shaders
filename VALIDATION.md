@@ -38,7 +38,43 @@ To use a particular build:
 python3 tools/validate.py --umbriel /path/to/umbriel
 ```
 
-The checker uses temporary config files. It does not edit or reload your desktop configuration. `umbriel validate` does not compile GLSL: GPU compilation still needs a renderer check or a compositor session, and its logs should be checked for shader errors.
+The checker uses temporary config files. It does not edit or reload your desktop configuration. It detects `umbriel config validate` on newer builds and uses `umbriel validate` on older builds. Neither command compiles GLSL: GPU compilation still needs a renderer check or a compositor session, and its logs should be checked for shader errors.
+
+## Paired window transitions
+
+The ten presets added on 2026-09-29 are `shattered-glass`, `wet-paint`,
+`flame-grilled`, `glitch`, `cells`, `void`, `old-tv`, `vhs`, `magic`, and
+`triangle-flaps`.
+
+- All 80 installation examples and the combined library pass configuration
+  validation using `umbriel 0.1.0 (b1e338492aed-dirty)`.
+- All ten compile and link in offscreen GLES with the animation wrapper and
+  sampling helpers from that local Umbriel checkout. Rendering used Mesa
+  llvmpipe (LLVM 21.1.8); the unused audio-input macro was omitted from the host
+  preamble extraction.
+- The GLES sweep renders 864 frames per preset: both directions, 12 progress
+  values including exact and near endpoints, four logical aspect ratios,
+  three random seeds, and opaque, translucent, and empty synthetic textures.
+  Every exact visible endpoint matches the input and every hidden endpoint is
+  transparent black. SDR premultiplied-alpha and GL-error checks pass; the
+  near-endpoint mean channel difference is below 3/255.
+- Intermediate opening and closing frames were inspected as synthetic renders.
+  The new catalog PNGs are 320×200 opening frames at progress 0.55, logical
+  size 640×400, and seed `(0.31, 0.73, 0.19, 0.61)`, composited over dark grey.
+- The [browser preview](preview/) compiles the real sources in WebGL 1.
+  All 5,760 endpoint/alpha sweep frames pass in Chromium 154 using SwiftShader;
+  playback, scrubbing, direction, shape, and transparency controls were checked.
+
+These are offscreen and browser checks, not a live compositor-session pass.
+Hardware GPU performance, fractional-scale/rotated output composition, and
+interrupted lifecycle transitions remain unverified. Fire, grids, portals,
+phosphor glows, and magic intentionally add transient colour where source
+alpha is zero; sampled-content effects preserve source transparency.
+
+Default opening/closing durations are 1150/1000 ms for Wet Paint,
+1200/1100 ms for Flame Grilled, 800/700 ms for Glitch, 1200/1100 ms for Cells,
+850/900 ms for Old TV, and 1300/1200 ms for Triangle Flaps. The browser preview
+reads those timings from the corresponding `config.toml`.
 
 ## Behaviour to check on your desktop
 

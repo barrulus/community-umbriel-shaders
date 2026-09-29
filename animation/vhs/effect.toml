@@ -1,0 +1,3 @@
+[effects.preset.vhs]
+kind = "animation"
+shader = "shader.glsl"
