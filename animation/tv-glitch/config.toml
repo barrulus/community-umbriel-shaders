@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
+[include]
+files = ["shaders/community/animation/tv-glitch/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "tv-glitch"
+duration_ms = 750
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "tv-glitch"
+duration_ms = 750
+curve = "linear"
