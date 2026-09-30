@@ -1,0 +1,4 @@
+[effects.preset."flowing-blood"]
+kind = "border"
+shader = "flowing-blood.glsl"
+padding = 30
