@@ -20,6 +20,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--umbriel", default="umbriel", help="Umbriel executable")
     args = parser.parse_args()
+    help_result = subprocess.run(
+        [args.umbriel, "--help"], capture_output=True, text=True, check=True,
+    )
+    help_text = help_result.stdout + help_result.stderr
+    validate_command = ["config", "validate"] if "config validate" in help_text else ["validate"]
     root = Path(__file__).resolve().parents[1]
     definitions = sorted(root.glob("*/*/effect.toml"))
     names = set()
@@ -27,7 +32,7 @@ def main():
 
     def validate(config):
         result = subprocess.run(
-            [args.umbriel, "validate", "-c", str(config)],
+            [args.umbriel, *validate_command, "-c", str(config)],
             capture_output=True, text=True, check=False,
         )
         output = result.stdout + result.stderr

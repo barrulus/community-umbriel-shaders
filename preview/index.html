@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umbriel window transitions</title>
+<style>
+  :root { color-scheme: dark; font: 16px system-ui, sans-serif; background: #10131e; color: #eef2ff; }
+  body { max-width: 1060px; margin: 40px auto; padding: 0 24px; }
+  h1 { font-size: 30px; margin-bottom: 8px; }
+  p { color: #b7c1d9; line-height: 1.6; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 24px 0; }
+  label { display: flex; align-items: center; gap: 8px; }
+  select, button { font: inherit; padding: 9px 12px; background: #242c42; color: inherit; border: 1px solid #52607d; border-radius: 6px; }
+  button { cursor: pointer; }
+  input { accent-color: #9bc3ff; }
+  #stage { padding: 40px; display: grid; place-items: center; background: repeating-conic-gradient(#20273b 0% 25%, #242c42 0% 50%) 0 / 32px 32px; border-radius: 12px; min-height: 360px; }
+  canvas { display: block; max-width: 100%; height: auto; box-shadow: 0 12px 60px #0004; }
+  #progress { flex: 1; min-width: 180px; }
+  output { font-variant-numeric: tabular-nums; min-width: 4ch; }
+  a { color: #9bc3ff; }
+  #error { color: #ffaba5; white-space: pre-wrap; }
+</style>
+<h1>Window transitions</h1>
+<p>Ten paired effects. Choose a transition, play either direction, or scrub through individual frames.</p>
+<div class="controls">
+  <label>Effect <select id="effect"></select></label>
+  <label>Direction <select id="direction"><option value="1">Open</option><option value="-1">Close</option></select></label>
+  <label>Window <select id="shape"><option value="640,400">Landscape</option><option value="360,560">Portrait</option><option value="480,480">Square</option></select></label>
+  <label><input id="translucent" type="checkbox">Translucent</label>
+</div>
+<div id="stage"><canvas id="screen" width="640" height="400" aria-label="Animated example window"></canvas></div>
+<div class="controls">
+  <button id="play">Replay</button>
+  <label><input id="loop" type="checkbox" checked>Loop</label>
+  <label>Duration <select id="duration"><option value="preset">Effect timing</option><option value="750">750 ms</option><option value="1500">1.5 seconds</option><option value="3000">3 seconds</option></select></label>
+  <input id="progress" type="range" min="0" max="1" step="0.001" value="0" aria-label="Animation progress">
+  <output id="position">0%</output>
+</div>
+<p id="description"></p>
+<p>This preview runs the real shaders in WebGL 1 against a sample window. The checkerboard shows transparency. Effects are clipped to the window bounds; this is not a desktop capture.</p>
+<p><a id="source" href="../README.md">Shader source</a> · <a href="../README.md">Installation and compatibility</a></p>
+<pre id="error" role="alert"></pre>
+<script type="module" src="preview.js"></script>
+</html>

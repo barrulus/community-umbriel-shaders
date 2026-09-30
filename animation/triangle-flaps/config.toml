@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = ["shaders/community/animation/triangle-flaps/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "triangle-flaps"
+duration_ms = 1300
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "triangle-flaps"
+duration_ms = 1200
+curve = "linear"

@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = ["shaders/community/animation/shattered-glass/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "shattered-glass"
+duration_ms = 900
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "shattered-glass"
+duration_ms = 800
+curve = "linear"

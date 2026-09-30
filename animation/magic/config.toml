@@ -1,0 +1,18 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = ["shaders/community/animation/magic/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "magic"
+duration_ms = 950
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "magic"
+duration_ms = 850
+curve = "linear"
