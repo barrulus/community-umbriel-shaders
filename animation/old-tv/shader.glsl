@@ -1,14 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     alpha = clamp(alpha, 0.0, 1.0);
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
 }
 
-// Glow width in logical pixels; try 1–3.
 const float PHOSPHOR_WIDTH = 2.0;
-// Radius of the final phosphor blink in logical pixels; try 6–14.
 const float BLINK_RADIUS = 10.0;
 
 vec4 animation(vec2 uv) {

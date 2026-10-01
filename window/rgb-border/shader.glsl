@@ -7,19 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// RGB-border glow — "PC RGB lighting" for a window. The window content is passed through
-// untouched; a rainbow rim hugs the window edge, the hue chases AROUND the perimeter and also
-// cycles over time (umbriel_time), like an addressable RGB fan/strip.
-//
-// Contract: same as the global shaders — `vec4 postprocess(vec3 c)`, c.xy = 0..1 across the
-// WINDOW (c.y=0 at the top), tex2D_screen(uv) samples the window, umbriel_time = seconds.
-// Attach via a niri window-rule (I'll leave the rule to you — this is just the shader source).
-//
-// Tuning knobs:
-//   0.070 in `glow`  -> how far the soft glow bleeds inward
-//   * 0.90           -> glow strength (raise for a brighter glow, lower if it fogs edge text)
-//   umbriel_time*0.25   -> cycle speed
-//   `s.rgb + rgb*m`  -> additive glow; swap to `mix(s.rgb, rgb, m)` for an opaque painted rim
 vec4 postprocess(vec3 c){
         vec4 s = tex2D_screen(c.xy);
 

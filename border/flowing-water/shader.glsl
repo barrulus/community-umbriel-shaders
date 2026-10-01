@@ -4,8 +4,6 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// A liquid focus ring with circulating swells, curling crests and airborne spray.
-// Umbriel decoration contract: logical pixels in, straight RGBA out.
 const float WATER_SPEED = 1.0;
 const float WAVE_HEIGHT = 10.0;
 const float WATER_OPACITY = 0.85;

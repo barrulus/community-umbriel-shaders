@@ -7,20 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// RGB shimmer — a faint iridescent oil-slick sheen that drifts across the window in soft patches.
-// Deliberately SUBTLE and NON-UNIFORM: most of the window shows nothing, and where the sheen does
-// appear it's organic blobs of shifting rainbow (noise-driven), not regular bands. The content
-// stays fully readable; this is a gentle holographic glimmer, not a colour wash.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-//
-// Tuning knobs:
-//   STRENGTH   -> peak opacity of the sheen (raise for more presence; still patchy)
-//   COVERAGE   -> the two smoothstep edges below set how much of the window is ever touched
-//   *3.0 / *2.0 -> spatial scale of the hue field / the coverage patches (bigger = finer)
-//   umbriel_time*0.03..0.05 -> drift / hue-cycle speeds (all slow on purpose)
-//   spark      -> faint sparse twinkle; drop the 0.35 to kill it entirely
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
@@ -55,7 +41,7 @@ vec4 postprocess(vec3 c){
     // Very sparse faint twinkle sitting on the patches.
     float spark = pow(vnoise(p*38.0 + umbriel_time*1.5), 22.0) * 0.35;
 
-    const float STRENGTH = 0.38;                 // subtle but visible; still patchy
+    const float STRENGTH = 0.38;
     float amt = patch * STRENGTH;                // modulated -> never uniform
     return vec4(mix(s.rgb, rb + spark, amt), s.a);
 }

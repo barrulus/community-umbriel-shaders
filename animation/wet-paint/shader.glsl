@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -13,9 +12,7 @@ float noise21(vec2 p) {
                mix(hash21(i + vec2(0.0, 1.0)), hash21(i + 1.0), f.x), f.y);
 }
 
-// Average stream width in logical pixels; try 35–85.
 const float STREAM_WIDTH = 58.0;
-// Length of the hanging paint fingers, as a fraction of window height.
 const float DRIP_LENGTH = 0.52;
 
 vec4 animation(vec2 uv) {

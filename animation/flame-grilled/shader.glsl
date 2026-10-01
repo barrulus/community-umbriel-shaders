@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -17,9 +16,7 @@ vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
 }
 
-// Number of broad flame tongues across the window; try 9–22.
 const float FLAME_COLUMNS = 15.0;
-// Tallest flame as a fraction of window height; try 0.30–0.65.
 const float FLAME_HEIGHT = 0.48;
 
 vec4 animation(vec2 uv) {

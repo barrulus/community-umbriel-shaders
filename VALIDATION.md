@@ -2,6 +2,34 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Documentation cleanup and border counts (2026-10-01)
+
+Shader comments duplicating the READMEs, obsolete Niri configuration examples,
+and instructions for generators absent from this repository were removed.
+Attribution and implementation notes were retained. A token comparison across
+all 82 shaders confirmed that the comment cleanup did not alter executable code.
+
+Fuse and Lightning now accept counts above four. Fuse's spark-emitter loop
+also follows `EMBER_COUNT`; zero or negative counts return transparent output
+in both shaders. Other colour and geometry clamps remain in place.
+
+Validation used the GLES preamble and border wrapper fetched from upstream
+Umbriel `main` at [`2040758e`](https://github.com/noctalia-dev/umbriel/commit/2040758e5a33bed1fe5f56e830951346e13ed02f),
+with Mesa llvmpipe (LLVM 21.1.8). No local compositor changes were used as the
+shader contract.
+
+- Both shaders compile, link, and render with counts -1, 0, 1, 4, 8, and 16 at
+  times 0, 1.35, and 4.5 seconds, using a 320×240 target at scale 1.
+- Zero and negative counts render transparent black. Positive counts render
+  nonempty, premultiplied output without GL errors.
+- Counts 1 and 4 are pixel-identical to the previous source at all three times.
+- Counts 8 and 16 produce different output from the lower counts. Fuse at 8
+  also differs from a version retaining only four spark emitters, confirming
+  that the additional emitters contribute.
+
+These are offscreen checks, not a live compositor or hardware performance test.
+Very large counts were not tested; increasing Fuse's count increases spark work.
+
 ## Scope
 
 - The 63 community presets by Barrulus retain their contributed GLSL without changes.

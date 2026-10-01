@@ -7,28 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Fire — flames licking up from the bottom edge, where pieces tear off the tips and travel on.
-// ONE field does all of it, the way rorschach.frag makes an inkblot split into lobes: a
-// domain-warped fBm (the lookup displaced by two more drifting fBms) is advected upward and cut
-// against a threshold that climbs with height. The warp is what makes tendrils rather than round
-// noise bubbles, so where the threshold overtakes a narrowing tongue the tip PINCHES OFF into a
-// free-floating island that keeps rising, shrinks and dies — connecting and disconnecting on its
-// own. No particles, no separate ember pass; the pieces are the same fire as the sheet below.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule.
-//
-// Tuning knobs:
-//   FLAME_HEIGHT -> height of the main sheet; torn-off pieces drift to roughly 1.5x this
-//                   (safe to raise: 0.6 gives tall flames over half the window)
-//   THRESH / SLOPE -> where fire starts / how fast it thins with height (raise SLOPE = shorter,
-//                     more broken flames; lower = a taller solid sheet that rarely tears)
-//   WARP         -> tendril strength. 0 = round noise bubbles that never pinch off; ~1.6 = fire
-//   EDGE         -> flame edge crispness (small = hard-cut islands, large = soft gas)
-//   XFREQ/YFREQ  -> flame width / vertical stretch (YFREQ well below XFREQ = tall tongues)
-//   RISE         -> how fast the whole field climbs;  BREAK -> fine roughness that frays tips
-//   OPACITY/GLOW -> solidity of the fire / strength of the additive halo around it
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 

@@ -1,10 +1,4 @@
 // Adapted from shaders/animations/water-conjure.glsl
-// Side-view water conjuration. Use the same shader for open (+1) and close (-1).
-// A drop lands, a column rises, and a foamy frame fills inward. On close the
-// liquid window falls into a puddle. Suggested duration: 2000-2450 ms, linear.
-// The foamy rim surrounds the forming silhouette inside the target canvas;
-// it recedes as the finished window reaches its exact, unmodified bounds.
-
 float conjure_hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }

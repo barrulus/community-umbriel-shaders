@@ -7,21 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Snowfall — gentle decorative snow drifting down the window. Three depth layers of soft
-// fuzzy flakes: near flakes are bigger, brighter and faster; far flakes finer, fainter and
-// slower. Each layer sways sideways a little as it falls. Sparse on purpose (most grid
-// cells hold no flake) and low opacity, so the content stays fully readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule.
-//
-// Tuning knobs:
-//   OPACITY        -> overall snow strength
-//   0.72 in `on`   -> flake sparsity (higher = fewer flakes)
-//   scale/speed    -> flake size + fall tempo per layer (bigger scale = smaller flakes)
-//   0.012 sway     -> sideways drift amplitude
-//   r / r*0.15     -> flake radius and edge fuzz (raise 0.15 toward 0.6 for harder flakes)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 vec2 hash2(vec2 p){ return vec2(hash(p), hash(p + 19.19)); }

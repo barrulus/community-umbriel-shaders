@@ -1,14 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
     return fract((q.x + q.y) * q.z);
 }
 
-// Unequal baked polygon shards, from 41 clustered Voronoi sites.
-// Flight strength in shorter-window-side units; try 0.6–1.4.
 const float SHARD_FLIGHT = 1.0;
 
 vec4 glassShard(vec2 uv, float gone, vec2 center, float bound, float id,

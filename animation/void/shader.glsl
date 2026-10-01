@@ -1,12 +1,10 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     alpha = clamp(alpha, 0.0, 1.0);
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
 }
 
-// Portal radius and luminous band width, in shorter-window-side units.
 const float PORTAL_RADIUS = 0.36;
 const float PORTAL_BAND = 0.10;
 

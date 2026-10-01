@@ -4,7 +4,6 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// A satin-pink ribbon carries little beating hearts around the window.
 const float RIBBON_PI = 3.14159265359;
 const float RIBBON_INSET = 30.0;
 
@@ -92,7 +91,6 @@ vec2 ribbon_project(vec2 p) {
     }
     return result;
 }
-
 
 vec4 ribbon_over(vec4 under, vec4 paint) { return paint + under * (1.0-paint.a); }
 float ribbon_wave(float along, float perimeter) {

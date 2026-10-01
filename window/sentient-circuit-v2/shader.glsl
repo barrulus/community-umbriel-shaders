@@ -2,16 +2,13 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Sentient circuit v2: growing, pulsing and decaying colonies, copper and pollen.
-// Inspired by living circuit trees. No aligned tile ports or repeated cross hubs.
-// Premultiplied RGBA; all geometry is in logical pixels.
 const float CIRCUIT_STRENGTH = 0.78;
 const float CIRCUIT_SPEED = 1.0;
-const float CLUSTER_SPACING = 165.0; // larger = more breathing room; keep >= 165
+const float CLUSTER_SPACING = 165.0;
 const float LIGHT_RESPONSE = 1.45;
-const float GOLD_FRACTION = 0.22; // gold stays with a branch for its lifetime
-const float PATH_DECAY = 1.35; // seconds to dissolve after the pulse's brief afterglow
-const float REGENERATION_MIN = 6.0; // each patch regenerates every 6-9 seconds
+const float GOLD_FRACTION = 0.22;
+const float PATH_DECAY = 1.35;
+const float REGENERATION_MIN = 6.0;
 
 float cv_hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);

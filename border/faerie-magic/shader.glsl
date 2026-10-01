@@ -4,8 +4,6 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// Enchanted focus ring: iridescent threads, wand-light and popping fairy dust.
-// Shared with the matching inner-content overlay; straight RGBA output.
 const float MAGIC_SPEED = 1.0;
 const float MAGIC_OUTSET = 12.0;
 const float MAGIC_INSET = 26.0;

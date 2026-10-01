@@ -1,7 +1,4 @@
 // Adapted from shaders/animations/water-splash.glsl
-// A water-drop impact seen from above. Recommended windows_out duration: 850 ms.
-// Uses the linear clock so the gather, impact and ripples keep their timing even
-// with a spring curve. All water stays inside the original window's canvas.
 const float SPLASH_TAU = 6.28318530718;
 
 float splash_hash(float n) {

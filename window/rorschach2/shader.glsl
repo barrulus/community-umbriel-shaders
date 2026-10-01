@@ -7,22 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rorschach — a shifting inkblot in the middle of the window. The blot is a central
-// shape whose radius is strongly deformed by a domain-warped, slowly drifting noise
-// field, mirrored around the vertical center axis (like a folded inkblot card) — so
-// there is ALWAYS a blot, and the noise only decides its lobes, tendrils and splits.
-// Everything outside the ink is left untouched.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-//
-// Tuning knobs:
-//   OPACITY -> how dark the ink presses onto the content (1.0 = solid black blot)
-//   SPREAD  -> how far from the center the blot may reach (fraction of window height)
-//   SCALE   -> lobe detail (bigger = more, finer lobes; smaller = one fat blob)
-//   WOBBLE  -> how violently the noise deforms the blot (0 = plain breathing circle)
-//   MORPH   -> how fast the blot shifts (he never stops moving, but he's not in a hurry)
-//   EDGE    -> ink edge softness (smaller = crisper boundary)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 

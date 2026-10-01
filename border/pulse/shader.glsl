@@ -5,8 +5,6 @@
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
 // Custom shader by Barrulus.
-// A second, independent ring shader: cyan pigment gently brightens and fades.
-// No deformation, so it needs no extra padding. Coordinates use logical pixels.
 vec4 ring_color(vec2 coords) {
     float d = ring_distance(coords);
     float half_px = 0.5 / umbriel_scale;

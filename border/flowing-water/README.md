@@ -24,9 +24,45 @@ Append the include path to your existing `files` array and merge selectors into 
 
 Borders apply to the focused, decorated window. Fullscreen and urgent windows do not display the border effect. The `ring_padding` constant in the shader must match `padding` in `effect.toml`.
 
-## Colours and tuning
+## Configuration options
 
-Colours are defined in `shader.glsl`. Setting `palette = true` alone will not recolour a shader that does not read the palette. Edit its colour constants to customise it.
+Edit the existing `[effects.preset."flowing-water"]` table in [effect.toml](effect.toml).
+The [complete configuration reference](../../README.md#configuration-reference) explains
+selection, overrides, and accepted ranges. The values below are this preset's shipped
+settings, including defaults for omitted keys.
+
+| TOML setting | Shipped value | What changing it does |
+| --- | --- | --- |
+| `kind` | `"border"` | Keep this kind: the source implements its `border` entry point. |
+| `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
+| `palette` | `false` | This source does not read the palette; enabling it alone does not recolour the effect. |
+| `padding` | `30` | Logical pixels of extra outward drawing space. Keep GLSL `ring_padding` equal to it. Reducing it can clip artwork; it is not a painted-width control. |
+| `speed` | `1` | Time multiplier: 0.5 halves speed, 2 doubles it, 0 freezes at time zero. Also controls an attached overlay. |
+| `animated` | `true` | Set false to freeze this border and its attached overlay at time zero. |
+| `overlay` | `""` | No inward pass is attached. A compatible window preset can be attached by name. |
+
+The optional `[effects.preset."flowing-water".light]` subtable is absent, so compositor light is off.
+Adding it enables light; removing the whole table disables it. Shader-painted glow is separate.
+
+| Light setting | Default if enabled | What changing it does |
+| --- | --- | --- |
+| `spread` | `80` | Logical-pixel reach; larger spreads light farther. |
+| `intensity` | `1.0` | Brightness; lower is dimmer, 0 makes the light invisible. |
+| `threshold` | `0.5` | Raise to emit only from brighter ring pixels; lower to include dimmer pixels. |
+
+### Shader controls
+
+Edit these values in [shader.glsl](shader.glsl), not in TOML. `#define` is
+active GLSL code; comments use `//` or `/* ... */`. Start with small changes
+and keep paired shaders in sync. Keep size and duration divisors positive.
+
+| GLSL control or expression | Shipped value | Visual effect |
+| --- | --- | --- |
+| `WATER_SPEED` | `1.0` | Water animation rate; larger positive values move faster. |
+| `WAVE_HEIGHT` | `10.0` | Wave displacement in logical pixels; lower makes a shallower, less wavy band. |
+| `WATER_OPACITY` | `0.85` | Water opacity, 0–1; lower makes it more transparent. |
+
+Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 

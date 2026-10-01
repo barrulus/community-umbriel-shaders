@@ -3,21 +3,6 @@ vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
 // Custom shader by Barrulus.
-// Mercury sheen — a flowing liquid-metal / chrome surface raked with moving specular glints.
-// A domain-warped noise field is treated as a molten surface; its normal fakes an environment
-// reflection (dark steel in the valleys, bright chrome on the ridges) and a rotating light throws
-// hot highlights that sweep across as the surface rolls. Neutral, slightly cool silver — mercury.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-//
-// Tuning knobs:
-//   OPACITY  -> how much the metal takes over the content (lower = more of a sheen over the app)
-//   SCALE    -> size of the molten cells (bigger = finer, more turbulent mercury)
-//   BUMP     -> surface relief; more = sharper light/dark banding and glints
-//   SPECP    -> specular tightness (higher = smaller, harder glints)
-//   flow speeds (0.05/0.06 warp, 0.4 light) -> how fast it churns / the light sweeps
-
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
 float vnoise(vec2 p){

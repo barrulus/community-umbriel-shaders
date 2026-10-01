@@ -5,27 +5,6 @@
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
 // Custom shader by Barrulus.
-// Blue-white lightning with one to four travelling crackle spots.
-// Decoration shader: vec4 ring_color(vec2 coords).
-// Host supplies ring_size, ring_width, ring_padding, ring_distance(coords),
-// umbriel_time and umbriel_scale. Coordinates are logical pixels from the client
-// top-left (y down); return STRAIGHT RGBA. The host clips the client and
-// applies opacity / premultiplication. Do not add main() or uniform declarations.
-//
-// Example inside a window-rule:
-// focus-ring {
-//     on
-//     width 8
-//     shader {
-//         path "~/.config/niri/focus-ring/lightning.frag"
-//         padding 24
-//     }
-// }
-// padding 24 suits width <= 8. For wider rings allow at least
-// 2.5 * width + 2 / output_scale logical pixels of shader padding.
-
-// Edit these constants to tune the effect. SPEED=0 freezes it.
-// Number of evenly spaced pulses (1-4; out-of-range values are clamped).
 const int LIGHTNING_COUNT = 4;
 const float SPEED = 1.0;
 const float STRENGTH = 0.9;
@@ -60,7 +39,7 @@ float fr_crackle(float u, float cells, float tick) {
 }
 
 vec4 ring_color(vec2 coords) {
-    if (ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
+    if (LIGHTNING_COUNT <= 0 || ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
     const float tau = 6.28318530718;
     float phase = fract(umbriel_time * SPEED / 4.0);
     float strength = clamp(STRENGTH, 0.0, 1.0);
@@ -76,7 +55,7 @@ vec4 ring_color(vec2 coords) {
     float coverage;
 
     // Repeat the travelling spot without changing each pulse's width or lap time.
-    float count = clamp(float(LIGHTNING_COUNT), 1.0, 4.0);
+    float count = float(LIGHTNING_COUNT);
     float behind = fract((phase - u) * count) / count;
     float delta = abs(fract((u - phase) * count + 0.5) - 0.5) / count;
     float head = exp(-pow(delta / 0.027, 2.0));

@@ -4,14 +4,12 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// Living focus ring: intertwined vines, unfurling leaves and opening flowers.
-// Umbriel decoration shader; logical coordinates, straight RGBA output.
 const float VINE_SPEED = 0.75;
 const float GROWTH_SECONDS = 13.0;
 const float SPROUT_SPACING = 88.0;
-const float BLOOM_DRIFT = 18.0; // logical pixels per second along the vine
-const float VINE_OUTSET = 12.0; // fit inside the usual screen-edge margin
-const float VINE_INSET = 24.0; // matching window pass paints inward growth
+const float BLOOM_DRIFT = 18.0;
+const float VINE_OUTSET = 12.0;
+const float VINE_INSET = 24.0;
 
 float vine_hash(float p) { return fract(sin(p * 127.1 + 311.7) * 43758.5453); }
 

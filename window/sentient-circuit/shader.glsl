@@ -2,9 +2,6 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Sentient circuit: etched buses, independent junctions, light-reactive pulses.
-// Umbriel postprocess contract: return premultiplied RGBA.
-// Logical-pixel geometry keeps traces consistent across output scales.
 const float CIRCUIT_SPACING = 144.0;
 const float CIRCUIT_STRENGTH = 0.72;
 const float CIRCUIT_SPEED = 1.0;

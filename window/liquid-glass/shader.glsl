@@ -2,17 +2,13 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Shader-only frosted glass: diffuse the captured composition, then add tint,
-// a refractive bevel and soft reflection. No compositor backdrop blur needed.
-// Some original detail is retained for lettering, but diffusion affects both
-// the window and its visible background; hidden desktop pixels are unavailable.
-const float GLASS_BEVEL = 24.0;       // logical pixels
-const float GLASS_REFRACTION = 8.0;   // logical pixels
-const float GLASS_RADIUS = 4.0;       // client radius: outer radius 10 minus border 6
+const float GLASS_BEVEL = 24.0;
+const float GLASS_REFRACTION = 8.0;
+const float GLASS_RADIUS = 4.0;
 const float GLASS_REFLECTION = 0.32;
 const float GLASS_TINT = 0.14;
-const float GLASS_FROST_RADIUS = 3.0; // logical pixels
-const float GLASS_FROST = 0.55;       // 0 = clear, 1 = fully diffused
+const float GLASS_FROST_RADIUS = 3.0;
+const float GLASS_FROST = 0.55;
 
 vec4 glass_sample(vec2 p, vec2 size, float scale) {
     vec2 inset = vec2(0.5 / scale);

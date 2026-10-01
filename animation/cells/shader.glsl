@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -11,7 +10,6 @@ vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
 }
 
-// Width of a five-sided cell in logical pixels; try 40–110.
 const float CELL_SIZE = 64.0;
 
 vec4 animation(vec2 uv) {

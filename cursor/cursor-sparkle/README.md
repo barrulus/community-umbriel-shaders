@@ -24,9 +24,40 @@ Append the include path to your existing `files` array and merge selectors into 
 
 The preset uses `radius = 96` logical pixels around the pointer.
 
-## Colours and tuning
+## Configuration options
 
-This preset enables the theme palette. Edit `[colors]` to change the supplied colours; see [theme colours](../../README.md#theme-colours).
+Edit the existing `[effects.preset."cursor-sparkle"]` table in [effect.toml](effect.toml).
+The [complete configuration reference](../../README.md#configuration-reference) explains
+selection, overrides, and accepted ranges. The values below are this preset's shipped
+settings, including defaults for omitted keys.
+
+| TOML setting | Shipped value | What changing it does |
+| --- | --- | --- |
+| `kind` | `"cursor"` | Keep this kind: the source implements its `cursor` entry point. |
+| `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
+| `palette` | `true` | Supplies theme colours. Disable it to use the shader's fallback colour; see the colour controls below. |
+| `radius` | `96` | Half-size in logical pixels of the shaded square; 0 shades the whole output. This bounds drawing, not the artwork size; reducing it may clip the effect. Use the GLSL size controls below to resize it. |
+
+There is no TOML `speed`, `animated`, or `opacity` setting for this kind.
+Motion/strength changes are GLSL edits below.
+Global `[effects] max_fps` limits effect-driven frames, and `in_capture`
+controls inclusion in screencopy/image-copy captures. Neither resizes the artwork.
+
+### Shader controls
+
+Edit these values in [shader.glsl](shader.glsl), not in TOML. `#define` is
+active GLSL code; comments use `//` or `/* ... */`. Start with small changes
+and keep paired shaders in sync. Keep size and duration divisors positive.
+
+| GLSL control or expression | Shipped value | Visual effect |
+| --- | --- | --- |
+| `dot count / divisor` | `5 / 5.0` | Change both loop count and k divisor together to keep dots evenly spaced; more dots adds work. |
+| `angular speed` | `1.6` | Larger orbits faster. |
+| `orbit expression` | `50.0 + 12.0 * sin(...)` | Mean radius and oscillation amplitude in logical pixels; lower makes a smaller orbit. |
+| `dot radius` | `2.5 (both smoothstep edges)` | Lower both for smaller dots; preserve + aa. |
+| `fallback colour` | `vec3(1.0, 0.9, 0.6)` | Used with palette disabled; otherwise edit the four theme colours. |
+
+Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 

@@ -4,9 +4,7 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// Independent emerald / white micro-discharges around the ENTIRE perimeter.
-// No travelling head, lap phase or moving wake. Returns straight RGBA.
-const float SPARK_DENSITY = 13.0; // logical pixels between potential sparks
+const float SPARK_DENSITY = 13.0;
 const float SPARK_SPEED = 1.0;
 const float SPARK_STRENGTH = 1.0;
 

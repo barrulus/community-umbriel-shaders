@@ -12,10 +12,6 @@ float smoothstep_any_order(float a, float b, float x) {
 // edges) and composites it so dark areas BECOME the paper while bright,
 // coloured content (text/icons) stays its own colour, like ink on parchment.
 //
-// Window shader. Static: does NOT use umbriel_time.
-//   c.xy : 0..1 across the window, c.y = 0 at the TOP
-//   umbriel_size : window size in physical pixels
-//   tex2D_screen(uv) : samples the window's own composited pixels
 
 // --- static procedural noise (seeded by pixel position, no time) -------------
 float hash(vec2 p) {
@@ -75,16 +71,15 @@ vec4 postprocess(vec3 c) {
     vec4 src = tex2D_screen(uv);
     vec2 px  = uv * umbriel_size;
 
-    // ---- knobs -------------------------------------------------------------
-    float crackAmount   = 0.22; // brightness of the crackle veins on the paper
-    float crumpleAmount = 0.40; // strength of the cloudy crumple shading
-    float paperOpacity  = 0.92; // how fully dark areas turn into paper (1 = opaque)
-    float inkKeep       = 0.55; // content brighter than this keeps its own colour
-    float desat         = 0.45; // pull content toward neutral so it reads as ink
-    float warmth        = 0.22; // warm wash over everything (0 = none)
-    float edgeBurn      = 0.95; // darkness of the burnt border
-    float burnWidth     = 0.50; // 0..1, lower = wider/thicker dark border
-    vec3  paperTan      = vec3(0.86, 0.66, 0.42); // base parchment hue
+    float crackAmount   = 0.22;
+    float crumpleAmount = 0.40;
+    float paperOpacity  = 0.92;
+    float inkKeep       = 0.55;
+    float desat         = 0.45;
+    float warmth        = 0.22;
+    float edgeBurn      = 0.95;
+    float burnWidth     = 0.50;
+    vec3  paperTan      = vec3(0.86, 0.66, 0.42);
     // ------------------------------------------------------------------------
 
     // Domain-warp so the texture looks organic, not regular.

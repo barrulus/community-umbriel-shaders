@@ -15,10 +15,6 @@ float smoothstep_any_order(float a, float b, float x) {
 // colours, emoji) keep their colour. Crackle/crumple texture is layered on as a
 // gentle multiplier so it reads as paper without hurting legibility.
 //
-// Window shader. Static: does NOT use umbriel_time.
-//   c.xy : 0..1 across the window, c.y = 0 at the TOP
-//   umbriel_size : window size in physical pixels
-//   tex2D_screen(uv) : samples the window's own composited pixels
 
 // --- static procedural noise (seeded by pixel position, no time) -------------
 float hash(vec2 p) {
@@ -77,13 +73,12 @@ vec4 postprocess(vec3 c) {
     vec4 src = tex2D_screen(uv);
     vec2 px  = uv * umbriel_size;
 
-    // ---- knobs -------------------------------------------------------------
-    float crackAmount   = 0.10; // crackle veins (kept subtle for readability)
-    float crumpleAmount = 0.22; // cloudy tone variation
-    float colorKeep     = 0.80; // how much coloured UI keeps its own hue (0..1)
-    float contrastBoost = 1.15; // >1 widens text/bg separation for legibility
-    float edgeBurn      = 0.45; // burnt border (gentle so it doesn't eat the UI)
-    float burnWidth     = 0.78; // 0..1, higher = thinner border
+    float crackAmount   = 0.10;
+    float crumpleAmount = 0.22;
+    float colorKeep     = 0.80;
+    float contrastBoost = 1.15;
+    float edgeBurn      = 0.45;
+    float burnWidth     = 0.78;
     // Parchment palette: shadow -> mid -> highlight by luminance.
     vec3 shadowCol = vec3(0.15, 0.10, 0.06);
     vec3 midCol    = vec3(0.52, 0.39, 0.23);

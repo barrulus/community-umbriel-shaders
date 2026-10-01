@@ -1,13 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
     return fract((q.x + q.y) * q.z);
 }
 
-// Maximum band displacement span as a fraction of window width; try 0.10–0.40.
 const float GLITCH_SHIFT = 0.28;
 
 vec4 animation(vec2 uv) {

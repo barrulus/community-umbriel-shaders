@@ -24,9 +24,46 @@ Append the include path to your existing `files` array and merge selectors into 
 
 Normally this is included automatically by its matching border preset. Selecting it as a window effect, as above, applies it to every window.
 
-## Colours and tuning
+## Configuration options
 
-Colours are defined in `shader.glsl`. Setting `palette = true` alone will not recolour a shader that does not read the palette. Edit its colour constants to customise it.
+Edit the existing `[effects.preset."paper-overlay"]` table in [effect.toml](effect.toml).
+The [complete configuration reference](../../README.md#configuration-reference) explains
+selection, overrides, and accepted ranges. The values below are this preset's shipped
+settings, including defaults for omitted keys.
+
+| TOML setting | Shipped value | What changing it does |
+| --- | --- | --- |
+| `kind` | `"window"` | Keep this kind: the source implements its `window` entry point. |
+| `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
+| `palette` | `false` | This source does not read the palette; enabling it alone does not recolour the effect. |
+
+There is no TOML `speed`, `animated`, or `opacity` setting for this kind.
+Motion/strength changes are GLSL edits below.
+Global `[effects] max_fps` limits effect-driven frames, and `in_capture`
+controls inclusion in screencopy/image-copy captures. Neither resizes the artwork.
+
+This is the inward half of [paper](../../border/paper/). Normally the border
+attaches it through `overlay`; then it follows that border's focus gate,
+`speed`, and `animated` settings. Selecting it independently with
+`[effects] window` applies it to windows regardless of focus and uses its own clock.
+To remove the inward artwork, clear the parent border's `overlay` and remove
+its unused companion include. Clear any independent window selection too.
+Edit shared visual controls in both shaders when keeping the pair.
+
+### Shader controls
+
+Edit these values in [shader.glsl](shader.glsl), not in TOML. `#define` is
+active GLSL code; comments use `//` or `/* ... */`. Start with small changes
+and keep paired shaders in sync. Keep size and duration divisors positive.
+
+| GLSL control or expression | Shipped value | Visual effect |
+| --- | --- | --- |
+| `PENCIL_SPEED` | `46.0` | Pencil travel speed in logical pixels per shader second. |
+| `PENCIL_INSET` | `22.0` | Inward drawing reach in logical pixels; lower can clip the inward part of the pencil. |
+| `PENCIL_OUTSET` | `30.0` | Outward drawing reach in logical pixels; lower can clip the outward part of the pencil. |
+| `pencil_radius()` | `min(18.0, min(ring_size.x, ring_size.y) * 0.25)` | Rounded drawing-path radius in logical pixels. This is an artistic contour independent of the native corner radius; change both passes together. |
+
+Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 

@@ -7,22 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rolling smoke-clouds — smoke blown against the glass, covering the whole window. The
-// field doesn't sweep across: two fast counter-advecting warp fields make it boil and roll
-// over itself in place, with a gentle upward billow like smoke curling against the pane.
-// Kept deliberately dim and grey — muted bodies, slate shadows, low opacity — so text
-// stays readable underneath.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   DENSITY -> smoke coverage (lower = more broken)
-//   BOIL    -> how hard the smoke rolls over itself
-//   CHURN   -> how fast the rolling turns over
-//   RISE    -> upward billow speed
-//   OPACITY -> how solid the smoke is over the content (keep low for readable text)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 

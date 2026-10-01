@@ -9,10 +9,6 @@ float smoothstep_any_order(float a, float b, float x) {
 }
 // CRT phosphor — scanlines, RGB aperture-grille mask, barrel bulge, vignette.
 //
-// Window shader. Static: does NOT use umbriel_time.
-//   c.xy : 0..1 across the window, c.y = 0 at the TOP
-//   umbriel_size : window size in physical pixels
-//   tex2D_screen(uv) : samples the window's own composited pixels
 
 vec4 postprocess(vec3 c) {
     vec2 uv = c.xy;

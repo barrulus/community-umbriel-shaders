@@ -5,19 +5,8 @@
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
 // Custom shader by Barrulus.
-// An irregular braided fuse with one to four travelling embers, ash and sparks.
-// File-based focus-ring shader: return straight RGBA; no main() or #version.
-// Suggested settings: width 6; padding 48;
-// shader { path "~/.config/niri/focus-ring/fuse.frag"; padding 48;
-//          light spread=90 intensity=1.4 threshold=0.5; }
-// Padding should be at least 8 * width for sparks, not window spacing.
-// The cord itself stays within the nominal ring width, including its bends.
-// This fits a width-6 ring into ordinary 6-pixel gaps, even at output edges.
-// The charred trail gradually recovers to make the animation repeat seamlessly.
-// Number of burning tips (1-4; out-of-range values are clamped).
 const int EMBER_COUNT = 4;
 const float FUSE_SECONDS = 10.0;
-// Fire brightness only: the unburnt cord stays below the 0.5 light threshold.
 const float FUSE_BRIGHTNESS = 1.0;
 const float FUSE_WANDER = 1.0;
 const float FUSE_TAU = 6.28318530718;
@@ -58,7 +47,7 @@ float fuse_segment(vec2 p, vec2 a, vec2 b) {
 }
 
 vec4 ring_color(vec2 coords) {
-    if (ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
+    if (EMBER_COUNT <= 0 || ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
     float w = ring_width;
     float aa = 0.5 / max(umbriel_scale, 0.01);
     float d = ring_distance(coords);
@@ -73,7 +62,7 @@ vec4 ring_color(vec2 coords) {
     float across = d - centre;
     // Use the nearest tip for the burn and the most recent tip for the ash trail.
     // Dividing by count retains each ember's size and speed around the whole window.
-    float count = clamp(float(EMBER_COUNT), 1.0, 4.0);
+    float count = float(EMBER_COUNT);
     float spacing = perimeter / count;
     float ahead = fuse_wrap((u - phase) * count) * spacing;
     float behind = fract((phase - u) * count) * spacing;
@@ -110,8 +99,7 @@ vec4 ring_color(vec2 coords) {
 
     // Small ballistic streaks are born on the rope at the tip's earlier position.
     // Their IDs repeat every lap, so neither the rope nor the particles jump at wrap.
-    for (int emitter = 0; emitter < 4; emitter++) {
-        if (float(emitter) >= count) break;
+    for (int emitter = 0; emitter < EMBER_COUNT; emitter++) {
         float emitter_phase = fract(phase + float(emitter) / count);
         if (abs(fuse_wrap(u - emitter_phase)) * perimeter < perimeter * 0.14 + w * 12.0) {
             float clock = phase * 96.0;

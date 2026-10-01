@@ -7,26 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rainfall — light rain on the windowpane. Out beyond the glass, three depth layers of
-// soft out-of-focus streaks fall fast — the rain itself, blurred by the pane. On the glass
-// in the foreground, two depth layers of drops run down along gently wiggling tracks, each
-// towing a trail of shrinking beads; between the runs, small droplets cling to the pane,
-// slowly growing and clearing again so the glass "builds up" over time. Every drop
-// refracts the content behind it like a tiny lens, the glass between drops is faintly
-// misted, and the whole pane gets a cool rainy-day grade. Content stays readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   REFRACT       -> lens strength of the drops (0 = drops become invisible)
-//   RAIN          -> strength of the blurred background rain (0 = pane effects only)
-//   FOG           -> misted-glass softening between the drops
-//   TINT          -> cool colour-grade strength
-//   BUILDUP       -> density of the small clinging droplets (0..1)
-//   0.10/0.18 spd -> fall-speed range of the running drops
-//   1.1/0.7 vel   -> fall speed of the background streaks
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 vec2 hash2(vec2 p){ return vec2(hash(p), hash(p + 19.19)); }

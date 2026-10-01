@@ -2,8 +2,6 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Neutral white crumpled stationery. Static, scale-independent fibres and folds.
-// Content keeps its alpha; bright and dark applications both retain contrast.
 const float PAPER_RELIEF = 0.24;
 const float PAPER_DESATURATION = 0.85;
 

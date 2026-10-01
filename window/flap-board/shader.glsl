@@ -2,12 +2,10 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Rectangular flaps turn in travelling waves, showing inverted live content.
-// Resting tiles return the input exactly: no persistent grid, tint or history.
-const vec2 FLAP_SIZE = vec2(38.0, 26.0); // logical pixels
-const float FLAP_DURATION = 1.15;       // seconds for one complete turn
-const float FLAP_PERIOD = 5.5;          // seconds between wave fronts
-const float FLAP_GAP = 1.0;             // seam visible only during a turn
+const vec2 FLAP_SIZE = vec2(38.0, 26.0);
+const float FLAP_DURATION = 1.15;
+const float FLAP_PERIOD = 5.5;
+const float FLAP_GAP = 1.0;
 const float FLAP_SPEED = 1.0;
 
 vec4 postprocess(vec3 coords) {

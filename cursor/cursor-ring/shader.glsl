@@ -5,7 +5,6 @@ vec2 migration_pointer() { return umbriel_pointer * umbriel_size * umbriel_scale
 #define umbriel_output_size migration_buffer_size()
 #define umbriel_cursor migration_pointer()
 #define umbriel_size migration_buffer_size()
-// A thin circle around the pointer that breathes in radius and brightness.
 vec4 postprocess(vec3 coords) {
   vec2 uv = coords.xy;
   vec4 under = tex2D_screen(uv);

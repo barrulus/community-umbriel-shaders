@@ -4,10 +4,7 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// Four little pencils draw graphite around a rounded paper perimeter.
-// This is also the source for the matching inner overlay. After edits run:
-// python3 tools/generate-paper-overlay.py
-const float PENCIL_SPEED = 46.0; // logical pixels per second
+const float PENCIL_SPEED = 46.0;
 const float PENCIL_INSET = 22.0;
 const float PENCIL_OUTSET = 30.0;
 const float PENCIL_PI = 3.14159265359;

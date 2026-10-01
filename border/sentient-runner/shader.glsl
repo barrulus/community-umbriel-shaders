@@ -4,9 +4,6 @@
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// Green-and-gold circuit runner. Umbriel decoration contract: straight RGBA.
-// Three angular buses with shared junctions, branching links, and independent
-// counter-running packets that accelerate, hesitate and reverse locally.
 const float RUNNER_SPEED = 1.0;
 const float RUNNER_STRENGTH = 1.0;
 const float JUNCTION_SPACING = 76.0;

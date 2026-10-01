@@ -7,29 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Prairie wind — not grass itself, but the pattern wind makes sweeping over a grassland.
-// Deliberately erratic, the way real wind works a field: the wind direction itself wanders
-// in space and time, so gust fronts arrive curved and broken rather than as straight bands;
-// on top of them, patchy cat's-paw bursts flare up and die away, and the whole wind surges
-// and slackens. Where the wind works, it pushes a colour field along with it in prairie
-// tones — sage, wheat gold, pale straw — that streams and eddies downwind. The window
-// content is never resampled or displaced (no smudging); the colours ride over it. A pale
-// flash marks each front's leading edge, and a fine fast ripple glitters like straw — the
-// susurration. Calm patches between gusts stay completely clear.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   SWEEP    -> how fast the gust fronts travel
-//   STRENGTH -> peak opacity of the wind-blown colour
-//   SHEEN    -> strength of the pale flash on the leading edges
-//   SHADE    -> how much the gust troughs settle darker
-//   SCALE    -> gust size (higher = smaller, busier gusts)
-//   WANDER   -> how far the wind direction strays from WIND
-//   WIND     -> mean wind direction (unit vector; default blows right, slightly downhill)
-//   pal()    -> the prairie palette (sage -> wheat gold -> pale straw)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 

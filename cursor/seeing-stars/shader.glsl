@@ -5,7 +5,6 @@ vec2 migration_pointer() { return umbriel_pointer * umbriel_size * umbriel_scale
 #define umbriel_output_size migration_buffer_size()
 #define umbriel_cursor migration_pointer()
 #define umbriel_size migration_buffer_size()
-// Flapping cartoon birds and tumbling stars share a compact, evenly spaced orbit.
 vec4 dizzy_over(vec4 under, vec4 paint) {
     return paint + under * (1.0 - paint.a);
 }

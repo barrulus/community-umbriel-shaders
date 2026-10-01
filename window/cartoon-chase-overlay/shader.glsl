@@ -2,7 +2,6 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Matching inner half of cartoon-chase.glsl.
 #define ring_size (umbriel_size / max(umbriel_scale, 0.01))
 
 // Bodies face into the window; spinning feet and fading dust ride its edge.

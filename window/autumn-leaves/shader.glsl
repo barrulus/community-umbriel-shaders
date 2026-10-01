@@ -7,22 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Autumn leaves — leaves gust across the window, hugging the bottom edge as they bob and
-// tumble; roughly one in five breaks loose and sails higher, but never past the window's
-// midline. Each leaf is a pointed oval with a darker midrib that flips edge-on as it
-// tumbles, in a russet / amber / olive palette.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   LEAVES        -> how many leaves are in flight (loop count; keep <= 24)
-//   OPACITY       -> how solid the leaves are over the content
-//   SPEED         -> base drift speed (window-widths per second, ish)
-//   MAX_RISE      -> how far up the window the strays may climb (0.5 = halfway)
-//   SIZE          -> leaf size (fraction of window height)
-//   0.8 in `step` -> share of high flyers (higher = fewer strays)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float hash1(float n){ return hash(vec2(n, 1.7)); }

@@ -5,8 +5,6 @@
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
 // Custom shader by Barrulus.
-// Glossy rainbow/neon ripple, paired with an inner-content overlay.
-// These constants are shader-specific: change them or replace the whole algorithm.
 #ifndef WAX_STRENGTH
 #define WAX_STRENGTH 0.75
 #endif

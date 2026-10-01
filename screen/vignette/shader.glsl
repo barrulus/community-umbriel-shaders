@@ -1,4 +1,3 @@
-// Darken the output towards its corners.
 vec4 screen(vec2 uv) {
     vec4 c = umbriel_sample(uv);
     vec2 p = uv - 0.5;

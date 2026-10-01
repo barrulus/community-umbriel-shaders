@@ -2,10 +2,8 @@
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Matching inner half keeps the hearts visible at screen edges.
 #define ring_size (umbriel_size / max(umbriel_scale, 0.01))
 
-// A satin-pink ribbon carries little beating hearts around the window.
 const float RIBBON_PI = 3.14159265359;
 const float RIBBON_INSET = 30.0;
 
@@ -93,7 +91,6 @@ vec2 ribbon_project(vec2 p) {
     }
     return result;
 }
-
 
 vec4 ribbon_over(vec4 under, vec4 paint) { return paint + under * (1.0-paint.a); }
 float ribbon_wave(float along, float perimeter) {
