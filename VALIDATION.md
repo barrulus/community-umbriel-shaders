@@ -86,3 +86,25 @@ reads those timings from the corresponding `config.toml`.
 - Animation selectors apply globally per event. Test opening and closing endpoints when changing timing or GLSL; the preview is only an intermediate frame.
 
 See [Umbriel’s effects reference](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for the complete rendering contract.
+
+## Workspace VHS Ripple
+
+Added `workspace-transation-vhs-ripple` on 2026-10-01, with a 600 ms workspace
+activation example. The preset name retains the requested `transation` spelling.
+
+- All 82 installation examples and the combined library pass configuration
+  validation using `umbriel 0.1.0 (e5056a594c3b-dirty)`.
+- The same shader, under its original `workspace-ripple` name, compiled in that
+  live compositor and the contributor accepted its workspace-switch appearance.
+  Packaging changes only the preset name and adds attribution comments.
+- Offscreen GLES compilation and 81 synthetic frames pass on Mesa llvmpipe
+  (LLVM 21.1.8). Nine progress values, including exact endpoints and values outside
+  0–1, were checked at three logical sizes and opaque, translucent, and empty
+  input alpha. Endpoint pixels match the input exactly; SDR premultiplied-alpha,
+  empty-input, and GL-error checks pass.
+- The 640×400 catalog preview is rendered from the shader at progress 0.5 over a
+  synthetic desktop. This offscreen check uses a synthetic sampling helper, not
+  Umbriel's full capture pipeline, and does not simulate the native slide.
+
+Interrupted switches, fractional scaling, rotated outputs, HDR fidelity, and
+hardware performance have not been separately validated for this preset.
