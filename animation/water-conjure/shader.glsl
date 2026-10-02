@@ -1,4 +1,14 @@
 // Adapted from shaders/animations/water-conjure.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 float conjure_hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }
@@ -161,8 +171,8 @@ vec4 animation(vec2 uv) {
     float boundary = min(abs(poolDistance), min(abs(waterDistance), abs(frameDistance)));
     float rim = exp(-boundary / 0.006);
     float threads = pow(0.5 + 0.5 * sin(p.x * 74.0 + noise * 9.0 + p.y * 6.0 - t * 14.0), 10.0);
-    vec3 water = vec3(0.025, 0.22, 0.32) + vec3(0.045, 0.20, 0.25) * noise;
-    water += vec3(0.22, 0.43, 0.48) * (rim * 0.75 + threads * 0.30);
+    vec3 water = theme_color(vec3(0.025, 0.22, 0.32), 0.25) + theme_color(vec3(0.045, 0.20, 0.25), 0.25) * noise;
+    water += theme_color(vec3(0.22, 0.43, 0.48), 0.25) * (rim * 0.75 + threads * 0.30);
     water = min(water, vec3(1.0));
     float poolMask = (1.0 - smoothstep(-aa, aa, poolDistance)) * poolLife;
     float fluidMask = max(poolMask, 1.0 - smoothstep(-aa, aa, waterDistance));
@@ -176,7 +186,7 @@ vec4 animation(vec2 uv) {
     float foam = (1.0 - smoothstep(foamWidth, foamWidth + aa, frameDistance))
         * smoothstep(-0.004, 0.002, frameDistance);
     foam *= smoothstep(0.30, 0.65, detail) * foamAmount;
-    vec4 froth = vec4(vec3(0.79, 0.94, 0.97) * liquidSource.a, liquidSource.a) * foam;
+    vec4 froth = vec4(theme_color(vec3(0.79, 0.94, 0.97), 0.25) * liquidSource.a, liquidSource.a) * foam;
     result = froth + result * (1.0 - froth.a);
 
     // Settle continuously to exact source sampling, including rounded corners.

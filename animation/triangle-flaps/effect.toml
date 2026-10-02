@@ -1,3 +1,4 @@
 [effects.preset.triangle-flaps]
 kind = "animation"
 shader = "shader.glsl"
+palette = true

@@ -1,5 +1,15 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -31,6 +41,6 @@ vec4 animation(vec2 uv) {
     float alpha = max(base.a, max(red.a, blue.a));
     vec4 color = vec4(red.r, base.g, blue.b, alpha);
     float stripe = step(0.92, hash21(vec2(band, tick + 61.0))) * chaos;
-    color.rgb = mix(color.rgb, vec3(0.15, 1.0, 0.85) * alpha, stripe * 0.7);
+    color.rgb = mix(color.rgb, theme_color(vec3(0.15, 1.0, 0.85), 0.25) * alpha, stripe * 0.7);
     return color * mask;
 }

@@ -1,5 +1,15 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -48,7 +58,7 @@ vec4 glassShard(vec2 uv, float gone, vec2 center, float bound, float id,
     float glint = (1.0 - smoothstep(pixel, pixel * 2.8, edge))
         * (0.2 + 0.6 * abs(sin(angle + seed * 6.28318))) * sin(gone * 3.14159);
     shard.rgb *= 0.72 + 0.28 * tumble;
-    shard.rgb = mix(shard.rgb, vec3(0.7, 0.9, 1.0) * shard.a, glint);
+    shard.rgb = mix(shard.rgb, theme_color(vec3(0.7, 0.9, 1.0), 0.25) * shard.a, glint);
     return shard * mask * fade;
 }
 

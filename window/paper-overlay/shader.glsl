@@ -1,4 +1,14 @@
 // Adapted from shaders/paper/window/scribbling-pencils-overlay.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -97,7 +107,7 @@ vec4 ring_color(vec2 coords) {
     // A lightly sketched double outline remains behind the moving strokes.
     float wobble = 0.55 * sin(path.x * 0.17) + 0.3 * sin(path.x * 0.43);
     float outline = min(abs(path.y - 2.4 - wobble), abs(path.y + 1.1 - wobble * 0.7));
-    paint = pencil_over(paint, vec3(0.22, 0.20, 0.17),
+    paint = pencil_over(paint, theme_color(vec3(0.22, 0.20, 0.17), 0.5),
         (1.0 - smoothstep(0.3, 0.3 + aa, outline)) * (0.30 + grain * 0.20));
 
     for (int i = 0; i < 4; i++) {
@@ -111,9 +121,9 @@ vec4 ring_color(vec2 coords) {
         float signed_behind = mod(head - path.x + perimeter * 0.5, perimeter) - perimeter * 0.5;
         float paper_fade = signed_behind >= 0.0 ? trail : smoothstep(-7.0, 0.0, signed_behind);
         float paper_width = 1.0 - smoothstep(1.5, 7.0, stroke);
-        vec3 paper = vec3(0.98, 0.96, 0.90) * (0.97 + 0.03 * grain);
+        vec3 paper = theme_color(vec3(0.98, 0.96, 0.90), 0.5) * (0.97 + 0.03 * grain);
         paint = pencil_over(paint, paper, paper_width * paper_fade * 0.68);
-        paint = pencil_over(paint, vec3(0.18, 0.16, 0.14),
+        paint = pencil_over(paint, theme_color(vec3(0.18, 0.16, 0.14), 0.5),
             (1.0 - smoothstep(0.48, 0.48 + aa, stroke)) * trail * (0.62 + grain * 0.30));
 
         vec4 frame = pencil_frame(head);
@@ -127,13 +137,13 @@ vec4 ring_color(vec2 coords) {
         float width = 2.7 * clamp(p.x / 7.0, 0.0, 1.0);
         float body = smoothstep(-aa, aa, p.x) * (1.0 - smoothstep(32.0 - aa, 32.0 + aa, p.x))
             * (1.0 - smoothstep(width - aa, width + aa, abs(p.y)));
-        vec3 color = vec3(0.91, 0.65, 0.15); // lacquered yellow cedar pencil
+        vec3 color = theme_color(vec3(0.91, 0.65, 0.15), 0.5); // lacquered yellow cedar pencil
         color *= 0.78 + 0.22 * smoothstep(-2.0, 1.3, p.y);
-        color += vec3(0.16, 0.15, 0.08) * exp(-pow((p.y + 0.7) * 2.0, 2.0));
-        if (p.x < 7.0) color = vec3(0.80, 0.61, 0.39) * (0.90 + p.y * 0.05);
-        if (p.x < 2.6) color = vec3(0.16, 0.15, 0.14);
-        if (p.x > 24.0) color = vec3(0.63, 0.66, 0.64) * (0.85 + 0.15 * sin(p.x * 5.0));
-        if (p.x > 27.5) color = vec3(0.86, 0.43, 0.40) * (0.9 + p.y * 0.035);
+        color += theme_color(vec3(0.16, 0.15, 0.08), 0.5) * exp(-pow((p.y + 0.7) * 2.0, 2.0));
+        if (p.x < 7.0) color = theme_color(vec3(0.80, 0.61, 0.39), 0.5) * (0.90 + p.y * 0.05);
+        if (p.x < 2.6) color = theme_color(vec3(0.16, 0.15, 0.14), 0.5);
+        if (p.x > 24.0) color = theme_color(vec3(0.63, 0.66, 0.64), 0.25) * (0.85 + 0.15 * sin(p.x * 5.0));
+        if (p.x > 27.5) color = theme_color(vec3(0.86, 0.43, 0.40), 0.75) * (0.9 + p.y * 0.035);
         float rim = smoothstep(max(width - 0.7, 0.0), max(width, 0.001), abs(p.y));
         color *= 1.0 - 0.28 * rim;
         paint = pencil_over(paint, color, body);

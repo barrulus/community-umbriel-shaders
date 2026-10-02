@@ -1,4 +1,14 @@
 // Adapted from shaders/window/flowering-vine-overlay.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -143,9 +153,9 @@ vec4 vine_leaf(vec2 p, vec2 origin, vec2 direction, float size, float seed, floa
         * (1.0 - smoothstep(max(width - aa, 0.0), width + aa, abs(q.y)));
     float midrib = exp(-abs(q.y) * 2.7);
     float side_veins = pow(0.5 + 0.5 * sin(q.x * 2.2 - abs(q.y) * 2.6), 8.0);
-    vec3 color = mix(vec3(0.08, 0.36, 0.09), vec3(0.33, 0.72, 0.15), seed);
+    vec3 color = mix(theme_color(vec3(0.08, 0.36, 0.09), 0.25), theme_color(vec3(0.33, 0.72, 0.15), 0.25), seed);
     color *= 0.80 + 0.20 * smoothstep(-1.5, 1.5, q.y);
-    color += vec3(0.24, 0.24, 0.06) * midrib + vec3(0.05, 0.09, 0.01) * side_veins;
+    color += theme_color(vec3(0.24, 0.24, 0.06), 0.5) * midrib + theme_color(vec3(0.05, 0.09, 0.01), 0.25) * side_veins;
     return vec4(color, cover);
 }
 
@@ -167,8 +177,8 @@ vec4 ring_color(vec2 coords) {
         float distance = abs(d - center);
         float stem = 1.0 - smoothstep(0.85, 0.85 + aa, distance);
         float sheen = exp(-abs(d - center + 0.34) * 3.0);
-        vec3 green = mix(vec3(0.08, 0.31, 0.085), vec3(0.22, 0.58, 0.13), float(strand));
-        green += vec3(0.22, 0.25, 0.055) * sheen;
+        vec3 green = mix(theme_color(vec3(0.08, 0.31, 0.085), 0.25), theme_color(vec3(0.22, 0.58, 0.13), 0.25), float(strand));
+        green += theme_color(vec3(0.22, 0.25, 0.055), 0.25) * sheen;
         paint = vine_over(paint, green, stem * 0.96);
     }
 
@@ -209,7 +219,7 @@ vec4 ring_color(vec2 coords) {
             previous = next;
         }
         float sprout = (1.0 - smoothstep(0.48, 0.48 + aa, stem_distance)) * visibility * growth;
-        paint = vine_over(paint, vec3(0.28, 0.60, 0.14), sprout);
+        paint = vine_over(paint, theme_color(vec3(0.28, 0.60, 0.14), 0.25), sprout);
 
         for (int leaf = 0; leaf < 2; leaf++) {
             float n = float(leaf);
@@ -233,13 +243,13 @@ vec4 ring_color(vec2 coords) {
             float size = (4.0 + seed * 1.5) * opening + 0.5 * growth;
             float edge = size * mix(0.68, 0.55 + lobe * 0.45, opening);
             float flower = (1.0 - smoothstep(edge - aa, edge + aa, length(q))) * visibility * growth;
-            vec3 petal = mix(vec3(0.94, 0.25, 0.45), vec3(0.72, 0.43, 0.97), step(0.56, seed));
-            petal = mix(petal, vec3(1.0, 0.83, 0.59), step(0.84, seed));
+            vec3 petal = mix(theme_color(vec3(0.94, 0.25, 0.45), 0.75), theme_color(vec3(0.72, 0.43, 0.97), 0.0), step(0.56, seed));
+            petal = mix(petal, theme_color(vec3(1.0, 0.83, 0.59), 0.5), step(0.84, seed));
             float rim = smoothstep(size * 0.12, max(size * 0.94, 0.001), length(q));
-            petal = mix(petal * 0.66, mix(petal, vec3(1.0, 0.91, 0.90), 0.32), rim);
+            petal = mix(petal * 0.66, mix(petal, theme_color(vec3(1.0, 0.91, 0.90), 0.75), 0.32), rim);
             paint = vine_over(paint, petal, flower);
             float center = (1.0 - smoothstep(1.0, 1.0 + aa, length(q))) * opening * visibility;
-            paint = vine_over(paint, vec3(1.0, 0.76, 0.14), center);
+            paint = vine_over(paint, theme_color(vec3(1.0, 0.76, 0.14), 0.5), center);
         }
     }
 

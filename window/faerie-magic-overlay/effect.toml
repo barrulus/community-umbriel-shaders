@@ -1,3 +1,4 @@
 [effects.preset."faerie-magic-overlay"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

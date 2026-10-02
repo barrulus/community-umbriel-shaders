@@ -1,4 +1,14 @@
 // Adapted from shaders/beach-surf/waves.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec2 surf_hash(vec2 p) {
     return fract(sin(vec2(dot(p, vec2(127.1, 311.7)),
         dot(p, vec2(269.5, 183.3)))) * 43758.5453);
@@ -31,8 +41,8 @@ float surf_bubbles(vec2 p, float t) {
 }
 
 vec3 surf_water(float noise, float light) {
-    vec3 color = mix(vec3(0.018, 0.16, 0.22), vec3(0.055, 0.43, 0.48), noise);
-    return mix(color, vec3(0.33, 0.68, 0.70), clamp(light, 0.0, 0.65));
+    vec3 color = mix(theme_color(vec3(0.018, 0.16, 0.22), 0.25), theme_color(vec3(0.055, 0.43, 0.48), 0.25), noise);
+    return mix(color, theme_color(vec3(0.33, 0.68, 0.70), 0.25), clamp(light, 0.0, 0.65));
 }
 
 // Straight RGBA. d is signed logical-pixel distance: negative is inside.
@@ -57,7 +67,7 @@ vec4 surf_edge(vec2 p, float d, float t, float aa) {
     float alpha = envelope * (0.25 + foam * 0.70);
     // The inner wash stays translucent; the outer breakers remain bright.
     alpha *= mix(0.50, 1.0, smoothstep(-12.0, 1.0, d));
-    vec3 color = mix(surf_water(n, crest * 0.3), vec3(0.88, 0.97, 0.94), foam);
+    vec3 color = mix(surf_water(n, crest * 0.3), theme_color(vec3(0.88, 0.97, 0.94), 0.25), foam);
     return vec4(color, clamp(alpha, 0.0, 1.0));
 }
 
@@ -128,7 +138,7 @@ vec4 animation(vec2 uv) {
         + wake * bubbles * smoothstep(0.22, 0.65, fine) * 0.60;
     float caustic = pow(0.5 + 0.5 * sin(p.y * 55.0 + n * 9.0 - time * 5.0), 8.0);
     vec3 color = surf_water(n, caustic * 0.45);
-    color = mix(color, vec3(0.88, 0.97, 0.94), clamp(foam * foamLife, 0.0, 1.0));
+    color = mix(color, theme_color(vec3(0.88, 0.97, 0.94), 0.25), clamp(foam * foamLife, 0.0, 1.0));
     vec4 water = vec4(color * source.a, source.a);
     vec4 result = mix(water, source, material) * visible;
 
@@ -153,7 +163,7 @@ vec4 animation(vec2 uv) {
             float d = length(local - centre);
             float mask = (1.0 - smoothstep(radius, radius + aa, d)) * life;
             float alpha = mask * source.a;
-            vec3 bead = mix(vec3(0.06, 0.42, 0.48), vec3(0.88, 0.97, 0.94),
+            vec3 bead = mix(theme_color(vec3(0.06, 0.42, 0.48), 0.25), theme_color(vec3(0.88, 0.97, 0.94), 0.25),
                 1.0 - smoothstep(0.0, radius, d));
             result = vec4(bead * alpha, alpha) + result * (1.0 - alpha);
         }

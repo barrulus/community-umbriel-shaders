@@ -1,4 +1,14 @@
 // Adapted from shaders/window/parchment-dark.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -80,9 +90,9 @@ vec4 postprocess(vec3 c) {
     float edgeBurn      = 0.45;
     float burnWidth     = 0.78;
     // Parchment palette: shadow -> mid -> highlight by luminance.
-    vec3 shadowCol = vec3(0.15, 0.10, 0.06);
-    vec3 midCol    = vec3(0.52, 0.39, 0.23);
-    vec3 highCol   = vec3(0.93, 0.85, 0.66);
+    vec3 shadowCol = theme_color(vec3(0.15, 0.10, 0.06), 0.5);
+    vec3 midCol    = theme_color(vec3(0.52, 0.39, 0.23), 0.5);
+    vec3 highCol   = theme_color(vec3(0.93, 0.85, 0.66), 0.5);
     // ------------------------------------------------------------------------
 
     // Luminance, with a little contrast expansion around mid-grey so dark UIs
@@ -101,7 +111,7 @@ vec4 postprocess(vec3 c) {
     float mn = min(min(src.r, src.g), src.b);
     float chroma = mx - mn;
     float colorful = smoothstep_any_order(0.10, 0.32, chroma) * colorKeep;
-    vec3 warmed = src.rgb * vec3(1.04, 0.98, 0.84);
+    vec3 warmed = src.rgb * theme_color(vec3(1.04, 0.98, 0.84), 0.5);
     vec3 base = mix(sepia, warmed, colorful);
 
     // ---- paper texture as a gentle multiplier (preserves contrast) ---------
@@ -123,7 +133,7 @@ vec4 postprocess(vec3 c) {
     float edge = max(e.x, e.y) + (fbm(px * 0.03) - 0.5) * 0.30;
     float burn = smoothstep_any_order(burnWidth, 1.05, edge);
     col *= mix(1.0, 0.45, burn * edgeBurn);
-    col = mix(col, vec3(0.20, 0.12, 0.06), burn * edgeBurn * 0.5);
+    col = mix(col, theme_color(vec3(0.20, 0.12, 0.06), 0.5), burn * edgeBurn * 0.5);
 
     return vec4(col, src.a);
 }

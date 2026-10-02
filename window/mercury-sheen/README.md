@@ -22,6 +22,14 @@ window = "window.mercury-sheen"
 
 Append the include path to your existing `files` array and merge selectors into existing tables. Including `effect.toml` defines the preset; the selector enables it. [`config.toml`](config.toml) contains the same copyable example.
 
+## Theme palette
+
+This preset enables `palette = true` in `effect.toml`. Artwork colours follow
+Umbriel's `[colors]` accents, warning, and error colours, while retaining shading
+and highlights. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
+
 ## Configuration options
 
 Edit the existing `[effects.preset."window.mercury-sheen"]` table in [effect.toml](effect.toml).
@@ -33,7 +41,7 @@ settings, including defaults for omitted keys.
 | --- | --- | --- |
 | `kind` | `"window"` | Keep this kind: the source implements its `window` entry point. |
 | `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
-| `palette` | `false` | This source does not read the palette; enabling it alone does not recolour the effect. |
+| `palette` | `true` | Use theme colours for artwork. Set false to restore the original shader colours. |
 
 There is no TOML `speed`, `animated`, or `opacity` setting for this kind.
 Motion/strength changes are GLSL edits below.

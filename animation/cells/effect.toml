@@ -1,3 +1,4 @@
 [effects.preset.cells]
 kind = "animation"
 shader = "shader.glsl"
+palette = true

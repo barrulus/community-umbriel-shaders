@@ -1,4 +1,14 @@
 // Adapted from shaders/window/fire-tendrils.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -26,9 +36,9 @@ float fbm(vec2 p){
 
 // White-hot -> orange -> deep red as `temp` falls from 1 to 0.
 vec3 heat_color(float temp){
-    vec3 col = mix(vec3(0.62, 0.05, 0.01), vec3(1.0, 0.34, 0.02), smoothstep_any_order(0.02, 0.40, temp));
-    col      = mix(col, vec3(1.0, 0.74, 0.12), smoothstep_any_order(0.38, 0.70, temp));
-    return     mix(col, vec3(1.0, 0.94, 0.72), smoothstep_any_order(0.78, 1.00, temp));
+    vec3 col = mix(theme_color(vec3(0.62, 0.05, 0.01), 0.75), theme_color(vec3(1.0, 0.34, 0.02), 0.5), smoothstep_any_order(0.02, 0.40, temp));
+    col      = mix(col, theme_color(vec3(1.0, 0.74, 0.12), 0.5), smoothstep_any_order(0.38, 0.70, temp));
+    return     mix(col, theme_color(vec3(1.0, 0.94, 0.72), 0.5), smoothstep_any_order(0.78, 1.00, temp));
 }
 
 vec4 postprocess(vec3 c){
@@ -81,7 +91,7 @@ vec4 postprocess(vec3 c){
     // Composite the fire as its OWN layer (premultiplied "over"), so it reads on translucent
     // windows instead of merely tinting them; mask keeps it inside the rounded corners.
     float mask = smoothstep_any_order(0.0, 0.25, s.a);
-    vec3  rgb  = s.rgb + vec3(1.0, 0.42, 0.08) * halo * GLOW * mask;
+    vec3  rgb  = s.rgb + theme_color(vec3(1.0, 0.42, 0.08), 0.5) * halo * GLOW * mask;
     float cov  = clamp(fire * OPACITY, 0.0, 1.0) * mask;
     rgb = mix(rgb, heat_color(temp), cov);
     return vec4(rgb, mix(s.a, 1.0, cov));

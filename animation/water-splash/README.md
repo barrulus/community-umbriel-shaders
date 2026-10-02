@@ -30,6 +30,14 @@ Append the include path to your existing `files` array and merge selectors into 
 
 Animation selectors are global for the chosen event; per-application animation assignment is not available in this API. Adjust `duration_ms` to change the timing.
 
+## Theme palette
+
+This preset enables `palette = true` in `effect.toml`. Artwork colours follow
+Umbriel's `[colors]` accents, warning, and error colours, while retaining shading
+and highlights. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
+
 ## Configuration options
 
 Edit the existing `[effects.preset."water-splash"]` table in [effect.toml](effect.toml).
@@ -41,7 +49,7 @@ settings, including defaults for omitted keys.
 | --- | --- | --- |
 | `kind` | `"animation"` | Keep this kind: the source implements its `animation` entry point. |
 | `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
-| `palette` | `false` | This source does not read the palette; enabling it alone does not recolour the effect. |
+| `palette` | `true` | Use theme colours for artwork. Set false to restore the original shader colours. |
 
 Edit the event tables in your main Umbriel configuration (the activation
 example is [config.toml](config.toml)). Larger `duration_ms` gives a slower

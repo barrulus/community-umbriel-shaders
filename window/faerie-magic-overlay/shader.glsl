@@ -1,4 +1,15 @@
 // Adapted from shaders/window/faerie-magic-overlay.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return umbriel_palette_count > 0
+        ? value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75)
+        : original;
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -222,7 +233,11 @@ vec4 ring_color(vec2 coords) {
 
     float envelope = smoothstep(-MAGIC_INSET, -MAGIC_INSET + 2.0 * aa, d)
         * (1.0 - smoothstep(max(extent - 2.0 * aa, 0.0), extent, d));
-    return vec4(clamp(paint.rgb / max(paint.a, 0.0001), 0.0, 1.0), paint.a * envelope);
+    vec3 pigment = clamp(paint.rgb / max(paint.a, 0.0001), 0.0, 1.0);
+    // Map the finished artwork so palette lookup stays outside the mote loops.
+    // The shared client coordinates keep border and overlay colours aligned.
+    float phase = (coords.x + coords.y) / max(ring_size.x + ring_size.y, 1.0);
+    return vec4(theme_color(pigment, phase), paint.a * envelope);
 }
 
 // Blend premultiplied content with the same straight-RGBA sparkles as the border.

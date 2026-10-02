@@ -193,7 +193,7 @@ vec3 bleed_pigment(float along, float depth, float seed, float sheen) {
         p = vec2(2.0 * ring_size.x + ring_size.y - along, ring_size.y);
     else p = vec2(0.0, perimeter - along);
     float hue = neon_hue(p);
-    vec3 rgb = clamp(abs(fract(hue + vec3(0.0, 2.0/3.0, 1.0/3.0)) * 6.0 - 3.0) - 1.0, 0.0, 1.0);
+    vec3 rgb = umbriel_palette_count > 0 ? umbriel_palette_at(hue).rgb : clamp(abs(fract(hue + vec3(0.0, 2.0/3.0, 1.0/3.0)) * 6.0 - 3.0) - 1.0, 0.0, 1.0);
     return mix(mix(rgb, vec3(1.0), 0.20), vec3(1.0), sheen * 0.70);
 }
 

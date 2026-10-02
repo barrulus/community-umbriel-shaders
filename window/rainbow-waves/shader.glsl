@@ -1,4 +1,14 @@
 // Adapted from shaders/window/rainbow-waves.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -33,7 +43,7 @@ float fbm(vec2 p){
 }
 
 // IQ cosine rainbow: hue 0..1 -> full spectrum
-vec3 rainbow(float h){ return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
+vec3 rainbow(float h){ if (umbriel_palette_count > 0) return umbriel_palette_at(h).rgb; return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
 
 vec4 postprocess(vec3 c){
     vec4  s  = tex2D_screen(c.xy);
@@ -73,7 +83,7 @@ vec4 postprocess(vec3 c){
     // lit crest, shaded trough, faint foam line on the crest
     float crest = 0.5 + 0.5 * cos(6.2831853 * ph);
     col *= 0.80 + 0.30 * crest;
-    col += vec3(0.90, 0.95, 1.0) * pow(crest, 12.0) * FOAM;
+    col += theme_color(vec3(0.90, 0.95, 1.0), 0.25) * pow(crest, 12.0) * FOAM;
 
     // a second, fainter wave set crossing at an angle adds interference depth
     vec2  dir2 = vec2(cos(th + 1.9), sin(th + 1.9));

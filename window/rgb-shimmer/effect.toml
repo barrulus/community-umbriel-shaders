@@ -1,3 +1,4 @@
 [effects.preset."window.rgb-shimmer"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

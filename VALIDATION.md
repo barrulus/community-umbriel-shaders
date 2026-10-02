@@ -2,6 +2,48 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Theme palette adaptation (2026-10-02)
+
+Audited all 82 shaders. Previously only `accent-pulse`, `glow`, `cursor-sparkle`,
+and `tv-glitch` read the palette, and `tv-glitch` did not enable it by default.
+Added palette support to 65 shaders and enabled it in those presets and
+`tv-glitch`, bringing the total to 69. The 13 content-processing effects without
+separate coloured artwork remain palette-neutral; the complete exception list
+is in [Theme colours](README.md#theme-colours).
+
+New colour mappings affect artwork and existing tint treatments, retaining
+shading, highlights, and effect opacity. Rainbow generators interpolate the
+palette using their existing phase. Paired borders and overlays use matching
+mappings. Faerie Magic maps its finished artwork outside the particle loops;
+this avoids the fallback rendering differences observed when palette lookups
+were added inside those loops on llvmpipe. All adapted presets retain their
+original colours with `palette = false`. Static previews show those original
+colours; the browser preview now has a theme-palette toggle.
+
+Validation uses `umbriel 0.1.0 (2040758)`, the GLES preamble and wrappers from
+upstream revision `2040758e`, and Mesa llvmpipe (LLVM 21.1.8):
+
+- All 82 installation examples and the combined library pass configuration
+  validation.
+- All 82 shaders compile and link. Offscreen checks cover two contrasting
+  palettes and the disabled palette, four time/progress/direction/alpha cases,
+  plus both exact animation endpoints in both directions at input alpha
+  0, 0.4, and 1. There are 2,232 rendered frames in total.
+- Every palette-enabled preset responds visibly to changing the palette;
+  all 13 palette-neutral presets remain unchanged. Switching the palette
+  preserves output alpha in the sampled cases.
+- Disabled-palette output matches the previous source within one byte per
+  channel. Animation endpoints with either palette match the previous source
+  within the same tolerance. All renders complete without GL errors.
+- The browser's ten paired transitions pass 11,520 WebGL frames across both
+  palette modes, checking endpoints and premultiplied alpha with wide, tall,
+  small, and square logical sizes, multiple seeds, and opaque/translucent input.
+  Representative synthetic palette renders were visually inspected.
+
+These are offscreen and browser checks, not a live compositor-session or
+hardware-performance pass. Existing shader limitations remain; these checks
+only establish the palette change's behaviour in the sampled cases.
+
 ## Documentation cleanup and border counts (2026-10-01)
 
 Shader comments duplicating the READMEs, obsolete Niri configuration examples,

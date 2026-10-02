@@ -1,3 +1,4 @@
 [effects.preset."portal-lava-overlay"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

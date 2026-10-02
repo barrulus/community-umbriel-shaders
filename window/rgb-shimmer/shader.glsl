@@ -32,7 +32,7 @@ vec4 postprocess(vec3 c){
     // Organic hue field — soft blobs of colour that drift and cycle.
     float f   = fbm(p*3.0 + vec2(umbriel_time*0.13, umbriel_time*0.08));
     float hue = fract(f + umbriel_time*0.08);
-    vec3  rb  = 0.5 + 0.5*cos(6.2831853*(hue + vec3(0.0, 0.33, 0.67)));  // IQ rainbow
+    vec3  rb  = umbriel_palette_count > 0 ? umbriel_palette_at(hue).rgb : 0.5 + 0.5*cos(6.2831853*(hue + vec3(0.0, 0.33, 0.67)));  // IQ rainbow
 
     // Coverage mask — a DIFFERENT drifting noise decides WHERE the sheen shows, so it's patchy:
     // large clear areas, occasional soft iridescent patches.

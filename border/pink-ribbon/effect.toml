@@ -4,5 +4,6 @@ files = ["../../window/pink-ribbon-overlay/effect.toml"]
 [effects.preset."pink-ribbon"]
 kind = "border"
 shader = "shader.glsl"
+palette = true
 padding = 24
 overlay = "pink-ribbon-overlay"

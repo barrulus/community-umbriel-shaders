@@ -38,6 +38,14 @@ Keep `curve = "linear"`: the shader applies its own easing to each phase, as the
 
 On opening, the TV collapse plays in reverse during the first half and the glitch settles over the whole duration. On closing, the glitch builds up across the whole duration and the collapse plays in the second half. Each transition uses `umbriel_random_seed.x` for a different noise pattern.
 
+## Theme palette
+
+This preset enables `palette = true` in `effect.toml`. The glitch tint follows
+Umbriel's `[colors] accent_primary`, while retaining `GLITCH_COLOR.a` as its
+tint strength. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
+
 ## Configuration options
 
 Edit the existing `[effects.preset."tv-glitch"]` table in [effect.toml](effect.toml).
@@ -49,7 +57,7 @@ settings, including defaults for omitted keys.
 | --- | --- | --- |
 | `kind` | `"animation"` | Keep this kind: the source implements its `animation` entry point. |
 | `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
-| `palette` | `false` | Enable to use accent_primary as the tint, while keeping GLITCH_COLOR.a as tint strength. False uses GLITCH_COLOR. |
+| `palette` | `true` | Enable to use accent_primary as the tint, while keeping GLITCH_COLOR.a as tint strength. False uses GLITCH_COLOR. |
 
 Edit the event tables in your main Umbriel configuration (the activation
 example is [config.toml](config.toml)). Larger `duration_ms` gives a slower

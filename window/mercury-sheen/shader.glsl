@@ -1,4 +1,14 @@
 // Adapted from shaders/window/mercury-sheen.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -46,7 +56,7 @@ vec4 postprocess(vec3 c){
     // Fake environment reflection: vertical gradient -> dark steel to bright chrome.
     vec3  r   = reflect(vec3(0.0, 0.0, -1.0), n);
     float env = 0.5 + 0.5*r.y;
-    vec3  chrome = mix(vec3(0.20, 0.22, 0.27), vec3(0.90, 0.93, 1.0), env);  // faint cool tint
+    vec3  chrome = mix(theme_color(vec3(0.20, 0.22, 0.27), 0.25), theme_color(vec3(0.90, 0.93, 1.0), 0.25), env);  // faint cool tint
 
     // Rotating light -> specular glints that sweep across the surface.
     vec3  L    = normalize(vec3(cos(umbriel_time*0.4), 0.4 + 0.4*sin(umbriel_time*0.3), 0.9));

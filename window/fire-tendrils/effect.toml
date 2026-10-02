@@ -1,3 +1,4 @@
 [effects.preset."window.fire-tendrils"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

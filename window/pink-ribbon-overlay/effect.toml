@@ -1,3 +1,4 @@
 [effects.preset."pink-ribbon-overlay"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

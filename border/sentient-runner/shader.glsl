@@ -1,4 +1,14 @@
 // Adapted from shaders/rings/sentient-runner.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 14.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
@@ -110,8 +120,8 @@ vec4 ring_color(vec2 coords) {
 
         // The central bus is gold; the outer bus has occasional gold branches.
         float gold = bus == 1 ? 1.0 : (bus == 2 ? step(0.79, seed) : 0.0);
-        vec3 copper = mix(vec3(0.10, 1.0, 0.32), vec3(1.0, 0.66, 0.10), gold);
-        vec3 hot = mix(vec3(0.88, 1.0, 0.82), vec3(1.0, 0.94, 0.67), gold);
+        vec3 copper = mix(theme_color(vec3(0.10, 1.0, 0.32), 0.25), theme_color(vec3(1.0, 0.66, 0.10), 0.5), gold);
+        vec3 hot = mix(theme_color(vec3(0.88, 1.0, 0.82), 0.25), theme_color(vec3(1.0, 0.94, 0.67), 0.5), gold);
         float core_light = core * (0.43 + energy * 1.05) + fork_core;
         float glow_light = halo * (0.025 + energy * 0.25) + fork_halo;
         float coverage = core_light + glow_light;

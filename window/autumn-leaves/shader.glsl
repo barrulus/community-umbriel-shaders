@@ -1,4 +1,14 @@
 // Adapted from shaders/window/autumn-leaves.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -64,8 +74,8 @@ vec4 postprocess(vec3 c){
         float m      = smoothstep_any_order(1.0, 0.80, d) * gate;
 
         // russet / amber / olive, shaded darker when edge-on, dark midrib
-        vec3 lc = mix(vec3(0.72, 0.30, 0.10), vec3(0.87, 0.60, 0.16), smoothstep_any_order(0.25, 0.60, r3));
-        lc      = mix(lc, vec3(0.46, 0.44, 0.14), smoothstep_any_order(0.70, 0.90, r1));
+        vec3 lc = mix(theme_color(vec3(0.72, 0.30, 0.10), 0.5), theme_color(vec3(0.87, 0.60, 0.16), 0.5), smoothstep_any_order(0.25, 0.60, r3));
+        lc      = mix(lc, theme_color(vec3(0.46, 0.44, 0.14), 0.5), smoothstep_any_order(0.70, 0.90, r1));
         lc     *= (0.80 + 0.30 * r2) * (0.62 + 0.38 * squash);
         float rib = smoothstep_any_order(0.14, 0.03, abs(q.y) / max(sz * squash, 0.0001));
         lc      = mix(lc, lc * 0.72, rib);

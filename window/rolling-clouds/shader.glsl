@@ -1,4 +1,14 @@
 // Adapted from shaders/window/rolling-clouds.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -68,7 +78,7 @@ vec4 postprocess(vec3 c){
     float lit = clamp(0.62 + (n - n2) * 2.2, 0.30, 1.0);
 
     // muted greys — bright enough to read as smoke, dark enough not to mask text
-    vec3  cl  = mix(vec3(0.30, 0.32, 0.37), vec3(0.66, 0.68, 0.72), lit);
+    vec3  cl  = mix(theme_color(vec3(0.30, 0.32, 0.37), 0.25), theme_color(vec3(0.66, 0.68, 0.72), 0.25), lit);
     float cov = clamp(body + wisp * 0.35, 0.0, 1.0) * OPACITY * gate;
 
     // opaque element on a maybe-translucent window: push alpha with coverage

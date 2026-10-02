@@ -1,4 +1,14 @@
 // Adapted from shaders/rings/fuse.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 48.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
@@ -78,9 +88,9 @@ vec4 ring_color(vec2 coords) {
     fibres *= 0.24 * pow(0.5 + 0.5 * sin(FUSE_TAU * u * (strands + 7.0)), 8.0);
     float ash = (1.0 - smoothstep(spacing * 0.10, spacing * 0.32, behind))
         * smoothstep(w, w * 3.0, behind);
-    vec3 hemp = mix(vec3(0.22, 0.13, 0.055), vec3(0.46, 0.34, 0.17), rib);
+    vec3 hemp = mix(theme_color(vec3(0.22, 0.13, 0.055), 0.5), theme_color(vec3(0.46, 0.34, 0.17), 0.5), rib);
     hemp *= 0.70 + 0.30 * sqrt(max(0.0, 1.0 - pow(across / (radius + aa), 2.0)));
-    vec3 colour = mix(hemp, vec3(0.085, 0.065, 0.045) * (0.6 + rib * 0.4), ash);
+    vec3 colour = mix(hemp, theme_color(vec3(0.085, 0.065, 0.045), 0.5) * (0.6 + rib * 0.4), ash);
     float alpha = max(rope, fibres);
     vec3 premul = colour * alpha;
 
@@ -92,7 +102,7 @@ vec4 ring_color(vec2 coords) {
     float wake = exp(-behind / (w * 4.5)) * exp(-abs(across) / (w * 0.32));
     float flare = tip * exp(-abs(across) / (w * 1.3)) * 0.32 * flicker;
     float ember = clamp(hot + wake * 0.60, 0.0, 1.0);
-    vec3 fire = mix(vec3(1.0, 0.12, 0.008), vec3(1.0, 0.87, 0.36), pow(ember, 2.0));
+    vec3 fire = mix(theme_color(vec3(1.0, 0.12, 0.008), 0.75), theme_color(vec3(1.0, 0.87, 0.36), 0.5), pow(ember, 2.0));
     float fire_alpha = clamp((ember + flare) * FUSE_BRIGHTNESS, 0.0, 1.0);
     premul = mix(premul, fire, fire_alpha);
     alpha += fire_alpha * (1.0 - alpha);
@@ -122,7 +132,7 @@ vec4 ring_color(vec2 coords) {
                     float spark = (1.0 - smoothstep(w * 0.065, w * 0.065 + aa, distance))
                         * (1.0 - smoothstep(0.25, 1.0, t));
                     spark = clamp(spark * FUSE_BRIGHTNESS, 0.0, 1.0);
-                    vec3 spark_colour = mix(vec3(1.0, 0.90, 0.48), vec3(1.0, 0.19, 0.012), t);
+                    vec3 spark_colour = mix(theme_color(vec3(1.0, 0.90, 0.48), 0.5), theme_color(vec3(1.0, 0.19, 0.012), 0.75), t);
                     premul = mix(premul, spark_colour, spark);
                     alpha += spark * (1.0 - alpha);
                 }

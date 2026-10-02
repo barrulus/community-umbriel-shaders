@@ -1,4 +1,14 @@
 // Adapted from shaders/window/pink-purple-clouds.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -48,10 +58,10 @@ vec4 postprocess(vec3 coords) {
     float lit=clamp(0.56+(density-light_sample)*2.8,0.1,1.0);
     float body=smoothstep(0.28,0.70,density);
     float hue=smoothstep(0.27,0.68,cloud_fbm(domain*0.62+vec2(13.2,4.6)));
-    vec3 purple=vec3(0.43,0.14,0.76), pink=vec3(1.0,0.38,0.70);
+    vec3 purple=theme_color(vec3(0.43,0.14,0.76), 0.0), pink=theme_color(vec3(1.0,0.38,0.70), 0.75);
     vec3 cloud=mix(purple,pink,hue);
     cloud*=0.76+0.30*lit;
-    cloud=mix(cloud,vec3(0.96,0.75,1.0),body*lit*0.30);
+    cloud=mix(cloud,theme_color(vec3(0.96,0.75,1.0), 0.0),body*lit*0.30);
     float coverage=0.13+0.43*body;
     // Give fine text strokes more of their original contrast.
     vec3 original=source.rgb/source.a;

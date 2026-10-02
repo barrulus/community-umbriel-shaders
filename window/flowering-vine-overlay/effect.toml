@@ -1,3 +1,4 @@
 [effects.preset."flowering-vine-overlay"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

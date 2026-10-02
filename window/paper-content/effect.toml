@@ -1,3 +1,4 @@
 [effects.preset."paper-content"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

@@ -1,3 +1,4 @@
 [effects.preset."window.parchment-dark"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

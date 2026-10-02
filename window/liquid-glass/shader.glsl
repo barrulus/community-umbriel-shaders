@@ -1,4 +1,14 @@
 // Adapted from shaders/window/liquid-glass.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -61,9 +71,9 @@ vec4 postprocess(vec3 coords) {
     float lip = exp(-abs(distance + 1.2) * scale * 0.85);
     float innerLip = exp(-abs(distance + bevel * 0.7) / 1.8) * 0.12;
     float gleam = pow(abs(light), 5.0) * (0.92 + 0.08 * drift);
-    vec3 reflection = mix(vec3(0.55, 0.85, 1.0), vec3(1.0, 0.72, 0.90),
+    vec3 reflection = mix(theme_color(vec3(0.55, 0.85, 1.0), 0.25), theme_color(vec3(1.0, 0.72, 0.90), 0.75),
         0.5 + 0.5 * sin(umbriel_time * 0.35 + (p.x + p.y) / 150.0));
-    colour = mix(colour, vec3(0.80, 0.91, 1.0), GLASS_TINT);
+    colour = mix(colour, theme_color(vec3(0.80, 0.91, 1.0), 0.25), GLASS_TINT);
     colour *= 1.0 - edge * 0.07 * max(-light, 0.0);
     colour = mix(colour, reflection, clamp((lip * (0.25 + 0.75 * gleam) + innerLip)
         * GLASS_REFLECTION, 0.0, 1.0));

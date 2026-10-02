@@ -33,7 +33,7 @@ float fbm(vec2 p){
 }
 
 // IQ cosine rainbow: hue 0..1 -> full spectrum
-vec3 rainbow(float h){ return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
+vec3 rainbow(float h){ if (umbriel_palette_count > 0) return umbriel_palette_at(h).rgb; return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
 
 vec4 postprocess(vec3 c){
     vec4  s  = tex2D_screen(c.xy);

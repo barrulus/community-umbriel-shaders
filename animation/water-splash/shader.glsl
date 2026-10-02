@@ -1,4 +1,14 @@
 // Adapted from shaders/animations/water-splash.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 const float SPLASH_TAU = 6.28318530718;
 
 float splash_hash(float n) {
@@ -8,10 +18,10 @@ float splash_hash(float n) {
 // Tint and highlights remain premultiplied, including translucent clients.
 vec4 splash_water(vec2 uv, float light, float wetness) {
     vec4 color = umbriel_sample(uv);
-    vec3 water = color.rgb * vec3(0.64, 0.88, 0.98)
-        + vec3(0.035, 0.14, 0.19) * color.a;
+    vec3 water = color.rgb * theme_color(vec3(0.64, 0.88, 0.98), 0.25)
+        + theme_color(vec3(0.035, 0.14, 0.19), 0.25) * color.a;
     color.rgb = mix(color.rgb, water, wetness);
-    color.rgb = mix(color.rgb, vec3(0.78, 0.94, 1.0) * color.a,
+    color.rgb = mix(color.rgb, theme_color(vec3(0.78, 0.94, 1.0), 0.25) * color.a,
         clamp(light * wetness, 0.0, 0.85));
     return color;
 }

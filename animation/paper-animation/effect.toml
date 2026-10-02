@@ -1,3 +1,4 @@
 [effects.preset."paper-animation"]
 kind = "animation"
 shader = "shader.glsl"
+palette = true

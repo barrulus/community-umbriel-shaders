@@ -32,6 +32,14 @@ curve = "linear"
 
 Append the include path to an existing `files` array and merge existing tables; do not duplicate them. Including the preset registers it; the two selectors activate the opening/closing pair. Animation selection is global per event.
 
+## Theme palette
+
+This preset enables `palette = true` in `effect.toml`. Artwork colours follow
+Umbriel's `[colors]` accents, warning, and error colours, while retaining shading
+and highlights. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
+
 ## Configuration options
 
 Edit the existing `[effects.preset."wet-paint"]` table in [effect.toml](effect.toml).
@@ -43,7 +51,7 @@ settings, including defaults for omitted keys.
 | --- | --- | --- |
 | `kind` | `"animation"` | Keep this kind: the source implements its `animation` entry point. |
 | `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
-| `palette` | `false` | This source does not read the palette; enabling it alone does not recolour the effect. |
+| `palette` | `true` | Use theme colours for artwork. Set false to restore the original shader colours. |
 
 Edit the event tables in your main Umbriel configuration (the activation
 example is [config.toml](config.toml)). Larger `duration_ms` gives a slower
@@ -75,7 +83,7 @@ Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ### Additional tuning notes
 
-Edit `STREAM_WIDTH` for average drip spacing in logical pixels; try 35–85 (default 58). `DRIP_LENGTH` controls finger length as a fraction of window height; try 0.35–0.70 (default 0.52). Colours are defined in the shader; this preset does not read the theme palette.
+Edit `STREAM_WIDTH` for average drip spacing in logical pixels; try 35–85 (default 58). `DRIP_LENGTH` controls finger length as a fraction of window height; try 0.35–0.70 (default 0.52). Artwork follows the theme palette; shader colour constants apply with `palette = false`.
 
 ## Compatibility and cost
 

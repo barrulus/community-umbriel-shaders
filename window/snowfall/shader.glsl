@@ -1,4 +1,14 @@
 // Adapted from shaders/window/snowfall.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -39,7 +49,7 @@ vec4 postprocess(vec3 c){
 
     const float OPACITY = 0.35;
     float m = min(snow, 1.0) * OPACITY * s.a;              // s.a: keep rounded corners clean
-    return vec4(mix(s.rgb, vec3(0.95, 0.97, 1.0), m), s.a);
+    return vec4(mix(s.rgb, theme_color(vec3(0.95, 0.97, 1.0), 0.25), m), s.a);
 }
 
 vec4 window(vec2 uv) { return postprocess(vec3(uv, 0.0)); }

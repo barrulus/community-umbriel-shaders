@@ -1,4 +1,15 @@
 // Adapted from shaders/rings/faerie-magic.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return umbriel_palette_count > 0
+        ? value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75)
+        : original;
+}
+
 #define ring_padding 8.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
@@ -211,7 +222,11 @@ vec4 ring_color(vec2 coords) {
 
     float envelope = smoothstep(-MAGIC_INSET, -MAGIC_INSET + 2.0 * aa, d)
         * (1.0 - smoothstep(max(extent - 2.0 * aa, 0.0), extent, d));
-    return vec4(clamp(paint.rgb / max(paint.a, 0.0001), 0.0, 1.0), paint.a * envelope);
+    vec3 pigment = clamp(paint.rgb / max(paint.a, 0.0001), 0.0, 1.0);
+    // Map the finished artwork so palette lookup stays outside the mote loops.
+    // The shared client coordinates keep border and overlay colours aligned.
+    float phase = (coords.x + coords.y) / max(ring_size.x + ring_size.y, 1.0);
+    return vec4(theme_color(pigment, phase), paint.a * envelope);
 }
 
 vec4 border(vec2 uv) {

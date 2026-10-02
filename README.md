@@ -375,7 +375,12 @@ applies to the shipped presets.
 
 ## Theme colours
 
-Presets with `palette = true` can read `accent_primary`, `accent_secondary`, `warning`, and `error` from `[colors]`. `glow` and `accent-pulse` use the primary accent; `cursor-sparkle` uses the palette for its orbiting dots. `tv-glitch` can optionally use the primary accent when you enable its palette.
+All 69 presets that draw coloured artwork now enable `palette = true` and read
+`accent_primary`, `accent_secondary`, `warning`, and `error` from `[colors]`.
+`glow`, `accent-pulse`, and `tv-glitch` use the primary accent; cycling rainbow
+effects interpolate through the four colours. Other artwork uses palette stops
+with its original dark shading and pale highlights. Sampled window content is
+only tinted where the effect already applies a colour treatment.
 
 ```toml
 [colors]
@@ -385,7 +390,18 @@ warning = "#F9E2AF"
 error = "#F38BA8"
 ```
 
-A theme or wallpaper-colour generator can write these settings to an included TOML file. Umbriel reloads config changes; it does not extract a palette from the wallpaper itself. Values in your main config override included values. Most artistic shaders use their own colour constants: enabling the palette does not recolour them unless their GLSL reads `umbriel_palette_at`.
+A theme or wallpaper-colour generator can write these settings to an included TOML file. Umbriel reloads config changes; it does not extract a palette from the wallpaper itself. Values in your main config override included values.
+
+Set `palette = false` in an installed preset's `effect.toml` to restore its
+original colours (shown in the static previews). For paired borders and window
+overlays, set it in both presets; the setting is independent for each half.
+
+Thirteen effects remain palette-neutral because they transform existing content
+without a separate coloured artwork layer: animation `example`, `reveal`,
+`squash`, `vhs`, `wobbly-lifecycle`, `wobbly-move`, and
+`workspace-transation-vhs-ripple`; cursor `spotlight`; screen `vignette`; and
+window `adaptive-text-v4`, `crt`, `flap-board`, and `scanlines`. Their distortion,
+channel separation, contrast, or darkening continues to use the source image.
 
 ## Troubleshooting
 

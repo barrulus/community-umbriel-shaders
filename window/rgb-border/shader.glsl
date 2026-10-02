@@ -18,7 +18,7 @@ vec4 postprocess(vec3 c){
         // hue chases around the perimeter (angle) and cycles over time
         float ang = atan(c.y-0.5, c.x-0.5) * 0.1591549;      // /(2pi) -> -0.5..0.5
         float hue = fract(ang + umbriel_time*0.25);
-        vec3  rgb = 0.5 + 0.5*cos(6.2831853*(hue + vec3(0.0,0.33,0.67)));  // IQ rainbow
+        vec3  rgb = umbriel_palette_count > 0 ? umbriel_palette_at(hue).rgb : 0.5 + 0.5*cos(6.2831853*(hue + vec3(0.0,0.33,0.67)));  // IQ rainbow
 
         return vec4(s.rgb + rgb*m, s.a);                     // additive RGB glow
     }

@@ -1,5 +1,15 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     alpha = clamp(alpha, 0.0, 1.0);
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
@@ -33,7 +43,7 @@ vec4 animation(vec2 uv) {
     vec4 portal = vec4(vec3(0.0), hole);
     float haze = exp(-abs(r - radius) / (bandWidth * 1.5)) * 0.3;
     float glow = (ring * (0.55 + 0.45 * turbulence) + interior * ribbons * 0.85 + haze) * life;
-    vec3 violet = mix(vec3(0.25, 0.025, 0.62), vec3(0.73, 0.45, 1.0), ring * ribbons);
+    vec3 violet = mix(theme_color(vec3(0.25, 0.025, 0.62), 0.0), theme_color(vec3(0.73, 0.45, 1.0), 0.0), ring * ribbons);
     portal = overGlow(portal, violet, glow);
     float emerge = smoothstep(0.22, 1.0, visible);
     float scale = mix(0.025, 1.0, emerge);
@@ -43,6 +53,6 @@ vec4 animation(vec2 uv) {
     float c = cos(twist), s = sin(twist);
     vec2 source = (mat2(c, -s, s, c) * p) / (aspect * scale) + 0.5;
     vec4 window = umbriel_sample(source) * smoothstep(0.24, 0.48, visible);
-    window.rgb = mix(window.a * vec3(0.32, 0.13, 0.6), window.rgb, emerge);
+    window.rgb = mix(window.a * theme_color(vec3(0.32, 0.13, 0.6), 0.0), window.rgb, emerge);
     return window + portal * (1.0 - window.a);
 }

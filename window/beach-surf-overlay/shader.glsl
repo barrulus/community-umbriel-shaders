@@ -1,4 +1,14 @@
 // Adapted from shaders/beach-surf/overlay.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -34,8 +44,8 @@ float surf_bubbles(vec2 p, float t) {
 }
 
 vec3 surf_water(float noise, float light) {
-    vec3 color = mix(vec3(0.018, 0.16, 0.22), vec3(0.055, 0.43, 0.48), noise);
-    return mix(color, vec3(0.33, 0.68, 0.70), clamp(light, 0.0, 0.65));
+    vec3 color = mix(theme_color(vec3(0.018, 0.16, 0.22), 0.25), theme_color(vec3(0.055, 0.43, 0.48), 0.25), noise);
+    return mix(color, theme_color(vec3(0.33, 0.68, 0.70), 0.25), clamp(light, 0.0, 0.65));
 }
 
 // Straight RGBA. d is signed logical-pixel distance: negative is inside.
@@ -60,7 +70,7 @@ vec4 surf_edge(vec2 p, float d, float t, float aa) {
     float alpha = envelope * (0.25 + foam * 0.70);
     // The inner wash stays translucent; the outer breakers remain bright.
     alpha *= mix(0.50, 1.0, smoothstep(-12.0, 1.0, d));
-    vec3 color = mix(surf_water(n, crest * 0.3), vec3(0.88, 0.97, 0.94), foam);
+    vec3 color = mix(surf_water(n, crest * 0.3), theme_color(vec3(0.88, 0.97, 0.94), 0.25), foam);
     return vec4(color, clamp(alpha, 0.0, 1.0));
 }
 

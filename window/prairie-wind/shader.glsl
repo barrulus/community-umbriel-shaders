@@ -1,4 +1,14 @@
 // Adapted from shaders/window/prairie-wind.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -34,8 +44,8 @@ float fbm(vec2 p){
 
 // prairie palette: sage green through wheat gold to pale straw
 vec3 pal(float x){
-    vec3 col = mix(vec3(0.28, 0.38, 0.20), vec3(0.78, 0.64, 0.28), smoothstep_any_order(0.15, 0.55, x));
-    return mix(col, vec3(0.93, 0.88, 0.66), smoothstep_any_order(0.60, 0.92, x));
+    vec3 col = mix(theme_color(vec3(0.28, 0.38, 0.20), 0.25), theme_color(vec3(0.78, 0.64, 0.28), 0.5), smoothstep_any_order(0.15, 0.55, x));
+    return mix(col, theme_color(vec3(0.93, 0.88, 0.66), 0.5), smoothstep_any_order(0.60, 0.92, x));
 }
 
 vec4 postprocess(vec3 c){
@@ -92,11 +102,11 @@ vec4 postprocess(vec3 c){
 
     // pale flash where a front's leading edge catches the light...
     float front = clamp((g - g2) * 3.0, 0.0, 1.0) * gust;
-    rgb += vec3(0.90, 0.86, 0.68) * front * SHEEN * s.a * gate;
+    rgb += theme_color(vec3(0.90, 0.86, 0.68), 0.5) * front * SHEEN * s.a * gate;
     // ...and a slightly darker settle in the flattened trough behind it
     rgb *= 1.0 - SHADE * gust * (1.0 - front) * gate;
     // the ripple glitters like dry straw catching the light
-    rgb += vec3(0.88, 0.80, 0.52) * max(rip, 0.0) * 0.12 * s.a * gate;
+    rgb += theme_color(vec3(0.88, 0.80, 0.52), 0.5) * max(rip, 0.0) * 0.12 * s.a * gate;
 
     return vec4(rgb, s.a);                         // s.a: keep rounded corners clean
 }

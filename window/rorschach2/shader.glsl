@@ -1,4 +1,14 @@
 // Adapted from shaders/window/rorschach2.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -59,7 +69,7 @@ vec4 postprocess(vec3 c){
     float ink = smoothstep_any_order(radius + EDGE, radius - EDGE, r);
 
     // Press near-black ink onto the content; everything outside the blot is untouched.
-    vec3 black = vec3(0.03, 0.03, 0.04);
+    vec3 black = theme_color(vec3(0.03, 0.03, 0.04), 0.25);
     return vec4(mix(s.rgb, black, ink * OPACITY), s.a);
 }
 

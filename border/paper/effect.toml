@@ -4,5 +4,6 @@ files = ["../../window/paper-overlay/effect.toml"]
 [effects.preset."paper"]
 kind = "border"
 shader = "shader.glsl"
+palette = true
 padding = 28
 overlay = "paper-overlay"

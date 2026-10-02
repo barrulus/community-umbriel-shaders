@@ -1,4 +1,14 @@
 // Adapted from shaders/rings/portal-lava.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 14.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
@@ -173,9 +183,9 @@ vec3 bleed_pigment(float along, float depth, float seed, float sheen) {
     float swirl = sin(phase - t * 0.8 + depth * 0.046
         + 1.3 * sin(phase * 2.0 + t * 0.45 - depth * 0.035));
     float pools = sin(phase + t * 0.55 + depth * 0.065 + 1.2 * swirl);
-    vec3 violet = vec3(0.42, 0.035, 0.88);
-    vec3 orchid = vec3(0.78, 0.14, 0.98);
-    vec3 amethyst = vec3(0.56, 0.27, 1.0);
+    vec3 violet = theme_color(vec3(0.42, 0.035, 0.88), 0.0);
+    vec3 orchid = theme_color(vec3(0.78, 0.14, 0.98), 0.0);
+    vec3 amethyst = theme_color(vec3(0.56, 0.27, 1.0), 0.0);
     vec3 pigment = mix(violet, orchid, smoothstep(-0.65, 0.75, swirl));
     pigment = mix(pigment, amethyst, 0.38 * (0.5 + 0.5 * pools));
     // Fine, broken contour lines fizz faster than the underlying liquid moves.
@@ -185,11 +195,11 @@ vec3 bleed_pigment(float along, float depth, float seed, float sheen) {
     float filament = 1.0 - smoothstep(0.025, 0.095, abs(filament_field));
     float sparks = smoothstep(0.52, 0.88,
         sin(phase * 5.0 + depth * 0.09 + sin(phase * 9.0 + fizz)));
-    pigment = mix(pigment, vec3(0.62, 0.95, 0.24), filament * sparks * 0.72);
+    pigment = mix(pigment, theme_color(vec3(0.62, 0.95, 0.24), 0.25), filament * sparks * 0.72);
     float seam = (1.0 - smoothstep(0.025, 0.085, abs(filament_field + 0.36)))
         * smoothstep(0.45, 0.90, pools);
-    pigment = mix(pigment, vec3(0.14, 0.025, 0.27), seam * 0.40);
-    return mix(pigment, vec3(0.87, 0.65, 1.0), sheen * 0.48);
+    pigment = mix(pigment, theme_color(vec3(0.14, 0.025, 0.27), 0.0), seam * 0.40);
+    return mix(pigment, theme_color(vec3(0.87, 0.65, 1.0), 0.0), sheen * 0.48);
 }
 
 vec2 bleed_edges(vec2 p) {

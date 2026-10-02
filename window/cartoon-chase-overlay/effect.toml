@@ -1,3 +1,4 @@
 [effects.preset."cartoon-chase-overlay"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

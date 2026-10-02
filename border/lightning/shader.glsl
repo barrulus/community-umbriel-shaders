@@ -1,4 +1,14 @@
 // Adapted from shaders/rings/lightning.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 24.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
@@ -73,7 +83,7 @@ vec4 ring_color(vec2 coords) {
     float fork = exp(-abs(d - fork_center) * 18.0) * energy;
     float spark = exp(-pow(delta / 0.007, 2.0)) * exp(-abs(d - center) * 2.2);
     float light = core * (0.18 + 0.82 * energy) + 0.7 * fork + 0.85 * spark;
-    rgb = mix(vec3(0.08, 0.24, 0.8), vec3(0.78, 0.94, 1.0), clamp(light, 0.0, 1.0));
+    rgb = mix(theme_color(vec3(0.08, 0.24, 0.8), 0.25), theme_color(vec3(0.78, 0.94, 1.0), 0.25), clamp(light, 0.0, 1.0));
     coverage = clamp(light + halo * (0.12 + 0.48 * energy), 0.0, 1.0);
 
     // Antialias the client boundary and fade before the reserved outer extent.

@@ -16,7 +16,7 @@ vec4 postprocess(vec3 c){
         float d = length(px - umbriel_cursor);
 
         float t = d*0.07 + umbriel_time*1.0;
-        vec3 tunnel = 0.5 + 0.5*cos(6.2831853*(t + vec3(0.0,0.33,0.67)));
+        vec3 tunnel = umbriel_palette_count > 0 ? umbriel_palette_at(t).rgb : 0.5 + 0.5*cos(6.2831853*(t + vec3(0.0,0.33,0.67)));
         float fill  = barrulus_smoothstep(60.0, 18.0, d);
         return vec4(mix(s, tunnel, fill*0.09), 1.0);
     }

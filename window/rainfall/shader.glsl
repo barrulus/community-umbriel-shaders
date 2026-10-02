@@ -1,4 +1,14 @@
 // Adapted from shaders/window/rainfall.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -113,10 +123,10 @@ vec4 postprocess(vec3 c){
     rgb = mix(rgb, blur, FOG * (1.0 - min(wet * 1.6, 1.0)) * gate);
 
     // the blurred rain sits behind the pane: misted, and occluded by the drops on it
-    rgb += vec3(0.62, 0.70, 0.84) * rain * RAIN * 0.24 * (1.0 - wet * 0.85) * gate * s.a;
+    rgb += theme_color(vec3(0.62, 0.70, 0.84), 0.25) * rain * RAIN * 0.24 * (1.0 - wet * 0.85) * gate * s.a;
 
     float lum = dot(rgb, vec3(0.299, 0.587, 0.114));
-    rgb = mix(rgb, vec3(lum) * vec3(0.82, 0.90, 1.06), TINT * gate);
+    rgb = mix(rgb, vec3(lum) * theme_color(vec3(0.82, 0.90, 1.06), 0.25), TINT * gate);
     rgb += 0.05 * wet * s.a;                               // faint glint on the drops
 
     return vec4(rgb, s.a);                                 // s.a: keep rounded corners clean
