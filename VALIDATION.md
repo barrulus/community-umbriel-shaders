@@ -2,6 +2,32 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Comet and Fairy Tail (2026-10-05)
+
+Added the tuned cursor presets with oldest-to-newest overlap blending and
+pointer-area softening reaching full strength at 52 logical pixels. Shader
+sources are based on the personal presets used for visual tuning; Comet also
+supports theme palette colours. Both presets enable `palette = true` by default.
+
+- All 84 installation examples and the combined library pass configuration
+  validation with `umbriel 0.1.0 (6adcbc0)`.
+- Both shaders compile, link and render without GL errors using the cursor
+  preamble and wrapper from local Umbriel cursor revision `a8cdaca1` and
+  Mesa llvmpipe (LLVM 21.1.8).
+- Their synthetic previews use 64 samples on a crossing pointer path over
+  light and dark desktop content. Both previews use fallback colours.
+  Both previews were visually inspected.
+- A follow-up pre-push check repeated configuration validation and rendered
+  both repository shaders; the resulting previews match the packaged PNGs
+  byte for byte. Each shader also passed 20 combinations of sample count
+  (0, 1, 2, 8, 64), active/expired ages and fallback/theme palettes, with no
+  GL errors. Empty, single-sample and expired paths preserve the background;
+  full active paths draw a trail, and all cases preserve opaque alpha.
+
+These presets require the newer `umbriel_pointer_path[64]` API; the older
+preset-effects API is not sufficient. This packaging pass did not repeat
+live compositor, output-edge, fractional-scale or hardware-performance checks.
+
 ## Theme palette adaptation (2026-10-02)
 
 Audited all 82 shaders. Previously only `accent-pulse`, `glow`, `cursor-sparkle`,

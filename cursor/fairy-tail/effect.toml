@@ -1,0 +1,5 @@
+[effects.preset."cursor.fairy-tail"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 112
+palette = true
