@@ -1,45 +1,45 @@
-# Heartbeat
+# Blood In
 
-Viscous border with heartbeat
+![Synthetic preview of Blood In Animation](preview.png)
 
-![Synthetic preview of Heartbeat](preview.png)
-
-Preview rendered from this shader over a synthetic desktop sample; it is not a screenshot of a running session. It shows the outer shader only; paired inner overlays and compositor light are not shown.
+Wave or blood reveals the window top to bottom. Companion to [Blood Out](../blood-out/) and [Heartbeat border](../../border/heartbeat/)
 
 ## Use
 
-Download [effect.toml](effect.toml) and [shader.glsl](shader.glsl) using GitHub’s **Download raw file** button and save them together in `~/.config/umbriel/shaders/community/border/heartbeat/`. Keep the license notice linked below with your files. See [installation](../../README.md#install) for details.
+Download [effect.toml](effect.toml) and [shader.glsl](shader.glsl) using GitHub’s **Download raw file** button and save them together in `~/.config/umbriel/shaders/community/animation/blood-in/`. Keep the license notice linked below with your files. See [installation](../../README.md#install) for details.
 
 Then merge this into `~/.config/umbriel/config.toml`:
 
 ```toml
 [include]
-files = ["shaders/community/border/heartbeat/effect.toml"]
+files = ["shaders/community/animation/blood-in/effect.toml"]
 
-[effects]
-border = "heartbeat"
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "blood-drip-in"
+duration_ms = 700
 
 ```
 
 Append the include path to your existing `files` array and merge selectors into existing tables. Including `effect.toml` defines the preset; the selector enables it. [`config.toml`](config.toml) contains the same copyable example.
 
+Animation selectors are global for the chosen event; per-application animation assignment is not available in this API. Adjust `duration_ms` to change the timing.
+
 ## Testing
 
 Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commit/6adcbc043c74) with an NVIDIA GPU.
 
-
 ## Compatibility and cost
-Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+
+Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. It runs while the selected transition is active. The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+
 
 ## Attribution
 
-Adapted from [Flowing Water](../flowing-water/) by Barrulus License: 
-
-[MIT](../../LICENSES/Barrulus-MIT.txt). 
-
-Author/contributor: WinterMyst. 
-
-License: 
+Author/contributor: WinterMyst. License: 
 
 MIT License
 
@@ -66,3 +66,4 @@ SOFTWARE.
 
 
 Contributed by WinterMyst on 2026-10-05.
+

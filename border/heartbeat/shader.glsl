@@ -72,7 +72,6 @@ vec4 ring_color(vec2 coords) {
         float dist = length(q * vec2(1.0, 0.4));
         float visible = smoothstep(0.0, 0.08, cycle) * (1.0 - smoothstep(0.85, 1.0, cycle));
         drips = max(drips, (1.0 - smoothstep(taper, taper + aa, dist)) * visible);
-        //drip_glow = max(drip_glow, exp(-dist * 0.9) * visible * 0.12);
         float glow_raw = exp(-dist * 0.9);
         drip_glow = max(drip_glow, (glow_raw > 0.05 ? glow_raw : 0.0) * visible * 0.12);        
     }

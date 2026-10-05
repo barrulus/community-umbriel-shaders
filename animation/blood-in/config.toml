@@ -1,6 +1,6 @@
 # Merge into ~/.config/umbriel/config.toml; do not duplicate existing tables.
 [include]
-files = ["shaders/community/animation/bloodIn/effect.toml"]
+files = ["shaders/community/animation/blood-in/effect.toml"]
 
 [animation]
 enabled = true
