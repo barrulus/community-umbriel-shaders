@@ -2,7 +2,7 @@
 
 ![Synthetic preview of Blood In Animation](preview.png)
 
-Wave or blood reveals the window top to bottom. Companion to [Blood Out](../blood-out/) and [Heartbeat border](../../border/heartbeat/)
+Wave of blood reveals the window top to bottom. Companion to [Blood Out](../blood-out/) and [Heartbeat border](../../border/heartbeat/)
 
 ## Use
 
