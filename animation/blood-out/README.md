@@ -31,7 +31,7 @@ Animation selectors are global for the chosen event; per-application animation a
 
 ## Testing
 
-Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commit/6adcbc043c74) with an NVIDIA GPU.
+Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commit/6adcbc043c74) with NVIDIA and Intel GPUs.
 
 ## Compatibility and cost
 

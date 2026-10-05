@@ -25,8 +25,7 @@ Append the include path to your existing `files` array and merge selectors into 
 
 ## Testing
 
-Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commit/6adcbc043c74) with an NVIDIA GPU.
-
+Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commit/6adcbc043c74) with NVIDIA and Intel GPUs.
 
 ## Compatibility and cost
 Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
