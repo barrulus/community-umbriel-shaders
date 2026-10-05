@@ -1,0 +1,6 @@
+# Merge into existing tables and append to existing include lists.
+[include]
+files = ["shaders/community/cursor/starlight/effect.toml"]
+
+[effects]
+cursor = "cursor.starlight"
