@@ -1,6 +1,15 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -11,7 +20,6 @@ vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
 }
 
-// Equilateral triangle side length in logical pixels; try 55–140.
 const float TILE_SIZE = 85.0;
 
 vec4 animation(vec2 uv) {
@@ -75,7 +83,7 @@ vec4 animation(vec2 uv) {
                         tile.rgb *= 0.42 + 0.58 * c;
                         float outline = (1.0 - smoothstep(pixel, pixel * 3.0, edge))
                             * smoothstep(0.0, 0.12, phase) * (1.0 - smoothstep(0.80, 1.0, phase));
-                        tile = overGlow(tile, vec3(0.35, 0.78, 1.0), outline * 0.9);
+                        tile = overGlow(tile, theme_color(vec3(0.35, 0.78, 1.0), 0.25), outline * 0.9);
                         tile *= mask * appear * disappear;
                     }
                 }
@@ -86,7 +94,7 @@ vec4 animation(vec2 uv) {
                                      : min(min(1.0 - fa, 1.0 - fb), fa + fb - 1.0);
                 float trace = smoothstep(0.0, 0.07, phase) * (1.0 - smoothstep(0.15, 0.35, phase));
                 float line = (1.0 - smoothstep(pixel, pixel * 2.5, abs(fe))) * trace;
-                tile = overGlow(tile, vec3(0.35, 0.78, 1.0), line * 0.8);
+                tile = overGlow(tile, theme_color(vec3(0.35, 0.78, 1.0), 0.25), line * 0.8);
                 result = tile + result * (1.0 - tile.a);
             }
         }

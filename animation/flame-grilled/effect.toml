@@ -1,3 +1,4 @@
 [effects.preset.flame-grilled]
 kind = "animation"
 shader = "shader.glsl"
+palette = true

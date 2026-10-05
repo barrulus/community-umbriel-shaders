@@ -1,0 +1,3 @@
+[effects.preset.workspace-transation-vhs-ripple]
+kind = "animation"
+shader = "shader.glsl"

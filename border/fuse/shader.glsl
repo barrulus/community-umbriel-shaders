@@ -1,23 +1,22 @@
 // Adapted from shaders/rings/fuse.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 48.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
 // Custom shader by Barrulus.
-// An irregular braided fuse with one to four travelling embers, ash and sparks.
-// File-based focus-ring shader: return straight RGBA; no main() or #version.
-// Suggested settings: width 6; padding 48;
-// shader { path "~/.config/niri/focus-ring/fuse.frag"; padding 48;
-//          light spread=90 intensity=1.4 threshold=0.5; }
-// Padding should be at least 8 * width for sparks, not window spacing.
-// The cord itself stays within the nominal ring width, including its bends.
-// This fits a width-6 ring into ordinary 6-pixel gaps, even at output edges.
-// The charred trail gradually recovers to make the animation repeat seamlessly.
-// Number of burning tips (1-4; out-of-range values are clamped).
 const int EMBER_COUNT = 4;
 const float FUSE_SECONDS = 10.0;
-// Fire brightness only: the unburnt cord stays below the 0.5 light threshold.
 const float FUSE_BRIGHTNESS = 1.0;
 const float FUSE_WANDER = 1.0;
 const float FUSE_TAU = 6.28318530718;
@@ -58,7 +57,7 @@ float fuse_segment(vec2 p, vec2 a, vec2 b) {
 }
 
 vec4 ring_color(vec2 coords) {
-    if (ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
+    if (EMBER_COUNT <= 0 || ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
     float w = ring_width;
     float aa = 0.5 / max(umbriel_scale, 0.01);
     float d = ring_distance(coords);
@@ -73,7 +72,7 @@ vec4 ring_color(vec2 coords) {
     float across = d - centre;
     // Use the nearest tip for the burn and the most recent tip for the ash trail.
     // Dividing by count retains each ember's size and speed around the whole window.
-    float count = clamp(float(EMBER_COUNT), 1.0, 4.0);
+    float count = float(EMBER_COUNT);
     float spacing = perimeter / count;
     float ahead = fuse_wrap((u - phase) * count) * spacing;
     float behind = fract((phase - u) * count) * spacing;
@@ -89,9 +88,9 @@ vec4 ring_color(vec2 coords) {
     fibres *= 0.24 * pow(0.5 + 0.5 * sin(FUSE_TAU * u * (strands + 7.0)), 8.0);
     float ash = (1.0 - smoothstep(spacing * 0.10, spacing * 0.32, behind))
         * smoothstep(w, w * 3.0, behind);
-    vec3 hemp = mix(vec3(0.22, 0.13, 0.055), vec3(0.46, 0.34, 0.17), rib);
+    vec3 hemp = mix(theme_color(vec3(0.22, 0.13, 0.055), 0.5), theme_color(vec3(0.46, 0.34, 0.17), 0.5), rib);
     hemp *= 0.70 + 0.30 * sqrt(max(0.0, 1.0 - pow(across / (radius + aa), 2.0)));
-    vec3 colour = mix(hemp, vec3(0.085, 0.065, 0.045) * (0.6 + rib * 0.4), ash);
+    vec3 colour = mix(hemp, theme_color(vec3(0.085, 0.065, 0.045), 0.5) * (0.6 + rib * 0.4), ash);
     float alpha = max(rope, fibres);
     vec3 premul = colour * alpha;
 
@@ -103,15 +102,14 @@ vec4 ring_color(vec2 coords) {
     float wake = exp(-behind / (w * 4.5)) * exp(-abs(across) / (w * 0.32));
     float flare = tip * exp(-abs(across) / (w * 1.3)) * 0.32 * flicker;
     float ember = clamp(hot + wake * 0.60, 0.0, 1.0);
-    vec3 fire = mix(vec3(1.0, 0.12, 0.008), vec3(1.0, 0.87, 0.36), pow(ember, 2.0));
+    vec3 fire = mix(theme_color(vec3(1.0, 0.12, 0.008), 0.75), theme_color(vec3(1.0, 0.87, 0.36), 0.5), pow(ember, 2.0));
     float fire_alpha = clamp((ember + flare) * FUSE_BRIGHTNESS, 0.0, 1.0);
     premul = mix(premul, fire, fire_alpha);
     alpha += fire_alpha * (1.0 - alpha);
 
     // Small ballistic streaks are born on the rope at the tip's earlier position.
     // Their IDs repeat every lap, so neither the rope nor the particles jump at wrap.
-    for (int emitter = 0; emitter < 4; emitter++) {
-        if (float(emitter) >= count) break;
+    for (int emitter = 0; emitter < EMBER_COUNT; emitter++) {
         float emitter_phase = fract(phase + float(emitter) / count);
         if (abs(fuse_wrap(u - emitter_phase)) * perimeter < perimeter * 0.14 + w * 12.0) {
             float clock = phase * 96.0;
@@ -134,7 +132,7 @@ vec4 ring_color(vec2 coords) {
                     float spark = (1.0 - smoothstep(w * 0.065, w * 0.065 + aa, distance))
                         * (1.0 - smoothstep(0.25, 1.0, t));
                     spark = clamp(spark * FUSE_BRIGHTNESS, 0.0, 1.0);
-                    vec3 spark_colour = mix(vec3(1.0, 0.90, 0.48), vec3(1.0, 0.19, 0.012), t);
+                    vec3 spark_colour = mix(theme_color(vec3(1.0, 0.90, 0.48), 0.5), theme_color(vec3(1.0, 0.19, 0.012), 0.75), t);
                     premul = mix(premul, spark_colour, spark);
                     alpha += spark * (1.0 - alpha);
                 }

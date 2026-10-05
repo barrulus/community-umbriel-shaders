@@ -1,10 +1,17 @@
 // Adapted from shaders/window/sentient-circuit.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Sentient circuit: etched buses, independent junctions, light-reactive pulses.
-// Umbriel postprocess contract: return premultiplied RGBA.
-// Logical-pixel geometry keeps traces consistent across output scales.
 const float CIRCUIT_SPACING = 144.0;
 const float CIRCUIT_STRENGTH = 0.72;
 const float CIRCUIT_SPEED = 1.0;
@@ -97,10 +104,10 @@ vec4 postprocess(vec3 c) {
     float lum = dot(original, vec3(0.2126, 0.7152, 0.0722));
     // Keep glyphs readable while retaining green copper on bright surfaces.
     float protect = 1.0 - 0.65 * smoothstep(0.45, 0.95, lum);
-    vec3 copper = mix(vec3(0.025, 0.23, 0.12), vec3(0.05, 0.62, 0.31), 0.5 + 0.5 * sin(seed * 30.0));
+    vec3 copper = mix(theme_color(vec3(0.025, 0.23, 0.12), 0.25), theme_color(vec3(0.05, 0.62, 0.31), 0.25), 0.5 + 0.5 * sin(seed * 30.0));
     vec3 result = mix(original, copper, traces * 0.18 * CIRCUIT_STRENGTH);
-    vec3 mint = vec3(0.12, 1.0, 0.48);
-    vec3 hot = vec3(0.72, 1.0, 0.86);
+    vec3 mint = theme_color(vec3(0.12, 1.0, 0.48), 0.25);
+    vec3 hot = theme_color(vec3(0.72, 1.0, 0.86), 0.25);
     result += (mint * bloom * 0.19 + mix(mint, hot, clamp(energy, 0.0, 1.0)) * energy * 0.7)
         * CIRCUIT_STRENGTH * protect;
     return vec4(clamp(result, 0.0, 1.0) * source.a, source.a);

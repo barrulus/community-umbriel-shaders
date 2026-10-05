@@ -7,26 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rainbow radial — concentric bands of spectrum radiating out from a slowly wandering
-// centre, like ripples of colour spreading across the glass. The bands travel outward
-// over time and cycle through hue as they go; a gentle noise warp keeps the rings from
-// being perfectly geometric, the whole field breathes, and a soft white core marks the
-// point the colour is born from. Window content is never resampled or displaced; the
-// colour rides over it at modest opacity so text stays readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   RINGS    -> spectrum cycles across the window (higher = tighter rings)
-//   SPEED    -> outward travel speed of the bands
-//   STRENGTH -> peak opacity of the colour over the content
-//   WARP     -> how much noise bends the rings out of true circles
-//   WANDER   -> how far the centre drifts from the window middle
-//   SWIRL    -> twist the rings into a spiral (0 = pure rings, try 0.5..1.5)
-//   SAT      -> rainbow saturation (1.0 = pure spectral, lower = pastel)
-//   CORE     -> brightness of the central glow
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
@@ -53,7 +33,7 @@ float fbm(vec2 p){
 }
 
 // IQ cosine rainbow: hue 0..1 -> full spectrum
-vec3 rainbow(float h){ return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
+vec3 rainbow(float h){ if (umbriel_palette_count > 0) return umbriel_palette_at(h).rgb; return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
 
 vec4 postprocess(vec3 c){
     vec4  s  = tex2D_screen(c.xy);

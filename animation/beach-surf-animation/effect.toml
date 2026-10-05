@@ -1,3 +1,4 @@
 [effects.preset."beach-surf-animation"]
 kind = "animation"
 shader = "shader.glsl"
+palette = true

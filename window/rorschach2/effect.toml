@@ -1,3 +1,4 @@
 [effects.preset."window.rorschach2"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

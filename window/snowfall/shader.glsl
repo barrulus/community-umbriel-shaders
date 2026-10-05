@@ -1,4 +1,14 @@
 // Adapted from shaders/window/snowfall.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -7,21 +17,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Snowfall — gentle decorative snow drifting down the window. Three depth layers of soft
-// fuzzy flakes: near flakes are bigger, brighter and faster; far flakes finer, fainter and
-// slower. Each layer sways sideways a little as it falls. Sparse on purpose (most grid
-// cells hold no flake) and low opacity, so the content stays fully readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule.
-//
-// Tuning knobs:
-//   OPACITY        -> overall snow strength
-//   0.72 in `on`   -> flake sparsity (higher = fewer flakes)
-//   scale/speed    -> flake size + fall tempo per layer (bigger scale = smaller flakes)
-//   0.012 sway     -> sideways drift amplitude
-//   r / r*0.15     -> flake radius and edge fuzz (raise 0.15 toward 0.6 for harder flakes)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 vec2 hash2(vec2 p){ return vec2(hash(p), hash(p + 19.19)); }
@@ -54,7 +49,7 @@ vec4 postprocess(vec3 c){
 
     const float OPACITY = 0.35;
     float m = min(snow, 1.0) * OPACITY * s.a;              // s.a: keep rounded corners clean
-    return vec4(mix(s.rgb, vec3(0.95, 0.97, 1.0), m), s.a);
+    return vec4(mix(s.rgb, theme_color(vec3(0.95, 0.97, 1.0), 0.25), m), s.a);
 }
 
 vec4 window(vec2 uv) { return postprocess(vec3(uv, 0.0)); }

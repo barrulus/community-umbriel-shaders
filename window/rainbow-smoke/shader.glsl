@@ -7,29 +7,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rainbow smoke — coloured smoke blown against the glass, covering the whole window.
-// Same engine as rolling-clouds: two counter-advecting warp fields make the smoke boil
-// and roll over itself in place, with a gentle upward billow. The difference is colour:
-// a hue field is sampled in the SAME warped domain as the smoke, so patches of spectrum
-// roll and fold with the smoke instead of sitting still behind it, and the whole palette
-// cycles slowly so nothing stays one colour for long. Dense, well-lit rolls glow toward
-// white; thin wisps stay coloured and translucent. Opacity is kept moderate so text
-// underneath remains readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   DENSITY   -> smoke coverage (lower = more broken)
-//   BOIL      -> how hard the smoke rolls over itself
-//   CHURN     -> how fast the rolling turns over
-//   RISE      -> upward billow speed
-//   OPACITY   -> how solid the smoke is over the content (keep moderate for readable text)
-//   HUE_SCALE -> size of the colour patches (higher = smaller, busier)
-//   HUE_DRIFT -> how fast the palette cycles
-//   SAT       -> rainbow saturation (1.0 = pure spectral, lower = pastel)
-//   GLOW      -> how white the thickest, best-lit rolls get
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
@@ -56,7 +33,7 @@ float fbm(vec2 p){
 }
 
 // IQ cosine rainbow: hue 0..1 -> full spectrum
-vec3 rainbow(float h){ return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
+vec3 rainbow(float h){ if (umbriel_palette_count > 0) return umbriel_palette_at(h).rgb; return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
 
 vec4 postprocess(vec3 c){
     vec4  s  = tex2D_screen(c.xy);

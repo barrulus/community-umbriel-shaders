@@ -1,10 +1,19 @@
 // Adapted from shaders/rings/pink-ribbon.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 24.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// A satin-pink ribbon carries little beating hearts around the window.
 const float RIBBON_PI = 3.14159265359;
 const float RIBBON_INSET = 30.0;
 
@@ -93,7 +102,6 @@ vec2 ribbon_project(vec2 p) {
     return result;
 }
 
-
 vec4 ribbon_over(vec4 under, vec4 paint) { return paint + under * (1.0-paint.a); }
 float ribbon_wave(float along, float perimeter) {
     float cycles = max(2.0,floor(perimeter/155.0));
@@ -123,12 +131,12 @@ vec4 ring_color(vec2 coords) {
     float edge=abs(across)-width;
     float alpha=(1.0-smoothstep(-aa,aa,edge))*0.88;
     float satin=exp(-pow((across+width*0.35)/max(width*0.6,0.1),2.0));
-    vec3 color=mix(vec3(0.66,0.035,0.27),vec3(1.0,0.34,0.61),0.5+0.5*twist);
-    color=mix(color,vec3(1.0,0.78,0.86),satin*0.72);
+    vec3 color=mix(theme_color(vec3(0.66,0.035,0.27), 0.75),theme_color(vec3(1.0,0.34,0.61), 0.75),0.5+0.5*twist);
+    color=mix(color,theme_color(vec3(1.0,0.78,0.86), 0.75),satin*0.72);
     float trim=exp(-pow((abs(across)-width+0.6)/0.5,2.0));
-    color=mix(color,vec3(1.0,0.68,0.81),trim*0.5);
+    color=mix(color,theme_color(vec3(1.0,0.68,0.81), 0.75),trim*0.5);
     float glow=exp(-abs(across)*0.32)*0.10;
-    vec4 paint=vec4(vec3(1.0,0.22,0.50)*glow,glow);
+    vec4 paint=vec4(theme_color(vec3(1.0,0.22,0.50), 0.75)*glow,glow);
     paint=ribbon_over(paint,vec4(color*alpha,alpha));
 
     // Use nearby hearts only, keeping the cost constant for large windows.
@@ -155,13 +163,13 @@ vec4 ring_color(vec2 coords) {
         vec2 heart=vec2(p.x,-p.y)/max(size,0.01)+vec2(0.0,0.53);
         float d=ribbon_heart(heart)*size;
         float rim=(1.0-smoothstep(-aa,aa,d-0.65))*0.95;
-        vec3 rim_color=vec3(1.0,0.77,0.86);
+        vec3 rim_color=theme_color(vec3(1.0,0.77,0.86), 0.75);
         paint=ribbon_over(paint,vec4(rim_color*rim,rim));
         float fill=(1.0-smoothstep(-aa,aa,d+0.35))*0.98;
-        vec3 heart_color=mix(vec3(0.87,0.045,0.32),vec3(1.0,0.34,0.56),clamp(0.55-p.y/size,0.0,1.0));
+        vec3 heart_color=mix(theme_color(vec3(0.87,0.045,0.32), 0.75),theme_color(vec3(1.0,0.34,0.56), 0.75),clamp(0.55-p.y/size,0.0,1.0));
         float highlight=exp(-dot((p-vec2(-size*0.22,-size*0.26))/vec2(size*0.13,size*0.18),
             (p-vec2(-size*0.22,-size*0.26))/vec2(size*0.13,size*0.18)));
-        heart_color=mix(heart_color,vec3(1.0,0.90,0.94),highlight*0.86);
+        heart_color=mix(heart_color,theme_color(vec3(1.0,0.90,0.94), 0.75),highlight*0.86);
         paint=ribbon_over(paint,vec4(heart_color*fill,fill));
     }
     return vec4(paint.rgb/max(paint.a,0.0001),paint.a);

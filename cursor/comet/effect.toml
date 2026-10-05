@@ -1,0 +1,5 @@
+[effects.preset."cursor.comet"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 72
+palette = true

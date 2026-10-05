@@ -38,21 +38,62 @@ Keep `curve = "linear"`: the shader applies its own easing to each phase, as the
 
 On opening, the TV collapse plays in reverse during the first half and the glitch settles over the whole duration. On closing, the glitch builds up across the whole duration and the collapse plays in the second half. Each transition uses `umbriel_random_seed.x` for a different noise pattern.
 
-## Colours and tuning
+## Theme palette
 
-Edit the constants at the top of `shader.glsl`. They correspond to the upstream settings:
+This preset enables `palette = true` in `effect.toml`. The glitch tint follows
+Umbriel's `[colors] accent_primary`, while retaining `GLITCH_COLOR.a` as its
+tint strength. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
 
-| Constant | Default | Meaning |
+## Configuration options
+
+Edit the existing `[effects.preset."tv-glitch"]` table in [effect.toml](effect.toml).
+The [complete configuration reference](../../README.md#configuration-reference) explains
+selection, overrides, and accepted ranges. The values below are this preset's shipped
+settings, including defaults for omitted keys.
+
+| TOML setting | Shipped value | What changing it does |
 | --- | --- | --- |
-| `GLITCH_COLOR` | `rgb(100, 160, 255)`, alpha 1 | Straight RGB tint for interference, grain, scan lines and the collapse glow. Alpha 0–1 sets how strongly it is mixed in. |
-| `GLITCH_SCALE` | `1.0` | Noise band size; larger values give thinner, busier bands. Useful 0.1–4. |
-| `GLITCH_STRENGTH` | `2.0` | Horizontal displacement and interference. Useful 0–4; 0 leaves only the TV collapse. |
-| `GLITCH_TIME_SPAN` | `1.5` | How far the noise travels per animation (upstream duration in seconds × speed). Raise it for a more frantic glitch. |
-| `SCALING` | `0.5` | Vertical squash at full collapse. |
+| `kind` | `"animation"` | Keep this kind: the source implements its `animation` entry point. |
+| `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
+| `palette` | `true` | Enable to use accent_primary as the tint, while keeping GLITCH_COLOR.a as tint strength. False uses GLITCH_COLOR. |
 
-The remaining constants (`TB_TIME`, `LR_TIME`, `LR_DELAY`, `FF_TIME`, `BLUR_WIDTH`) shape the collapse stages and edge softness, as in the original.
+Edit the event tables in your main Umbriel configuration (the activation
+example is [config.toml](config.toml)). Larger `duration_ms` gives a slower
+transition. Both `[animation] enabled` and the event must be enabled.
 
-To follow your theme, set `palette = true` in `effect.toml`. The tint then uses `accent_primary`, keeping `GLITCH_COLOR`’s alpha as its strength. With the palette disabled (the default), `GLITCH_COLOR` is used.
+| Event | Example duration | Example curve |
+| --- | --- | --- |
+| `[animation.windows_in]` | `750` ms | `"linear"` |
+| `[animation.windows_out]` | `750` ms | `"linear"` |
+
+Use `effect = ""` to clear the custom selection or event `enabled = false`
+to disable the transition. Spring curves choose their own duration.
+This shader uses eased progress: the curve changes its pacing; overshooting curves may revisit phases.
+Opening/closing `style` and `scale` do not tune a working custom shader.
+There is no animation-preset TOML `speed`; use event timing.
+
+### Shader controls
+
+Edit these values in [shader.glsl](shader.glsl), not in TOML. `#define` is
+active GLSL code; comments use `//` or `/* ... */`. Start with small changes
+and keep paired shaders in sync. Keep size and duration divisors positive.
+
+| GLSL control or expression | Shipped value | Visual effect |
+| --- | --- | --- |
+| `GLITCH_COLOR` | `vec4(100.0 / 255.0, 160.0 / 255.0, 1.0, 1.0)` | Straight RGBA tint in 0–1; alpha controls tint strength. With palette enabled, accent_primary replaces RGB but this alpha still applies. |
+| `GLITCH_SCALE` | `1.0` | Vertical glitch-pattern frequency; larger gives finer strips. Try 0.1–4. |
+| `GLITCH_STRENGTH` | `2.0` | Glitch displacement/interference strength; try 0–4. Zero leaves only the TV collapse. |
+| `GLITCH_TIME_SPAN` | `0.75 * 2.0` | Noise-time span traversed during the event; larger runs through more glitch variation, without changing event duration. |
+| `BLUR_WIDTH` | `0.01` | Collapse-edge softness in UV units; smaller positive values make sharper edges. |
+| `TB_TIME` | `0.7` | Fraction of the TV phase used for top/bottom collapse; larger stretches that phase. Keep positive. |
+| `LR_TIME` | `0.4` | Fraction of the TV phase used for left/right collapse; larger stretches that phase. Keep positive. |
+| `LR_DELAY` | `0.6` | Point within the TV phase where left/right collapse starts; larger delays it. |
+| `FF_TIME` | `0.1` | Fraction of the TV phase used for final fade; larger lengthens that fade. Keep positive. |
+| `SCALING` | `0.5` | Vertical scale at full collapse; lower positive values squash more strongly. |
+
+Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Differences from the original
 

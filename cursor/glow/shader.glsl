@@ -1,4 +1,3 @@
-// A soft accent-colored halo around the pointer, breathing with time.
 vec4 cursor(vec2 uv) {
     vec4 c = umbriel_sample(uv);
     float d = distance(uv, umbriel_pointer) * 2.0;

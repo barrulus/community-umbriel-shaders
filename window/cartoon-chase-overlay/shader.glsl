@@ -1,8 +1,17 @@
 // Adapted from shaders/window/cartoon-chase-overlay.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Matching inner half of cartoon-chase.glsl.
 #define ring_size (umbriel_size / max(umbriel_scale, 0.01))
 
 // Bodies face into the window; spinning feet and fading dust ride its edge.
@@ -92,16 +101,16 @@ vec4 chase_fill(float distance, vec3 color) {
 }
 
 vec4 chase_ink(float distance, vec3 color) {
-    vec4 edge = chase_fill(distance - 0.65, vec3(0.16, 0.09, 0.045));
+    vec4 edge = chase_fill(distance - 0.65, theme_color(vec3(0.16, 0.09, 0.045), 0.5));
     return chase_over(edge, chase_fill(distance + 0.10, color));
 }
 
 vec4 chase_runner(vec2 p, float time) {
     vec4 paint = vec4(0.0);
     float stride = sin(time * 22.0);
-    vec3 blue = vec3(0.18, 0.45, 0.88);
-    vec3 navy = vec3(0.12, 0.24, 0.56);
-    vec3 gold = vec3(1.0, 0.62, 0.12);
+    vec3 blue = theme_color(vec3(0.18, 0.45, 0.88), 0.25);
+    vec3 navy = theme_color(vec3(0.12, 0.24, 0.56), 0.25);
+    vec3 gold = theme_color(vec3(1.0, 0.62, 0.12), 0.5);
 
     float tail = min(chase_triangle(p, vec2(-3.0, -12.0), vec2(-27.0, -24.0), vec2(-15.0, -11.0)),
         chase_triangle(p, vec2(-5.0, -12.0), vec2(-28.0, -17.0), vec2(-17.0, -8.0)));
@@ -113,7 +122,7 @@ vec4 chase_runner(vec2 p, float time) {
     float head = chase_oval(p - vec2(9.0, -23.0), vec2(5.0, 3.8));
     paint = chase_over(paint, chase_ink(min(body, min(neck, head)), blue));
     float breast = chase_segment(p, vec2(5.0, -12.0), vec2(8.4, -20.0)) - 1.25;
-    paint = chase_over(paint, chase_fill(breast, vec3(0.61, 0.83, 1.0)));
+    paint = chase_over(paint, chase_fill(breast, theme_color(vec3(0.61, 0.83, 1.0), 0.25)));
     paint = chase_over(paint, chase_ink(chase_oval(p - vec2(-3.5, -12.0), vec2(5.0, 2.5)), navy));
     for (int i = 0; i < 3; i++) {
         float k = float(i);
@@ -123,14 +132,14 @@ vec4 chase_runner(vec2 p, float time) {
     float beak = chase_triangle(p, vec2(12.0, -24.0), vec2(24.0, -20.5), vec2(11.5, -20.0));
     paint = chase_over(paint, chase_ink(beak, gold));
     paint = chase_over(paint, chase_fill(chase_oval(p - vec2(10.0, -23.5), vec2(1.8, 2.4)), vec3(1.0)));
-    paint = chase_over(paint, chase_fill(length(p - vec2(10.8, -23.4)) - 0.85, vec3(0.06, 0.07, 0.10)));
+    paint = chase_over(paint, chase_fill(length(p - vec2(10.8, -23.4)) - 0.85, theme_color(vec3(0.06, 0.07, 0.10), 0.25)));
     return paint;
 }
 
 vec4 chase_coyote(vec2 p, float time) {
     vec4 paint = vec4(0.0);
-    vec3 fur = vec3(0.56, 0.34, 0.17);
-    vec3 tan = vec3(0.91, 0.74, 0.48);
+    vec3 fur = theme_color(vec3(0.56, 0.34, 0.17), 0.5);
+    vec3 tan = theme_color(vec3(0.91, 0.74, 0.48), 0.5);
     float stride = sin(time * 18.0);
     float tail = min(chase_triangle(p, vec2(-6.0, -13.0), vec2(-23.0, -6.0), vec2(-14.0, -3.0)),
         chase_oval(chase_rotate(p - vec2(-12.0, -9.0), -0.6), vec2(9.0, 3.2)));
@@ -145,13 +154,13 @@ vec4 chase_coyote(vec2 p, float time) {
     paint = chase_over(paint, chase_ink(ear, fur));
     float inner_ear = min(chase_triangle(p, vec2(2.4, -28.0), vec2(1.1, -34.7), vec2(4.4, -28.7)),
         chase_triangle(p, vec2(7.4, -27.5), vec2(9.1, -35.0), vec2(9.3, -27.0)));
-    paint = chase_over(paint, chase_fill(inner_ear, vec3(0.78, 0.52, 0.35)));
+    paint = chase_over(paint, chase_fill(inner_ear, theme_color(vec3(0.78, 0.52, 0.35), 0.5)));
     float muzzle = chase_oval(chase_rotate(p - vec2(11.0, -20.5), 0.12), vec2(7.4, 2.9));
     paint = chase_over(paint, chase_ink(muzzle, tan));
-    paint = chase_over(paint, chase_ink(chase_oval(p - vec2(17.5, -21.0), vec2(2.1, 1.9)), vec3(0.12, 0.09, 0.08)));
-    paint = chase_over(paint, chase_fill(chase_oval(p - vec2(7.7, -24.1), vec2(2.2, 2.7)), vec3(1.0, 0.96, 0.80)));
+    paint = chase_over(paint, chase_ink(chase_oval(p - vec2(17.5, -21.0), vec2(2.1, 1.9)), theme_color(vec3(0.12, 0.09, 0.08), 0.75)));
+    paint = chase_over(paint, chase_fill(chase_oval(p - vec2(7.7, -24.1), vec2(2.2, 2.7)), theme_color(vec3(1.0, 0.96, 0.80), 0.5)));
     paint = chase_over(paint, chase_fill(length(p - vec2(8.6, -23.8)) - 0.8, vec3(0.08)));
-    paint = chase_over(paint, chase_fill(chase_segment(p, vec2(5.4, -26.5), vec2(10.0, -25.2)) - 0.65, vec3(0.17, 0.10, 0.05)));
+    paint = chase_over(paint, chase_fill(chase_segment(p, vec2(5.4, -26.5), vec2(10.0, -25.2)) - 0.65, theme_color(vec3(0.17, 0.10, 0.05), 0.5)));
     float arm = min(chase_segment(p, vec2(2.0, -17.0), vec2(8.0, -11.0 + stride * 2.0)),
         chase_segment(p, vec2(8.0, -11.0 + stride * 2.0), vec2(14.0, -15.0 + stride * 2.0))) - 1.3;
     paint = chase_over(paint, chase_ink(arm, fur));
@@ -167,34 +176,34 @@ vec4 chase_devil(vec2 p, float time) {
     float radius = 3.0 + 12.0 * height + 1.0 * sin(p.y * 0.8 - spin);
     float cone = max(abs(p.x) - radius, max(p.y - 4.0, -30.0 - p.y));
     float stripe = 0.5 + 0.5 * sin(p.y * 1.15 - spin + p.x * 0.10);
-    vec3 brown = mix(vec3(0.36, 0.17, 0.075), vec3(0.79, 0.50, 0.24), stripe);
+    vec3 brown = mix(theme_color(vec3(0.36, 0.17, 0.075), 0.5), theme_color(vec3(0.79, 0.50, 0.24), 0.5), stripe);
     paint = chase_over(paint, chase_ink(cone, brown));
     for (int i = 0; i < 4; i++) {
         float k = float(i);
         float y = -3.0 - k * 7.0;
         float rx = 5.0 + k * 3.2;
         float swirl = abs(chase_oval(p - vec2(sin(spin + k) * 1.5, y), vec2(rx, 2.5))) - 0.48;
-        paint = chase_over(paint, chase_fill(swirl, vec3(0.95, 0.73, 0.43)));
+        paint = chase_over(paint, chase_fill(swirl, theme_color(vec3(0.95, 0.73, 0.43), 0.5)));
     }
     float face_alpha = smoothstep(-0.25, 0.45, cos(time * 9.0));
     vec2 q = vec2(p.x / (0.80 + 0.20 * abs(cos(time * 9.0))), p.y);
     vec4 face = vec4(0.0);
     float cheeks = chase_oval(q - vec2(0.0, -18.0), vec2(10.7, 8.8));
-    face = chase_over(face, chase_ink(cheeks, vec3(0.88, 0.66, 0.40)));
+    face = chase_over(face, chase_ink(cheeks, theme_color(vec3(0.88, 0.66, 0.40), 0.5)));
     float ears = min(chase_triangle(q, vec2(-12.0, -27.0), vec2(-9.0, -35.0), vec2(-4.0, -28.0)),
         chase_triangle(q, vec2(4.0, -28.0), vec2(9.0, -35.0), vec2(12.0, -27.0)));
-    face = chase_over(face, chase_ink(ears, vec3(0.43, 0.23, 0.10)));
+    face = chase_over(face, chase_ink(ears, theme_color(vec3(0.43, 0.23, 0.10), 0.5)));
     float mouth = chase_oval(q - vec2(0.0, -15.0), vec2(7.7, 6.3));
-    face = chase_over(face, chase_ink(mouth, vec3(0.17, 0.055, 0.035)));
+    face = chase_over(face, chase_ink(mouth, theme_color(vec3(0.17, 0.055, 0.035), 0.75)));
     for (int i = 0; i < 2; i++) {
         float x = i == 0 ? -4.5 : 4.5;
         float tooth = chase_triangle(q, vec2(x - 1.6, -19.5), vec2(x + 1.6, -19.5), vec2(x, -14.3));
-        face = chase_over(face, chase_fill(tooth, vec3(1.0, 0.97, 0.84)));
+        face = chase_over(face, chase_fill(tooth, theme_color(vec3(1.0, 0.97, 0.84), 0.5)));
         float eye = chase_oval(q - vec2(x, -24.0), vec2(2.8, 2.2));
-        face = chase_over(face, chase_ink(eye, vec3(1.0, 0.96, 0.72)));
+        face = chase_over(face, chase_ink(eye, theme_color(vec3(1.0, 0.96, 0.72), 0.5)));
         face = chase_over(face, chase_fill(length(q - vec2(x * 0.80, -23.9)) - 0.8, vec3(0.08)));
     }
-    face = chase_over(face, chase_ink(chase_oval(q - vec2(0.0, -21.0), vec2(3.2, 1.8)), vec3(0.12, 0.07, 0.04)));
+    face = chase_over(face, chase_ink(chase_oval(q - vec2(0.0, -21.0), vec2(3.2, 1.8)), theme_color(vec3(0.12, 0.07, 0.04), 0.5)));
     paint = chase_over(paint, face * face_alpha);
     return paint;
 }
@@ -253,7 +262,7 @@ vec4 chase_speed_legs(vec2 p, float time, float lift, vec3 color) {
     paint = chase_over(paint, vec4(color * spin, spin) * 0.88);
     float rim = abs(chase_oval(p-center, vec2(10.0, 3.4))) - 0.30;
     float flicker = 0.42 + 0.25 * sin(angle * 3.0 - time * 39.0);
-    paint = chase_over(paint, chase_fill(rim, mix(color, vec3(1.0,0.94,0.72),0.4)) * flicker);
+    paint = chase_over(paint, chase_fill(rim, mix(color, theme_color(vec3(1.0,0.94,0.72), 0.5),0.4)) * flicker);
     return paint;
 }
 
@@ -296,7 +305,7 @@ vec4 ring_color(vec2 coords) {
             float cloud = exp(-across * across / (width * width)) * (0.30 + 0.25 * grain);
             float mote = exp(-across * across / 12.0) * pow(max(grain,0.0),5.0) * 0.18;
             float alpha = (cloud + mote) * fade;
-            vec3 dust = mix(vec3(0.68,0.46,0.24),vec3(0.97,0.84,0.59),grain);
+            vec3 dust = mix(theme_color(vec3(0.68,0.46,0.24), 0.5),theme_color(vec3(0.97,0.84,0.59), 0.5),grain);
             paint = chase_over(paint, vec4(dust * alpha, alpha));
         }
     }
@@ -313,7 +322,7 @@ vec4 ring_color(vec2 coords) {
         // A small lift only while rounding corners keeps ears and tails in frame.
         float lift = 16.0 * abs(frame.z * frame.w) * 2.0;
         if (i < 2) {
-            vec3 legs = i == 0 ? vec3(1.0,0.66,0.18) : vec3(0.89,0.69,0.42);
+            vec3 legs = i == 0 ? theme_color(vec3(1.0,0.66,0.18), 0.5) : theme_color(vec3(0.89,0.69,0.42), 0.5);
             paint = chase_over(paint, chase_speed_legs(p,umbriel_time,lift,legs));
         }
         vec2 body = p;

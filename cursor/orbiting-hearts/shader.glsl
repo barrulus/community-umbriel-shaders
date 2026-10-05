@@ -1,11 +1,20 @@
 // Adapted from shaders/cursor/orbiting-hearts.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 vec2 migration_pointer() { return umbriel_pointer * umbriel_size * umbriel_scale; }
 #define umbriel_output_size migration_buffer_size()
 #define umbriel_cursor migration_pointer()
 #define umbriel_size migration_buffer_size()
-// Six small hearts share a clear, evenly spaced orbit around the pointer.
 vec4 hearts_over(vec4 under,vec4 paint) { return paint+under*(1.0-paint.a); }
 float hearts_shape(vec2 p) {
     p.x=abs(p.x);
@@ -19,7 +28,7 @@ vec4 postprocess(vec3 coords) {
     if(length(p)>58.0) return under;
     float aa=0.65/max(umbriel_scale,0.01);
     float dot_alpha=1.0-smoothstep(1.5-aa,1.5+aa,length(p));
-    vec4 paint=vec4(vec3(1.0,0.88,0.96)*dot_alpha,dot_alpha);
+    vec4 paint=vec4(theme_color(vec3(1.0,0.88,0.96), 0.75)*dot_alpha,dot_alpha);
     for(int i=0;i<6;i++) {
         float phase=float(i)*1.047197551;
         float angle=umbriel_time*0.85+phase;
@@ -33,14 +42,14 @@ vec4 postprocess(vec3 coords) {
         float size=8.0*(1.0+0.15*pulse);
         float d=hearts_shape(vec2(local.x,-local.y)/size+vec2(0.0,0.53))*size;
         float outline=1.0-smoothstep(-aa,aa,d-0.85);
-        paint=hearts_over(paint,vec4(vec3(0.28,0.07,0.25)*outline,outline)*0.8);
+        paint=hearts_over(paint,vec4(theme_color(vec3(0.28,0.07,0.25), 0.0)*outline,outline)*0.8);
         float rim=1.0-smoothstep(-aa,aa,d-0.45);
-        paint=hearts_over(paint,vec4(vec3(1.0,0.82,0.94)*rim,rim));
+        paint=hearts_over(paint,vec4(theme_color(vec3(1.0,0.82,0.94), 0.75)*rim,rim));
         float fill=1.0-smoothstep(-aa,aa,d+0.25);
-        vec3 color=mod(float(i),2.0)<0.5 ? vec3(1.0,0.25,0.56) : vec3(0.74,0.34,0.95);
-        color=mix(color,vec3(1.0,0.65,0.85),clamp(0.35-local.y/size,0.0,0.7));
+        vec3 color=mod(float(i),2.0)<0.5 ? theme_color(vec3(1.0,0.25,0.56), 0.75) : theme_color(vec3(0.74,0.34,0.95), 0.0);
+        color=mix(color,theme_color(vec3(1.0,0.65,0.85), 0.75),clamp(0.35-local.y/size,0.0,0.7));
         vec2 gleam=(local-vec2(-size*0.22,-size*0.26))/vec2(size*0.13,size*0.18);
-        color=mix(color,vec3(1.0,0.96,1.0),exp(-dot(gleam,gleam))*0.9);
+        color=mix(color,theme_color(vec3(1.0,0.96,1.0), 0.0),exp(-dot(gleam,gleam))*0.9);
         paint=hearts_over(paint,vec4(color*fill,fill));
     }
     return hearts_over(under,paint);

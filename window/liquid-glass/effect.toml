@@ -1,3 +1,4 @@
 [effects.preset."window.liquid-glass"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

@@ -1,9 +1,17 @@
 // Adapted from shaders/paper/window/crumpled-paper.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Neutral white crumpled stationery. Static, scale-independent fibres and folds.
-// Content keeps its alpha; bright and dark applications both retain contrast.
 const float PAPER_RELIEF = 0.24;
 const float PAPER_DESATURATION = 0.85;
 
@@ -85,9 +93,9 @@ vec4 postprocess(vec3 coords) {
     float luminance = dot(color, vec3(0.299, 0.587, 0.114));
     color = mix(color, vec3(luminance), PAPER_DESATURATION);
     // Lift black backgrounds just enough to show the paper's relief, while
-    // keeping their light text light. Neutral endpoints and crease lighting
-    // keep the sheet white instead of tinting it pink or cream.
-    color = mix(vec3(0.095), vec3(0.985), color);
+    // keeping their light text light. Theme-tinted endpoints retain the
+    // light/dark separation; the fallback keeps the original white sheet.
+    color = mix(theme_color(vec3(0.095), 0.5), theme_color(vec3(0.985), 0.5), color);
     float fibre = (paper_grain(floor(p * 1.6)) - 0.5) * 0.018;
     float relief = paper_relief(p) * PAPER_RELIEF;
     color = color * (1.0 + relief) + vec3(relief * 0.12 + fibre);

@@ -1,31 +1,20 @@
 // Adapted from shaders/rings/lightning.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 24.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
 // Custom shader by Barrulus.
-// Blue-white lightning with one to four travelling crackle spots.
-// Decoration shader: vec4 ring_color(vec2 coords).
-// Host supplies ring_size, ring_width, ring_padding, ring_distance(coords),
-// umbriel_time and umbriel_scale. Coordinates are logical pixels from the client
-// top-left (y down); return STRAIGHT RGBA. The host clips the client and
-// applies opacity / premultiplication. Do not add main() or uniform declarations.
-//
-// Example inside a window-rule:
-// focus-ring {
-//     on
-//     width 8
-//     shader {
-//         path "~/.config/niri/focus-ring/lightning.frag"
-//         padding 24
-//     }
-// }
-// padding 24 suits width <= 8. For wider rings allow at least
-// 2.5 * width + 2 / output_scale logical pixels of shader padding.
-
-// Edit these constants to tune the effect. SPEED=0 freezes it.
-// Number of evenly spaced pulses (1-4; out-of-range values are clamped).
 const int LIGHTNING_COUNT = 4;
 const float SPEED = 1.0;
 const float STRENGTH = 0.9;
@@ -60,7 +49,7 @@ float fr_crackle(float u, float cells, float tick) {
 }
 
 vec4 ring_color(vec2 coords) {
-    if (ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
+    if (LIGHTNING_COUNT <= 0 || ring_width <= 0.0 || min(ring_size.x, ring_size.y) <= 0.0) return vec4(0.0);
     const float tau = 6.28318530718;
     float phase = fract(umbriel_time * SPEED / 4.0);
     float strength = clamp(STRENGTH, 0.0, 1.0);
@@ -76,7 +65,7 @@ vec4 ring_color(vec2 coords) {
     float coverage;
 
     // Repeat the travelling spot without changing each pulse's width or lap time.
-    float count = clamp(float(LIGHTNING_COUNT), 1.0, 4.0);
+    float count = float(LIGHTNING_COUNT);
     float behind = fract((phase - u) * count) / count;
     float delta = abs(fract((u - phase) * count + 0.5) - 0.5) / count;
     float head = exp(-pow(delta / 0.027, 2.0));
@@ -94,7 +83,7 @@ vec4 ring_color(vec2 coords) {
     float fork = exp(-abs(d - fork_center) * 18.0) * energy;
     float spark = exp(-pow(delta / 0.007, 2.0)) * exp(-abs(d - center) * 2.2);
     float light = core * (0.18 + 0.82 * energy) + 0.7 * fork + 0.85 * spark;
-    rgb = mix(vec3(0.08, 0.24, 0.8), vec3(0.78, 0.94, 1.0), clamp(light, 0.0, 1.0));
+    rgb = mix(theme_color(vec3(0.08, 0.24, 0.8), 0.25), theme_color(vec3(0.78, 0.94, 1.0), 0.25), clamp(light, 0.0, 1.0));
     coverage = clamp(light + halo * (0.12 + 0.48 * energy), 0.0, 1.0);
 
     // Antialias the client boundary and fade before the reserved outer extent.

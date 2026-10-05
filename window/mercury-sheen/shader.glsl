@@ -1,23 +1,18 @@
 // Adapted from shaders/window/mercury-sheen.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
 // Custom shader by Barrulus.
-// Mercury sheen — a flowing liquid-metal / chrome surface raked with moving specular glints.
-// A domain-warped noise field is treated as a molten surface; its normal fakes an environment
-// reflection (dark steel in the valleys, bright chrome on the ridges) and a rotating light throws
-// hot highlights that sweep across as the surface rolls. Neutral, slightly cool silver — mercury.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-//
-// Tuning knobs:
-//   OPACITY  -> how much the metal takes over the content (lower = more of a sheen over the app)
-//   SCALE    -> size of the molten cells (bigger = finer, more turbulent mercury)
-//   BUMP     -> surface relief; more = sharper light/dark banding and glints
-//   SPECP    -> specular tightness (higher = smaller, harder glints)
-//   flow speeds (0.05/0.06 warp, 0.4 light) -> how fast it churns / the light sweeps
-
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
 float vnoise(vec2 p){
@@ -61,7 +56,7 @@ vec4 postprocess(vec3 c){
     // Fake environment reflection: vertical gradient -> dark steel to bright chrome.
     vec3  r   = reflect(vec3(0.0, 0.0, -1.0), n);
     float env = 0.5 + 0.5*r.y;
-    vec3  chrome = mix(vec3(0.20, 0.22, 0.27), vec3(0.90, 0.93, 1.0), env);  // faint cool tint
+    vec3  chrome = mix(theme_color(vec3(0.20, 0.22, 0.27), 0.25), theme_color(vec3(0.90, 0.93, 1.0), 0.25), env);  // faint cool tint
 
     // Rotating light -> specular glints that sweep across the surface.
     vec3  L    = normalize(vec3(cos(umbriel_time*0.4), 0.4 + 0.4*sin(umbriel_time*0.3), 0.9));

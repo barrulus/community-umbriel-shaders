@@ -36,3 +36,6 @@ Full compositor validation is described in [VALIDATION.md](../VALIDATION.md).
 
 The preview and its sample illustration are original code by Barrulus with
 Codex assistance, licensed under [MIT](../LICENSES/Barrulus-MIT.txt).
+
+The **Theme palette** checkbox uses the four example `[colors]` values from the
+main README. Clear it to see the original colours used in the static previews.

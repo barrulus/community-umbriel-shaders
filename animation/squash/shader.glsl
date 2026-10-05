@@ -1,6 +1,3 @@
-// A restrained squash-and-settle for window movement and resizing.
-// Compress the whole presentation without rippling or clipping an overshoot.
-// Both endpoints are unchanged, with a smooth start and finish.
 vec4 animation(vec2 uv) {
     float p = umbriel_clamped_progress;
     float pulse = 16.0 * p * p * (1.0 - p) * (1.0 - p);

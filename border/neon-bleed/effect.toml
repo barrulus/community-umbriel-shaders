@@ -4,6 +4,7 @@ files = ["../../window/neon-bleed-overlay/effect.toml"]
 [effects.preset."neon-bleed"]
 kind = "border"
 shader = "shader.glsl"
+palette = true
 padding = 14
 speed = 1
 animated = true

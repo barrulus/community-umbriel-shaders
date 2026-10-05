@@ -1,4 +1,14 @@
 // Adapted from shaders/window/parchment.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -12,10 +22,6 @@ float smoothstep_any_order(float a, float b, float x) {
 // edges) and composites it so dark areas BECOME the paper while bright,
 // coloured content (text/icons) stays its own colour, like ink on parchment.
 //
-// Window shader. Static: does NOT use umbriel_time.
-//   c.xy : 0..1 across the window, c.y = 0 at the TOP
-//   umbriel_size : window size in physical pixels
-//   tex2D_screen(uv) : samples the window's own composited pixels
 
 // --- static procedural noise (seeded by pixel position, no time) -------------
 float hash(vec2 p) {
@@ -75,16 +81,15 @@ vec4 postprocess(vec3 c) {
     vec4 src = tex2D_screen(uv);
     vec2 px  = uv * umbriel_size;
 
-    // ---- knobs -------------------------------------------------------------
-    float crackAmount   = 0.22; // brightness of the crackle veins on the paper
-    float crumpleAmount = 0.40; // strength of the cloudy crumple shading
-    float paperOpacity  = 0.92; // how fully dark areas turn into paper (1 = opaque)
-    float inkKeep       = 0.55; // content brighter than this keeps its own colour
-    float desat         = 0.45; // pull content toward neutral so it reads as ink
-    float warmth        = 0.22; // warm wash over everything (0 = none)
-    float edgeBurn      = 0.95; // darkness of the burnt border
-    float burnWidth     = 0.50; // 0..1, lower = wider/thicker dark border
-    vec3  paperTan      = vec3(0.86, 0.66, 0.42); // base parchment hue
+    float crackAmount   = 0.22;
+    float crumpleAmount = 0.40;
+    float paperOpacity  = 0.92;
+    float inkKeep       = 0.55;
+    float desat         = 0.45;
+    float warmth        = 0.22;
+    float edgeBurn      = 0.95;
+    float burnWidth     = 0.50;
+    vec3  paperTan      = theme_color(vec3(0.86, 0.66, 0.42), 0.5);
     // ------------------------------------------------------------------------
 
     // Domain-warp so the texture looks organic, not regular.
@@ -104,10 +109,10 @@ vec4 postprocess(vec3 c) {
     // ---- build the standalone parchment sheet ------------------------------
     float tone = 0.72 + crumpleAmount * (crumple - 0.5) * 2.0;
     vec3 sheet = tone * paperTan;
-    sheet += vec3(0.95, 0.85, 0.60) * cr * crackAmount;   // light veins
+    sheet += theme_color(vec3(0.95, 0.85, 0.60), 0.5) * cr * crackAmount;   // light veins
     sheet *= 0.97 + 0.05 * vnoise(px * 1.7);              // fine tooth
     sheet *= mix(1.0, 0.22, burn * edgeBurn);             // burnt darkening
-    sheet = mix(sheet, vec3(0.20, 0.11, 0.05), burn * edgeBurn * 0.65); // scorch tint
+    sheet = mix(sheet, theme_color(vec3(0.20, 0.11, 0.05), 0.5), burn * edgeBurn * 0.65); // scorch tint
 
     // ---- compose over the real window content ------------------------------
     float lum = dot(src.rgb, vec3(0.299, 0.587, 0.114));
@@ -128,7 +133,7 @@ vec4 postprocess(vec3 c) {
     col = mix(col, sheet, paperMix);
 
     // Gentle warm aging wash (keeps hue).
-    col *= mix(vec3(1.0), vec3(1.05, 1.00, 0.86), warmth);
+    col *= mix(vec3(1.0), theme_color(vec3(1.05, 1.00, 0.86), 0.5), warmth);
 
     return vec4(col, src.a);
 }

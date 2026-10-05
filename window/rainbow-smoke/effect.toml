@@ -1,3 +1,4 @@
 [effects.preset."window.rainbow-smoke"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

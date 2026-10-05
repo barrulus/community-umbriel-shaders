@@ -2,6 +2,102 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Comet and Fairy Tail (2026-10-05)
+
+Added the tuned cursor presets with oldest-to-newest overlap blending and
+pointer-area softening reaching full strength at 52 logical pixels. Shader
+sources are based on the personal presets used for visual tuning; Comet also
+supports theme palette colours. Both presets enable `palette = true` by default.
+
+- All 84 installation examples and the combined library pass configuration
+  validation with `umbriel 0.1.0 (6adcbc0)`.
+- Both shaders compile, link and render without GL errors using the cursor
+  preamble and wrapper from local Umbriel cursor revision `a8cdaca1` and
+  Mesa llvmpipe (LLVM 21.1.8).
+- Their synthetic previews use 64 samples on a crossing pointer path over
+  light and dark desktop content. Both previews use fallback colours.
+  Both previews were visually inspected.
+- A follow-up pre-push check repeated configuration validation and rendered
+  both repository shaders; the resulting previews match the packaged PNGs
+  byte for byte. Each shader also passed 20 combinations of sample count
+  (0, 1, 2, 8, 64), active/expired ages and fallback/theme palettes, with no
+  GL errors. Empty, single-sample and expired paths preserve the background;
+  full active paths draw a trail, and all cases preserve opaque alpha.
+
+These presets require the newer `umbriel_pointer_path[64]` API; the older
+preset-effects API is not sufficient. This packaging pass did not repeat
+live compositor, output-edge, fractional-scale or hardware-performance checks.
+
+## Theme palette adaptation (2026-10-02)
+
+Audited all 82 shaders. Previously only `accent-pulse`, `glow`, `cursor-sparkle`,
+and `tv-glitch` read the palette, and `tv-glitch` did not enable it by default.
+Added palette support to 65 shaders and enabled it in those presets and
+`tv-glitch`, bringing the total to 69. The 13 content-processing effects without
+separate coloured artwork remain palette-neutral; the complete exception list
+is in [Theme colours](README.md#theme-colours).
+
+New colour mappings affect artwork and existing tint treatments, retaining
+shading, highlights, and effect opacity. Rainbow generators interpolate the
+palette using their existing phase. Paired borders and overlays use matching
+mappings. Faerie Magic maps its finished artwork outside the particle loops;
+this avoids the fallback rendering differences observed when palette lookups
+were added inside those loops on llvmpipe. All adapted presets retain their
+original colours with `palette = false`. Static previews show those original
+colours; the browser preview now has a theme-palette toggle.
+
+Validation uses `umbriel 0.1.0 (2040758)`, the GLES preamble and wrappers from
+upstream revision `2040758e`, and Mesa llvmpipe (LLVM 21.1.8):
+
+- All 82 installation examples and the combined library pass configuration
+  validation.
+- All 82 shaders compile and link. Offscreen checks cover two contrasting
+  palettes and the disabled palette, four time/progress/direction/alpha cases,
+  plus both exact animation endpoints in both directions at input alpha
+  0, 0.4, and 1. There are 2,232 rendered frames in total.
+- Every palette-enabled preset responds visibly to changing the palette;
+  all 13 palette-neutral presets remain unchanged. Switching the palette
+  preserves output alpha in the sampled cases.
+- Disabled-palette output matches the previous source within one byte per
+  channel. Animation endpoints with either palette match the previous source
+  within the same tolerance. All renders complete without GL errors.
+- The browser's ten paired transitions pass 11,520 WebGL frames across both
+  palette modes, checking endpoints and premultiplied alpha with wide, tall,
+  small, and square logical sizes, multiple seeds, and opaque/translucent input.
+  Representative synthetic palette renders were visually inspected.
+
+These are offscreen and browser checks, not a live compositor-session or
+hardware-performance pass. Existing shader limitations remain; these checks
+only establish the palette change's behaviour in the sampled cases.
+
+## Documentation cleanup and border counts (2026-10-01)
+
+Shader comments duplicating the READMEs, obsolete Niri configuration examples,
+and instructions for generators absent from this repository were removed.
+Attribution and implementation notes were retained. A token comparison across
+all 82 shaders confirmed that the comment cleanup did not alter executable code.
+
+Fuse and Lightning now accept counts above four. Fuse's spark-emitter loop
+also follows `EMBER_COUNT`; zero or negative counts return transparent output
+in both shaders. Other colour and geometry clamps remain in place.
+
+Validation used the GLES preamble and border wrapper fetched from upstream
+Umbriel `main` at [`2040758e`](https://github.com/noctalia-dev/umbriel/commit/2040758e5a33bed1fe5f56e830951346e13ed02f),
+with Mesa llvmpipe (LLVM 21.1.8). No local compositor changes were used as the
+shader contract.
+
+- Both shaders compile, link, and render with counts -1, 0, 1, 4, 8, and 16 at
+  times 0, 1.35, and 4.5 seconds, using a 320×240 target at scale 1.
+- Zero and negative counts render transparent black. Positive counts render
+  nonempty, premultiplied output without GL errors.
+- Counts 1 and 4 are pixel-identical to the previous source at all three times.
+- Counts 8 and 16 produce different output from the lower counts. Fuse at 8
+  also differs from a version retaining only four spark emitters, confirming
+  that the additional emitters contribute.
+
+These are offscreen checks, not a live compositor or hardware performance test.
+Very large counts were not tested; increasing Fuse's count increases spark work.
+
 ## Scope
 
 - The 63 community presets by Barrulus retain their contributed GLSL without changes.
@@ -86,3 +182,25 @@ reads those timings from the corresponding `config.toml`.
 - Animation selectors apply globally per event. Test opening and closing endpoints when changing timing or GLSL; the preview is only an intermediate frame.
 
 See [Umbriel’s effects reference](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for the complete rendering contract.
+
+## Workspace VHS Ripple
+
+Added `workspace-transation-vhs-ripple` on 2026-10-01, with a 600 ms workspace
+activation example. The preset name retains the requested `transation` spelling.
+
+- All 82 installation examples and the combined library pass configuration
+  validation using `umbriel 0.1.0 (e5056a594c3b-dirty)`.
+- The same shader, under its original `workspace-ripple` name, compiled in that
+  live compositor and the contributor accepted its workspace-switch appearance.
+  Packaging changes only the preset name and adds attribution comments.
+- Offscreen GLES compilation and 81 synthetic frames pass on Mesa llvmpipe
+  (LLVM 21.1.8). Nine progress values, including exact endpoints and values outside
+  0–1, were checked at three logical sizes and opaque, translucent, and empty
+  input alpha. Endpoint pixels match the input exactly; SDR premultiplied-alpha,
+  empty-input, and GL-error checks pass.
+- The 640×400 catalog preview is rendered from the shader at progress 0.5 over a
+  synthetic desktop. This offscreen check uses a synthetic sampling helper, not
+  Umbriel's full capture pipeline, and does not simulate the native slide.
+
+Interrupted switches, fractional scaling, rotated outputs, HDR fidelity, and
+hardware performance have not been separately validated for this preset.

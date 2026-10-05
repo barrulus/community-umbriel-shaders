@@ -1,6 +1,15 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Self-contained GLSL ES 1.00; shared by windows_in and windows_out.
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 float hash21(vec2 p) {
     vec3 q = fract(vec3(p.xyx) * 0.1031);
     q += dot(q, q.yzx + 33.33 + umbriel_random_seed.x);
@@ -17,7 +26,6 @@ vec4 overGlow(vec4 base, vec3 tint, float alpha) {
     return vec4(tint * alpha, alpha) + base * (1.0 - alpha);
 }
 
-// Sparkle cells per shorter window side; try 8–22.
 const float SPARKLE_DENSITY = 14.0;
 
 vec4 animation(vec2 uv) {
@@ -36,7 +44,7 @@ vec4 animation(vec2 uv) {
     float reveal = (1.0 - smoothstep(-0.10, 0.05, d)) * smoothstep(0.10, 0.38, visible);
     vec4 window = umbriel_sample(uv) * reveal;
     float smoke = exp(-abs(d) * 12.0) * cloud * life * 0.7;
-    window = overGlow(window, vec3(0.57, 0.24, 0.83), smoke);
+    window = overGlow(window, theme_color(vec3(0.57, 0.24, 0.83), 0.0), smoke);
     // Neighbor search lets each four-point sparkle drift across cell boundaries.
     vec2 field = p * SPARKLE_DENSITY;
     vec2 cell = floor(field);
@@ -56,5 +64,5 @@ vec4 animation(vec2 uv) {
             sparkle += star * shell * twinkle * life;
         }
     }
-    return overGlow(window, vec3(1.0, 0.88, 0.57), sparkle);
+    return overGlow(window, theme_color(vec3(1.0, 0.88, 0.57), 0.5), sparkle);
 }

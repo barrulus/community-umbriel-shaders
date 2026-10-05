@@ -25,6 +25,19 @@ uniform float umbriel_progress;
 uniform float umbriel_linear_progress;
 uniform float umbriel_direction;
 uniform vec4 umbriel_random_seed;
+uniform int umbriel_palette_count;
+vec4 umbriel_palette_at(float t) {
+  if (umbriel_palette_count <= 0) return vec4(0.0);
+  float phase = fract(t) * 4.0;
+  vec4 primary = vec4(0.796, 0.651, 0.969, 1.0);
+  vec4 secondary = vec4(0.537, 0.706, 0.980, 1.0);
+  vec4 warning = vec4(0.976, 0.886, 0.686, 1.0);
+  vec4 error = vec4(0.953, 0.545, 0.659, 1.0);
+  if (phase < 1.0) return mix(primary, secondary, phase);
+  if (phase < 2.0) return mix(secondary, warning, phase - 1.0);
+  if (phase < 3.0) return mix(warning, error, phase - 2.0);
+  return mix(error, primary, phase - 3.0);
+}
 #define umbriel_clamped_progress clamp(umbriel_progress, 0.0, 1.0)
 vec4 umbriel_sample(vec2 uv) {
   if (any(lessThan(uv, vec2(0.0))) || any(greaterThan(uv, vec2(1.0)))) return vec4(0.0);
@@ -111,6 +124,7 @@ function draw(p, progress, direction, size = [canvas.width, canvas.height], rand
   gl.useProgram(p);
   gl.viewport(0, 0, canvas.width, canvas.height);
   gl.uniform1i(gl.getUniformLocation(p, 'umbriel_texture'), 0);
+  gl.uniform1i(gl.getUniformLocation(p, 'umbriel_palette_count'), $('palette').checked ? 4 : 0);
   gl.uniform2fv(gl.getUniformLocation(p, 'umbriel_size'), size);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_progress'), progress);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_linear_progress'), progress);
@@ -167,6 +181,7 @@ $('direction').onchange = () => { updateTimingLabel(); play(); };
 $('duration').onchange = play;
 $('shape').onchange = resize;
 $('translucent').onchange = resize;
+$('palette').onchange = () => { if (current) render(last); };
 $('play').onclick = () => playing ? pause() : play();
 $('progress').oninput = () => { pause(); render(Number($('progress').value)); };
 function frame(now) {

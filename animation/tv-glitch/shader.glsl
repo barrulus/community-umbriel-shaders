@@ -7,32 +7,23 @@
 // (MIT, https://www.shadertoy.com/view/4djSRW) and simplex2D is by Inigo Quilez
 // (MIT, https://www.shadertoy.com/view/Msf3WH), both as bundled in Burn-My-Windows.
 //
-// Use for windows_in and windows_out (also works for layers and scratchpad). The glitch
-// runs on its own internal easing, so select curve = "linear".
 
 // ------------------------------------------------------------------------------ tuning
 
-// Tint of the interference, grain, scan lines and the final collapse, as straight RGB.
-// Alpha (0-1) scales how strongly the tint is mixed in. Upstream default: rgb(100,160,255).
-// With `palette = true` in effect.toml, accent_primary is used instead.
 const vec4 GLITCH_COLOR = vec4(100.0 / 255.0, 160.0 / 255.0, 1.0, 1.0);
 
-// Size of the noise bands; larger values give thinner, busier bands (useful 0.1-4).
 const float GLITCH_SCALE = 1.0;
 
-// Horizontal displacement and interference intensity (useful 0-4; 0 disables the glitch).
 const float GLITCH_STRENGTH = 2.0;
 
-// How far the noise pattern travels during one animation. Upstream multiplies the
-// animation duration (0.75 s by default) by its speed setting (2.0 by default).
 const float GLITCH_TIME_SPAN = 0.75 * 2.0;
 
-const float BLUR_WIDTH = 0.01;  // Softness of the collapsing edges, in UV units.
-const float TB_TIME    = 0.7;   // Share of the TV phase spent collapsing top/bottom.
-const float LR_TIME    = 0.4;   // Share of the TV phase spent collapsing left/right.
-const float LR_DELAY   = 0.6;   // Point in the TV phase where left/right collapse starts.
-const float FF_TIME    = 0.1;   // Share of the TV phase for the final fade.
-const float SCALING    = 0.5;   // Vertical squash of the window at full collapse.
+const float BLUR_WIDTH = 0.01;
+const float TB_TIME    = 0.7;
+const float LR_TIME    = 0.4;
+const float LR_DELAY   = 0.6;
+const float FF_TIME    = 0.1;
+const float SCALING    = 0.5;
 
 // ----------------------------------------------------------------------------- helpers
 

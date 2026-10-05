@@ -1,12 +1,20 @@
 // Adapted from shaders/rings/sentient-spark.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 14.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// Independent emerald / white micro-discharges around the ENTIRE perimeter.
-// No travelling head, lap phase or moving wake. Returns straight RGBA.
-const float SPARK_DENSITY = 13.0; // logical pixels between potential sparks
+const float SPARK_DENSITY = 13.0;
 const float SPARK_SPEED = 1.0;
 const float SPARK_STRENGTH = 1.0;
 
@@ -64,7 +72,7 @@ vec4 ring_color(vec2 coords) {
     float rail = exp(-abs(d - ring_width * 0.55) * 1.7) * 0.12;
     float envelope = smoothstep(0.0, aa * 2.0, d) * (1.0 - smoothstep(extent - aa * 2.0, extent, d));
     float alpha = clamp((rail + core * 0.95 + halo * 0.19) * SPARK_STRENGTH * envelope, 0.0, 1.0);
-    vec3 color = mix(vec3(0.035, 0.85, 0.34), vec3(0.82, 1.0, 0.91), clamp(core, 0.0, 1.0));
+    vec3 color = mix(theme_color(vec3(0.035, 0.85, 0.34), 0.25), theme_color(vec3(0.82, 1.0, 0.91), 0.25), clamp(core, 0.0, 1.0));
     return vec4(color, alpha);
 }
 

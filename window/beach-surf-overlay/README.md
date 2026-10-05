@@ -24,9 +24,56 @@ Append the include path to your existing `files` array and merge selectors into 
 
 Normally this is included automatically by its matching border preset. Selecting it as a window effect, as above, applies it to every window.
 
-## Colours and tuning
+## Theme palette
 
-Colours are defined in `shader.glsl`. Setting `palette = true` alone will not recolour a shader that does not read the palette. Edit its colour constants to customise it.
+This preset enables `palette = true` in `effect.toml`. Artwork colours follow
+Umbriel's `[colors]` accents, warning, and error colours, while retaining shading
+and highlights. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
+
+## Configuration options
+
+Edit the existing `[effects.preset."beach-surf-overlay"]` table in [effect.toml](effect.toml).
+The [complete configuration reference](../../README.md#configuration-reference) explains
+selection, overrides, and accepted ranges. The values below are this preset's shipped
+settings, including defaults for omitted keys.
+
+| TOML setting | Shipped value | What changing it does |
+| --- | --- | --- |
+| `kind` | `"window"` | Keep this kind: the source implements its `window` entry point. |
+| `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
+| `palette` | `true` | Use theme colours for artwork. Set false to restore the original shader colours. |
+
+There is no TOML `speed`, `animated`, or `opacity` setting for this kind.
+Motion/strength changes are GLSL edits below.
+Global `[effects] max_fps` limits effect-driven frames, and `in_capture`
+controls inclusion in screencopy/image-copy captures. Neither resizes the artwork.
+
+This is the inward half of [beach-surf](../../border/beach-surf/). Normally the border
+attaches it through `overlay`; then it follows that border's focus gate,
+`speed`, and `animated` settings. Selecting it independently with
+`[effects] window` applies it to windows regardless of focus and uses its own clock.
+To remove the inward artwork, clear the parent border's `overlay` and remove
+its unused companion include. Clear any independent window selection too.
+Edit shared visual controls in both shaders when keeping the pair.
+
+### Shader controls
+
+Edit these values in [shader.glsl](shader.glsl), not in TOML. `#define` is
+active GLSL code; comments use `//` or `/* ... */`. Start with small changes
+and keep paired shaders in sync. Keep size and duration divisors positive.
+
+| GLSL control or expression | Shipped value | Visual effect |
+| --- | --- | --- |
+| `SURF_CONTENT_RADIUS` | `4.0` | Rounded client corner radius in logical pixels; match the actual content radius (normally outer radius minus border width, clamped to zero). |
+| `extent` | `16.0 + 10.0 * n` | Shared outer-reach expression in logical pixels; it controls the outer border wash, not the inward fade. Keep it matched when editing the pair. |
+| `inward envelope` | `smoothstep(-24.0, -7.0, d)` | Inner fade distances in logical pixels; values nearer zero reduce inward reach. Keep the first below the second and update the -24.0 early cutoff if expanding it. |
+| `crest travel factor` | `9.0` | Larger moves crests faster; TOML speed scales all surf motion together. |
+| `alpha` | `envelope * (0.25 + foam * 0.70)` | Base wash and foam opacity; lower the coefficients for a more transparent wash. |
+| `surf_water / foam colour` | `RGB literals in surf_water and surf_edge` | Edit the teal water and pale foam colours in both passes. |
+
+Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 

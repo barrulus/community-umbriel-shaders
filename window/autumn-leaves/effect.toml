@@ -1,3 +1,4 @@
 [effects.preset."window.autumn-leaves"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

@@ -1,3 +1,4 @@
 [effects.preset."window.rainbow-waves"]
 kind = "window"
 shader = "shader.glsl"
+palette = true

@@ -1,4 +1,14 @@
 // Adapted from shaders/window/rainbow-waves.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -7,28 +17,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rainbow waves — bands of spectrum rolling across the window like swells across water.
-// The fronts travel in a direction that slowly swings around, undulate with a sinusoidal
-// wobble and a slow noise bend so they never arrive as straight stripes, and each band
-// has a lit crest and a shaded trough with a faint foam line on the crest. A second,
-// fainter wave set crosses at an angle for interference depth, and the whole thing
-// surges and eases like a swell. Window content is never resampled; the colour rides
-// over it at modest opacity so text stays readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   BANDS    -> spectrum cycles across the window (higher = narrower bands)
-//   SPEED    -> travel speed of the fronts
-//   STRENGTH -> peak opacity of the colour over the content
-//   WOBBLE   -> sinusoidal undulation of the fronts
-//   WARP     -> slow noise bending of the fronts
-//   TURN     -> how fast the travel direction swings around
-//   CROSS    -> weight of the second, crossing wave set (0 = off)
-//   FOAM     -> brightness of the crest highlight
-//   SAT      -> rainbow saturation (1.0 = pure spectral, lower = pastel)
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
@@ -55,7 +43,7 @@ float fbm(vec2 p){
 }
 
 // IQ cosine rainbow: hue 0..1 -> full spectrum
-vec3 rainbow(float h){ return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
+vec3 rainbow(float h){ if (umbriel_palette_count > 0) return umbriel_palette_at(h).rgb; return 0.5 + 0.5 * cos(6.2831853 * (h + vec3(0.0, 0.33, 0.67))); }
 
 vec4 postprocess(vec3 c){
     vec4  s  = tex2D_screen(c.xy);
@@ -95,7 +83,7 @@ vec4 postprocess(vec3 c){
     // lit crest, shaded trough, faint foam line on the crest
     float crest = 0.5 + 0.5 * cos(6.2831853 * ph);
     col *= 0.80 + 0.30 * crest;
-    col += vec3(0.90, 0.95, 1.0) * pow(crest, 12.0) * FOAM;
+    col += theme_color(vec3(0.90, 0.95, 1.0), 0.25) * pow(crest, 12.0) * FOAM;
 
     // a second, fainter wave set crossing at an angle adds interference depth
     vec2  dir2 = vec2(cos(th + 1.9), sin(th + 1.9));

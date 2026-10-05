@@ -1,4 +1,14 @@
 // Adapted from shaders/window/rainfall.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
@@ -7,26 +17,6 @@ vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 float smoothstep_any_order(float a, float b, float x) {
     return a > b ? 1.0 - smoothstep(b, a, x) : smoothstep(a, b, x);
 }
-// Rainfall — light rain on the windowpane. Out beyond the glass, three depth layers of
-// soft out-of-focus streaks fall fast — the rain itself, blurred by the pane. On the glass
-// in the foreground, two depth layers of drops run down along gently wiggling tracks, each
-// towing a trail of shrinking beads; between the runs, small droplets cling to the pane,
-// slowly growing and clearing again so the glass "builds up" over time. Every drop
-// refracts the content behind it like a tiny lens, the glass between drops is faintly
-// misted, and the whole pane gets a cool rainy-day grade. Content stays readable.
-//
-// Contract: vec4 postprocess(vec3 c); c.xy = 0..1 across the window (c.y = 0 at the TOP);
-// tex2D_screen(uv) samples the window; umbriel_size = window px; umbriel_time = seconds.
-// Attach via a niri window-rule / window-shaders preset.
-//
-// Tuning knobs:
-//   REFRACT       -> lens strength of the drops (0 = drops become invisible)
-//   RAIN          -> strength of the blurred background rain (0 = pane effects only)
-//   FOG           -> misted-glass softening between the drops
-//   TINT          -> cool colour-grade strength
-//   BUILDUP       -> density of the small clinging droplets (0..1)
-//   0.10/0.18 spd -> fall-speed range of the running drops
-//   1.1/0.7 vel   -> fall speed of the background streaks
 
 float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 vec2 hash2(vec2 p){ return vec2(hash(p), hash(p + 19.19)); }
@@ -133,10 +123,10 @@ vec4 postprocess(vec3 c){
     rgb = mix(rgb, blur, FOG * (1.0 - min(wet * 1.6, 1.0)) * gate);
 
     // the blurred rain sits behind the pane: misted, and occluded by the drops on it
-    rgb += vec3(0.62, 0.70, 0.84) * rain * RAIN * 0.24 * (1.0 - wet * 0.85) * gate * s.a;
+    rgb += theme_color(vec3(0.62, 0.70, 0.84), 0.25) * rain * RAIN * 0.24 * (1.0 - wet * 0.85) * gate * s.a;
 
     float lum = dot(rgb, vec3(0.299, 0.587, 0.114));
-    rgb = mix(rgb, vec3(lum) * vec3(0.82, 0.90, 1.06), TINT * gate);
+    rgb = mix(rgb, vec3(lum) * theme_color(vec3(0.82, 0.90, 1.06), 0.25), TINT * gate);
     rgb += 0.05 * wet * s.a;                               // faint glint on the drops
 
     return vec4(rgb, s.a);                                 // s.a: keep rounded corners clean

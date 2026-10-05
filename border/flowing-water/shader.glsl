@@ -1,11 +1,19 @@
 // Adapted from shaders/rings/flowing-water.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 #define ring_padding 30.0
 #define ring_size (umbriel_border_hole.zw * umbriel_size)
 #define ring_width max((1.0 - umbriel_border_hole.w) * umbriel_size.y * 0.5 - ring_padding, 1.0)
 #define ring_radius umbriel_border_radius
 float ring_distance(vec2 coords) { return umbriel_border_distance(coords / umbriel_size + umbriel_border_hole.xy); }
-// A liquid focus ring with circulating swells, curling crests and airborne spray.
-// Umbriel decoration contract: logical pixels in, straight RGBA out.
 const float WATER_SPEED = 1.0;
 const float WAVE_HEIGHT = 10.0;
 const float WATER_OPACITY = 0.85;
@@ -111,13 +119,13 @@ vec4 ring_color(vec2 coords) {
     float edge = 1.0 - smoothstep(0.38, 0.38 + aa, abs(d - surface));
     foam = edge * (0.18 + swelling * 0.70 + flecks * 0.22);
     foam = max(foam, curls * 0.95);
-    vec3 water = mix(vec3(0.015, 0.14, 0.42), vec3(0.025, 0.65, 0.82), depth);
-    water += vec3(0.07, 0.31, 0.33) * caustic;
+    vec3 water = mix(theme_color(vec3(0.015, 0.14, 0.42), 0.25), theme_color(vec3(0.025, 0.65, 0.82), 0.25), depth);
+    water += theme_color(vec3(0.07, 0.31, 0.33), 0.25) * caustic;
     float water_alpha = body * WATER_OPACITY * (0.64 + caustic * 0.24);
     float foam_alpha = clamp(foam + spray, 0.0, 1.0);
     float mist_alpha = spray_glow + exp(-abs(d - surface) * 0.60) * swelling * 0.045;
-    vec3 whitewater = vec3(0.77, 0.97, 1.0);
-    vec3 color_sum = water * water_alpha + whitewater * foam_alpha + vec3(0.10, 0.58, 0.85) * mist_alpha;
+    vec3 whitewater = theme_color(vec3(0.77, 0.97, 1.0), 0.25);
+    vec3 color_sum = water * water_alpha + whitewater * foam_alpha + theme_color(vec3(0.10, 0.58, 0.85), 0.25) * mist_alpha;
     float total = water_alpha + foam_alpha + mist_alpha;
     float envelope = smoothstep(0.0, 2.0 * aa, d)
         * (1.0 - smoothstep(max(extent - 2.0 * aa, 0.0), extent, d));

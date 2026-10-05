@@ -24,9 +24,56 @@ Append the include path to your existing `files` array and merge selectors into 
 
 Normally this is included automatically by its matching border preset. Selecting it as a window effect, as above, applies it to every window.
 
-## Colours and tuning
+## Theme palette
 
-Colours are defined in `shader.glsl`. Setting `palette = true` alone will not recolour a shader that does not read the palette. Edit its colour constants to customise it.
+This preset enables `palette = true` in `effect.toml`. Artwork colours follow
+Umbriel's `[colors]` accents, warning, and error colours, while retaining shading
+and highlights. Set `palette = false` in that preset to restore the original
+colours shown in the preview. For a border with a companion overlay, change
+both presets together. Shader colour constants are the fallback colours.
+
+## Configuration options
+
+Edit the existing `[effects.preset."cartoon-chase-overlay"]` table in [effect.toml](effect.toml).
+The [complete configuration reference](../../README.md#configuration-reference) explains
+selection, overrides, and accepted ranges. The values below are this preset's shipped
+settings, including defaults for omitted keys.
+
+| TOML setting | Shipped value | What changing it does |
+| --- | --- | --- |
+| `kind` | `"window"` | Keep this kind: the source implements its `window` entry point. |
+| `shader` | `"shader.glsl"` | Loads the source beside this preset; change the path only when using another compatible source. |
+| `palette` | `true` | Use theme colours for artwork. Set false to restore the original shader colours. |
+
+There is no TOML `speed`, `animated`, or `opacity` setting for this kind.
+Motion/strength changes are GLSL edits below.
+Global `[effects] max_fps` limits effect-driven frames, and `in_capture`
+controls inclusion in screencopy/image-copy captures. Neither resizes the artwork.
+
+This is the inward half of [cartoon-chase](../../border/cartoon-chase/). Normally the border
+attaches it through `overlay`; then it follows that border's focus gate,
+`speed`, and `animated` settings. Selecting it independently with
+`[effects] window` applies it to windows regardless of focus and uses its own clock.
+To remove the inward artwork, clear the parent border's `overlay` and remove
+its unused companion include. Clear any independent window selection too.
+Edit shared visual controls in both shaders when keeping the pair.
+
+### Shader controls
+
+Edit these values in [shader.glsl](shader.glsl), not in TOML. `#define` is
+active GLSL code; comments use `//` or `/* ... */`. Start with small changes
+and keep paired shaders in sync. Keep size and duration divisors positive.
+
+| GLSL control or expression | Shipped value | Visual effect |
+| --- | --- | --- |
+| `CHASE_INSET` | `64.0` | Inward drawing reach in logical pixels; lower can clip characters/trails rather than shrink them. |
+| `lead speed` | `210.0` | Logical pixels per shader second for the main chase; lower slows the runners. |
+| `third-character speed` | `340.0 (both occurrences)` | Speed of the third character; change both the trail and sprite calculations together. |
+| `character colour literals` | `in chase_runner / chase_coyote / chase_devil` | Edit the sprite RGB values for custom colours; geometry is drawn procedurally, not loaded from an image. |
+| `chase_scale()` | `min(1.0, min(ring_size.x, ring_size.y) / 180.0)` | Sprite/path scale. Multiply the returned value by 0.75 for smaller characters in both passes; changing 180 alone only affects smaller windows. |
+| `chase_radius()` | `26.0 * chase_scale()` (capped by track size) | Artistic track-corner radius in logical pixels. It is independent of native decoration rounding; change both passes together. |
+
+Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 

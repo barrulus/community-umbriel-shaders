@@ -2,6 +2,16 @@
 // One sheet, two timelines: fall and unfurl / scrunch and fall through the bottom.
 // Lifecycle targets are clipped to their captured rectangle. The ball enters
 // and exits that frame; this shader cannot travel across the rest of the output.
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 float paper_folds(vec2 p) {
     float shade = 0.0;
     for (int i = 0; i < 6; i++) {
@@ -102,7 +112,7 @@ vec4 animation(vec2 uv) {
     float relief = paper_folds(q) * crease_strength;
     float round_light = 1.0 - crumple * 0.22 * dot(q, q)
         + crumple * dot(q, vec2(-0.13, -0.18));
-    vec3 sheet = vec3(0.985) * (round_light + relief);
+    vec3 sheet = theme_color(vec3(0.985), 0.5) * (round_light + relief);
     vec3 print_color = source.rgb / max(source.a, 0.0001);
     // Compressed print gets buried among the folds, then returns as it opens.
     vec3 color = mix(print_color * (1.0 + relief), sheet, crumple * 0.88);

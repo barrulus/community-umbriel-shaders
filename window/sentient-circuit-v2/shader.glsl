@@ -1,17 +1,24 @@
 // Adapted from shaders/window/sentient-circuit-v2.glsl
+
+// Theme colours affect artwork only; palette = false restores the original RGB.
+// Keep the original shade and soften highlights without changing effect opacity.
+vec3 theme_color(vec3 original, float position) {
+    if (umbriel_palette_count <= 0) return original;
+    float value = max(original.r, max(original.g, original.b));
+    float white = min(original.r, min(original.g, original.b)) / max(value, 0.0001);
+    return value * mix(umbriel_palette_at(position).rgb, vec3(1.0), white * 0.75);
+}
+
 vec4 tex2D_screen(vec2 uv) { return umbriel_sample(uv); }
 vec2 migration_buffer_size() { return umbriel_size * umbriel_scale; }
 #define umbriel_size migration_buffer_size()
-// Sentient circuit v2: growing, pulsing and decaying colonies, copper and pollen.
-// Inspired by living circuit trees. No aligned tile ports or repeated cross hubs.
-// Premultiplied RGBA; all geometry is in logical pixels.
 const float CIRCUIT_STRENGTH = 0.78;
 const float CIRCUIT_SPEED = 1.0;
-const float CLUSTER_SPACING = 165.0; // larger = more breathing room; keep >= 165
+const float CLUSTER_SPACING = 165.0;
 const float LIGHT_RESPONSE = 1.45;
-const float GOLD_FRACTION = 0.22; // gold stays with a branch for its lifetime
-const float PATH_DECAY = 1.35; // seconds to dissolve after the pulse's brief afterglow
-const float REGENERATION_MIN = 6.0; // each patch regenerates every 6-9 seconds
+const float GOLD_FRACTION = 0.22;
+const float PATH_DECAY = 1.35;
+const float REGENERATION_MIN = 6.0;
 
 float cv_hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
@@ -187,10 +194,10 @@ vec4 postprocess(vec3 c) {
     float lum = dot(original, vec3(0.2126, 0.7152, 0.0722));
     float protect = 1.0 - 0.7 * smoothstep(0.4, 0.95, lum);
     float hue = cv_noise(p / 210.0 + 41.0);
-    vec3 green = mix(vec3(0.07, 0.91, 0.28), vec3(0.66, 1.0, 0.14), hue);
-    vec3 hot = vec3(0.85, 1.0, 0.68);
-    vec3 gold = vec3(1.0, 0.57, 0.08);
-    vec3 gold_hot = vec3(1.0, 0.86, 0.43);
+    vec3 green = mix(theme_color(vec3(0.07, 0.91, 0.28), 0.25), theme_color(vec3(0.66, 1.0, 0.14), 0.25), hue);
+    vec3 hot = theme_color(vec3(0.85, 1.0, 0.68), 0.25);
+    vec3 gold = theme_color(vec3(1.0, 0.57, 0.08), 0.5);
+    vec3 gold_hot = theme_color(vec3(1.0, 0.86, 0.43), 0.5);
     // Separate coverage, pulse and halo weights keep gold emissions on their
     // selected branches, including where green and gold routes cross.
     vec3 gold_weight = clamp(gold_field / max(field, vec3(0.0001)), 0.0, 1.0);

@@ -1,5 +1,3 @@
-// Use for window/layer opening and closing, or scratchpad show/hide.
-// The compositor supplies main(), precision, uniforms, and umbriel_sample().
 vec4 animation(vec2 uv) {
     float visible = umbriel_direction > 0.0
         ? umbriel_clamped_progress : 1.0 - umbriel_clamped_progress;

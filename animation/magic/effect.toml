@@ -1,3 +1,4 @@
 [effects.preset.magic]
 kind = "animation"
 shader = "shader.glsl"
+palette = true
