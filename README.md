@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes 77 community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes 78 community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -24,7 +24,7 @@ For adjustments, see the [configuration reference](#configuration-reference),
 
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
 
-[Comet](cursor/comet/) and [Fairy Tail](cursor/fairy-tail/) additionally require the newer cursor pointer-history API (`umbriel_pointer_count` and `umbriel_pointer_path[64]`). They were shader-tested against local Umbriel cursor revision `a8cdaca1`; the original preset-effects API alone cannot run them.
+[Comet](cursor/comet/), [Fairy Tail](cursor/fairy-tail/), and [Pond Wake](cursor/pond-wake/) additionally require the newer cursor pointer-history API (`umbriel_pointer_count` and `umbriel_pointer_path[64]`). They were shader-tested against local Umbriel cursor revision `a8cdaca1`; the original preset-effects API alone cannot run them.
 
 GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION.md).
 
@@ -404,6 +404,9 @@ without a separate coloured artwork layer: animation `example`, `reveal`,
 `workspace-transation-vhs-ripple`; cursor `spotlight`; screen `vignette`; and
 window `adaptive-text-v4`, `crt`, `flap-board`, and `scanlines`. Their distortion,
 channel separation, contrast, or darkening continues to use the source image.
+
+[Pond Wake](cursor/pond-wake/) also ignores the theme palette: its stirred
+bioluminescence deliberately stays blue-green, controlled by `BIO_COLOUR`.
 
 ## Troubleshooting
 
