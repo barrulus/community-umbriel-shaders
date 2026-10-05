@@ -2,6 +2,26 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Starlight (2026-10-05)
+
+Added `cursor.starlight`, based on Pond Wake with the coloured cloud and crest
+lighting removed, neutral white sparkles, softer halos and reduced refraction.
+
+- All 86 installation examples and the combined library pass configuration
+  validation with `umbriel 0.1.0 (6adcbc0)`.
+- Compiles, links and renders with the cursor wrapper from local Umbriel
+  revision `a8cdaca1` on Mesa llvmpipe (LLVM 21.1.8).
+- Passes the same 56 offscreen count, age, palette, alpha, scale and path cases
+  listed for Pond Wake below. Three additional grayscale tests at alpha 0,
+  0.4 and 1 confirm that the output remains neutral and preserves input alpha.
+- The synthetic preview was visually inspected over light and dark content.
+- Installed and selected in the running `6adcbc0` compositor; runtime inspection
+  reports `compiled` and an unsuppressed cursor selection.
+
+Live motion appearance has not been visually inspected by the assistant.
+Hardware performance, rotated outputs and HDR composition are unverified;
+scale and edge checks use offscreen rendering rather than full composition.
+
 ## Pond Wake (2026-10-05)
 
 Added `cursor.pond-wake`: curved pointer-path refraction with spreading wavelets
