@@ -2,6 +2,33 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Pond Wake (2026-10-05)
+
+Added `cursor.pond-wake`: curved pointer-path refraction with spreading wavelets
+and blue-green stirred light, based on Ripple Drops and Comet. The glow was
+then revised into brighter warped-noise wisps and seeded, curling flashes
+inspired by Fairy Tail; all 56 offscreen checks were repeated successfully
+and the updated synthetic preview was inspected.
+
+- All 85 installation examples and the combined library pass configuration
+  validation with `umbriel 0.1.0 (6adcbc0)`.
+- The shader compiles, links and renders using the cursor wrapper from local
+  Umbriel cursor revision `a8cdaca1`, on Mesa llvmpipe (LLVM 21.1.8).
+- Twenty sample-count / age / palette cases pass: 0, 1, 2, 8 and 64 samples,
+  active and expired paths, and both palette settings. Empty, single-sample
+  and expired paths preserve the input.
+- Thirty-six additional renders cover opaque, 0.4-alpha and empty input at
+  scales 1, 1.5 and 2, with crossing, edge-adjacent, stationary and discontinuous
+  paths and wrapped birth phases. All preserve uniform input alpha without GL
+  errors; stationary and warp-only paths preserve the background.
+- The synthetic preview was visually inspected over light and dark content.
+- Installed and selected in the running `6adcbc0` compositor; runtime inspection
+  reports the preset as `compiled` and the cursor selection as unsuppressed.
+
+Live motion appearance has not been visually inspected by the assistant.
+Hardware performance, rotated outputs and HDR composition are not benchmarked.
+The scale/edge checks are offscreen sampling tests, not full compositor tests.
+
 ## Comet and Fairy Tail (2026-10-05)
 
 Added the tuned cursor presets with oldest-to-newest overlap blending and

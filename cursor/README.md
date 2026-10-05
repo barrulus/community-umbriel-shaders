@@ -10,6 +10,7 @@
 | <img src="fairy-tail/preview.png" width="160" alt="fairy-tail preview"> | [fairy-tail](fairy-tail/) | A long multicolour cloud with drifting grains and tiny twinkling stars. |
 | <img src="glow/preview.png" width="160" alt="glow preview"> | [glow](glow/) | A soft theme-accent halo around the pointer. |
 | <img src="orbiting-hearts/preview.png" width="160" alt="orbiting-hearts preview"> | [orbiting-hearts](orbiting-hearts/) | Six small hearts share an evenly spaced orbit around the pointer. |
+| <img src="pond-wake/preview.png" width="160" alt="pond wake preview"> | [pond-wake](pond-wake/) | A refractive pond wake with curling blue-green wisps and irregular fairy-like flashes. |
 | <img src="rainbow-tunnel-bare/preview.png" width="160" alt="rainbow-tunnel-bare preview"> | [rainbow-tunnel-bare](rainbow-tunnel-bare/) | The colourful pointer-centred tunnel without the surrounding ring. |
 | <img src="rainbow-tunnel/preview.png" width="160" alt="rainbow-tunnel preview"> | [rainbow-tunnel](rainbow-tunnel/) | A colourful tunnel centred on the pointer, with a surrounding ring. |
 | <img src="seeing-stars/preview.png" width="160" alt="seeing-stars preview"> | [seeing-stars](seeing-stars/) | Cartoon birds and tumbling stars circle the pointer. |
