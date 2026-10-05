@@ -1,4 +1,4 @@
-[effects.preset."flowing-blood"]
+[effects.preset."heartbeat"]
 kind = "border"
-shader = "flowing-blood.glsl"
+shader = "shader.glsl"
 padding = 30
