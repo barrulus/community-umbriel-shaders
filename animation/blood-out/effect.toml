@@ -1,0 +1,3 @@
+[effects.preset."blood-drain-out"]
+kind = "animation"
+shader = "shader.glsl"
