@@ -24,4 +24,7 @@
 | <img src="vhs/preview.png" width="160" alt="VHS preview"> | [vhs](vhs/) | Opening introduces the window through horizontal tape stretch, rolling tracking errors, scanlines, noise, and colour bleed. Closing stretches and distorts the picture as it disappears. |
 | <img src="magic/preview.png" width="160" alt="Magic preview"> | [magic](magic/) | Opening reveals the window from a violet puff surrounded by drifting golden four-point sparkles. Closing dissolves the window into the puff and sparkling dust. |
 | <img src="triangle-flaps/preview.png" width="160" alt="Triangle Flaps preview"> | [triangle-flaps](triangle-flaps/) | Equilateral triangles point alternately up and down. Each independently traces its outline at a random time, then unfolds downward under acceleration to reveal the window. On closing, the triangles hinge downward, fall, and fade at different times. |
+| <img src="blood-in/preview.png" width="160" alt="Blood In preview"> | [Blood In](blood-in/) | Wave of blood reveals the window top to bottom. |
+| <img src="blood-out/preview.png" width="160" alt="Blood Out preview"> | [Blood Iut](blood-out/) | Drains out the bottom with same wave as Blood In. |
 | <img src="workspace-transation-vhs-ripple/preview.png" width="160" alt="Workspace VHS Ripple preview"> | [workspace-transation-vhs-ripple](workspace-transation-vhs-ripple/) | Strong VHS tracking distortion and ripples over the native workspace slide. |
+

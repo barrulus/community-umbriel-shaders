@@ -1,6 +1,6 @@
 # Heartbeat
 
-Viscous border with heartbeat. Companion to [Blood In](../../animation/blood-in/) and [Blood Out](../../animation/blood-out/)
+Viscous red border with heartbeat. Companion to [Blood In](../../animation/blood-in/) and [Blood Out](../../animation/blood-out/)
 
 ![Synthetic preview of Heartbeat](preview.png)
 
