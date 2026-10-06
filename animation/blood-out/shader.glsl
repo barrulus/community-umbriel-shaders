@@ -6,6 +6,7 @@ const float BLOOD_OPACITY = 0.94;
 
 vec4 animation(vec2 uv) {
     float progress = umbriel_direction > 0.0 ? umbriel_clamped_progress : 1.0 - umbriel_clamped_progress;
+    float fade = smoothstep(0.0, 0.15, 1.0 - progress);
     vec4 src = umbriel_sample(uv);
     float aa = 1.5 / max(umbriel_scale * umbriel_size.y, 0.001);
 
@@ -35,8 +36,8 @@ vec4 animation(vec2 uv) {
     float surface_dist = clamp(dist_ahead / blood_band, 0.0, 1.0);
 
     // Smooth intensity dropoff ahead of drain boundary
-    float blood_intensity = smoothstep(1.0, 0.0, surface_dist) * mask;
-    float gloss = exp(-pow(dist_ahead * 35.0, 2.0)) * mask * 0.22;
+    float blood_intensity = ( 1.0 - smoothstep(0.0, 1.0, surface_dist)) * mask * fade;
+    float gloss = exp(-pow(dist_ahead * 35.0, 2.0)) * mask * 0.22 * fade;
 
     // Color gradient matching border and fill shaders
     vec3 blood_col = mix(COLOR_BRIGHT, COLOR_DEEP, surface_dist);
