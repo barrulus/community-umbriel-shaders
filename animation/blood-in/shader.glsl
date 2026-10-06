@@ -38,7 +38,7 @@ vec4 animation(vec2 uv) {
 
     // Window reveal mask
     //float reveal = smoothstep(leading_edge + aa, leading_edge - aa, uv.y);
-    float reveal = 1 - smoothstep(leading_edge - aa, leading_edge +aa, uv.y);
+    float reveal = 1.0 - smoothstep(leading_edge - aa, leading_edge +aa, uv.y);
     if (reveal <= 0.0) {
         return vec4(0.0);
     }
@@ -49,7 +49,7 @@ vec4 animation(vec2 uv) {
     float surface_dist = clamp(dist_behind / blood_band, 0.0, 1.0);
 
     //float blood_intensity = smoothstep(1.0, 0.0, surface_dist) * reveal;
-    float blood_intensity = (1- smoothstep(0.0, 1.0, surface_dist)) * reveal;
+    float blood_intensity = (1.0 - smoothstep(0.0, 1.0, surface_dist)) * reveal;
     float gloss = exp(-pow(dist_behind * 35.0, 2.0)) * reveal * 0.22;
 
     float flecks = pow(0.5 + 0.5 * sin(uv.x * 40.0 + uv.y * 30.0 + umbriel_time * 2.0), 6.0);
