@@ -1,7 +1,4 @@
-// GLSL ES 1.00 - Umbriel animation preset: blood-drain-bottom
 // Drains window away toward bottom with blood colors matching border and fill shaders.
-
-// --- SHARED BORDER COLOR PALETTE ---
 const vec3 COLOR_DEEP     = vec3(0.10, 0.0, 0.01);   // Near-black clotted core
 const vec3 COLOR_BRIGHT   = vec3(0.60, 0.02, 0.035); // Deep arterial crimson
 const vec3 GLOSS_COLOR    = vec3(0.35, 0.05, 0.06);  // Wet specular sheen

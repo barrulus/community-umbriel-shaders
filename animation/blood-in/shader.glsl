@@ -1,7 +1,4 @@
 // Swipe-reveals window from top to bottom, matches with border and bloodOut animation.
-// 
-
-// --- SHARED BORDER COLOR PALETTE ---
 const vec3 COLOR_DEEP     = vec3(0.10, 0.0, 0.01);  
 const vec3 COLOR_BRIGHT   = vec3(0.60, 0.02, 0.035); 
 const vec3 GLOSS_COLOR    = vec3(0.35, 0.05, 0.06);  
@@ -40,7 +37,8 @@ vec4 animation(vec2 uv) {
     float leading_edge = base_front + wave + drip_accum;
 
     // Window reveal mask
-    float reveal = smoothstep(leading_edge + aa, leading_edge - aa, uv.y);
+    //float reveal = smoothstep(leading_edge + aa, leading_edge - aa, uv.y);
+    float reveal = 1 - smoothstep(leading_edge - aa, leading_edge +aa, uv.y);
     if (reveal <= 0.0) {
         return vec4(0.0);
     }
@@ -50,7 +48,8 @@ vec4 animation(vec2 uv) {
     float blood_band = 0.30;
     float surface_dist = clamp(dist_behind / blood_band, 0.0, 1.0);
 
-    float blood_intensity = smoothstep(1.0, 0.0, surface_dist) * reveal;
+    //float blood_intensity = smoothstep(1.0, 0.0, surface_dist) * reveal;
+    float blood_intensity = (1- smoothstep(0.0, 1.0, surface_dist)) * reveal;
     float gloss = exp(-pow(dist_behind * 35.0, 2.0)) * reveal * 0.22;
 
     float flecks = pow(0.5 + 0.5 * sin(uv.x * 40.0 + uv.y * 30.0 + umbriel_time * 2.0), 6.0);

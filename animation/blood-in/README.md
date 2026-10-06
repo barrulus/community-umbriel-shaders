@@ -21,6 +21,7 @@ enabled = true
 enabled = true
 effect = "blood-drip-in"
 duration_ms = 700
+curve = "linear"
 
 ```
 
