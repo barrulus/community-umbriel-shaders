@@ -1,0 +1,12 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = ["shaders/community/animation/kzzzt-open/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "kzzzt-open"
+duration_ms = 900
+curve = "linear"

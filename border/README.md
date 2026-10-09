@@ -12,6 +12,7 @@
 | <img src="flowering-vine/preview.png" width="160" alt="flowering-vine preview"> | [flowering-vine](flowering-vine/) | Intertwined vines, opening flowers, and drifting blooms around the focused window. |
 | <img src="flowing-water/preview.png" width="160" alt="flowing-water preview"> | [flowing-water](flowing-water/) | Circulating swells, curling crests, and airborne spray around the window. |
 | <img src="fuse/preview.png" width="160" alt="fuse preview"> | [fuse](fuse/) | A braided fuse with travelling embers, ash, and sparks. |
+| <img src="kzzzt-ring/preview.png" width="160" alt="kzzzt-ring preview"> | [kzzzt-ring](kzzzt-ring/) | A glitching circuit-trace ring with travelling arcs, dashes, and hollow tendrils; pairs with kzzzt and reacts to sound when an audio level is fed to Umbriel. |
 | <img src="lightning/preview.png" width="160" alt="lightning preview"> | [lightning](lightning/) | Blue-white lightning and travelling crackle spots around the window. |
 | <img src="neon-bleed/preview.png" width="160" alt="neon-bleed preview"> | [neon-bleed](neon-bleed/) | A compact rainbow wax band that drips inward from the window edge. |
 | <img src="paper/preview.png" width="160" alt="paper preview"> | [paper](paper/) | Four pencils draw graphite around a paper-like window perimeter. |

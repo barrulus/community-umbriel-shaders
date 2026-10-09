@@ -13,6 +13,7 @@
 | <img src="fire-tendrils/preview.png" width="160" alt="fire-tendrils preview"> | [fire-tendrils](fire-tendrils/) | Moving fire tendrils over the window. |
 | <img src="flap-board/preview.png" width="160" alt="flap-board preview"> | [flap-board](flap-board/) | Rectangular flaps turn in travelling waves, revealing inverted live content. |
 | <img src="flowering-vine-overlay/preview.png" width="160" alt="flowering-vine-overlay preview"> | [flowering-vine-overlay](flowering-vine-overlay/) | The inner-window half of the flowering-vine border effect; keeps inward decoration visible. |
+| <img src="kzzzt/preview.png" width="160" alt="kzzzt preview"> | [kzzzt](kzzzt/) | Hard-edged circuit traces creep in from the window edges and carry current, with colour-split glitches, scanlines, and a slow roll; reacts to sound when an audio level is fed to Umbriel. |
 | <img src="liquid-glass/preview.png" width="160" alt="liquid-glass preview"> | [liquid-glass](liquid-glass/) | Diffused content with a refractive bevel and soft reflection. |
 | <img src="mercury-sheen/preview.png" width="160" alt="mercury-sheen preview"> | [mercury-sheen](mercury-sheen/) | Flowing liquid-metal highlights give the content a chrome sheen. |
 | <img src="neon-bleed-overlay/preview.png" width="160" alt="neon-bleed-overlay preview"> | [neon-bleed-overlay](neon-bleed-overlay/) | The inner-window half of the neon-bleed border effect; keeps inward decoration visible. |
