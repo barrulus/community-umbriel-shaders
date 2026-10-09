@@ -27,7 +27,6 @@
 | <img src="blood-in/preview.png" width="160" alt="Blood In preview"> | [Blood In](blood-in/) | Wave of blood reveals the window top to bottom. |
 | <img src="blood-out/preview.png" width="160" alt="Blood Out preview"> | [Blood Out](blood-out/) | Drains out the bottom with same wave as Blood In. |
 | <img src="workspace-transation-vhs-ripple/preview.png" width="160" alt="Workspace VHS Ripple preview"> | [workspace-transation-vhs-ripple](workspace-transation-vhs-ripple/) | Strong VHS tracking distortion and ripples over the native workspace slide. |
-
 | <img src="kzzzt-open/preview.png" width="160" alt="kzzzt-open preview"> | [kzzzt-open](kzzzt-open/) | Opening strikes the window into being with one overexposed, torn frame, then it stutters in through displaced bands and phosphor bloom while circuit traces flare at its edges and settle. |
 | <img src="kzzzt-close/preview.png" width="160" alt="kzzzt-close preview"> | [kzzzt-close](kzzzt-close/) | Closing overdrives the window’s own colours into phosphor and tears it into bands, then blows it out like a fuse, with one overexposed pop and a short fading afterglow. |
 | <img src="witching-hour/preview.png" width="160" alt="Witching Hour workspace reveal"> | [witching-hour](witching-hour/) | A ragged orange-and-green fire portal reveals the next workspace in place. Requires workspace `style = "reveal"`. |
