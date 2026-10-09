@@ -1,0 +1,6 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = ["shaders/community/border/somethings-watching/effect.toml"]
+
+[effects]
+border = "after-dark.somethings-watching"

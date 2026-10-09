@@ -39,3 +39,4 @@
 | <img src="sentient-circuit/preview.png" width="160" alt="sentient-circuit preview"> | [sentient-circuit](sentient-circuit/) | Etched circuit buses, independent junctions, and light-reactive pulses. |
 | <img src="sentient-circuit-v2/preview.png" width="160" alt="sentient-circuit-v2 preview"> | [sentient-circuit-v2](sentient-circuit-v2/) | Growing, pulsing, and decaying circuit colonies in copper and pollen tones. |
 | <img src="snowfall/preview.png" width="160" alt="snowfall preview"> | [snowfall](snowfall/) | Snow falling over window content. |
+| <img src="somethings-watching-overlay/preview.png" width="160" alt="Inward vines, pumpkins and skeletons"> | [somethings-watching-overlay](somethings-watching-overlay/) | Inward vines, growing pumpkins, cat eyes and skeletons, selected by the After Dark border. |

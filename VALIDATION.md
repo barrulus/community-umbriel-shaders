@@ -2,6 +2,47 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Halloween presets (2026-10-09)
+
+Published Witching Hour, Witchfire, Pumpkin Parade (including its required
+inward overlay), and Midnight Fog. Shader and preset files match the user's
+installed versions byte for byte at publication preparation. All five presets
+report `compiled` in the running Umbriel `0.1.0 (d083f24)` session. All 97
+installation examples and the combined library pass configuration validation
+in the publication checkout; the new README file links also resolve.
+
+Witchfire, the border with its overlay, and Midnight Fog were previously
+compiled, rendered and visually inspected in private headless sessions with
+Umbriel `0.1.0 (1d01b3a)`. Supplemental software-GLES checks covered 72 cursor
+history/alpha cases and 192 border/overlay cases for growth phases, aspect
+ratios, scale, alpha, clear centres and shared geometry. Hardware performance,
+HDR and rotated-output composition remain unverified.
+
+## Witching Hour workspace reveal (2026-10-09)
+
+Added `animation/witching-hour` for the new workspace `style = "reveal"`
+contract, with a 1100 ms activation example, still image and animated preview.
+
+- The selected shader compiles and renders in a private headless compositor.
+  Both directions between two populated synthetic workspaces were captured.
+  Finished frames and a cancelled swipe restore the corresponding resting
+  workspace pixel for pixel. Initial client interiors match; native focus
+  borders change as navigation changes focus.
+- 1,296 offscreen GLES frames using the upstream animation wrapper cover
+  both root directions, all four navigation axes, wide/tall output sizes,
+  two seeds, transparent/translucent/opaque input, exact and near endpoints,
+  and clamped overshoot. Endpoint, premultiplied-alpha, complementary-mask
+  and GL-error checks pass on Mesa software rendering.
+- Twelve cropped-root comparisons check that different scene bounds produce
+  the same output-space coverage, within one byte of alpha rounding.
+- The still preview and representative intermediate compositor frames were
+  visually inspected. The GIF uses 40 ms frozen-clock increments.
+
+These checks do not benchmark hardware performance or verify HDR and rotated
+output composition. Fractional scale is covered by offscreen mask checks,
+not a native fractional-scale session. No personal configuration was changed.
+
+
 ## Comet and Fairy Tail (2026-10-05)
 
 Added the tuned cursor presets with oldest-to-newest overlap blending and

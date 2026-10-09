@@ -16,3 +16,4 @@
 | <img src="shockwave/preview.png" width="160" alt="shockwave preview"> | [shockwave](shockwave/) | A pulsing shockwave centred on the pointer. |
 | <img src="solar-system/preview.png" width="160" alt="solar-system preview"> | [solar-system](solar-system/) | Five planets, rings, and orbiting moons surround a small sun at the pointer. |
 | <img src="spotlight/preview.png" width="160" alt="spotlight preview"> | [spotlight](spotlight/) | A spotlight centred on the pointer shades the rest of the output. |
+| <img src="witchfire/preview.png" width="160" alt="Witchfire preview"> | [witchfire](witchfire/) | A long curved green fire ribbon, peeling wisps, drifting orange embers and a faint stationary glow. |

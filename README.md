@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes 77 community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes 82 community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -19,6 +19,15 @@ Use the [interactive preview](preview/) to play or scrub both directions locally
 For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.
+
+## Halloween effects
+
+- [Witching Hour](animation/witching-hour/): a burning portal between workspaces, using the new reveal mode.
+- [Witchfire](cursor/witchfire/): a curved green cursor trail with orange embers.
+- [Pumpkin Parade](border/somethings-watching/): growing pumpkins, cat eyes and marching skeletons around the border, with its included inward overlay.
+- [Midnight Fog](screen/midnight-fog/): low purple mist across the output.
+
+Each preset includes an activation example and a real headless compositor preview.
 
 ## Compatibility
 

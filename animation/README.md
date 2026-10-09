@@ -30,3 +30,4 @@
 
 | <img src="kzzzt-open/preview.png" width="160" alt="kzzzt-open preview"> | [kzzzt-open](kzzzt-open/) | Opening strikes the window into being with one overexposed, torn frame, then it stutters in through displaced bands and phosphor bloom while circuit traces flare at its edges and settle. |
 | <img src="kzzzt-close/preview.png" width="160" alt="kzzzt-close preview"> | [kzzzt-close](kzzzt-close/) | Closing overdrives the window’s own colours into phosphor and tears it into bands, then blows it out like a fuse, with one overexposed pop and a short fading afterglow. |
+| <img src="witching-hour/preview.png" width="160" alt="Witching Hour workspace reveal"> | [witching-hour](witching-hour/) | A ragged orange-and-green fire portal reveals the next workspace in place. Requires workspace `style = "reveal"`. |
