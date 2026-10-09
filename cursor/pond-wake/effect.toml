@@ -1,0 +1,4 @@
+[effects.preset."cursor.pond-wake"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 88

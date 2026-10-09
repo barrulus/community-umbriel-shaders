@@ -2,6 +2,15 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Pond Wake and Starlight publication (2026-10-09)
+
+Both cursor presets compile and render in private headless sessions with
+installed Umbriel `0.1.0 (d083f24)`. Fresh synthetic captures were visually
+inspected. The published files retain their original synthetic catalog previews
+and match the locally validated versions below. All 99 installation examples
+and the combined library pass configuration validation; the two preset READMEs'
+relative file links resolve. No hardware performance benchmark was performed.
+
 ## Halloween presets (2026-10-09)
 
 Published Witching Hour, Witchfire, Pumpkin Parade (including its required
@@ -42,6 +51,53 @@ These checks do not benchmark hardware performance or verify HDR and rotated
 output composition. Fractional scale is covered by offscreen mask checks,
 not a native fractional-scale session. No personal configuration was changed.
 
+
+## Starlight (2026-10-05)
+
+Added `cursor.starlight`, based on Pond Wake with the coloured cloud and crest
+lighting removed, neutral white sparkles, softer halos and reduced refraction.
+
+- All 86 installation examples and the combined library pass configuration
+  validation with `umbriel 0.1.0 (6adcbc0)`.
+- Compiles, links and renders with the cursor wrapper from local Umbriel
+  revision `a8cdaca1` on Mesa llvmpipe (LLVM 21.1.8).
+- Passes the same 56 offscreen count, age, palette, alpha, scale and path cases
+  listed for Pond Wake below. Three additional grayscale tests at alpha 0,
+  0.4 and 1 confirm that the output remains neutral and preserves input alpha.
+- The synthetic preview was visually inspected over light and dark content.
+- Installed and selected in the running `6adcbc0` compositor; runtime inspection
+  reports `compiled` and an unsuppressed cursor selection.
+
+Live motion appearance has not been visually inspected by the assistant.
+Hardware performance, rotated outputs and HDR composition are unverified;
+scale and edge checks use offscreen rendering rather than full composition.
+
+## Pond Wake (2026-10-05)
+
+Added `cursor.pond-wake`: curved pointer-path refraction with spreading wavelets
+and blue-green stirred light, based on Ripple Drops and Comet. The glow was
+then revised into brighter warped-noise wisps and seeded, curling flashes
+inspired by Fairy Tail; all 56 offscreen checks were repeated successfully
+and the updated synthetic preview was inspected.
+
+- All 85 installation examples and the combined library pass configuration
+  validation with `umbriel 0.1.0 (6adcbc0)`.
+- The shader compiles, links and renders using the cursor wrapper from local
+  Umbriel cursor revision `a8cdaca1`, on Mesa llvmpipe (LLVM 21.1.8).
+- Twenty sample-count / age / palette cases pass: 0, 1, 2, 8 and 64 samples,
+  active and expired paths, and both palette settings. Empty, single-sample
+  and expired paths preserve the input.
+- Thirty-six additional renders cover opaque, 0.4-alpha and empty input at
+  scales 1, 1.5 and 2, with crossing, edge-adjacent, stationary and discontinuous
+  paths and wrapped birth phases. All preserve uniform input alpha without GL
+  errors; stationary and warp-only paths preserve the background.
+- The synthetic preview was visually inspected over light and dark content.
+- Installed and selected in the running `6adcbc0` compositor; runtime inspection
+  reports the preset as `compiled` and the cursor selection as unsuppressed.
+
+Live motion appearance has not been visually inspected by the assistant.
+Hardware performance, rotated outputs and HDR composition are not benchmarked.
+The scale/edge checks are offscreen sampling tests, not full compositor tests.
 
 ## Comet and Fairy Tail (2026-10-05)
 
