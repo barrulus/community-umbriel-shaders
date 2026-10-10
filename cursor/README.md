@@ -18,3 +18,4 @@
 | <img src="solar-system/preview.png" width="160" alt="solar-system preview"> | [solar-system](solar-system/) | Five planets, rings, and orbiting moons surround a small sun at the pointer. |
 | <img src="spotlight/preview.png" width="160" alt="spotlight preview"> | [spotlight](spotlight/) | A spotlight centred on the pointer shades the rest of the output. |
 | <img src="starlight/preview.png" width="160" alt="starlight preview"> | [starlight](starlight/) | Subtle untinted refraction with sparse, curling white sparkles. |
+| <img src="train-tracks/preview.png" width="160" alt="Train Tracks preview"> | [train-tracks](train-tracks/) | A short railway trail, capped at 150 logical pixels and fading within 0.45 seconds. |
