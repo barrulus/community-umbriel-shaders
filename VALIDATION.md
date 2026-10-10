@@ -2,6 +2,35 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Train Tracks (2026-10-10)
+
+Added `cursor.train-tracks`: curved silver rails with brown wooden sleepers,
+now capped at 150 logical pixels along the path and fading within 0.45 seconds.
+The final 40% of visible path length fades smoothly to reduce text obstruction.
+
+Validation with **Umbriel 0.1.0 (`2145668`)**:
+
+- Compiles and renders in a private headless compositor; the still and animated
+  previews use synthetic light/dark content and a figure-eight pointer path.
+  The still was visually inspected for rails, sleepers, bends and crossings.
+- After motion stops and history expires, the compositor capture returns
+  pixel-identically to the initial unmodified scene. Four output-edge captures
+  also succeed.
+- At the earlier 100-pixel cap, 288 software-GLES cases cover counts 0/1/2/8/16/64, sparse/dense curves,
+  stationary/expired history, pointer warps, opaque/translucent/transparent input,
+  landscape/portrait logical dimensions, and scale 1/1.5. They preserve alpha
+  and SDR premultiplication without GL errors. Comparisons against no-history
+  frames confirm valid paths are visible and absent/expired paths draw nothing.
+- Nine additional fast-sweep cases cover 512-pixel moves with 2/8/64 samples
+  at ages 0/0.2/0.46 seconds. Visible track stays within the 150-pixel cap
+  (with one raster pixel of tolerance) and is absent at 0.46 seconds.
+- All 118 installation examples and the combined library pass configuration
+  validation.
+
+Sleeper spacing varies per retained segment, and very tight bends can fold
+the rails. Animated preview timing uses real pointer timestamps. Hardware
+performance, HDR, native fractional scaling and output rotation remain unverified.
+
 ## Vampire Blood Wash trailing-scene fix (2026-10-10)
 
 The blood band previously began fading before the outgoing-to-incoming blend

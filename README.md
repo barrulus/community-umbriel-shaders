@@ -45,7 +45,7 @@ blood-red sparks and fluttering bats.
 
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
 
-[Comet](cursor/comet/), [Fairy Tail](cursor/fairy-tail/), [Pond Wake](cursor/pond-wake/), and [Starlight](cursor/starlight/) additionally require the newer cursor pointer-history API (`umbriel_pointer_count` and `umbriel_pointer_path[64]`). They were shader-tested against local Umbriel cursor revision `a8cdaca1`; the original preset-effects API alone cannot run them.
+[Comet](cursor/comet/), [Fairy Tail](cursor/fairy-tail/), [Pond Wake](cursor/pond-wake/), and [Starlight](cursor/starlight/) additionally require the newer cursor pointer-history API (`umbriel_pointer_count` and `umbriel_pointer_path[64]`). They were shader-tested against local Umbriel cursor revision `a8cdaca1`; the original preset-effects API alone cannot run them. [Train Tracks](cursor/train-tracks/) also uses this API and was tested with revision `2145668`.
 
 GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION.md).
 

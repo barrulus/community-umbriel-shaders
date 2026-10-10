@@ -19,4 +19,5 @@
 | <img src="witchfire/preview.png" width="160" alt="Witchfire preview"> | [witchfire](witchfire/) | A long curved green fire ribbon, peeling wisps, drifting orange embers and a faint stationary glow. |
 | <img src="pond-wake/preview.png" width="160" alt="pond wake preview"> | [pond-wake](pond-wake/) | A refractive pond wake with curling blue-green wisps and irregular fairy-like flashes. |
 | <img src="starlight/preview.png" width="160" alt="starlight preview"> | [starlight](starlight/) | Subtle untinted refraction with sparse, curling white sparkles. |
+| <img src="train-tracks/preview.png" width="160" alt="Train Tracks preview"> | [train-tracks](train-tracks/) | A short railway trail, capped at 150 logical pixels and fading within 0.45 seconds. |
 | <img src="vampire-wake/preview.png" width="160" alt="Vampire Wake preview"> | [vampire-wake](vampire-wake/) | A curved crimson ribbon with burgundy wisps, falling red sparks and fluttering bats; a vampire companion to Witchfire. |
