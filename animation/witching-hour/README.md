@@ -1,7 +1,8 @@
 # Witching Hour
 
-A ragged portal burns through the outgoing workspace, revealing the next one
-in place. Pumpkin-orange fire, yellow-hot edges, patches of witch-green flame
+A ragged portal burns through the entire outgoing scene, revealing the next one
+in place, including wallpaper, windows, decorations and shell surfaces.
+Pumpkin-orange fire, yellow-hot edges, patches of witch-green flame
 and a violet smoky halo travel outward from an off-centre ignition point.
 The ignition point follows the workspace navigation axis and direction.
 
@@ -10,9 +11,11 @@ The ignition point follows the workspace navigation axis and direction.
 [Watch the animated workspace switch](preview.gif) at the configured 1100 ms speed.
 
 The previews are real headless compositor captures of two populated workspaces
-over synthetic content.
-Shared wallpaper and panels keep their normal stacking; the fire shades the
-participating workspace content and preserves transparent margins.
+with synthetic wallpaper and a panel. One shader blends the two complete scenes,
+so the flame edge continues across windows, wallpaper and shell surfaces.
+The cursor and output postprocessing remain after the transition. When both
+workspaces share a wallpaper, the image stays the same on either side of the
+portal, but the fire and smoke still travel across it.
 
 ## Use
 
@@ -61,19 +64,19 @@ Restore `style = "slide"` and clear `effect = ""` to return to native sliding.
 ## Compatibility and cost
 
 Requires the new [workspace reveal API](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/animation.md#workspace-reveal),
-including `umbriel_workspace_rect` and `umbriel_workspace_axis`. The original
-preset-effects API alone is insufficient. Tested with **Umbriel 0.1.0
-(`d083f24`)**. The two workspace roots use the same output-space mask with
-complementary coverage; exact endpoints return the untouched visible workspace
-and transparent black for the hidden workspace.
+including `umbriel_sample_incoming` and `umbriel_workspace_axis`. Tested with
+**Umbriel 0.1.0 (`2145668`)**. Older builds that reveal individual workspace
+trees are incompatible. Output-wide UVs address both scene textures; exact
+endpoints return the outgoing scene at zero and the incoming scene at one.
 
-One source texture sample and four bounded procedural-noise evaluations per
+Two scene texture samples and four bounded procedural-noise evaluations per
 fragment; no previous-frame feedback or texture assets. Reveal rendering also
 has compositor capture costs. Hardware performance and HDR are not benchmarked.
 
 Validation includes GLES endpoint, alpha and four-axis checks, plus headless
-switches in both directions and swipe cancellation. See the
-[validation record](../../VALIDATION.md#witching-hour-workspace-reveal-2026-10-09).
+empty-to-empty switches, populated scenes with wallpaper and a panel, both
+switch directions and swipe cancellation. See the
+[validation record](../../VALIDATION.md#witching-hour-full-scene-reveal-2026-10-10).
 
 ## Attribution
 

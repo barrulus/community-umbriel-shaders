@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2026 Barrulus
-// Workspace reveal: shared output coordinates keep both root masks aligned.
-uniform vec4 umbriel_workspace_rect;
+// Full-scene workspace reveal: one pass blends outgoing and incoming scenes.
 uniform vec2 umbriel_workspace_axis;
 
 const float FIRE_WIDTH = 0.035; // Fraction of the output's shorter dimension.
@@ -21,23 +20,18 @@ float wh_noise(vec2 p) {
 }
 
 vec4 animation(vec2 uv) {
-    vec4 source = umbriel_sample(uv);
     float p = umbriel_clamped_progress;
-    bool incoming = umbriel_direction > 0.0;
-    if (p <= 0.0) return incoming ? vec4(0.0) : source;
-    if (p >= 1.0) return incoming ? source : vec4(0.0);
+    if (p <= 0.0) return umbriel_sample(uv);
+    if (p >= 1.0) return umbriel_sample_incoming(uv);
 
-    // These optional uniforms are only populated for workspace reveal.
-    if (min(umbriel_workspace_rect.z, umbriel_workspace_rect.w) <= 0.0)
-        return source;
-    vec2 outputSize = umbriel_size / umbriel_workspace_rect.zw;
+    // Both inputs include wallpaper and shared shell surfaces at output UVs.
+    vec2 outputSize = umbriel_size;
     float unit = max(min(outputSize.x, outputSize.y), 1.0);
-    vec2 outputUV = umbriel_workspace_rect.xy + uv * umbriel_workspace_rect.zw;
     vec2 center = vec2(0.5) - 0.16 * umbriel_workspace_axis;
-    vec2 point = (outputUV - center) * outputSize / unit;
+    vec2 point = (uv - center) * outputSize / unit;
     float farCorner = length(max(center, vec2(1.0) - center) * outputSize / unit);
 
-    // Use the shared seed and progress, never per-root clocks or local UV noise.
+    // Use the transition seed and progress, never a continuously running clock.
     // Reversing a swipe therefore retraces exactly the same flame front.
     vec2 drift = point * 8.0 + umbriel_random_seed.xy * 19.0 - vec2(0.0, p * 3.5);
     float smoke = 0.60 * wh_noise(drift)
@@ -50,7 +44,7 @@ vec4 animation(vec2 uv) {
     float distanceToFire = length(point) - radius + (smoke - 0.5) * 2.0 * ragged;
     float pixel = 1.0 / (unit * max(umbriel_scale, 0.001));
     float revealed = 1.0 - smoothstep(-pixel, pixel, distanceToFire);
-    float coverage = incoming ? revealed : 1.0 - revealed;
+    vec4 source = mix(umbriel_sample(uv), umbriel_sample_incoming(uv), revealed);
 
     float envelope = smoothstep(0.025, 0.16, p) * (1.0 - smoothstep(0.80, 0.98, p));
     float edge = abs(distanceToFire);
@@ -62,10 +56,10 @@ vec4 animation(vec2 uv) {
     fire = mix(fire, vec3(1.0, 0.87, 0.36), core * 0.88);
 
     float strength = clamp(INTENSITY, 0.0, 1.0) * envelope;
-    // Tint within existing coverage: transparent margins stay transparent,
-    // and complementary incoming/outgoing masks cannot paint duplicate fire.
+    // Apply the fire once to the complete blended scene, including its backdrop.
+    // Preserve premultiplied alpha if a capture contains transparent pixels.
     vec3 color = source.rgb * (1.0 - strength * halo * 0.58);
     color = mix(color, vec3(0.12, 0.025, 0.17) * source.a, strength * halo * 0.22);
     color = mix(color, fire * source.a, strength * flame);
-    return vec4(color, source.a) * coverage;
+    return vec4(color, source.a);
 }

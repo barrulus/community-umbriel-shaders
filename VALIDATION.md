@@ -2,6 +2,35 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Witching Hour full-scene reveal (2026-10-10)
+
+Updated the shader for Umbriel `0.1.0 (2145668)`: it samples both the outgoing
+scene and `umbriel_sample_incoming`, blends once at output coordinates, and
+returns the final scene pixel. Removed the obsolete workspace-root rectangle,
+entering/leaving masks and transparent endpoint behavior. The 1100 ms selection
+and Halloween artwork are unchanged. Earlier root-based builds are incompatible.
+
+- Compiles and renders in the installed compositor. Fresh still and animated
+  previews include a synthetic wallpaper, panel and two populated workspaces.
+- An empty-to-empty switch visibly burns across wallpaper and the panel;
+  its intermediate frame differs from rest at 66,559 pixels. The completed
+  frame is pixel-identical to the resting scene.
+- Both populated switch directions finish pixel-identically to their destination
+  captures, and a cancelled swipe restores the original scene pixel for pixel.
+- 1,920 software-GLES frames using the installed revision's host declarations
+  pass exact outgoing/incoming endpoint, clamped overshoot, premultiplied-alpha,
+  four-axis, wide/tall size, two-seed, scale 1/1.5 and reversed-progress checks.
+  The two input textures have different colours and include equal and unequal
+  alpha; transparent input stays transparent and opaque input stays opaque.
+- All 99 installation examples and the combined library pass configuration
+  validation in this checkout.
+
+Still previews and representative compositor frames were visually inspected.
+Native rotated/fractional-scale output composition, HDR and hardware performance
+remain unverified. The 2026-10-09 entry below describes the superseded shader.
+
+
+
 ## Pond Wake and Starlight publication (2026-10-09)
 
 Both cursor presets compile and render in private headless sessions with
