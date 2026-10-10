@@ -2,6 +2,31 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Vampire Wake (2026-10-10)
+
+Added `vampire-wake`, a Witchfire-derived crimson cursor ribbon with burgundy
+wisps, falling red sparks and fluttering bat silhouettes.
+
+Validation with **Umbriel 0.1.0 (`2145668`)**:
+
+- Compiles and renders in a private headless compositor. Still and animated
+  previews show movement over synthetic light and dark content.
+- After movement stops and the trail expires, the captured scene returns
+  pixel-identically to the initial stationary halo. Four output-edge positions
+  also render successfully.
+- 288 software-GLES cases cover counts 0/1/2/8/16/64, sparse and dense curves,
+  stationary/expired history, large jumps, opaque/translucent/transparent input,
+  landscape/portrait logical sizes and scale 1/1.5. Source alpha and SDR
+  premultiplication are preserved, with no GL errors.
+- Each case is compared with an additional no-history render: absent, single,
+  stationary, expired and large-jump paths show no residual trail; valid moving
+  paths show a visible effect.
+- Individual and combined configuration validation passes. README links resolve.
+
+Animated captures use real pointer timestamps and approximately 80 ms samples;
+preview timing is illustrative. Hardware performance, HDR and native rotated or
+fractional-scale output composition remain unverified.
+
 ## Vampire Blood Wash (2026-10-10)
 
 Added `vampire-blood-wash`, a full-scene reveal with a glossy crimson band.

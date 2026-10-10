@@ -1,0 +1,4 @@
+[effects.preset."vampire-wake"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 128

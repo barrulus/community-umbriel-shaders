@@ -38,6 +38,8 @@ Each includes a standalone preset, activation example and animated preview.
 
 [**Vampire Blood Wash**](animation/vampire-blood-wash/) reveals the full workspace
 through a glossy diagonal crimson wash, with distinct upward and downward sweeps.
+Pair it with [**Vampire Wake**](cursor/vampire-wake/), a crimson cursor trail with
+blood-red sparks and fluttering bats.
 
 ## Compatibility
 

@@ -1,0 +1,6 @@
+# Append this include and merge into your existing effects table.
+[include]
+files = ["shaders/community/cursor/vampire-wake/effect.toml"]
+
+[effects]
+cursor = "vampire-wake"
