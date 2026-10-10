@@ -2,6 +2,28 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Vampire Blood Wash (2026-10-10)
+
+Added `vampire-blood-wash`, a full-scene reveal with a glossy crimson band.
+Downward navigation advances top-left to bottom-right; upward navigation
+advances bottom-left to top-right. Both use the current two-scene sampling API.
+
+Validation with **Umbriel 0.1.0 (`2145668`)**:
+
+- Compiles and renders in a private headless compositor with wallpaper, a panel
+  and two populated workspaces. Still and animated previews cover both directions.
+- Empty-to-empty completion, both populated switch directions and cancelled
+  swipes return pixel-identical resting scenes.
+- 640 software-GLES frames pass endpoint, overshoot, four-axis, aspect-ratio,
+  scale 1/1.5, transparent/translucent/opaque input, premultiplied-alpha and
+  reversed-progress checks with distinct outgoing/incoming textures.
+- Another 18 GLES frames verify the requested diagonal corners and vertical
+  reflection between directions, including a tiny logical target.
+- Preset packaging and individual/combined configuration validation pass.
+
+These checks are not hardware performance measurements or native HDR,
+rotated-output or fractional-scale composition acceptance tests.
+
 ## Recovered workspace reveals (2026-10-10)
 
 Added thirteen full-scene workspace transitions: Iris, Burn, Shatter, Tile

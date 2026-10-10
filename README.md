@@ -36,6 +36,9 @@ Glitch Phase, Noctalia Wave, Transporter and Wipe. They animate complete scenes,
 including wallpaper and shell surfaces, using Umbriel’s current reveal API.
 Each includes a standalone preset, activation example and animated preview.
 
+[**Vampire Blood Wash**](animation/vampire-blood-wash/) reveals the full workspace
+through a glossy diagonal crimson wash, with distinct upward and downward sweeps.
+
 ## Compatibility
 
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
