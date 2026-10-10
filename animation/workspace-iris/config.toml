@@ -1,0 +1,13 @@
+# Merge into existing tables; append the include path.
+[include]
+files = ["shaders/community/animation/workspace-iris/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "workspace-iris"
+duration_ms = 1800
+curve = "linear"

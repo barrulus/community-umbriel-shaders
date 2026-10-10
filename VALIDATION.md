@@ -2,6 +2,52 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Recovered workspace reveals (2026-10-10)
+
+Added thirteen full-scene workspace transitions: Iris, Burn, Shatter, Tile
+Gravity, Venetian Blinds, Sand Collapse, CRT Scanline, Melt, Dust Cloud,
+Glitch Phase, Noctalia Wave, Transporter and Wipe. Their preset/directory names
+start with `workspace-` to distinguish them from window lifecycle effects.
+
+Sources were the disposable effects-session reveal bundle (six presets), its
+referenced showcase presets (six workspace pairs), and the workspace-reveal
+session's Wipe. Backup variants, carousel presentation, window-scene lifecycle
+presets and already-collected cursor/window shaders were not imported.
+
+The scene-v1 sources were ported to `animation(vec2)` with `umbriel_sample`
+and `umbriel_sample_incoming`. Output size comes from `umbriel_size` and
+navigation sign from `umbriel_workspace_axis`. Saved preset parameters became
+GLSL constants; shared helpers were embedded for standalone downloads. Iris
+and Melt retain their quiet appearance without the unused audio modulation.
+Wipe now combines both scenes instead of masking individual workspace roots.
+
+Validation with **Umbriel 0.1.0 (`2145668`)**:
+
+- All thirteen compile and render in private headless sessions. Each has a
+  still and GIF preview with synthetic wallpaper, a panel and populated
+  outgoing/incoming workspaces. Every still was visually inspected.
+- For every preset, empty-to-empty completion, both populated switch
+  directions and cancelled swipes return pixel-identical resting scenes.
+- Each passes 640 software-GLES frames using the installed revision's shader
+  declarations: 8,320 frames total. Checks cover exact outgoing/incoming
+  endpoints, near endpoints, clamped overshoot, both navigation axes and signs,
+  landscape/portrait targets, scale 1/1.5, distinct source/destination colours,
+  transparent/translucent/opaque inputs, and reversed progress. Empty input
+  remains empty; rendering completes without GL errors.
+- SDR premultiplication checks pass for the eleven non-emissive presets.
+  Burn and CRT Scanline preserve their original additive light, whose RGB can
+  exceed alpha; these were checked for endpoints, empty input and GL errors
+  without imposing an SDR colour bound on their emission.
+- All 112 installation examples and the combined library pass configuration
+  validation. New README file links resolve and catalog entries form one table.
+
+The original artwork and bounded loops are retained. These checks are not
+hardware performance measurements or a native HDR/rotated/fractional-scale
+output acceptance pass. Animated previews use approximately 40 ms samples.
+No personal desktop configuration was changed.
+
+
+
 ## Witching Hour full-scene reveal (2026-10-10)
 
 Updated the shader for Umbriel `0.1.0 (2145668)`: it samples both the outgoing

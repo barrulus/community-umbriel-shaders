@@ -1,0 +1,13 @@
+# Merge into existing tables; append the include path.
+[include]
+files = ["shaders/community/animation/workspace-glitch-phase/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "workspace-glitch-phase"
+duration_ms = 1100
+curve = "linear"

@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes 84 community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -28,6 +28,13 @@ For adjustments, see the [configuration reference](#configuration-reference),
 - [Midnight Fog](screen/midnight-fog/): low purple mist across the output.
 
 Each preset includes an activation example and a real headless compositor preview.
+
+Thirteen recovered [full-scene workspace transitions](animation/) include
+[Iris](animation/workspace-iris/), [Burn](animation/workspace-burn/), Shatter,
+Tile Gravity, Venetian Blinds, Sand Collapse, CRT Scanline, Melt, Dust Cloud,
+Glitch Phase, Noctalia Wave, Transporter and Wipe. They animate complete scenes,
+including wallpaper and shell surfaces, using Umbriel’s current reveal API.
+Each includes a standalone preset, activation example and animated preview.
 
 ## Compatibility
 

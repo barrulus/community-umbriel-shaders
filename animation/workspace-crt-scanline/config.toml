@@ -1,0 +1,13 @@
+# Merge into existing tables; append the include path.
+[include]
+files = ["shaders/community/animation/workspace-crt-scanline/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "workspace-crt-scanline"
+duration_ms = 800
+curve = "linear"
