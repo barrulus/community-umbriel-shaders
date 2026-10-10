@@ -2,6 +2,24 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Vampire Blood Wash trailing-scene fix (2026-10-10)
+
+The blood band previously began fading before the outgoing-to-incoming blend
+completed, allowing the departing scene to reappear through the trailing edge.
+The scene now changes at the leading edge under the opaque blood. Draining blood
+uncovers only the incoming scene. Direction, artwork and duration are unchanged.
+
+- A regression check varies only the outgoing texture between black and white
+  and measures its contribution at each pixel over 121 progress values. The old
+  shader fails when the outgoing scene reappears. The fix passes all 968 frames
+  across both directions and landscape/portrait sizes: outgoing contribution
+  never increases as progress advances.
+- The existing 640-frame endpoint, alpha, scale, overshoot and reversal checks,
+  plus 18 direction/reflection checks, also pass.
+- Fresh private compositor captures exercise wallpaper, panels and populated
+  workspaces in both directions. Empty/populated completion and cancelled swipes
+  return pixel-identical resting scenes on Umbriel `0.1.0 (2145668)`.
+
 ## Vampire Wake (2026-10-10)
 
 Added `vampire-wake`, a Witchfire-derived crimson cursor ribbon with burgundy

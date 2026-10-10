@@ -56,7 +56,9 @@ vec4 animation(vec2 uv) {
     float wet = smoothstep(-aa, aa, age);
     float drain = smoothstep(width * 0.60, width, age);
     float blood = wet * (1.0 - drain);
-    float reveal = smoothstep(width * 0.72, width, age);
+    // Replace the scene at the leading edge, while the blood conceals it.
+    // Delaying this until the blood drains exposes the outgoing scene again.
+    float reveal = wet;
 
     // Refraction is confined to the leading meniscus and fades at output edges.
     float lip = 1.0 - smoothstep(0.0, 0.018, abs(age));

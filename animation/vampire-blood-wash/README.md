@@ -2,7 +2,9 @@
 
 A Vampire-family workspace reveal: a thick wine-red wash rolls over the entire
 scene with rounded rivulets, crimson streaks and a glossy wet edge. The incoming
-workspace appears as the blood drains behind the advancing front.
+workspace appears as the blood drains behind the advancing front. The scene
+switch happens under the opaque leading edge, so the departing workspace cannot
+show through again as the blood fades.
 
 - **Downwards:** top-left to bottom-right.
 - **Upwards:** bottom-left to top-right.
