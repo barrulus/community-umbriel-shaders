@@ -2,7 +2,7 @@
 
 ![Synthetic preview of Blood Out Animation](preview.png)
 
-Drains out the bottom with same wave as Blood In. Companion to [Blood In](../blood-in/) and [Heartbeat border](../../border/heartbeat/)
+Drains out the bottom with same wave as Blood In. Companion to [Blood In](../blood-in/), [Heartbeat border](../../border/heartbeat/) and [Blood Sweep](../blood-sweep/). Reccommended cursor Trail: [Vampire Wake](../../cursor/vampire-wake) by Barrulus.
 
 ## Use
 

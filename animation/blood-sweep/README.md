@@ -2,7 +2,7 @@
 
 ![Synthetic preview of Blood Sweep Animation](preview.png)
 
-Wave of blood sweeps across the screen during a workspace switch, covering the outgoing workspace and revealing the incoming one. Travels top to bottom when switching down and bottom to top when switching up. Companion to [Blood In](../blood-in/), [Blood Out](../blood-out/) and [Heartbeat border](../../border/heartbeat/)
+Wave of blood sweeps across the screen during a workspace switch, covering the outgoing workspace and revealing the incoming one. Travels top to bottom when switching down and bottom to top when switching up. Companion to [Blood In](../blood-in/), [Blood Out](../blood-out/) and [Heartbeat border](../../border/heartbeat/). Reccommended cursor Trail: [Vampire Wake](../../cursor/vampire-wake) by Barrulus.
 
 ## Use
 

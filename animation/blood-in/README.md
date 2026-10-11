@@ -2,7 +2,7 @@
 
 ![Synthetic preview of Blood In Animation](preview.png)
 
-Wave of blood reveals the window top to bottom. Companion to [Blood Out](../blood-out/) and [Heartbeat border](../../border/heartbeat/)
+Wave of blood reveals the window top to bottom. Companion to [Blood Out](../blood-out/), [Heartbeat border](../../border/heartbeat/) and [Blood Sweep](../blood-sweep/). Reccommended cursor Trail: [Vampire Wake](../../cursor/vampire-wake) by Barrulus.
 
 ## Use
 
