@@ -1,0 +1,12 @@
+[include]
+files = ["shaders/community/animation/blood-sweep/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+duration_ms = 700
+effect = "blood-sweep"
+curve = "linear"

@@ -22,17 +22,6 @@ vec4 animation(vec2 uv) {
     + sin(x_aspect * 26.0 - umbriel_time * 1.2) * 0.012;
 
     float drip_accum = 0.0;
-    for (int i = 0; i < 5; i++) {
-        float fi = float(i);
-        float seed = bf_hash(fi + 17.0);
-        float center = seed;
-        float dist_x = abs(uv.x - center);
-        float width = 0.025 + seed * 0.035;
-        float drip_len = (0.05 + seed * 0.12) * (0.6 + 0.4 * sin(umbriel_time * 2.2 + seed * 6.28));
-        float profile = exp(-pow(dist_x / width, 2.0));
-
-        drip_accum = max(drip_accum, profile * drip_len);
-    }
 
     float leading_edge = base_front + wave + drip_accum;
 
