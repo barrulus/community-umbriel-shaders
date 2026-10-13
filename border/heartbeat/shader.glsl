@@ -88,10 +88,10 @@ void blood_wave(float seed, float along, float d, float perimeter, float inv_per
 
         blood_wave(0.06731168, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
         blood_wave(0.94521832, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
-        blood_wave(0.19909202, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
+        blood_wave(0.59909202, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
         blood_wave(0.72817389, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
         blood_wave(0.10684148, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
-        blood_wave(0.39348707, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
+        blood_wave(0.30348707, along, d, perimeter, inv_perimeter, t, base, height, extent, aa, reach, ooze, swelling, drips, drip_glow);
 
         float blood_alpha = 0.0;
         vec3 blood = vec3(0.0);
@@ -102,7 +102,7 @@ void blood_wave(float seed, float along, float d, float perimeter, float inv_per
             float broad_phase = u * max(floor(perimeter / 240.0), 1.0) * tau - t * 0.7;
             float surface = base + max(sin(fine_phase) * 0.6 + sin(broad_phase) * 0.9, ooze);
             float inner = 0.85 + 0.20 * sin(broad_phase + 1.2);
-            float body = (1.0 - smoothstep(inner + aa, inner - aa, d)) * (1.0 - smoothstep(surface - aa, surface + aa, d));
+            float body = smoothstep(inner - aa, inner + aa, d) * (1.0 - smoothstep(surface - aa, surface + aa, d));
             float depth = clamp((d - inner) / max(surface - inner, 1.0), 0.0, 1.0);
 
             float f = 0.5 + 0.5 * sin(fine_phase * 1.6 + d * 0.8);
@@ -123,7 +123,7 @@ void blood_wave(float seed, float along, float d, float perimeter, float inv_per
         const vec3 drip_color = vec3(0.535, 0.03, 0.035);
         vec3 color_sum = blood * blood_alpha + drip_color * drips + vec3(0.5, 0.02, 0.03) * drip_glow;
         float total = blood_alpha + drips + drip_glow;
-        float envelope = (1.0 - smoothstep(2.0 * aa, 0.0, d)) * (1.0 - smoothstep(max(extent - 2.0 * aa, 0.0), extent, d));
+        float envelope = smoothstep(0.0, 2.0 * aa, d) * (1.0 - smoothstep(max(extent - 2.0 * aa, 0.0), extent, d));
         return vec4(clamp(color_sum / max(total, 0.0001), 0.0, 1.0), clamp(total * envelope, 0.0, 1.0));
     }
     vec4 border(vec2 uv) {

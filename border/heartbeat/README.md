@@ -1,6 +1,6 @@
 # Heartbeat
 
-Viscous red border with heartbeat. Companion to [Blood In](../../animation/blood-in/), [Blood Out](../../animation/blood-out/) and [Blood Sweep](../blood-sweep/). Reccommended cursor Trail: [Vampire Wake](../../cursor/vampire-wake) by Barrulus.
+Viscous red border with heartbeat. Companion to [Blood In](../../animation/blood-in/), [Blood Out](../../animation/blood-out/) and [Blood Sweep](../../animation/blood-sweep/). Reccommended cursor Trail: [Vampire Wake](../../cursor/vampire-wake) by Barrulus.
 
 ![Synthetic preview of Heartbeat](preview.png)
 
