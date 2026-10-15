@@ -4,6 +4,7 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="ghostly-tear/preview.png" width="160" alt="Ghostly Tear workspace reveal"> | [ghostly-tear](ghostly-tear/) | A pale mint, lavender and pearl portal tears outwards from the centre; scattered holes merge into its ragged opening. Requires full-scene workspace reveal. |
 | <img src="beach-surf-animation/preview.png" width="160" alt="beach-surf-animation preview"> | [beach-surf-animation](beach-surf-animation/) | A water-and-foam window reveal and disappearance. |
 | <img src="example/preview.png" width="160" alt="example preview"> | [example](example/) | A minimal opening effect that fades the window in while scaling from 96% to full size. |
 | <img src="paper-animation/preview.png" width="160" alt="paper-animation preview"> | [paper-animation](paper-animation/) | A sheet falls and unfurls on opening, then scrunches and falls away on closing. |
