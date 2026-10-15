@@ -2,6 +2,34 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Ghostly Tear (2026-10-15)
+
+Added `animation/ghostly-tear`: a centred, pale portal with irregular fabric
+erosion, detached holes and pearl/mint/lavender edge haze.
+
+- Compiles and renders in a private headless **Umbriel 0.1.0 (`693b689`)**
+  session. The catalogue PNG and 1200 ms GIF capture two populated synthetic
+  workspaces with wallpaper and a panel. The still was visually inspected.
+- Both switch directions finish pixel-identically to their resting destination
+  scenes. An empty-to-empty switch and a cancelled swipe also return
+  pixel-identical resting captures.
+- 1,920 software-GLES frames using the saved full-scene animation host wrapper
+  cover exact endpoints, overshoot, landscape/portrait sizes, scale 1/1.5,
+  two seeds, four navigation axes, differing input alpha and repeated progress
+  after reversal. Endpoint, premultiplied-alpha and GL-error checks pass.
+- Another 366 coverage-only frames (artwork intensity set to zero) verify that
+  the incoming mask never decreases as progress advances. At progress 0.3,
+  all six aspect/seed combinations contain detached holes as well as the main
+  portal, with 39 satellite holes of at least two test pixels in total.
+- All 119 installation examples and the combined library in the development
+  checkout pass configuration validation. All 88 installation examples in the
+  published subset and its combined library also pass. Validation uses temporary
+  configurations.
+
+Hardware performance, HDR, native fractional-scale output composition and
+output rotation remain unverified. Offscreen tests simulate logical size and
+scale; they do not establish those native compositor behaviours.
+
 ## Train Tracks (2026-10-10)
 
 Added `cursor.train-tracks`: curved silver rails with brown wooden sleepers,
