@@ -4,6 +4,9 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="ghost-thread/preview.png" width="160" alt="Ghost Thread preview"> | [ghost-thread](ghost-thread/) | A long broken pearl filament with peeling mint/lavender wisps and two faint resting wisps. |
+| <img src="spectral-wake/preview.png" width="160" alt="Spectral Wake preview"> | [spectral-wake](spectral-wake/) | A soft, translucent mint/lavender smoke ribbon curls behind the pointer and softly fades. |
+| <img src="frayed-veil/preview.png" width="160" alt="Frayed Veil preview"> | [frayed-veil](frayed-veil/) | Three connected pearl, mint and lavender ribbons trail with fluttering folds and ragged, perforated edges. |
 | <img src="comet/preview.png" width="160" alt="comet preview"> | [comet](comet/) | A curved rainbow comet with a two-second fading tail and smoothly blended crossings. |
 | <img src="cursor-ring/preview.png" width="160" alt="cursor-ring preview"> | [cursor-ring](cursor-ring/) | A thin blue ring around the pointer breathes in radius and brightness. |
 | <img src="cursor-sparkle/preview.png" width="160" alt="cursor-sparkle preview"> | [cursor-sparkle](cursor-sparkle/) | Five theme-coloured dots orbit the pointer at a wavering distance. |

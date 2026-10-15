@@ -1,0 +1,6 @@
+# Merge existing tables and append to the include list.
+[include]
+files = ["shaders/community/cursor/frayed-veil/effect.toml"]
+
+[effects]
+cursor = "frayed-veil"

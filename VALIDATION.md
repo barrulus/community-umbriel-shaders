@@ -2,6 +2,49 @@
 
 The initial collection was checked on 2026-09-27.
 
+## Ghostly cursor trio (2026-10-15)
+
+Added `ghost-thread`, `spectral-wake` and `frayed-veil`: respectively a broken
+pearl filament, a soft curling smoke ribbon and three connected, ragged fabric strips.
+Revised after desktop feedback: tails now reach 240/280/240 logical pixels with
+1.10/1.30/1.15-second lifetimes and a later fade. The newest endpoint has a flat
+cap to remove the line that previously projected ahead of the pointer. Frayed
+Veil uses long attached ribbons with local flutter instead of detached puffs.
+They share the Ghostly Tear pearl/mint/lavender colours, preserve source alpha
+and leave the first three logical pixels around the pointer clear.
+
+Validation with **Umbriel 0.1.0 (`693b689`)**:
+
+- All three compile and render in private headless compositor sessions. Each
+  has a still and animated preview over synthetic light/dark content. Stills
+  were inspected; motion captures use a figure-eight path followed by a stop.
+  All four output corners render successfully for every preset.
+- Spectral Wake and Frayed Veil settle pixel-identically to the unmodified idle
+  scene. Ghost Thread retains its two small animated resting wisps; comparison
+  outside a 21-pixel neighbourhood confirms its moving trail has cleared.
+- 288 software-GLES cases per preset (864 total) cover counts 0/1/2/8/16/64,
+  curved movement, stationary history, pointer warps, expired samples,
+  transparent/translucent/opaque inputs, landscape/portrait and scale 1/1.5.
+  Alpha and SDR premultiplication pass without GL errors. Comparisons with
+  no-history frames confirm absent/invalid/expired trails draw no residual
+  trail, while valid paths remain visible.
+- 33 extra full-resolution GLES cases per preset (99 total) cover eight
+  movement directions with 2/8/64 samples, plus 512-pixel sweeps at zero elapsed
+  time, 0.2 seconds and beyond each lifetime. They confirm no trail ahead of the
+  newest endpoint, visible length beyond 75% of each cap, bounded total length,
+  and complete expiration. The endpoint regression reproduced the forward line
+  on the original Ghost Thread before the fix. Idle wisps have a stable tint,
+  independent of the moving path, so they also match the no-history baseline.
+- All 125 installation examples in the development checkout and all 120 in
+  the upstream publication pass configuration validation, including each
+  combined library.
+
+Hardware performance, HDR and native fractional-scale/rotated composition
+remain unverified. Animation timing follows real pointer timestamps. Retaining
+two seconds of history can enlarge the compositor's affected rectangle beyond
+the visible tails. Ghost Thread's idle wisps request continuous frames;
+the other two rely on history age and expiry.
+
 ## Ghostly Tear (2026-10-15)
 
 Added `animation/ghostly-tear`: a centred, pale portal with irregular fabric

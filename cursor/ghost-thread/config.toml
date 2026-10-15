@@ -1,0 +1,6 @@
+# Merge existing tables and append to the include list.
+[include]
+files = ["shaders/community/cursor/ghost-thread/effect.toml"]
+
+[effects]
+cursor = "ghost-thread"
