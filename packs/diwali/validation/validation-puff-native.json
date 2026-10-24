@@ -1,0 +1,19 @@
+{
+  "version": "umbriel 0.1.0 (8449975)",
+  "open": {
+    "duration_ms": 650,
+    "frames": 27,
+    "native_clock_step_ms": 25,
+    "compiled": true,
+    "exact_final_endpoint": true,
+    "start": "exact"
+  },
+  "close": {
+    "duration_ms": 550,
+    "frames": 23,
+    "native_clock_step_ms": 25,
+    "compiled": true,
+    "exact_final_endpoint": true,
+    "start": "exact client; decorated boundary snapshot rounding <=3/255"
+  }
+}

@@ -1,5 +1,17 @@
 # Validation and limitations
 
+## Diwali pack (2026-10-24)
+
+Promoted five accepted effects plus the Diya Glow border companion under the
+public `diwali.*` names. Tested with Umbriel **0.1.0 (`8449975`)**. The
+[pack validation notes](packs/diwali/README.md#compatibility-and-validation) and
+[machine-readable reports](packs/diwali/validation/) cover native compilation,
+previews, output-edge border behaviour, cursor expiry, lifecycle endpoints,
+workspace endpoints and swipe cancellation, alpha and software-GLES checks.
+Public names and portable installation paths are additionally validated as a
+combined pack. Native HDR/rotation/fractional scaling and hardware performance
+remain unverified.
+
 The initial collection was checked on 2026-09-27.
 
 ## Ghostly Tear (2026-10-15)

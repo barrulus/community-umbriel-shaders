@@ -1,0 +1,6 @@
+# Activate the paired border; it includes this overlay automatically.
+[include]
+files = ["shaders/community/border/diya-lights/effect.toml"]
+
+[effects]
+border = "diwali.diya-lights"

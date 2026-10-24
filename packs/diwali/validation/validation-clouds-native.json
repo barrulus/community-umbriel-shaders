@@ -1,0 +1,11 @@
+{
+  "version": "umbriel 0.1.0 (8449975)",
+  "firelit-clouds": {
+    "frames": 96,
+    "fps": 12,
+    "compiled": true,
+    "visible_motion": true,
+    "clouds_cover_centre": true,
+    "paired_with_diya_border_and_overlay": true
+  }
+}

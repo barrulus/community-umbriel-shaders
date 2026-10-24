@@ -1,0 +1,36 @@
+# Merge into existing tables; append include paths. The border includes its inward artwork automatically.
+[include]
+files = [
+  "shaders/community/border/diya-lights/effect.toml",
+  "shaders/community/window/firelit-clouds/effect.toml",
+  "shaders/community/cursor/festival-sparks/effect.toml",
+  "shaders/community/animation/cloud-puff/effect.toml",
+  "shaders/community/animation/rangoli-iris/effect.toml",
+]
+
+[effects]
+border = "diwali.diya-lights"
+window = "diwali.firelit-clouds"
+cursor = "diwali.festival-sparks"
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "diwali.cloud-puff"
+duration_ms = 650
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "diwali.cloud-puff"
+duration_ms = 550
+curve = "linear"
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "diwali.rangoli-iris"
+duration_ms = 1200
+curve = "linear"

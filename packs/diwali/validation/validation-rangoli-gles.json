@@ -1,0 +1,7 @@
+{
+  "frames": 480,
+  "status": "passed",
+  "outgoing_visibility_frames": 162,
+  "outgoing_never_reappears": true,
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)"
+}

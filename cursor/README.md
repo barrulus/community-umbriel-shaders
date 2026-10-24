@@ -4,6 +4,7 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="festival-sparks/preview.png" width="160" alt="Festival Sparks preview"> | [Festival Sparks](festival-sparks/) | Fine gold and rose sparks lift from the pointer trail and fade at rest. |
 | <img src="comet/preview.png" width="160" alt="comet preview"> | [comet](comet/) | A curved rainbow comet with a two-second fading tail and smoothly blended crossings. |
 | <img src="cursor-ring/preview.png" width="160" alt="cursor-ring preview"> | [cursor-ring](cursor-ring/) | A thin blue ring around the pointer breathes in radius and brightness. |
 | <img src="cursor-sparkle/preview.png" width="160" alt="cursor-sparkle preview"> | [cursor-sparkle](cursor-sparkle/) | Five theme-coloured dots orbit the pointer at a wavering distance. |

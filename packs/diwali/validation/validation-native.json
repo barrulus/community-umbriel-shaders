@@ -1,0 +1,6 @@
+{
+  "version": "umbriel 0.1.0 (8449975)",
+  "diya-lights": "48 frames; border and overlay compiled; visible flame motion, unchanged centre, fullscreen gating verified",
+  "festival-sparks": "72 frames; moving then stationary; expired frame matches disabled-effect baseline pixel for pixel",
+  "note": "Retained border and cursor results; current window results are in validation-clouds-native.json."
+}
