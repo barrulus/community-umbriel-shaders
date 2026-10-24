@@ -1,0 +1,10 @@
+[include]
+files = ["../../window/diya-glow-overlay/effect.toml"]
+
+[effects.preset."diwali.diya-lights"]
+kind = "border"
+shader = "shader.glsl"
+padding = 16
+speed = 1.0
+animated = true
+overlay = "diwali.diya-glow-overlay"

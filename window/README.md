@@ -4,6 +4,8 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="diya-glow-overlay/preview.png" width="160" alt="Diya Glow preview"> | [Diya Glow](diya-glow-overlay/) | Inward halves of the Diya Lights lamps and coloured lights; automatically selected by the border. |
+| <img src="firelit-clouds/preview.png" width="160" alt="Firelit Clouds preview"> | [Firelit Clouds](firelit-clouds/) | Gentle roiling clouds backlit by coloured firework pulses. |
 | <img src="adaptive-text-v4/preview.png" width="160" alt="adaptive-text-v4 preview"> | [adaptive-text-v4](adaptive-text-v4/) | An experimental content-adaptive contrast treatment. |
 | <img src="autumn-leaves/preview.png" width="160" alt="autumn-leaves preview"> | [autumn-leaves](autumn-leaves/) | Animated autumn leaves over window content. |
 | <img src="beach-surf-overlay/preview.png" width="160" alt="beach-surf-overlay preview"> | [beach-surf-overlay](beach-surf-overlay/) | The inner-window half of the beach-surf border effect; keeps inward decoration visible. |

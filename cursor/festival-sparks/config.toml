@@ -1,0 +1,6 @@
+# Activation example: Merge into your config.
+[include]
+files = ["shaders/community/cursor/festival-sparks/effect.toml"]
+
+[effects]
+cursor = "diwali.festival-sparks"

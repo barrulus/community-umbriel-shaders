@@ -4,6 +4,7 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="festival-sparks/preview.png" width="160" alt="Festival Sparks preview"> | [Festival Sparks](festival-sparks/) | Fine gold and rose sparks lift from the pointer trail and fade at rest. |
 | <img src="ghost-thread/preview.png" width="160" alt="Ghost Thread preview"> | [ghost-thread](ghost-thread/) | A long broken pearl filament with peeling mint/lavender wisps and two faint resting wisps. |
 | <img src="spectral-wake/preview.png" width="160" alt="Spectral Wake preview"> | [spectral-wake](spectral-wake/) | A soft, translucent mint/lavender smoke ribbon curls behind the pointer and softly fades. |
 | <img src="frayed-veil/preview.png" width="160" alt="Frayed Veil preview"> | [frayed-veil](frayed-veil/) | Three connected pearl, mint and lavender ribbons trail with fluttering folds and ragged, perforated edges. |

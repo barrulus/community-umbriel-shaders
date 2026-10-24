@@ -1,5 +1,21 @@
 # Validation and limitations
 
+## Diwali effects (2026-10-24)
+
+Added [Diya Lights](border/diya-lights/) and its [Diya Glow companion](window/diya-glow-overlay/),
+[Firelit Clouds](window/firelit-clouds/), [Festival Sparks](cursor/festival-sparks/),
+[Cloud Puff](animation/cloud-puff/) and [Rangoli Iris](animation/rangoli-iris/).
+Each effect's README describes its checks and remaining limitations.
+
+Tested with **Umbriel 0.1.0 (`8449975`)**. All six public presets compiled and
+rendered together in a private native compositor session, including opening,
+closing and full-scene workspace reveal. Earlier native and software-GLES
+checks cover output-edge border visibility, cursor expiry, lifecycle and
+workspace endpoints, cancelled swipes and premultiplied alpha. The standalone
+installation examples and combined library pass the repository validator.
+Native HDR, output rotation, native fractional scaling and hardware performance
+remain unverified.
+
 The initial collection was checked on 2026-09-27.
 
 ## Ghostly cursor trio (2026-10-15)

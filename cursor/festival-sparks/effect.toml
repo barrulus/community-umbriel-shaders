@@ -1,0 +1,4 @@
+[effects.preset."diwali.festival-sparks"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 64

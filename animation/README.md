@@ -4,6 +4,8 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="cloud-puff/preview.png" width="160" alt="Cloud Puff preview"> | [Cloud Puff](cloud-puff/) | Bright gold, magenta and cyan cloud puffs for window opening and closing. |
+| <img src="rangoli-iris/preview.png" width="160" alt="Rangoli Iris preview"> | [Rangoli Iris](rangoli-iris/) | A full-scene workspace iris with white floral linework, coloured rings and blue spiral beads. |
 | <img src="ghostly-tear/preview.png" width="160" alt="Ghostly Tear workspace reveal"> | [ghostly-tear](ghostly-tear/) | A pale mint, lavender and pearl portal tears outwards from the centre; scattered holes merge into its ragged opening. Requires full-scene workspace reveal. |
 | <img src="beach-surf-animation/preview.png" width="160" alt="beach-surf-animation preview"> | [beach-surf-animation](beach-surf-animation/) | A water-and-foam window reveal and disappearance. |
 | <img src="example/preview.png" width="160" alt="example preview"> | [example](example/) | A minimal opening effect that fades the window in while scaling from 96% to full size. |

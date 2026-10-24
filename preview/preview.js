@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 export const effects = [
+  ['cloud-puff', 'Cloud Puff', 'Bright gold, magenta and cyan backlight illuminates a brief billowing cloud puff as the window appears or disappears.'],
   ['shattered-glass', 'Shattered Glass', 'Unequal polygonal shards break loose at different times, spinning and falling independently. Opening reassembles them.'],
   ['wet-paint', 'Wet Paint', 'Long, uneven paint streams pour down to form the window and melt down to remove it.'],
   ['flame-grilled', 'Flame Grilled', 'Tall, rolling flames sweep down to reveal the window and burn upward to consume it.'],
