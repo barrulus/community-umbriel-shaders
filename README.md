@@ -20,10 +20,6 @@ For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.
 
-[**Diwali shader pack**](packs/diwali/) brings together Diya Lights, Firelit Clouds,
-Festival Sparks, Cloud Puff opening/closing and the Rangoli Iris workspace reveal.
-Use its [single activation example](packs/diwali/config.toml) or select effects individually.
-
 ## Compatibility
 
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.

@@ -10,7 +10,7 @@ the trail fully fades after movement stops.
 
 ## Use and tuning
 
-Merge [config.toml](config.toml), following the [collection instructions](../../packs/diwali/README.md#install-and-enable).
+Merge [config.toml](config.toml), following the [collection instructions](../../README.md#install).
 Select `diwali.festival-sparks` as the cursor effect. The effect decorates the surrounding scene, not the cursor image.
 
 Edit constants near the top of [shader.glsl](shader.glsl):
@@ -30,7 +30,11 @@ so very fast movement can leave gaps.
 ## Compatibility and cost
 
 Requires `umbriel_pointer_path[64]`, with sample ages and stable birth phases.
-Tested in Umbriel 0.1.0 (`8449975`); see [validation](../../packs/diwali/README.md#compatibility-and-validation).
+Tested in Umbriel 0.1.0 (`8449975`); see [validation](../../VALIDATION.md#diwali-effects-2026-10-24).
+Native compilation and 72 captured frames cover movement and rest; the expired
+trail matches a disabled-effect baseline pixel for pixel. Another 432 software
+GLES frames pass.
+
 The shader checks at most 64 path samples and draws up to two sparks per eligible
 sample, with early rejection outside their small bounds. Source alpha is
 preserved. No feedback buffers or continuous idle clock are used; retained
@@ -40,3 +44,14 @@ performance and native HDR/rotation/fractional scaling remain unverified.
 Original artwork by Barrulus with Codex assistance, using the stable-history
 emission approach from Snowflake Trail.
 [MIT license](../../LICENSES/Barrulus-MIT.txt).
+
+## Related Diwali effects
+
+- [Diya Lights border](../../border/diya-lights/README.md).
+- [Diya Glow companion overlay](../../window/diya-glow-overlay/README.md).
+- [Firelit Clouds window effect](../../window/firelit-clouds/README.md).
+- [Cloud Puff opening and closing](../../animation/cloud-puff/README.md).
+- [Rangoli Iris workspace reveal](../../animation/rangoli-iris/README.md).
+
+Each effect has its own activation example. Diya Lights includes Diya Glow
+automatically; do not include or select the overlay separately.

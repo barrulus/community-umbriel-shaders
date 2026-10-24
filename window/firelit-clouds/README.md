@@ -13,7 +13,7 @@ Native headless Umbriel captures over synthetic light/dark content at scale 1.
 
 ## Use
 
-Merge [config.toml](config.toml), following the [collection instructions](../../packs/diwali/README.md#install-and-enable).
+Merge [config.toml](config.toml), following the [collection instructions](../../README.md#install).
 Select `diwali.firelit-clouds` as the window effect. The Diya Lights border
 companion remains separate and works alongside this window effect.
 
@@ -48,8 +48,7 @@ scale 1/1.5, transparent/translucent/opaque input, and six clocks including
 24 hours. Source alpha and SDR premultiplication pass. Zero intensity returns
 unchanged content; both clocks at zero freeze the result. Separate checks
 confirm that clouds move with flashes disabled and flashes animate with
-cloud geometry frozen. See [GLES results](../../packs/diwali/validation/validation-clouds-gles.json)
-and [native results](../../packs/diwali/validation/validation-clouds-native.json).
+cloud geometry frozen.
 
 One scene sample, thirteen procedural noise evaluations and four light slots
 per pixel. This is an animated pass over the full selected window, with no
@@ -58,3 +57,14 @@ native HDR/rotation/fractional scaling remain unverified.
 
 Original shader by Barrulus with Codex assistance.
 [MIT license](../../LICENSES/Barrulus-MIT.txt).
+
+## Related Diwali effects
+
+- [Diya Lights border](../../border/diya-lights/README.md).
+- [Diya Glow companion overlay](../../window/diya-glow-overlay/README.md).
+- [Festival Sparks cursor effect](../../cursor/festival-sparks/README.md).
+- [Cloud Puff opening and closing](../../animation/cloud-puff/README.md).
+- [Rangoli Iris workspace reveal](../../animation/rangoli-iris/README.md).
+
+Each effect has its own activation example. Diya Lights includes Diya Glow
+automatically; do not include or select the overlay separately.

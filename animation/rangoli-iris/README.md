@@ -18,9 +18,6 @@ Merge [config.toml](config.toml) into existing tables and append its include
 path. Select `diwali.rangoli-iris` for `animation.workspaces` with
 `style = "reveal"`, `duration_ms = 1200` and `curve = "linear"`.
 
-The [Diwali pack](../../packs/diwali/) pairs this workspace reveal with Cloud
-Puff for opening and closing, plus coordinated persistent effects.
-
 This is a full-scene workspace transition. `umbriel_sample` supplies the old
 scene and `umbriel_sample_incoming` supplies the new one, including wallpaper,
 windows and shell surfaces. It is not a persistent screen shader or a lifecycle
@@ -56,10 +53,8 @@ and exact two-scene endpoints pass. Another 162 source-comparison frames confirm
 that outgoing content never reappears as the iris expands, including under
 the ornament's antialiased inner edge.
 
-See [native results](../../packs/diwali/validation/validation-rangoli-native.json) and
-[GLES results](../../packs/diwali/validation/validation-rangoli-gles.json). Native compilation validates the installed compositor API; supplemental GLES
+Native compilation validates the installed compositor API; supplemental GLES
 checks use a supplied full-scene two-texture wrapper.
-
 
 Two scene samples per pixel, with ornament calculation restricted to the ring.
 No previous-frame feedback or blur passes. Full-scene composition requires
@@ -69,3 +64,14 @@ fractional scaling remain unverified.
 Procedural interpretation of the user-supplied reference by Barrulus with
 Codex assistance; the reference bitmap is not bundled. Shader and helper code
 use the [Barrulus MIT license](../../LICENSES/Barrulus-MIT.txt).
+
+## Related Diwali effects
+
+- [Diya Lights border](../../border/diya-lights/README.md).
+- [Diya Glow companion overlay](../../window/diya-glow-overlay/README.md).
+- [Firelit Clouds window effect](../../window/firelit-clouds/README.md).
+- [Festival Sparks cursor effect](../../cursor/festival-sparks/README.md).
+- [Cloud Puff opening and closing](../../animation/cloud-puff/README.md).
+
+Each effect has its own activation example. Diya Lights includes Diya Glow
+automatically; do not include or select the overlay separately.

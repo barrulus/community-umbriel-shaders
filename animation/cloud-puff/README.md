@@ -18,9 +18,6 @@ Merge [config.toml](config.toml) into your existing configuration. It registers
 `animation.windows_out`, at **650 ms opening** and **550 ms closing**, both
 using a linear curve. Do not duplicate existing TOML tables.
 
-The pair can be used independently or with the [Diwali pack](../../packs/diwali/).
-The workspace reveal is a separate animation selector.
-
 ## Tuning
 
 Edit the constants at the top of [shader.glsl](shader.glsl):
@@ -51,10 +48,6 @@ SDR output stays premultiplied, and endpoint pixels match exactly. Another
 164 black/white-source frames verify that visible source content only increases
 on opening and only decreases on closing, without briefly reappearing.
 
-See [native results](../../packs/diwali/validation/validation-puff-native.json) and
-[GLES results](../../packs/diwali/validation/validation-puff-gles.json).
-
-
 One source sample and twelve procedural noise evaluations per pixel, only while
 the transition runs. No feedback buffers or external textures. Native HDR,
 rotation/fractional scaling, interrupted lifecycle transitions and hardware
@@ -62,3 +55,14 @@ performance remain unverified.
 
 Original shader by Barrulus with Codex assistance, using the Firelit Clouds
 noise helpers. [MIT license](../../LICENSES/Barrulus-MIT.txt).
+
+## Related Diwali effects
+
+- [Diya Lights border](../../border/diya-lights/README.md).
+- [Diya Glow companion overlay](../../window/diya-glow-overlay/README.md).
+- [Firelit Clouds window effect](../../window/firelit-clouds/README.md).
+- [Festival Sparks cursor effect](../../cursor/festival-sparks/README.md).
+- [Rangoli Iris workspace reveal](../../animation/rangoli-iris/README.md).
+
+Each effect has its own activation example. Diya Lights includes Diya Glow
+automatically; do not include or select the overlay separately.

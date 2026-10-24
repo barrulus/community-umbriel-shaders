@@ -12,9 +12,19 @@ The border includes this preset automatically. Do not select it as a standalone
 window effect. Its focus gate and clock follow
 the border, and it disappears in fullscreen.
 
-Both shader files are generated from [shared artwork](../../packs/diwali/tools/diya-material.glsl).
-Edit that file and run `python3 packs/diwali/tools/generate_diya.py`
-from the repository root to keep both halves aligned. See the border page for
-paired previews, tuning, activation, validation and cost.
+Keep the shared `diya_*` artwork helpers and constants in [shader.glsl](shader.glsl)
+identical to the [border shader](../../border/diya-lights/shader.glsl). See the
+border page for paired previews, tuning, activation, validation and cost.
 
 [MIT license](../../LICENSES/Barrulus-MIT.txt).
+
+## Related Diwali effects
+
+- [Diya Lights border](../../border/diya-lights/README.md).
+- [Firelit Clouds window effect](../../window/firelit-clouds/README.md).
+- [Festival Sparks cursor effect](../../cursor/festival-sparks/README.md).
+- [Cloud Puff opening and closing](../../animation/cloud-puff/README.md).
+- [Rangoli Iris workspace reveal](../../animation/rangoli-iris/README.md).
+
+Each effect has its own activation example. Diya Lights includes Diya Glow
+automatically; do not include or select the overlay separately.

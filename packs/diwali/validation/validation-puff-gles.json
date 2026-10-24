@@ -1,9 +1,0 @@
-{
-  "cloud-puff": {
-    "frames": 720,
-    "status": "passed",
-    "source_coefficient_frames": 164,
-    "monotonic_source_visibility": true
-  },
-  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)"
-}
