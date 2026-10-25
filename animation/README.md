@@ -4,6 +4,8 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="fractal-iris/preview.png" width="160" alt="Fractal Iris preview"> | [Fractal Iris](fractal-iris/) | An unfolding fractal front reveals the incoming workspace, with advance tears that widen and merge. |
+| <img src="fractal-bloom/preview.png" width="160" alt="Fractal Bloom preview"> | [Fractal Bloom](fractal-bloom/) | Windows open and close through a mirrored fractal mandala. |
 | <img src="cloud-puff/preview.png" width="160" alt="Cloud Puff preview"> | [Cloud Puff](cloud-puff/) | Bright gold, magenta and cyan cloud puffs for window opening and closing. |
 | <img src="rangoli-iris/preview.png" width="160" alt="Rangoli Iris preview"> | [Rangoli Iris](rangoli-iris/) | A full-scene workspace iris with white floral linework, coloured rings and blue spiral beads. |
 | <img src="ghostly-tear/preview.png" width="160" alt="Ghostly Tear workspace reveal"> | [ghostly-tear](ghostly-tear/) | A pale mint, lavender and pearl portal tears outwards from the centre; scattered holes merge into its ragged opening. Requires full-scene workspace reveal. |

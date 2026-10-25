@@ -1,0 +1,18 @@
+# Merge into existing tables and append the include path.
+[include]
+files = ["shaders/community/animation/fractal-bloom/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "psychedelic.fractal-bloom"
+duration_ms = 700
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "psychedelic.fractal-bloom"
+duration_ms = 450
+curve = "linear"

@@ -1,0 +1,3 @@
+[effects.preset."psychedelic.fractal-iris"]
+kind = "animation"
+shader = "shader.glsl"

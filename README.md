@@ -16,6 +16,11 @@ Ten new [paired window transitions](animation/) include Shattered Glass, Wet Pai
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 Use the [interactive preview](preview/) to play or scrub both directions locally.
 
+[**Psychedelic**](packs/psychedelic/) adds an unfolding fractal workspace iris,
+a rolling fractal border with an inward overlay, a subtle moving window veil
+and fractal opening/closing animations. Use its
+[combined configuration](packs/psychedelic/config.toml).
+
 For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.

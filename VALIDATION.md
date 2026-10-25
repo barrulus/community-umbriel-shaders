@@ -1,5 +1,25 @@
 # Validation and limitations
 
+## Psychedelic effects (2026-10-25)
+
+Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),
+[Fractal Flow](border/fractal-flow/) with its [inward overlay](window/fractal-flow-overlay/),
+and [Fractal Veil](window/fractal-veil/). The [combined configuration](packs/psychedelic/)
+selects the coordinated set; individual READMEs include controls and motion previews.
+
+Tested with **Umbriel 0.1.0 (`28fa214`)**. All five presets compiled and rendered
+in private native compositor sessions. The border, overlay and veil also rendered
+together. Supplemental software GLES checks using local Umbriel wrappers at
+`4531d927` covered 624 frames per preset: four aspect ratios, scales 1/1.5,
+source transparency, both animation directions and out-of-range progress.
+Animation endpoints, monotonic visibility, window alpha preservation and SDR
+premultiplication passed. Another 54 border/overlay checks covered seam alignment
+and the eight-pixel reach at three sizes and scales. All installation examples,
+the combined preset library and the pack configuration pass configuration validation.
+
+Native HDR, output rotation, native fractional scaling, interrupted transitions
+and hardware performance remain unverified.
+
 ## Diwali effects (2026-10-24)
 
 Added [Diya Lights](border/diya-lights/) and its [Diya Glow companion](window/diya-glow-overlay/),

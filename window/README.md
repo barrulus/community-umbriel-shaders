@@ -4,6 +4,8 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="fractal-flow-overlay/preview.png" width="160" alt="Fractal Flow Overlay preview"> | [Fractal Flow Overlay](fractal-flow-overlay/) | The inward half of Fractal Flow, sharing its coordinates, colours and clock. |
+| <img src="fractal-veil/preview.png" width="160" alt="Fractal Veil preview"> | [Fractal Veil](fractal-veil/) | Small, faint kaleidoscope rosettes rotate and gently change across the window. |
 | <img src="diya-glow-overlay/preview.png" width="160" alt="Diya Glow preview"> | [Diya Glow](diya-glow-overlay/) | Inward halves of the Diya Lights lamps and coloured lights; automatically selected by the border. |
 | <img src="firelit-clouds/preview.png" width="160" alt="Firelit Clouds preview"> | [Firelit Clouds](firelit-clouds/) | Gentle roiling clouds backlit by coloured firework pulses. |
 | <img src="adaptive-text-v4/preview.png" width="160" alt="adaptive-text-v4 preview"> | [adaptive-text-v4](adaptive-text-v4/) | An experimental content-adaptive contrast treatment. |
