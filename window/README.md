@@ -4,6 +4,7 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="speaker-ripple/preview.png" width="160" alt="Speaker Ripple preview"> | [Speaker Ripple](speaker-ripple/) | Coloured pressure rings kick inward and recoil with the music; individual frequency bands buckle the waves like an equaliser. |
 | <img src="fractal-flow-overlay/preview.png" width="160" alt="Fractal Flow Overlay preview"> | [Fractal Flow Overlay](fractal-flow-overlay/) | The inward half of Fractal Flow, sharing its coordinates, colours and clock. |
 | <img src="fractal-veil/preview.png" width="160" alt="Fractal Veil preview"> | [Fractal Veil](fractal-veil/) | Small, faint kaleidoscope rosettes rotate and gently change across the window. |
 | <img src="diya-glow-overlay/preview.png" width="160" alt="Diya Glow preview"> | [Diya Glow](diya-glow-overlay/) | Inward halves of the Diya Lights lamps and coloured lights; automatically selected by the border. |

@@ -1,0 +1,4 @@
+[effects.preset."window.speaker-ripple"]
+kind = "window"
+shader = "shader.glsl"
+palette = false

@@ -1,5 +1,50 @@
 # Validation and limitations
 
+## Speaker Ripple spectrum-driven motion (2026-10-26)
+
+Speaker Ripple maps bass and the local perimeter spectrum directly to the
+main crest positions, with separate mid/treble excursions for
+finer crests. Inward reach changes with energy; peaks push in and falling
+levels recoil. Wave positions use linear group intensities while brightness
+keeps a square-root response. No history buffers or beat detection are used.
+
+Validated in native Umbriel `76477c2` with Mesa software rendering and a
+version-2 synthetic spectrum producer. All 135 installation examples in the
+publication checkout and the combined library validate. Across 640×400, 400×640 and 320×240 outputs, 66
+captures verify silence/no-feed restoration, noise rejection, isolated bands,
+increasing levels and different low/mid/high spectral patterns. Advancing time
+with held audio now produces byte-identical images. Changing audio with time
+frozen changes the image; returning to the original levels reproduces the
+original resting frame exactly. The resting, bass-kick and mixed-spectrum
+captures were visually inspected. A 36-frame animated preview uses changing
+synthetic spectra and a single frozen clock throughout.
+
+Actual playback timing depends on the provider's update rate and smoothing.
+Real-music feel, hardware performance, HDR, transparent input and fractional
+scaling remain unverified for this revision.
+
+## Spectrum thin ring and dynamics correction (2026-10-26)
+
+Retuned Spectrum to keep the border thin and preserve changes in audio levels.
+Gain is 1.0, with a linear 90% local-band / 10% overall response, no square
+roots or exponential saturation. The outward
+bright core reaches at most two logical pixels, the short halo is cut at eight,
+and compositor light is removed. With a connected feed, the underlying native
+ring is dimmed to 12% so it cannot hide falling levels. Missing or disconnected
+audio restores the normal native ring; connected silence deliberately stays dim.
+
+With Umbriel `76477c2` and Mesa software rendering, 44 native captures cover
+640×400 and 400×640 outputs. Noise and return to silence match connected silence;
+disconnect matches the original no-feed image. Isolated bands remain visible,
+and equal-energy low/mid/high blocks produce distinct regions of the border.
+Levels 0.02, 0.1, 0.4 and 0.8 produce increasing differences from silence.
+Additional 0.3, 0.6 and 0.95 checks retain substantial changes between ordinary
+and peak levels, rather than flattening them. Held audio with a frozen clock is
+deterministic. The updated preview and isolated low-band capture were visually
+inspected. Configuration validation passed for all 135 publication examples
+and the combined library; the installed preset reloaded and reports compiled. Real-music feel
+still needs user assessment; no hardware performance claim is made.
+
 ## Music Smoke port (2026-10-26)
 
 Ported bumbriel's `window.music-smoke` from `1dafcac5` to the 64-band spectrum

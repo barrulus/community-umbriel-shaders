@@ -48,6 +48,11 @@ blood-red sparks and fluttering bats.
 
 ## Compatibility
 
+[**Speaker Ripple**](window/speaker-ripple/) adds an audio visualiser inside
+the window: pressure rings kick inward and recoil with the spectrum, with
+individual frequency bands bending different sections. It uses the same
+64-band audio feed as the presets below.
+
 [Spectrum](border/spectrum/), [Music Radiance](cursor/music-radiance/) and
 [Music Smoke](window/music-smoke/) port bumbriel's audio halo, rainbow cursor
 and rising window smoke to the current 64-band spectrum API,
