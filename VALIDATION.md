@@ -1,5 +1,39 @@
 # Validation and limitations
 
+## Spectrum and Music Radiance ports (2026-10-26)
+
+Ported Barrulus's `spectrum` border and `cursor.music-radiance` cursor from
+bumbriel `1dafcac5` to the current 64-band spectrum API. Removed named-source
+configuration and the old RMS/envelope/band helpers. A bounded scan of all
+64 bands now estimates visual activity, with a per-band noise floor and gains
+retuned for normalized intensities. Spectrum retains its static angular halo;
+Music Radiance retains its expanding rainbow waves and rotating rays.
+
+Validated with installed Umbriel 0.1.0 (`76477c2`) in private headless sessions
+using Mesa software rendering and an acknowledged version-2 spectrum feed:
+
+- All 133 installation examples in the publication checkout and the combined
+  library pass configuration validation. Both new presets compile and render
+  in the native compositor.
+- 66 native captures cover 640×400 and 400×640 outputs. Missing feed, zero
+  spectrum, sub-threshold input, return to silence and disconnection produce
+  identical baseline PNGs for each preset and size.
+- Uniform inputs at 0.02, 0.1, 0.4 and 0.8 each produce progressively larger
+  mean RGB differences from baseline. Isolated peaks in bands 0, 7, 31 and 63
+  remain visible; the lowest and highest bands produce different images.
+- Held spectra produce identical frames with the animation clock frozen.
+  Advancing the clock changes Music Radiance and leaves Spectrum unchanged.
+  Music Radiance also renders with its pointer near the output corner.
+- Native previews with a synthetic spectrum were generated and visually
+  inspected, including the clipped cursor at the output corner. Spectrum's
+  preview includes the configured compositor light, which can also emit from
+  the native ring during silence.
+
+Real playback appearance, HDR, transparent-input alpha, fractional scaling,
+rotation and hardware performance have not been separately tested for these
+ports. The cursor reads time even when its audio artwork is invisible, and
+both shaders scan all 64 bands per fragment while a feed is available.
+
 ## Psychedelic effects (2026-10-25)
 
 Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),

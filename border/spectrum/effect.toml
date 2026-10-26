@@ -1,0 +1,11 @@
+[effects.preset.spectrum]
+kind = "border"
+shader = "shader.glsl"
+palette = true
+animated = false
+padding = 24
+
+[effects.preset.spectrum.light]
+spread = 48
+intensity = 1.0
+threshold = 0.35

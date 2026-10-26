@@ -4,6 +4,7 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="music-radiance/preview.png" width="160" alt="Music Radiance preview"> | [Music Radiance](music-radiance/) | Expanding rainbow waves and rotating rays around the pointer, driven by audio and invisible during silence. |
 | <img src="festival-sparks/preview.png" width="160" alt="Festival Sparks preview"> | [Festival Sparks](festival-sparks/) | Fine gold and rose sparks lift from the pointer trail and fade at rest. |
 | <img src="ghost-thread/preview.png" width="160" alt="Ghost Thread preview"> | [ghost-thread](ghost-thread/) | A long broken pearl filament with peeling mint/lavender wisps and two faint resting wisps. |
 | <img src="spectral-wake/preview.png" width="160" alt="Spectral Wake preview"> | [spectral-wake](spectral-wake/) | A soft, translucent mint/lavender smoke ribbon curls behind the pointer and softly fades. |

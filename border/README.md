@@ -4,6 +4,7 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="spectrum/preview.png" width="160" alt="Spectrum preview"> | [Spectrum](spectrum/) | Audio-driven colour halo with angular frequency detail; returns to the native ring during silence. |
 | <img src="fractal-flow/preview.png" width="160" alt="Fractal Flow preview"> | [Fractal Flow](fractal-flow/) | A rolling fractal front unfolds, splits and merges around the focused window and its inward overlay. |
 | <img src="diya-lights/preview.png" width="160" alt="Diya Lights preview"> | [Diya Lights](diya-lights/) | Small oil lamps straddling the border, with multicoloured sparkling lights and a matching inward overlay. |
 | <img src="accent-pulse/preview.png" width="160" alt="accent-pulse preview"> | [accent-pulse](accent-pulse/) | A soft pulse travels around the focused border, tinted by the theme accent. |

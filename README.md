@@ -48,6 +48,11 @@ blood-red sparks and fluttering bats.
 
 ## Compatibility
 
+[Spectrum](border/spectrum/) and [Music Radiance](cursor/music-radiance/) port
+bumbriel's audio halo and rainbow cursor to the current 64-band spectrum API,
+tested with Umbriel `76477c2`. They need Noctalia's audio provider or the
+[standalone Python analyser](tools/README.md#standalone-audio-analyser).
+
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
 
 [Comet](cursor/comet/), [Fairy Tail](cursor/fairy-tail/), [Pond Wake](cursor/pond-wake/), and [Starlight](cursor/starlight/) additionally require the newer cursor pointer-history API (`umbriel_pointer_count` and `umbriel_pointer_path[64]`). They were shader-tested against local Umbriel cursor revision `a8cdaca1`; the original preset-effects API alone cannot run them. [Train Tracks](cursor/train-tracks/) also uses this API and was tested with revision `2145668`.
@@ -403,12 +408,15 @@ applies to the shipped presets.
 
 ## Theme colours
 
-All 69 presets that draw coloured artwork now enable `palette = true` and read
+Most presets that draw coloured artwork enable `palette = true` and read
 `accent_primary`, `accent_secondary`, `warning`, and `error` from `[colors]`.
 `glow`, `accent-pulse`, and `tv-glitch` use the primary accent; cycling rainbow
 effects interpolate through the four colours. Other artwork uses palette stops
 with its original dark shading and pale highlights. Sampled window content is
 only tinted where the effect already applies a colour treatment.
+
+[Music Radiance](cursor/music-radiance/) retains its original rainbow cycle
+and does not read the palette.
 
 ```toml
 [colors]
@@ -464,7 +472,7 @@ Check config paths and GLSL compilation, then test the effect in a compositor, i
 
 ## Attribution and licensing
 
-Barrulus’s 74 contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
+Barrulus’s contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
 
 Dual Orbit is [MIT licensed by neonvoidx](LICENSES/neonvoidx-MIT.txt).
 
