@@ -20,6 +20,7 @@
 | <img src="kzzzt/preview.png" width="160" alt="kzzzt preview"> | [kzzzt](kzzzt/) | Hard-edged circuit traces creep in from the window edges and carry current, with colour-split glitches, scanlines, and a slow roll; reacts to sound when an audio level is fed to Umbriel. |
 | <img src="liquid-glass/preview.png" width="160" alt="liquid-glass preview"> | [liquid-glass](liquid-glass/) | Diffused content with a refractive bevel and soft reflection. |
 | <img src="mercury-sheen/preview.png" width="160" alt="mercury-sheen preview"> | [mercury-sheen](mercury-sheen/) | Flowing liquid-metal highlights give the content a chrome sheen. |
+| <img src="music-smoke/preview.png" width="160" alt="Music Smoke preview"> | [music-smoke](music-smoke/) | Audio-reactive rising smoke; silence restores the sampled window. |
 | <img src="neon-bleed-overlay/preview.png" width="160" alt="neon-bleed-overlay preview"> | [neon-bleed-overlay](neon-bleed-overlay/) | The inner-window half of the neon-bleed border effect; keeps inward decoration visible. |
 | <img src="paper-content/preview.png" width="160" alt="paper-content preview"> | [paper-content](paper-content/) | Neutral white crumpled stationery, with static fibres and folds behind the content. |
 | <img src="paper-overlay/preview.png" width="160" alt="paper-overlay preview"> | [paper-overlay](paper-overlay/) | The inner-window half of the paper border effect; keeps inward decoration visible. |

@@ -48,8 +48,9 @@ blood-red sparks and fluttering bats.
 
 ## Compatibility
 
-[Spectrum](border/spectrum/) and [Music Radiance](cursor/music-radiance/) port
-bumbriel's audio halo and rainbow cursor to the current 64-band spectrum API,
+[Spectrum](border/spectrum/), [Music Radiance](cursor/music-radiance/) and
+[Music Smoke](window/music-smoke/) port bumbriel's audio halo, rainbow cursor
+and rising window smoke to the current 64-band spectrum API,
 tested with Umbriel `76477c2`. They need Noctalia's audio provider or the
 [standalone Python analyser](tools/README.md#standalone-audio-analyser).
 

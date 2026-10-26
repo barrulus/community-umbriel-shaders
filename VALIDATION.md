@@ -1,5 +1,31 @@
 # Validation and limitations
 
+## Music Smoke port (2026-10-26)
+
+Ported bumbriel's `window.music-smoke` from `1dafcac5` to the 64-band spectrum
+API. Overall activity scans all bands, bass controls billow shape and treble
+shifts colour. Removed named-source configuration and the old RMS/level/band
+helpers, and retuned gains for normalized intensities.
+
+Validated with Umbriel 0.1.0 (`76477c2`) in private headless sessions using
+Mesa software rendering and an acknowledged version-2 spectrum feed:
+
+- All 134 installation examples and the combined library pass configuration
+  validation. Music Smoke compiles and renders in the native compositor.
+- 36 captures cover 640×400 and 400×640 outputs. Missing feed, zero spectrum,
+  sub-threshold input, return to silence and disconnect produce identical
+  baseline images at each size.
+- Uniform inputs of 0.02, 0.1, 0.4 and 0.8 produce progressively larger mean
+  RGB differences from baseline. Isolated peaks at bands 0, 7, 31 and 63 remain
+  visible. Equal-energy bass and treble profiles produce different images.
+- Held audio produces identical captures with the clock frozen; advancing
+  the clock animates the smoke. The synthetic-audio preview was inspected.
+
+Real playback appearance, transparent-input alpha, HDR, fractional scaling,
+rotation and hardware performance have not been separately tested. The shader
+retains sampled alpha by construction. Its time input can keep frames running
+during silence, and the cost scales with the number and size of selected windows.
+
 ## Kzzzt spectrum compatibility (2026-10-26)
 
 Updated kzzzt and kzzzt Ring from the removed `umbriel_audio_level()` helper
