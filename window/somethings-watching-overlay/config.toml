@@ -1,0 +1,6 @@
+# Companion overlay: enable the border, which includes this preset.
+[include]
+files = ["shaders/community/border/somethings-watching/effect.toml"]
+
+[effects]
+border = "after-dark.somethings-watching"

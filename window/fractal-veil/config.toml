@@ -1,0 +1,6 @@
+# Merge into existing tables and append the include path.
+[include]
+files = ["shaders/community/window/fractal-veil/effect.toml"]
+
+[effects]
+window = "psychedelic.fractal-veil"

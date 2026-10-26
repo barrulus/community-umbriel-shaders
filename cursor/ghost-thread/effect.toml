@@ -1,0 +1,4 @@
+[effects.preset.ghost-thread]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 104

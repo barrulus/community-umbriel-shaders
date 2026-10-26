@@ -1,0 +1,13 @@
+# Merge into existing tables; append the include path.
+[include]
+files = ["shaders/community/animation/workspace-wipe/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "workspace-wipe"
+duration_ms = 500
+curve = "linear"

@@ -1,0 +1,10 @@
+[include]
+files = ["../../window/fractal-flow-overlay/effect.toml"]
+
+[effects.preset."psychedelic.fractal-flow"]
+kind = "border"
+shader = "shader.glsl"
+padding = 9
+speed = 1.0
+animated = true
+overlay = "psychedelic.fractal-flow-overlay"

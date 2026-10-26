@@ -1,0 +1,4 @@
+[effects.preset."heartbeat"]
+kind = "border"
+shader = "shader.glsl"
+padding = 30

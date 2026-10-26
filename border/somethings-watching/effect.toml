@@ -1,0 +1,10 @@
+[include]
+files = ["../../window/somethings-watching-overlay/effect.toml"]
+
+[effects.preset."after-dark.somethings-watching"]
+kind = "border"
+shader = "shader.glsl"
+padding = 48
+speed = 1.0
+animated = true
+overlay = "after-dark.somethings-watching-overlay"

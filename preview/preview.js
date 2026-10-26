@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 export const effects = [
+  ['fractal-bloom', 'Fractal Bloom', 'A mirrored fractal mandala opens and closes with rotating kaleidoscopic ornament.'],
   ['cloud-puff', 'Cloud Puff', 'Bright gold, magenta and cyan backlight illuminates a brief billowing cloud puff as the window appears or disappears.'],
   ['shattered-glass', 'Shattered Glass', 'Unequal polygonal shards break loose at different times, spinning and falling independently. Opening reassembles them.'],
   ['wet-paint', 'Wet Paint', 'Long, uneven paint streams pour down to form the window and melt down to remove it.'],
@@ -22,6 +23,7 @@ const header = `precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D umbriel_texture;
 uniform vec2 umbriel_size;
+uniform float umbriel_scale;
 uniform float umbriel_progress;
 uniform float umbriel_linear_progress;
 uniform float umbriel_direction;
@@ -127,6 +129,7 @@ function draw(p, progress, direction, size = [canvas.width, canvas.height], rand
   gl.uniform1i(gl.getUniformLocation(p, 'umbriel_texture'), 0);
   gl.uniform1i(gl.getUniformLocation(p, 'umbriel_palette_count'), $('palette').checked ? 4 : 0);
   gl.uniform2fv(gl.getUniformLocation(p, 'umbriel_size'), size);
+  gl.uniform1f(gl.getUniformLocation(p, 'umbriel_scale'), 1);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_progress'), progress);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_linear_progress'), progress);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_direction'), direction);

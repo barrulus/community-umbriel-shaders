@@ -1,0 +1,4 @@
+[effects.preset.frayed-veil]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 104

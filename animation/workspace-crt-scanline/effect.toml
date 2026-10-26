@@ -1,0 +1,3 @@
+[effects.preset."workspace-crt-scanline"]
+kind = "animation"
+shader = "shader.glsl"

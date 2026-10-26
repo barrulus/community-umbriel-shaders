@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes community presets by Barrulus, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -16,11 +16,43 @@ Ten new [paired window transitions](animation/) include Shattered Glass, Wet Pai
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 Use the [interactive preview](preview/) to play or scrub both directions locally.
 
+[**Psychedelic**](packs/psychedelic/) adds an unfolding fractal workspace iris,
+a rolling fractal border with an inward overlay, a subtle moving window veil
+and fractal opening/closing animations. Use its
+[combined configuration](packs/psychedelic/config.toml).
+
 For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.
 
+## Halloween effects
+
+- [Witching Hour](animation/witching-hour/): a burning portal between workspaces, using the new reveal mode.
+- [Witchfire](cursor/witchfire/): a curved green cursor trail with orange embers.
+- [Pumpkin Parade](border/somethings-watching/): growing pumpkins, cat eyes and marching skeletons around the border, with its included inward overlay.
+- [Midnight Fog](screen/midnight-fog/): low purple mist across the output.
+
+Each preset includes an activation example and a real headless compositor preview.
+
+Thirteen recovered [full-scene workspace transitions](animation/) include
+[Iris](animation/workspace-iris/), [Burn](animation/workspace-burn/), Shatter,
+Tile Gravity, Venetian Blinds, Sand Collapse, CRT Scanline, Melt, Dust Cloud,
+Glitch Phase, Noctalia Wave, Transporter and Wipe. They animate complete scenes,
+including wallpaper and shell surfaces, using Umbriel’s current reveal API.
+Each includes a standalone preset, activation example and animated preview.
+
+[**Vampire Blood Wash**](animation/vampire-blood-wash/) reveals the full workspace
+through a glossy diagonal crimson wash, with distinct upward and downward sweeps.
+Pair it with [**Vampire Wake**](cursor/vampire-wake/), a crimson cursor trail with
+blood-red sparks and fluttering bats.
+
 ## Compatibility
+
+[Spectrum](border/spectrum/), [Music Radiance](cursor/music-radiance/) and
+[Music Smoke](window/music-smoke/) port bumbriel's audio halo, rainbow cursor
+and rising window smoke to the current 64-band spectrum API,
+tested with Umbriel `76477c2`. They need Noctalia's audio provider or the
+[standalone Python analyser](tools/README.md#standalone-audio-analyser).
 
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
 
@@ -377,12 +409,15 @@ applies to the shipped presets.
 
 ## Theme colours
 
-All 69 presets that draw coloured artwork now enable `palette = true` and read
+Most presets that draw coloured artwork enable `palette = true` and read
 `accent_primary`, `accent_secondary`, `warning`, and `error` from `[colors]`.
 `glow`, `accent-pulse`, and `tv-glitch` use the primary accent; cycling rainbow
 effects interpolate through the four colours. Other artwork uses palette stops
 with its original dark shading and pale highlights. Sampled window content is
 only tinted where the effect already applies a colour treatment.
+
+[Music Radiance](cursor/music-radiance/) retains its original rainbow cycle
+and does not read the palette.
 
 ```toml
 [colors]
@@ -404,10 +439,6 @@ without a separate coloured artwork layer: animation `example`, `reveal`,
 `workspace-transation-vhs-ripple`; cursor `spotlight`; screen `vignette`; and
 window `adaptive-text-v4`, `crt`, `flap-board`, and `scanlines`. Their distortion,
 channel separation, contrast, or darkening continues to use the source image.
-
-[Pond Wake](cursor/pond-wake/) also ignores the theme palette: its stirred
-bioluminescence deliberately stays blue-green, controlled by `BIO_COLOUR`.
-[Starlight](cursor/starlight/) uses neutral white sparkles with untinted refraction.
 
 ## Troubleshooting
 
@@ -443,6 +474,10 @@ Check config paths and GLSL compilation, then test the effect in a compositor, i
 ## Attribution and licensing
 
 Barrulus’s contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
+
+Dual Orbit is [MIT licensed by neonvoidx](LICENSES/neonvoidx-MIT.txt).
+
+The four kzzzt presets are [MIT licensed by weegs710](LICENSES/weegs710-MIT.txt).
 
 `animation/tv-glitch` is ported from Simon Schneegans’s [Burn-My-Windows](https://github.com/Schneegans/Burn-My-Windows) and is [GPL-3.0-or-later](LICENSES/BurnMyWindows-GPL-3.0-or-later.txt), like its source.
 
