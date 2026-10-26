@@ -1,5 +1,31 @@
 # Validation and limitations
 
+## Kzzzt spectrum compatibility (2026-10-26)
+
+Updated kzzzt and kzzzt Ring from the removed `umbriel_audio_level()` helper
+to `umbriel_audio_spectrum(position)`. Their activity estimate samples three
+low/middle/high positions; bass and treble now read the real spectrum.
+The READMEs document Noctalia's disabled-by-default audio provider and the
+difference between a fresh feed and audible activity.
+
+Validated with installed Umbriel 0.1.0 (`76477c2`), matching upstream
+`76477c29d864fa64069e443c350cf671f65bdc31`, in private headless sessions using
+Mesa software rendering and a synthetic version-2 spectrum producer:
+
+- Both selected shaders pass configuration loading, compile and render.
+  Eight captures each cover missing feed, idle motion, silence, quiet input,
+  bass, treble, loud input and disconnection; all audio packets are accepted.
+- Fixed-time copies at two seconds produce byte-identical PNGs to the original
+  idle shaders with missing, silent, quiet and disconnected feeds. The old
+  kzzzt baseline has its obsolete level helper replaced with zero for this
+  comparison. Bass, treble and loud input each differ from the idle baseline;
+  bass and treble also produce distinct kzzzt results.
+- Representative silence and loud-input captures were visually inspected.
+
+These checks use synthetic audio, not real playback through Noctalia. Hardware
+performance, HDR, rotation and fractional-scale composition remain unverified.
+The three-position activity estimate can miss energy confined to other bands.
+
 ## Spectrum and Music Radiance ports (2026-10-26)
 
 Ported Barrulus's `spectrum` border and `cursor.music-radiance` cursor from

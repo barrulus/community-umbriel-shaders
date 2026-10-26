@@ -1,6 +1,6 @@
 # kzzzt
 
-Hard-edged circuit traces creep in from the window edges and carry current, with colour-split glitches, scanlines, and a slow roll over the picture. It reacts to sound when something feeds Umbriel an audio level and has a steady idle look when nothing does.
+Hard-edged circuit traces creep in from the window edges and carry current, with colour-split glitches, scanlines, and a slow roll over the picture. It reacts to sound when something feeds Umbriel an audio spectrum and has a steady idle look when nothing does.
 
 ![Frame of kzzzt](preview.png)
 
@@ -26,7 +26,26 @@ Append the include path to your existing `files` array and merge selectors into 
 
 ## Audio
 
-Audio is optional. Umbriel can hand effects one level from 0 to 1 that a program of your choice sends it; see [Audio input](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/ipc.md#audio-input) for how a program does that. This collection does not include such a program.
+Audio is optional. Current Umbriel supplies a 64-band spectrum through
+`umbriel_audio_spectrum(position)`, replacing the old `umbriel_audio_level()`
+helper. This shader estimates overall activity from three low/middle/high
+positions and reads bass and treble separately. Positions run from low to high;
+they do not promise particular frequency centers.
+
+In Noctalia, enable **Settings → Umbriel → Audio → Provide Audio to Umbriel**
+(disabled by default), or set `umbriel_audio_provider_enabled = true`
+in Noctalia's existing `[shell]` configuration table:
+
+```toml
+[shell]
+umbriel_audio_provider_enabled = true
+```
+
+A connected feed can still contain silence. Check that playback produces nonzero
+spectrum values if the effect stays idle. Older Noctalia and other shells can
+use the [standalone Python analyser](../../tools/README.md#standalone-audio-analyser).
+Other providers must use the current
+[spectrum IPC](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/ipc.md#audio-input).
 
 - With nothing feeding Umbriel, or a program that is running while nothing plays, kzzzt shows its idle look: a steady set of traces. Silence below a level of about 0.02 counts as nothing playing.
 - With a program feeding it sound, the traces follow the level. They brighten and grow more numerous as it rises, and treble widens the colour split.
@@ -81,7 +100,7 @@ Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 
-Requires an Umbriel build that includes [`105e1bc8`](https://github.com/noctalia-dev/umbriel/commit/105e1bc8), which added the audio level the shader reads; older builds were not tested. See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. The shader reads `umbriel_time`, so it keeps requesting frames while a window is visible. It takes one sample per fragment, three while a window flinches, and runs bounded loops near the window edges. This adds a pass per affected window; applying it globally increases the cost with the number and size of visible windows. No performance benchmark is claimed.
+Requires the spectrum audio API, verified with Umbriel [`76477c29`](https://github.com/noctalia-dev/umbriel/commit/76477c29). Builds exposing only the old scalar audio helper cannot compile this version. See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. The shader reads `umbriel_time`, so it keeps requesting frames while a window is visible. It takes one sample per fragment, three while a window flinches, and runs bounded loops near the window edges. This adds a pass per affected window; applying it globally increases the cost with the number and size of visible windows. No performance benchmark is claimed.
 
 ## Attribution
 
