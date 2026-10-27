@@ -1,0 +1,6 @@
+# Merge existing tables and append to the include list.
+[include]
+files = ["shaders/community/cursor/shake-grow/effect.toml"]
+
+[effects]
+cursor = "cursor.shake-grow"

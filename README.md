@@ -21,6 +21,11 @@ a rolling fractal border with an inward overlay, a subtle moving window veil
 and fractal opening/closing animations. Use its
 [combined configuration](packs/psychedelic/config.toml).
 
+[**Shake Locator**](cursor/shake-locator/) reveals rings when you shake the mouse.
+[**Shake Grow**](cursor/shake-grow/) builds a growing arrow beneath the pointer
+with continued shaking. Both disappear when movement settles and use cursor
+motion history without a continuously running animation clock.
+
 For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.

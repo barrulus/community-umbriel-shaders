@@ -1,5 +1,40 @@
 # Validation and limitations
 
+## Shake-reactive cursors (2026-10-27)
+
+Added `cursor.shake-locator` and `cursor.shake-grow`. Both detect repeated,
+substantial, fast direction reversals from the two-second pointer path.
+Shake Locator reveals three rings that fade within about 0.6 seconds; Shake
+Grow adds an arrow beneath the real cursor, accumulating recent shakes toward
+an 18× size cap and shrinking away within about 0.8 seconds. The latter does
+not resize the actual cursor image. Neither shader reads the continuous clock
+or uses previous-frame feedback.
+
+All **137 installation examples** and the combined library pass configuration
+validation. Both shaders compile in native Umbriel **0.1.0 (`3667399`)** using
+Mesa software rendering. Public preset packaging retains the tested shader
+logic; only the experimental preset names and source comments were changed.
+
+At 640×400, Shake Locator's straight travel, single return, tiny jitter, and
+slow-shake captures exactly match their quiet frames. Horizontal, vertical,
+diagonal, and output-edge shakes reveal rings. Horizontal fading reduces
+changed-pixel coverage from 15,397 to 9,774 and then zero. Motion-history expiry
+stops effect-driven frames.
+
+Shake Grow uses the same detector. The initial small-arrow version also
+rejects those four ordinary-motion cases, disappears when shaking changes to
+normal travel, clips at output edges, and stops effect frames after history
+expiry. With the published larger size at 1280×900, consecutive shaking
+captures measure arrow heights of **173, 354, 549, and 551 logical pixels**.
+After shaking stops, the arrow shrinks to 314 pixels and then disappears,
+restoring the quiet image exactly. The cap is approximately 560 pixels
+including the outline; attainable size depends on the recent reversal count.
+
+Both PNG previews are visually inspected captures from private headless
+compositors over synthetic content, with injected pointer movement. Sensitivity
+may need tuning for individual mice. Fractional scaling, rotated outputs,
+HDR, transparent input, and hardware GPU performance remain unverified.
+
 ## Speaker Ripple spectrum-driven motion (2026-10-26)
 
 Speaker Ripple maps bass and the local perimeter spectrum directly to the

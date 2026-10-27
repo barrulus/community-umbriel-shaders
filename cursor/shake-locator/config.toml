@@ -1,0 +1,6 @@
+# Merge existing tables and append to the include list.
+[include]
+files = ["shaders/community/cursor/shake-locator/effect.toml"]
+
+[effects]
+cursor = "cursor.shake-locator"
