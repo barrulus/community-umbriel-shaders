@@ -32,7 +32,9 @@ In [shader.glsl](shader.glsl), `48.0` controls the highlights' length along the 
 
 ## Compatibility and cost
 
-Requires Umbriel's preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). The shader uses one focused-border pass, no texture history, and the optional compositor light blur. It is animated at the configured effect frame rate. No performance benchmark is claimed.
+Requires Umbriel's preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The shader uses one focused-border pass, no texture history, and the optional compositor light blur. It is animated at the configured effect frame rate. No performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

@@ -30,7 +30,7 @@ so very fast movement can leave gaps.
 ## Compatibility and cost
 
 Requires `umbriel_pointer_path[64]`, with sample ages and stable birth phases.
-Tested in Umbriel 0.1.0 (`8449975`); see [validation](../../VALIDATION.md#diwali-effects-2026-10-24).
+Tested in Umbriel 0.1.0 (`8449975`).
 Native compilation and 72 captured frames cover movement and rest; the expired
 trail matches a disabled-effect baseline pixel for pixel. Another 432 software
 GLES frames pass.

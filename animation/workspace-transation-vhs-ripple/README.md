@@ -105,8 +105,7 @@ on output size and inner effects; no performance benchmark is claimed.
 The original `workspace-ripple` preset was compiled and tried in a live desktop
 session using `umbriel 0.1.0 (e5056a594c3b-dirty)` on 2026-10-01; its stronger
 VHS settings were accepted by the contributor. This package preserves that shader
-apart from attribution comments and the preset name. See
-[validation](../../VALIDATION.md#workspace-vhs-ripple) for packaging checks and limits.
+apart from attribution comments and the preset name.
 
 ## Attribution
 

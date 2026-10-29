@@ -4,7 +4,7 @@ Opening reveals the window from a violet puff surrounded by drifting golden four
 
 ![Synthetic opening frame of Magic](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -92,7 +92,9 @@ One texture sample, procedural noise, and a bounded nine-cell sparkle search per
 
 The puff and sparkles add colour over transparent regions and stay inside the window rectangle.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 

@@ -92,7 +92,9 @@ buffers are used. Source alpha is preserved. There is no animation clock;
 audio updates drive redraws. Large windows and global selection increase cost;
 hardware performance has not been benchmarked.
 
-See [validation](../../VALIDATION.md) for checks and limitations.
+Synthetic-audio checks cover silence, disconnection and frequency response.
+Real playback appearance, HDR, rotated or fractional-scale outputs and hardware
+performance have not been fully verified.
 
 ## Attribution
 

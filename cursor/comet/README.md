@@ -34,7 +34,9 @@ Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 Requires the newer cursor pointer-history API: `umbriel_pointer_count` and `umbriel_pointer_path[64]`, with samples ordered oldest to newest and containing UV position, age and birth time. The original preset-effects API alone is insufficient. Uses the current rectangle's `umbriel_pointer` and logical `umbriel_size`.
 
-Processes up to 64 motion samples per pixel over the affected path area. No previous-frame feedback buffers are used. Cost depends on path length, shaded area and GPU; no performance benchmark is claimed. See [validation](../../VALIDATION.md).
+Processes up to 64 motion samples per pixel over the affected path area. No previous-frame feedback buffers are used. Cost depends on path length, shaded area and GPU; no performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

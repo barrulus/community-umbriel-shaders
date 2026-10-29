@@ -100,7 +100,9 @@ Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 
-Requires the spectrum audio API, verified with Umbriel [`76477c29`](https://github.com/noctalia-dev/umbriel/commit/76477c29). Builds exposing only the old scalar audio helper cannot compile this version. See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. The shader reads `umbriel_time`, so it keeps requesting frames while a window is visible. It takes one sample per fragment, three while a window flinches, and runs bounded loops near the window edges. This adds a pass per affected window; applying it globally increases the cost with the number and size of visible windows. No performance benchmark is claimed.
+Requires the spectrum audio API, verified with Umbriel [`76477c29`](https://github.com/noctalia-dev/umbriel/commit/76477c29). Builds exposing only the old scalar audio helper cannot compile this version. No previous-frame feedback buffers are used. The shader reads `umbriel_time`, so it keeps requesting frames while a window is visible. It takes one sample per fragment, three while a window flinches, and runs bounded loops near the window edges. This adds a pass per affected window; applying it globally increases the cost with the number and size of visible windows. No performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

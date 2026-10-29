@@ -14,7 +14,6 @@ This collection includes community presets by Barrulus, Dual Orbit by neonvoidx,
 
 Ten new [paired window transitions](animation/) include Shattered Glass, Wet Paint,
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
-Use the [interactive preview](preview/) to play or scrub both directions locally.
 
 [**Psychedelic**](packs/psychedelic/) adds an unfolding fractal workspace iris,
 a rolling fractal border with an inward overlay, a subtle moving window veil
@@ -68,7 +67,9 @@ Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https:
 
 [Comet](cursor/comet/), [Fairy Tail](cursor/fairy-tail/), [Pond Wake](cursor/pond-wake/), and [Starlight](cursor/starlight/) additionally require the newer cursor pointer-history API (`umbriel_pointer_count` and `umbriel_pointer_path[64]`). They were shader-tested against local Umbriel cursor revision `a8cdaca1`; the original preset-effects API alone cannot run them. [Train Tracks](cursor/train-tracks/) also uses this API and was tested with revision `2145668`.
 
-GLSL source and configuration checks are described in [VALIDATION.md](VALIDATION.md).
+Check configuration and source loading with `umbriel config validate`.
+Compile and inspect each selected shader in Umbriel; a configuration check alone
+does not compile GLSL. Each shader's README records its costs and limitations.
 
 ## Install
 
@@ -408,14 +409,14 @@ cover all three ways to narrow that effect.
 Umbriel watches referenced shader files and configuration. Save your edits;
 `umbriel msg config-reload` explicitly reloads the running session. An animation
 already in progress keeps its existing shader, so trigger a new event to check
-changes. Run `umbriel validate` for configuration/source-loading errors and
+changes. Run `umbriel config validate` for configuration/source-loading errors and
 inspect compositor logs for GLSL compilation errors. Configuration validation
 does not compile shaders. A failed shader can render plainly, so an error is
 not a reliable way to select a thinner effect.
 
 The tuning tables describe the shipped source. They do not imply that every
-custom value has been visually tested; the existing [validation report](VALIDATION.md)
-applies to the shipped presets.
+custom value has been visually tested. Check the shader again after changing it,
+including its behaviour at window/output edges and over transparent content.
 
 ## Theme colours
 

@@ -75,8 +75,7 @@ has compositor capture costs. Hardware performance and HDR are not benchmarked.
 
 Validation includes GLES endpoint, alpha and four-axis checks, plus headless
 empty-to-empty switches, populated scenes with wallpaper and a panel, both
-switch directions and swipe cancellation. See the
-[validation record](../../VALIDATION.md#witching-hour-full-scene-reveal-2026-10-10).
+switch directions and swipe cancellation.
 
 ## Attribution
 

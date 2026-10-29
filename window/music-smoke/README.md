@@ -67,8 +67,12 @@ An available feed causes 64 spectrum samples for activity; audible input adds
 two spectrum samples and three four-octave noise evaluations per fragment.
 The linked shader reads time, so it can request frames even during silence.
 Selecting it globally increases cost with the number and size of windows.
-See [validation](../../VALIDATION.md) for tested behaviour and limitations;
+
 hardware performance has not been benchmarked.
+
+Synthetic-audio checks cover silence, disconnection and frequency response.
+Real playback appearance, HDR, rotated or fractional-scale outputs and hardware
+performance have not been fully verified.
 
 ## Attribution
 

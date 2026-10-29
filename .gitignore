@@ -1,0 +1,10 @@
+# Local shader experiments, future plans, and generated previews.
+/experimental-future/
+
+# Local packaging archive; source scripts are tracked individually.
+/tools/tools.tar.gz
+
+# Local development tools and validation records; never include upstream.
+/VALIDATION.md
+/preview/
+/tools/test_audio_analyzer.py

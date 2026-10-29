@@ -37,7 +37,7 @@ Both effects follow border eligibility and disappear in fullscreen.
 
 ## Compatibility and cost
 
-Tested in Umbriel 0.1.0 (`8449975`); see [validation](../../VALIDATION.md#diwali-effects-2026-10-24).
+Tested in Umbriel 0.1.0 (`8449975`).
 Native captures verify flame motion, unchanged centre pixels, fullscreen gating
 and visibility at output edges. Software GLES checks cover 144 border frames
 and 216 overlay frames.

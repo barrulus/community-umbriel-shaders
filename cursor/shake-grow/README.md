@@ -78,8 +78,6 @@ or bottom edge. It always retains the normal cursor's hotspot location.
 Tested with Umbriel 0.1.0 (`3667399`) using Mesa software rendering in private
 headless sessions. Configuration validation, selected-program GLSL compilation,
 and motion captures were checked separately. The preview was visually inspected.
-See the [validation record](../../VALIDATION.md#shake-reactive-cursors-2026-10-27)
-for measured behavior and remaining limitations.
 
 Sensitivity may need tuning for your mouse. Fractional scaling, rotated outputs,
 HDR, transparent input, and hardware GPU performance remain unverified.

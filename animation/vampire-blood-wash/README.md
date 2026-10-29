@@ -67,7 +67,6 @@ incompatible. This standalone shader uses two scene samples and four procedural
 noise evaluations per intermediate pixel, with no feedback or external textures.
 It preserves premultiplied alpha. Full-scene captures have additional costs;
 hardware performance, HDR and rotated outputs have not been benchmarked.
-See [validation](../../VALIDATION.md#vampire-blood-wash-2026-10-10).
 
 ## Attribution
 

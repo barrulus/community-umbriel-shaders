@@ -77,11 +77,12 @@ Save and reload; see [reloading edits](../../README.md#reloading-edits).
 ## Compatibility and cost
 
 The former four-spot cap has been removed. Counts through 16 were checked
-offscreen against upstream main's GLES wrapper; see the
-[count validation report](../../VALIDATION.md#documentation-cleanup-and-border-counts-2026-10-01).
+offscreen against upstream main's GLES wrapper.
 More spots share the same perimeter and can overlap at high counts.
 
-Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. This adds a focused-border pass plus compositor light and blur. No performance benchmark is claimed.
+Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). No previous-frame feedback buffers are used. This adds a focused-border pass plus compositor light and blur. No performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

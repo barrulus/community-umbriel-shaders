@@ -4,7 +4,7 @@ Opening vibrates the window into existence through displaced digital bands, stag
 
 ![Synthetic opening frame of Glitch](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -92,7 +92,9 @@ Three texture samples per fragment; no loops. No hardware performance benchmark 
 
 This effect deliberately flickers and jumps. It distorts captured window content only.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 
