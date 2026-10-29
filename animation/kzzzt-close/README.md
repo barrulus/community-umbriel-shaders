@@ -89,7 +89,7 @@ Targets `animation.windows_out` with the Umbriel preset effects API and GLSL ES 
 
 The shader steps in hard 30 frames per second jumps and flickers on purpose. It uses the transition's random seed, so every closing looks different.
 
-See [validation and limitations](../../VALIDATION.md) for the collection's tested revisions and remaining runtime limitations.
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

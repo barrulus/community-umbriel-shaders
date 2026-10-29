@@ -75,9 +75,12 @@ to reload them; see [reloading edits](../../README.md#reloading-edits).
 One border pass, without compositor light, blur or feedback buffers. When a
 feed is available, each fragment samples all 64 band positions and its local
 angular band. Without a feed it returns the native sample immediately.
-An unchanged spectrum does not request animation frames. See
-[validation](../../VALIDATION.md) for tested behaviour and limits; hardware
+An unchanged spectrum does not request animation frames. Hardware
 performance has not been benchmarked.
+
+Synthetic-audio checks cover silence, disconnection and frequency response.
+Real playback appearance, HDR, rotated or fractional-scale outputs and hardware
+performance have not been fully verified.
 
 ## Attribution
 

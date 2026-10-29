@@ -62,8 +62,10 @@ Up to 63 curved segments with six subdivisions, distance rejection and two
 candidate sparks per segment are evaluated per pixel; at most two desktop
 samples are read. The nearest segment supplies refraction while sparks can
 overlap. Long paths shade larger rectangles. This version omits Pond Wake's
-cloud-noise calculations; hardware performance has not been benchmarked.
-Sampling is clamped at output edges. See [validation](../../VALIDATION.md).
+cloud-noise calculations; Hardware performance has not been benchmarked.
+Sampling is clamped at output edges.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

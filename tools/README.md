@@ -1,4 +1,4 @@
-# Tools
+# Contributor tools
 
 ## Standalone audio analyser
 
@@ -59,18 +59,21 @@ References: [PipeWire capture options](https://docs.pipewire.org/page_man_pw-cat
 [playback-monitor property](https://docs.pipewire.org/group__pw__keys.html),
 and [Umbriel spectrum IPC](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/ipc.md#audio-input).
 
-Run the focused checks with:
+The script is [MIT licensed](../LICENSES/Barrulus-MIT.txt).
+
+## Configuration validation
 
 ```sh
-python3 -m unittest discover -s tools -p 'test_audio_analyzer.py'
+python3 tools/validate.py
+# Select a particular installed build:
+python3 tools/validate.py --umbriel /path/to/umbriel
 ```
 
-Validated on 2026-10-26: five focused checks pass for silence, DC/non-finite
-input, tone placement, gain, decay, capture stalls, IPC framing, rejection and
-reconnection. A temporary PipeWire output carrying 100 Hz, 1 kHz and 10 kHz
-tones produced distinct peaks; 332 valid packets reached a private receiver,
-including a forced disconnect/reconnect, and silence cleared the levels.
-The standalone script also captured the default playback monitor and received
-successful acknowledgements from a private Umbriel 0.1.0 (`76477c2`) session.
-SIGTERM cleanup passed. Other distributions and audio-device changes have not
-been tested. The script is [MIT licensed](../LICENSES/Barrulus-MIT.txt).
+Checks all installation examples, unique preset names, dependencies and the
+combined library without editing the user's configuration. It detects the
+installed Umbriel validation command. This checks parsing and source loading;
+compile and inspect selected shaders in a compositor session separately.
+
+Include relevant commands and results in the PR description, and retain lasting
+limitations in the shader's README. Local development logs, browser tooling and
+audio-analyser tests are excluded from the tracked repository and checked by CI.

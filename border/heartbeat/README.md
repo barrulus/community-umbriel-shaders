@@ -28,17 +28,19 @@ Append the include path to your existing `files` array and merge selectors into 
 Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commit/6adcbc043c74) with NVIDIA and Intel GPUs.
 
 ## Compatibility and cost
-Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The shader contains loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 
-Adapted from [Flowing Water](../flowing-water/) by Barrulus License: 
+Adapted from [Flowing Water](../flowing-water/) by Barrulus License:
 
-[MIT](../../LICENSES/Barrulus-MIT.txt). 
+[MIT](../../LICENSES/Barrulus-MIT.txt).
 
-Author/contributor: WinterMyst. 
+Author/contributor: WinterMyst.
 
-License: 
+License:
 
 MIT License
 
@@ -61,7 +63,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
 
 Contributed by WinterMyst on 2026-10-05.

@@ -65,7 +65,7 @@ no hardware performance benchmark is claimed. Only the nearest part of a
 crossing path supplies the local wake; this is a visual water approximation,
 not a fluid simulation. Sparks from overlapping segments remain visible. Sampling is clamped at output edges.
 
-See [validation](../../VALIDATION.md) for tests and limitations.
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

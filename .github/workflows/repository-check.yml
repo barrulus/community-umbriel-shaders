@@ -1,0 +1,32 @@
+name: Repository contents
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-files:
+    name: Exclude local development files
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Reject tracked local-only files
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          paths = ["VALIDATION.md", "preview/", "tools/test_audio_analyzer.py",
+                   "experimental-future/", "tools/tools.tar.gz"]
+          tracked = subprocess.check_output(["git", "ls-files", "-z", "--", *paths])
+          if tracked:
+              names = tracked.decode().rstrip("\0").replace("\0", "\n")
+              raise SystemExit("Local development files must not be committed:\n" + names)
+          print("No local development files are tracked.")
+          PY

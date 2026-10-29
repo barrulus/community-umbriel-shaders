@@ -65,7 +65,9 @@ rectangle and cost despite the shorter visible trail. Sleepers are spaced per
 history segment, so spacing varies with sampling and speed; they do not use a
 scrolling phase. Very tight bends or reversals can fold the rails, and crossings
 overlay rails above sleepers without modelling railway switches. No hardware
-performance benchmark is claimed. See [validation](../../VALIDATION.md).
+performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

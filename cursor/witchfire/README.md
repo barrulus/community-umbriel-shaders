@@ -21,7 +21,9 @@ INTENSITY = 0.8 (0–1), TRAIL_LIFE = 1.25 seconds (0.5–1.5), FLAME_WIDTH = 10
 ## Compatibility and cost
 
 Requires Umbriel’s preset-effects API. One source sample; up to 63 curve segments with 12 subdivisions each and conservative distance rejection. Uses pointer-history ages, ignores stationary samples and jumps over 800 pixels, and has no feedback buffers. Requires the pointer-history API.
-Hardware performance has not been benchmarked. See the [validation record](../../VALIDATION.md#halloween-presets-2026-10-09).
+Hardware performance has not been benchmarked.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

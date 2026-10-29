@@ -4,7 +4,7 @@ Opening introduces the window through horizontal tape stretch, rolling tracking 
 
 ![Synthetic opening frame of VHS](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -84,7 +84,9 @@ Three texture samples and procedural noise per fragment; no loops. No hardware p
 
 The animation API exposes the captured window, not the desktop behind it. The opening distortion occupies the incoming window image; it cannot bend the actual background before the window exists.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 
