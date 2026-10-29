@@ -23,7 +23,9 @@ Opening duration = 1300 ms (try 1000–1800). INTENSITY = 1.0 (0–1), FLAME_DEP
 ## Compatibility and cost
 
 Requires Umbriel’s preset-effects API. Designed for windows_in. One source sample, noise and 14 bounded ember candidates; no feedback. Exact visible and invisible endpoints, valid premultiplied alpha, and reverse playback supported. Candle Snuff remains the family’s shorter closing animation.
-Hardware performance has not been benchmarked. See [family validation notes](../../VALIDATION.md#halloween-presets-2026-10-09).
+Hardware performance has not been benchmarked.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

@@ -69,8 +69,11 @@ One cursor-area pass with no feedback buffers. Available feeds cause 64 band
 samples per fragment plus one angular sample for audible activity. Without
 a feed it returns the scene immediately. The linked shader reads time, so
 it can request frames even while its artwork is invisible during silence;
-it also prevents direct scanout while active. See [validation](../../VALIDATION.md)
-for tested behaviour and limits; hardware performance has not been benchmarked.
+it also prevents direct scanout while active. Hardware performance has not been benchmarked.
+
+Synthetic-audio checks cover silence, disconnection and frequency response.
+Real playback appearance, HDR, rotated or fractional-scale outputs and hardware
+performance have not been fully verified.
 
 ## Attribution
 

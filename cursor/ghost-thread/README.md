@@ -68,8 +68,7 @@ length limit. The compositor retains up to two seconds of path history, so the
 affected rectangle can grow during long movements beyond the visible tail.
 
 Native HDR, fractional-scale and rotated output composition and hardware
-performance remain unverified. See the
-[validation record](../../VALIDATION.md#ghostly-cursor-trio-2026-10-15).
+performance remain unverified.
 
 ## Attribution
 

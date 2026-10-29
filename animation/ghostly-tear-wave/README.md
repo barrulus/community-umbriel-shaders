@@ -78,7 +78,6 @@ and cutouts remain transparent.
 One source sample and six bounded noise evaluations per fragment; no feedback
 buffers, extra texture assets or scene sampling. Native HDR, output rotation,
 fractional-scale composition and hardware performance remain unverified.
-See the [validation record](../../VALIDATION.md#ghostly-tear-wave-2026-10-15).
 
 ## Attribution
 

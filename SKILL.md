@@ -11,7 +11,7 @@ any coding assistant and require no particular editor, model, or tool API.
 
 ## Establish the target
 
-Read [Contributing](README.md#contributing), [Validation](VALIDATION.md), and a
+Read [Contributing](README.md#contributing), [contributor tools](tools/README.md), and a
 nearby preset of the requested kind. Follow their directory, naming, licensing,
 attribution, preview, and catalog conventions; do not invent a repository
 manifest format.
@@ -272,8 +272,8 @@ offscreen preview format. No batch generation or personal-config changes are nee
 1. Check the TOML, unique preset name, matching kind/entry point, relative file
    paths, source size, and absence of unsupported keys or foreign shader inputs.
    Run `python3 tools/validate.py --umbriel /path/to/umbriel` as described in
-   [VALIDATION.md](VALIDATION.md). The checker currently invokes the older
-   `umbriel validate` command; use a compatible build for that checker.
+   [contributor tools](tools/README.md). This checks configuration and source
+   loading, not GPU compilation.
 2. If Umbriel is installed, validate a configuration that includes and selects
    the preset: `umbriel config validate -c /path/to/test-config.toml`.
    Older builds use `umbriel validate -c /path/to/test-config.toml`; check
@@ -304,3 +304,11 @@ catalog entries when the community repository requires them. Report the
 Umbriel version/revision tested and distinguish configuration validation,
 GLSL compilation, and visual testing. If no compositor or GPU was available,
 state that runtime behavior remains unverified; do not claim a visual pass.
+
+## Local development material
+
+Keep `VALIDATION.md`, the browser `preview/` directory, and
+`tools/test_audio_analyzer.py` local and ignored. Do not force-add them or
+include them in an upstream contribution. Record concise test results in the
+PR description and lasting limitations in each shader's README. Public tool
+documentation describes how to run tools; it is not a development log.

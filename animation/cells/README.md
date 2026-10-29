@@ -4,7 +4,7 @@ Opening traces glowing pentagonal lines outward from the centre, fills the cells
 
 ![Synthetic opening frame of Cells](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -92,7 +92,9 @@ One texture sample, a bounded nine-centre search, and analytic cell-edge distanc
 
 The tiling pairs five-sided cells by bisecting hexagons through opposite edge midpoints, with alternating split directions. Every cell is a pentagon; there are no filler diamonds. These are not regular pentagons. Lines add colour over transparent regions.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 

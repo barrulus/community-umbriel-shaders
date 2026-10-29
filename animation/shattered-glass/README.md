@@ -4,7 +4,7 @@ Opening reassembles an irregular fracture map. Closing breaks the window into 41
 
 ![Synthetic opening frame of Shattered Glass](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -92,7 +92,9 @@ Up to 41 bounded shard candidates per fragment, with early culling, up to nine h
 
 Shards are clipped at the original window bounds. The same seed follows the exact reverse trajectory; separate events receive separate seeds. The fixed fracture topology contains unequal convex polygons rather than a triangle grid.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 

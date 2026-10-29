@@ -46,8 +46,7 @@ returns the original sample exactly, without noise evaluation.
 One source texture sample per fragment and four procedural-noise evaluations
 within the narrow inner strip. A companion adds a window pass; no feedback
 buffers or texture assets are used. Native HDR, output rotation, fractional
-scaling and hardware performance remain unverified. See the
-[validation record](../../VALIDATION.md#ghostly-tear-border-2026-10-15).
+scaling and hardware performance remain unverified.
 
 ## Attribution
 

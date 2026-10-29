@@ -62,7 +62,7 @@ return the original outgoing and incoming scene respectively.
 
 Two scene samples and three procedural-noise evaluations near the front. No previous-frame feedback. Full-scene composition has capture costs;
 hardware performance, HDR and rotated-output composition have not been
-benchmarked. See [validation](../../VALIDATION.md#recovered-workspace-reveals-2026-10-10).
+benchmarked.
 
 ## Provenance and attribution
 

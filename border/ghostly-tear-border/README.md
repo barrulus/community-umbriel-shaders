@@ -81,7 +81,6 @@ content returns immediately after the distance check. No feedback buffers,
 texture assets or broad light/blur pass. Animation requests frames while the
 border is visible; hardware performance is not benchmarked.
 
-See the [validation record](../../VALIDATION.md#ghostly-tear-border-2026-10-15).
 Native HDR, rotated-output and fractional-scale composition remain unverified.
 
 ## Attribution

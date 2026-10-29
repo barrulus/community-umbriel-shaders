@@ -23,7 +23,6 @@ effect = "blood-drain-out"
 duration_ms = 700
 curve = "linear"
 
-
 ```
 
 Append the include path to your existing `files` array and merge selectors into existing tables. Including `effect.toml` defines the preset; the selector enables it. [`config.toml`](config.toml) contains the same copyable example.
@@ -36,11 +35,13 @@ Tested on Umbriel [`6adcbc043c74`](https://github.com/noctalia-dev/umbriel/commi
 
 ## Compatibility and cost
 
-Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. It runs while the selected transition is active. The shader does not contain loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+Requires Umbriel with the preset effects API introduced in [`512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). No previous-frame feedback buffers are used. It runs while the selected transition is active. The shader does not contain loops; performance depends on your GPU and the affected area. No performance benchmark is claimed.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 
-Author/contributor: WinterMyst. License: 
+Author/contributor: WinterMyst. License:
 
 MIT License
 
@@ -63,8 +64,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
 
 Contributed by WinterMyst on 2026-10-05.
 

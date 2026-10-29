@@ -583,8 +583,8 @@
       "sha256": "7edc1a7c9516614978b05f9c35379129996f2f92136f309defc6a863e70635e2"
     },
     "animation/blood-in/README.md": {
-      "bytes": 3037,
-      "sha256": "cc8f2321cfb899e5ff79bd3199fa31a866b484c894579b593abaf88961ede13d"
+      "bytes": 3060,
+      "sha256": "7ac4234473da47be0e7fc40281450f8b6230a982c3d228e2c991986aa7d7c056"
     },
     "animation/blood-in/config.toml": {
       "bytes": 276,
@@ -603,8 +603,8 @@
       "sha256": "008411a5f4acf1ca7e9af4ebf431f85a752682a59d65aa4dc67df2cae525bdb6"
     },
     "animation/blood-out/README.md": {
-      "bytes": 3052,
-      "sha256": "f0d52a99f3bff73228d6be362d2ccf6d58c426d4be8c93b2a55f889d50fed546"
+      "bytes": 3075,
+      "sha256": "1a5038bee53cb40c2edb493420b15a59d0599909eed05c4b31d610e7c70d0974"
     },
     "animation/blood-out/config.toml": {
       "bytes": 280,
@@ -623,8 +623,8 @@
       "sha256": "2de9f556fc0b196a086137f32d57226fd9856c3d18794124f347b21c88ff44ab"
     },
     "animation/vampire-blood-wash/README.md": {
-      "bytes": 2999,
-      "sha256": "6d55c9051f8969f48d9bbce683040867f1c81dba37fbdae40e4c1e23b9c6cc97"
+      "bytes": 2930,
+      "sha256": "5cf187d3fd595d75c4884387f44ee83dd3ef1faab9b92af762a38ec03647156c"
     },
     "animation/vampire-blood-wash/config.toml": {
       "bytes": 286,
@@ -647,8 +647,8 @@
       "sha256": "2c1b62c12efbff093923569a0f72ffee72eb0373f5da504a8b29ecb4e25220cb"
     },
     "animation/workspace-iris/README.md": {
-      "bytes": 3335,
-      "sha256": "b565fb8709299098e71f12792e7f72fcf879126b49660819646b6091c45936da"
+      "bytes": 3257,
+      "sha256": "ad907e439b99ba3a623341f63864bcd07a4275da49df13a00f428a965e5537c1"
     },
     "animation/workspace-iris/config.toml": {
       "bytes": 278,
@@ -671,8 +671,8 @@
       "sha256": "542d2090df4fa45cf07e9b16496aa083611f0a8c1baf001162726d12dc492b98"
     },
     "border/flowering-vine/README.md": {
-      "bytes": 6432,
-      "sha256": "7eac9c81c44657c64877faffceed011accccd60b8f84c8d802009c6ccb765393"
+      "bytes": 6459,
+      "sha256": "7995e6363d2a974944e8794ad9205941d017b74a9370254b2c3048068729f1ea"
     },
     "border/flowering-vine/config.toml": {
       "bytes": 189,
@@ -691,8 +691,8 @@
       "sha256": "439bfb0983a1d93e3a91567315f5046c83bda86d9e4b653f94cff90c40330ed3"
     },
     "border/heartbeat/README.md": {
-      "bytes": 2994,
-      "sha256": "68253d07fc767b92909ba955e972c7a5e6528ac7601ebf098d9ef80199398e4f"
+      "bytes": 3015,
+      "sha256": "54655e3a51bf2db77b3b276c81b118b544eef7a30801c1dff28e170c2e44b663"
     },
     "border/heartbeat/config.toml": {
       "bytes": 179,
@@ -711,8 +711,8 @@
       "sha256": "6f5764d2cb8ab509d2ba456d89005adb8a50151ebeeecbcb6164867f8bacb3cb"
     },
     "cursor/glow/README.md": {
-      "bytes": 3741,
-      "sha256": "c1ac6b2e80089b4a298d09b58f531dcecad11e73e8a0b1f0f323b598c99ae667"
+      "bytes": 3768,
+      "sha256": "f775c2647137d15d9dafeca58013416c27c38a77bfce31f43654e7cd1fcfcaca"
     },
     "cursor/glow/config.toml": {
       "bytes": 169,
@@ -731,8 +731,8 @@
       "sha256": "72ec7c53998d1901e755b61c3339d1e56b393b9832dcbc18a8f41481d2e4b944"
     },
     "cursor/vampire-wake/README.md": {
-      "bytes": 2965,
-      "sha256": "eb5fb4eeb9e59db1b30ea3dde3d2a6eb018f1988c7c1bc8ce3c40af10803bd7f"
+      "bytes": 2902,
+      "sha256": "e840557e113824a58835b9b5b98c11578dc19d04eb969da397108d48f3f97379"
     },
     "cursor/vampire-wake/config.toml": {
       "bytes": 173,
@@ -755,8 +755,8 @@
       "sha256": "67d6a5a8b2517a418e01bacd2184d5bcd283a540252c08bafe23f41aa19ce772"
     },
     "window/flowering-vine-overlay/README.md": {
-      "bytes": 5644,
-      "sha256": "807111e2b3d03c446383211e4d793fd02127d7e887e4160bf4d060a6e980be48"
+      "bytes": 5671,
+      "sha256": "b8e63e5a2c3ed58ec58256b368403dd3df8cacfb1f701b9bc4fb10cf1aece034"
     },
     "window/flowering-vine-overlay/config.toml": {
       "bytes": 205,

@@ -4,7 +4,7 @@ Opening pours long, uneven paint streams down the window. Closing slowly drains 
 
 ![Synthetic opening frame of Wet Paint](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -93,7 +93,9 @@ One texture sample, interpolated procedural noise, and a bounded three-stream se
 
 The effect stretches captured window content into paint; it does not simulate a fluid or leave puddles outside the window.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 

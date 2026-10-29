@@ -49,7 +49,10 @@ seam difference was 4/255 per channel across points 0.0002 logical pixels apart.
 The border and companion use identical material helpers.
 
 The preview is a real headless compositor capture over synthetic content.
-See [family validation](../../VALIDATION.md#psychedelic-effects-2026-10-25) for tested
-versions and limitations. Still images do not demonstrate motion quality.
+ Still images do not demonstrate motion quality.
+
+Tested in private Umbriel 0.1.0 (`28fa214`) sessions over synthetic content.
+Native HDR, rotated or fractional-scale outputs, interrupted transitions and
+hardware performance remain unverified.
 
 Original procedural shader by Barrulus. [MIT licensed](../../LICENSES/Barrulus-MIT.txt).

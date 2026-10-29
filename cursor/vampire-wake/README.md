@@ -57,7 +57,7 @@ One source sample, up to 63 curve segments, twelve subdivisions per segment and
 procedural bat silhouettes, with conservative distance rejection. Source alpha
 is preserved. Effects clip at output edges and do not replace the cursor sprite.
 Hardware performance, HDR and native rotated/fractional-scale output composition
-have not been benchmarked. See [validation](../../VALIDATION.md#vampire-wake-2026-10-10).
+have not been benchmarked.
 
 ## Attribution
 

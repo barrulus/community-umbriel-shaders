@@ -65,8 +65,7 @@ uses the shorter output dimension to keep its centre opening unstretched.
 Two scene samples and six bounded procedural-noise evaluations per fragment;
 no feedback buffers or texture assets. Full-scene capture adds compositor cost.
 Hardware performance, HDR and native fractional-scale or rotated output
-composition have not been benchmarked. See the
-[validation record](../../VALIDATION.md#ghostly-tear-2026-10-15) for tested behavior.
+composition have not been benchmarked.
 
 ## Attribution
 

@@ -4,7 +4,7 @@ Closing collapses the picture into a horizontal phosphor line, then a brighter c
 
 ![Synthetic opening frame of Old TV](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -93,7 +93,9 @@ One texture sample and analytic phosphor glows per fragment. No hardware perform
 
 The line and final blink add light over transparent regions. The vertical collapse can look sharper on very small windows.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 

@@ -25,8 +25,9 @@ Intensity zero removes the fog. Save edits to reload.
 ## Compatibility and cost
 
 Requires Umbriel's preset-effects API. One source sample and three noise evaluations inside the fog band. Pixels above the band return unchanged. Preserves source alpha; no feedback. A continuous screen effect requests frames and prevents direct scanout on affected outputs.
-See the [family validation notes](../../VALIDATION.md#halloween-presets-2026-10-09) for tested
-versions and remaining limitations. Hardware performance is not benchmarked.
+ Hardware performance is not benchmarked.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

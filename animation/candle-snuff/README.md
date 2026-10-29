@@ -28,8 +28,9 @@ colour; animation visibility still follows its timeline. Save edits to reload.
 ## Compatibility and cost
 
 Requires Umbriel's preset-effects API. Designed for windows_out and a busy workspace: content fades by 78% of the timeline and the edge flicker ends by 95%. No particles, geometry changes or afterimage. Five source samples (including silhouette detection), linear event progress, no feedback. Exact endpoints are unchanged source and transparent; reverse selection also has valid endpoints.
-See the [family validation notes](../../VALIDATION.md#halloween-presets-2026-10-09) for tested
-versions and remaining limitations. Hardware performance is not benchmarked.
+ Hardware performance is not benchmarked.
+
+The supplied preview does not verify HDR, rotated outputs or fractional scaling.
 
 ## Attribution
 

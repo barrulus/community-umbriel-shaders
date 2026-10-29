@@ -4,7 +4,7 @@ Equilateral triangles point alternately up and down. Each independently traces i
 
 ![Synthetic opening frame of Triangle Flaps](preview.png)
 
-Synthetic shader render at 55% of opening, not a compositor screenshot. Explore both directions and scrub the timeline in the [interactive preview](../../preview/).
+Synthetic shader render at 55% of opening, not a compositor screenshot.
 
 ## Use
 
@@ -92,7 +92,9 @@ Up to 18 candidate triangles per fragment, with inverse perspective projection, 
 
 Flaps rotate about horizontal upper hinges with perspective foreshortening. Neighboring triangles are checked so closing flaps can fall below their original cells. Outlines add colour over transparent regions. Settled tiles return seamless window content.
 
-See the [paired-transition validation report](../../VALIDATION.md#paired-window-transitions) for tested revisions, compilation, endpoint checks, and remaining runtime limitations.
+WebGL checks covered compilation, transition endpoints and premultiplied alpha
+over synthetic inputs. They do not verify native HDR, rotated or fractional-scale
+outputs, interrupted transitions or hardware performance.
 
 ## Attribution
 
