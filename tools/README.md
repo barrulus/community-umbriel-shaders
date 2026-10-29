@@ -247,11 +247,12 @@ python3 -m unittest discover -s tools -p 'test_catalogue.py'
 
 The draft metadata overlay supplies `metadata.toml` and family definitions.
 Runtime presets, shaders, effect activation examples, notices and media come
-from their actual repository paths. Draft-only family configurations generate
-recipes but do not become fabricated download paths. Every draft has
+from their actual repository paths. `families.toml` supplies family metadata and
+optional default member IDs. Recipes are derived from members; no family assets
+or configs are created. Every draft has
 `draft: true` and `source.revision: null` and is unsuitable for installation.
 
-Once metadata lives beside committed effects and families, generate an index
+Once effect metadata and root `families.toml` are committed, generate an index
 from a full source commit SHA:
 
 ```sh

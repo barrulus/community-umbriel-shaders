@@ -104,11 +104,11 @@ class TreeTests(unittest.TestCase):
 
     def test_publication_flag_requires_a_boolean_for_effects_and_families(self):
         self.effect("cursor/glow")
-        for path in ("cursor/glow/metadata.toml", "families/test/family.toml"):
+        for path in ("cursor/glow/metadata.toml", "families.toml"):
             original = (self.root / path).read_text() if (self.root / path).exists() else None
             for value in ('"true"', '"false"', "1", "[]"):
                 with self.subTest(path=path, value=value):
-                    self.write(path, "publish = " + value + "\n")
+                    self.write(path, ("[families.test]\n" if path == "families.toml" else "") + "publish = " + value + "\n")
                     with self.assertRaisesRegex(c.CatalogueError, "publish must be boolean"):
                         self.build()
             if original is not None:
@@ -118,12 +118,12 @@ class TreeTests(unittest.TestCase):
         self.effect("cursor/glow")
         for flag in ("", "publish = false\n"):
             with self.subTest(flag=flag):
-                self.write("families/test/family.toml", flag + 'members = ["cursor/glow", "cursor/unfinished"]\n')
-                self.write("families/test/preview.png", "hidden family preview")
+                self.write("families.toml", "[families.test]\n" + flag + 'members = ["cursor/glow", "cursor/unfinished"]\n')
+
                 registry = self.build()
                 self.assertEqual(registry["families"], [])
                 self.assertEqual(registry["effects"][0]["families"], [])
-                self.assertNotIn("families/test/preview.png", registry["files"])
+                self.assertNotIn("families.toml", registry["files"])
 
     def test_published_effect_cannot_pull_in_an_unpublished_companion(self):
         self.vine()
@@ -134,14 +134,14 @@ class TreeTests(unittest.TestCase):
     def test_published_family_cannot_contain_unpublished_members(self):
         self.effect("cursor/glow")
         self.modify("cursor/glow/metadata.toml", "publish = true", "publish = false")
-        self.write("families/test/family.toml", 'publish = true\nname = "Test"\ndescription = "Test"\nmembers = ["cursor/glow"]\n')
+        self.write("families.toml", "[families.test]\n" + 'publish = true\nname = "Test"\ndescription = "Test"\nmembers = ["cursor/glow"]\n')
         with self.assertRaisesRegex(c.CatalogueError, "member cursor/glow is missing or unpublished"):
             self.build()
 
     def test_explicit_local_authoring_mode_includes_unpublished_entries(self):
         self.effect("cursor/glow")
         self.modify("cursor/glow/metadata.toml", "publish = true", "publish = false")
-        self.write("families/test/family.toml", 'name = "Test"\ndescription = "Test"\nmembers = ["cursor/glow"]\n')
+        self.write("families.toml", "[families.test]\n" + 'name = "Test"\ndescription = "Test"\nmembers = ["cursor/glow"]\n')
         registry = self.build(include_unpublished=True)
         self.assertTrue(registry["draft"])
         self.assertEqual([e["id"] for e in registry["effects"]], ["cursor/glow"])
@@ -225,17 +225,18 @@ class TreeTests(unittest.TestCase):
     def test_partial_family_uses_only_chosen_slots_and_recommendations(self):
         self.effect("cursor/glow")
         self.effect("animation/wobble", uses=["animation.windows_in", "animation.windows_out"])
-        self.write("families/test/family.toml", 'publish = true\nname = "Test"\ndescription = "Test family"\n'
+        self.write("families.toml", "[families.test]\n" + 'publish = true\nname = "Test"\ndescription = "Test family"\n'
                    'members = ["animation/wobble", "cursor/glow"]\n')
-        self.write("families/test/config.toml", '[include]\nfiles = ["shaders/community/animation/wobble/effect.toml",'
-                   ' "shaders/community/cursor/glow/effect.toml"]\n[effects]\ncursor = "glow"\n'
-                   '[animation]\nenabled = true\n[animation.windows_in]\neffect = "wobble"\nduration_ms = 900\n')
+        self.modify("families.toml", 'members = ["animation/wobble", "cursor/glow"]\n',
+                    'members = ["animation/wobble", "cursor/glow"]\n'
+                    '[families.test.defaults]\n"effects.cursor" = "cursor/glow"\n'
+                    '"animation.windows_in" = "animation/wobble"\n')
         r = self.build()
         plan = c.activation_for(r, {"effects.cursor": "cursor/glow"}, family="test")
         self.assertEqual(plan["settings"], {"effects.cursor": "glow"})
         self.assertEqual(plan["effects"], ["cursor/glow"])
         opening = c.activation_for(r, {"animation.windows_in": "animation/wobble"}, family="test")
-        self.assertEqual(opening["settings"]["animation.windows_in.duration_ms"], 900)
+        self.assertEqual(opening["settings"]["animation.windows_in.duration_ms"], 600)
         self.assertNotIn("effects.cursor", opening["settings"])
 
     def test_dependency_requirements_are_diagnostic_unless_known_incompatible(self):
@@ -476,11 +477,57 @@ class TreeTests(unittest.TestCase):
     def test_family_selections_must_be_members(self):
         self.effect("cursor/glow")
         self.effect("window/other")
-        self.write("families/test/family.toml", 'publish = true\nname = "Test"\ndescription = "Test"\nmembers = ["cursor/glow"]\n')
-        self.write("families/test/config.toml", '[include]\nfiles = ["shaders/community/window/other/effect.toml"]\n'
-                   '[effects]\nwindow = "other"\n')
-        with self.assertRaisesRegex(c.CatalogueError, "unrelated preset includes"):
+        self.write("families.toml", "[families.test]\n" + 'publish = true\nname = "Test"\ndescription = "Test"\nmembers = ["cursor/glow"]\n')
+        self.modify("families.toml", 'members = ["cursor/glow"]\n',
+                    'members = ["cursor/glow"]\n[families.test.defaults]\n"effects.window" = "window/other"\n')
+        with self.assertRaisesRegex(c.CatalogueError, "default selection is not a member"):
             self.build()
+
+    def test_family_defaults_follow_member_settings_without_copied_files(self):
+        self.effect("animation/open", uses=["animation.windows_in"])
+        self.write("families.toml", '[families.test]\npublish = true\nname = "Test"\n'
+                   'description = "Test"\nmembers = ["animation/open"]\n'
+                   '[families.test.defaults]\n"animation.windows_in" = "animation/open"\n')
+        first = self.build()
+        self.assertEqual(first["families"][0]["activation"]["settings"]["animation.windows_in.duration_ms"], 600)
+        self.modify("animation/open/config.toml", "duration_ms = 600", "duration_ms = 850")
+        second = self.build()
+        self.assertEqual(second["families"][0]["activation"]["settings"]["animation.windows_in.duration_ms"], 850)
+        self.assertFalse((self.root / "families").exists())
+        self.assertEqual(set(first["files"]), set(second["files"]))
+        self.assertNotIn("families.toml", second["files"])
+
+    def test_family_defaults_reject_unsupported_uses_and_missing_recipes(self):
+        self.effect("cursor/glow", recipe=False)
+        self.write("families.toml", '[families.test]\npublish = true\nname = "Test"\n'
+                   'description = "Test"\nmembers = ["cursor/glow"]\n'
+                   '[families.test.defaults]\n"effects.window" = "cursor/glow"\n')
+        with self.assertRaisesRegex(c.CatalogueError, "unsupported default use"):
+            self.build()
+        self.modify("families.toml", "effects.window", "effects.cursor")
+        with self.assertRaisesRegex(c.CatalogueError, "no recipe"):
+            self.build()
+
+    def test_family_metadata_rejects_assets_and_runtime_configuration(self):
+        self.effect("cursor/glow")
+        for extra in ('preview = "copy.png"', 'config = "copy.toml"', 'defaults = []',
+                      '[defaults]\n"effects.cursor" = 42'):
+            # Nested defaults use the full TOML table name.
+            extra = extra.replace('[defaults]', '[families.test.defaults]')
+            self.write("families.toml", '[families.test]\npublish = true\nname = "Test"\n'
+                       'description = "Test"\nmembers = ["cursor/glow"]\n' + extra + '\n')
+            with self.subTest(extra=extra), self.assertRaises(c.CatalogueError):
+                self.build()
+
+    def test_committed_family_metadata_ignores_working_tree_changes(self):
+        self.effect("cursor/glow")
+        self.write("families.toml", '[families.test]\npublish = true\nname = "Test"\n'
+                   'description = "Test"\nmembers = ["cursor/glow"]\n')
+        revision = self.commit()
+        self.modify("families.toml", "publish = true", "publish = false")
+        self.assertEqual(self.build()["families"], [])
+        registry = c.Generator(c.Source(self.root, revision)).build()
+        self.assertEqual(registry["families"][0]["members"], ["cursor/glow"])
 
     def git(self, *args):
         return subprocess.run(["git", "-C", str(self.root), *args], check=True, capture_output=True,
@@ -608,9 +655,13 @@ class RepositoryMetadataTests(unittest.TestCase):
         for effect in self.effects.values():
             for family in effect["families"]:
                 self.assertIn(effect["id"], families[family]["members"])
-        for family in ("after-dark", "psychedelic"):
-            for asset in ("config.toml", "preview.png", "README.md"):
-                self.assertIn(f"families/{family}/{asset}", self.registry["files"])
+        self.assertFalse((ROOT / "families").exists())
+        self.assertFalse(any(path.startswith("families/") for path in self.registry["files"]))
+        for family in families.values():
+            self.assertNotIn("path", family)
+            self.assertIsNone(family["readme"])
+            self.assertIsNone(family["config_example"])
+            self.assertEqual(family["preview"], {"image": None, "animation": None})
         self.assertEqual(self.effects["window/diya-glow-overlay"]["uses"], [])
         self.assertIsNone(self.effects["window/diya-glow-overlay"]["activation"])
 

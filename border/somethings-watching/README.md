@@ -21,7 +21,7 @@ need `effect.toml` and `shader.glsl`. The border includes its overlay automatica
 do not include or select the overlay separately.
 
 Merge [config.toml](config.toml) into your configuration, appending include paths
-and merging existing tables. See the [full family configuration](../../families/after-dark/config.toml).
+and merging existing tables. Choose **After Dark → Apply family** in the plugin.
 
 ## Configuration options
 

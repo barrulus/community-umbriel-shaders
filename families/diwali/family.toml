@@ -1,5 +1,0 @@
-publish = true
-name = "Diwali"
-description = "Oil lamps, sparkling lights, festival trails and a rangoli workspace reveal."
-members = ["border/diya-lights", "window/diya-glow-overlay", "cursor/festival-sparks", "window/firelit-clouds", "animation/rangoli-iris"]
-tags = ["festival", "glow"]

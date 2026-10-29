@@ -521,7 +521,6 @@
   "families": [
     {
       "id": "vampire",
-      "path": "families/vampire",
       "name": "Vampire",
       "description": "Coordinated blood, heartbeat, and bat effects across the desktop.",
       "members": [

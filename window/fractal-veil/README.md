@@ -11,8 +11,7 @@ Small kaleidoscopic rosettes fill the window with fine moving detail. Twelve mir
 Install the collection at `~/.config/umbriel/shaders/community/` and merge
 [config.toml](config.toml) into your existing configuration tables, appending
 its include paths. Do not include the activation example as a preset or repeat
-existing TOML tables. See the [Psychedelic family](../../families/psychedelic/) for
-all four effects together.
+existing TOML tables. Choose **Psychedelic → Apply family** in the plugin to apply the coordinated effects.
 
 ## Tuning
 
@@ -27,7 +26,7 @@ do not use the theme palette. No external textures are required.
 One source sample and six bounded fractal iterations per pixel, per selected window. This continuously animated full-window pass costs more than edge-only decoration. No previous-frame feedback. Setting SPEED to zero freezes the artwork; disable the effect to remove its pass.
 
 The preview is a real headless compositor capture over synthetic content.
-See [family validation](../../families/psychedelic/README.md#validation) for tested
+See [family validation](../../VALIDATION.md#psychedelic-effects-2026-10-25) for tested
 versions and limitations. Still images do not demonstrate motion quality.
 
 Original procedural shader by Barrulus. [MIT licensed](../../LICENSES/Barrulus-MIT.txt).

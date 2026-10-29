@@ -1,5 +1,0 @@
-publish = true
-name = "Psychedelic"
-description = "Coordinated kaleidoscopic borders, window patterns and fractal transitions."
-members = ["animation/fractal-iris", "border/fractal-flow", "window/fractal-flow-overlay", "window/fractal-veil", "animation/fractal-bloom"]
-tags = ["psychedelic", "geometric", "colourful"]

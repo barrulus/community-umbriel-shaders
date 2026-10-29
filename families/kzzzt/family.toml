@@ -1,5 +1,0 @@
-publish = true
-name = "kzzzt"
-description = "Circuit traces and phosphor glitches across opening, closing, borders and windows."
-members = ["animation/kzzzt-open", "animation/kzzzt-close", "border/kzzzt-ring", "window/kzzzt"]
-tags = ["glitch", "circuit"]

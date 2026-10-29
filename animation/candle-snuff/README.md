@@ -1,6 +1,6 @@
 # Candle Snuff
 
-A quick dim and fade with a small orange-to-green edge flicker, confined to the departing window. Part of [Umbriel After Dark](../../families/after-dark/).
+A quick dim and fade with a small orange-to-green edge flicker, confined to the departing window. Part of [Umbriel After Dark](../../families.toml).
 
 ![Candle Snuff headless preview](preview.png)
 
@@ -15,7 +15,7 @@ Save [effect.toml](effect.toml) and [shader.glsl](shader.glsl) in
 `~/.config/umbriel/shaders/community/animation/candle-snuff/`. Merge [config.toml](config.toml)
 into your main configuration, appending includes and merging existing tables.
 Selects `after-dark.candle-snuff`. Including a preset only registers it.
-For all six effects, use the [family configuration](../../families/after-dark/config.toml).
+To apply the family together, choose **After Dark → Apply family** in the plugin.
 
 ## Configuration options
 
@@ -28,7 +28,7 @@ colour; animation visibility still follows its timeline. Save edits to reload.
 ## Compatibility and cost
 
 Requires Umbriel's preset-effects API. Designed for windows_out and a busy workspace: content fades by 78% of the timeline and the edge flicker ends by 95%. No particles, geometry changes or afterimage. Five source samples (including silhouette detection), linear event progress, no feedback. Exact endpoints are unchanged source and transparent; reverse selection also has valid endpoints.
-See the [family validation notes](../../families/after-dark/#validation) for tested
+See the [family validation notes](../../VALIDATION.md#halloween-presets-2026-10-09) for tested
 versions and remaining limitations. Hardware performance is not benchmarked.
 
 ## Attribution

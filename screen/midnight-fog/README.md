@@ -1,6 +1,6 @@
 # Midnight Fog
 
-Low, translucent purple mist drifts along the bottom of the output. Part of [Umbriel After Dark](../../families/after-dark/).
+Low, translucent purple mist drifts along the bottom of the output. Part of [Umbriel After Dark](../../families.toml).
 
 ![Midnight Fog headless preview](preview.png)
 
@@ -13,7 +13,7 @@ Save [effect.toml](effect.toml) and [shader.glsl](shader.glsl) in
 `~/.config/umbriel/shaders/community/screen/midnight-fog/`. Merge [config.toml](config.toml)
 into your main configuration, appending includes and merging existing tables.
 Selects `after-dark.midnight-fog`. Including a preset only registers it.
-For all six effects, use the [family configuration](../../families/after-dark/config.toml).
+To apply the family together, choose **After Dark → Apply family** in the plugin.
 
 ## Configuration options
 
@@ -25,7 +25,7 @@ Intensity zero removes the fog. Save edits to reload.
 ## Compatibility and cost
 
 Requires Umbriel's preset-effects API. One source sample and three noise evaluations inside the fog band. Pixels above the band return unchanged. Preserves source alpha; no feedback. A continuous screen effect requests frames and prevents direct scanout on affected outputs.
-See the [family validation notes](../../families/after-dark/#validation) for tested
+See the [family validation notes](../../VALIDATION.md#halloween-presets-2026-10-09) for tested
 versions and remaining limitations. Hardware performance is not benchmarked.
 
 ## Attribution

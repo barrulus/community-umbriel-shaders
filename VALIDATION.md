@@ -1,5 +1,24 @@
 # Validation and limitations
 
+## Metadata-only families (2026-10-29)
+
+Family definitions now live in root `families.toml`. Removed family directories,
+copied previews, README pages and activation examples, including the draft fixture
+folders. Definitions reference shader IDs and optional default member selections;
+the generator derives recommendations from those members' existing recipes.
+Family views compose the existing shader previews. All ten memberships and the
+previous default recipes are preserved; shader sources and runtime presets are unchanged.
+
+The catalogue has 142 effects, ten families and 751 downloadable files, none
+under a family path. All 52 catalogue tests and 84 plugin helper tests pass;
+plugin lint reports zero errors and warnings. Regression checks cover derived
+settings following member edits, invalid/default selections, publication filtering,
+committed-source isolation and browsing without family assets. The private Umbriel
+integration run applies/compiles/restores all catalogue uses, applies and undoes
+all ten families, and preserves customised local presets and runtime overrides.
+Artifacts: `/tmp/us-test-re5fkxce`; output:
+`/tmp/umbriel-metadata-families-integration.log`.
+
 ## Catalogue reconciliation (2026-10-29)
 
 Merged the local development tree with fork `dd608f8` and upstream `3d4b18c`,
@@ -286,7 +305,7 @@ fractional-scaling, interruption and GPU-performance limitations apply.
 
 Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),
 [Fractal Flow](border/fractal-flow/) with its [overlay](window/fractal-flow-overlay/)
-and [Fractal Veil](window/fractal-veil/). The [family](families/psychedelic/) includes a
+and [Fractal Veil](window/fractal-veil/). The [family](families.toml) includes a
 combined activation example, native PNG previews and animation GIFs.
 
 All five presets compiled and rendered on Umbriel 0.1.0 (`28fa214`), with the
@@ -983,7 +1002,7 @@ The three-position activity estimate can miss energy confined to other bands.
 
 Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),
 [Fractal Flow](border/fractal-flow/) with its [inward overlay](window/fractal-flow-overlay/),
-and [Fractal Veil](window/fractal-veil/). The [combined configuration](families/psychedelic/)
+and [Fractal Veil](window/fractal-veil/). The [combined configuration](families.toml)
 selects the coordinated set; individual READMEs include controls and motion previews.
 
 Tested with **Umbriel 0.1.0 (`28fa214`)**. All five presets compiled and rendered

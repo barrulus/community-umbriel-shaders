@@ -1,5 +1,0 @@
-publish = true
-name = "Paper"
-description = "Paper edges and crumpled stationery with a matching opening and closing transition."
-members = ["animation/paper-animation", "border/paper", "window/paper-overlay", "window/paper-content"]
-tags = ["texture"]

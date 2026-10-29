@@ -1,5 +1,0 @@
-publish = true
-name = "Ghostly Tear"
-description = "Pearl, mint and lavender fabric, wisps and ghostly reveals, with three alternative cursor trails."
-members = ["animation/ghostly-tear", "animation/ghostly-tear-wave", "border/ghostly-tear-border", "window/ghostly-tear-overlay", "cursor/ghost-thread", "cursor/frayed-veil", "cursor/spectral-wake"]
-tags = ["horror", "texture"]

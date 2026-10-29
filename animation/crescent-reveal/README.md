@@ -2,7 +2,7 @@
 
 Pumpkin fire ignites at the bottom-left and burns the window into existence toward the top-right. A curved, irregular burn front has a yellow-hot core, orange flame tongues, occasional witch-green fire and drifting embers.
 
-Part of [Umbriel After Dark](../../families/after-dark/).
+Part of [Umbriel After Dark](../../families.toml).
 
 ![Headless compositor preview](preview.png)
 
@@ -14,7 +14,7 @@ not demonstrate motion, output transforms or performance.
 Save this directory under `~/.config/umbriel/shaders/community/animation/crescent-reveal/`.
 Merge [config.toml](config.toml) into your configuration, appending include paths
 and merging existing tables. Including a preset registers it; selection enables
-it. See the [family configuration](../../families/after-dark/config.toml).
+it. Choose **After Dark → Apply family** in the plugin.
 
 ## Configuration options
 
@@ -23,7 +23,7 @@ Opening duration = 1300 ms (try 1000–1800). INTENSITY = 1.0 (0–1), FLAME_DEP
 ## Compatibility and cost
 
 Requires Umbriel’s preset-effects API. Designed for windows_in. One source sample, noise and 14 bounded ember candidates; no feedback. Exact visible and invisible endpoints, valid premultiplied alpha, and reverse playback supported. Candle Snuff remains the family’s shorter closing animation.
-Hardware performance has not been benchmarked. See [family validation notes](../../families/after-dark/#validation).
+Hardware performance has not been benchmarked. See [family validation notes](../../VALIDATION.md#halloween-presets-2026-10-09).
 
 ## Attribution
 

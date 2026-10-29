@@ -1,0 +1,86 @@
+# Catalogue-only family definitions. Members reference existing shader IDs.
+
+[families.after-dark]
+publish = true
+name = "After Dark"
+description = "Pumpkin vines, witchfire, haunted glass and fog for a Halloween desktop."
+members = ["cursor/witchfire", "border/somethings-watching", "window/somethings-watching-overlay", "window/haunted-glass", "screen/midnight-fog", "animation/crescent-reveal", "animation/candle-snuff"]
+tags = ["horror", "fire"]
+
+[families.after-dark.defaults]
+"effects.cursor" = "cursor/witchfire"
+"effects.border" = "border/somethings-watching"
+"effects.window" = "window/haunted-glass"
+"effects.screen" = "screen/midnight-fog"
+"animation.windows_in" = "animation/crescent-reveal"
+"animation.windows_out" = "animation/candle-snuff"
+
+[families.beach-surf]
+publish = true
+name = "Beach Surf"
+description = "Coordinated surf and foam around windows and through their transitions."
+members = ["animation/beach-surf-animation", "border/beach-surf", "window/beach-surf-overlay"]
+tags = ["water", "nature"]
+
+[families.diwali]
+publish = true
+name = "Diwali"
+description = "Oil lamps, sparkling lights, festival trails and a rangoli workspace reveal."
+members = ["border/diya-lights", "window/diya-glow-overlay", "cursor/festival-sparks", "window/firelit-clouds", "animation/rangoli-iris"]
+tags = ["festival", "glow"]
+
+[families.flowering-vine]
+publish = true
+name = "Flowering Vine"
+description = "A flowering vine border and its matching inward decoration."
+members = ["border/flowering-vine", "window/flowering-vine-overlay"]
+tags = ["nature"]
+
+[families.ghostly-tear]
+publish = true
+name = "Ghostly Tear"
+description = "Pearl, mint and lavender fabric, wisps and ghostly reveals, with three alternative cursor trails."
+members = ["animation/ghostly-tear", "animation/ghostly-tear-wave", "border/ghostly-tear-border", "window/ghostly-tear-overlay", "cursor/ghost-thread", "cursor/frayed-veil", "cursor/spectral-wake"]
+tags = ["horror", "texture"]
+
+[families.kzzzt]
+publish = true
+name = "kzzzt"
+description = "Circuit traces and phosphor glitches across opening, closing, borders and windows."
+members = ["animation/kzzzt-open", "animation/kzzzt-close", "border/kzzzt-ring", "window/kzzzt"]
+tags = ["glitch", "circuit"]
+
+[families.paper]
+publish = true
+name = "Paper"
+description = "Paper edges and crumpled stationery with a matching opening and closing transition."
+members = ["animation/paper-animation", "border/paper", "window/paper-overlay", "window/paper-content"]
+tags = ["texture"]
+
+[families.psychedelic]
+publish = true
+name = "Psychedelic"
+description = "Coordinated kaleidoscopic borders, window patterns and fractal transitions."
+members = ["animation/fractal-iris", "border/fractal-flow", "window/fractal-flow-overlay", "window/fractal-veil", "animation/fractal-bloom"]
+tags = ["psychedelic", "geometric", "colourful"]
+
+[families.psychedelic.defaults]
+"effects.border" = "border/fractal-flow"
+"effects.window" = "window/fractal-veil"
+"animation.workspaces" = "animation/fractal-iris"
+"animation.windows_in" = "animation/fractal-bloom"
+"animation.windows_out" = "animation/fractal-bloom"
+
+[families.vampire]
+publish = true
+name = "Vampire"
+description = "Blood-washed transitions, a heartbeat border and a bat-filled cursor trail."
+members = ["animation/blood-in", "animation/blood-out", "border/heartbeat", "animation/vampire-blood-wash", "animation/blood-sweep", "cursor/vampire-wake"]
+tags = ["horror", "blood"]
+
+[families.wobbly]
+publish = true
+name = "Wobbly"
+description = "Elastic window movement with matching opening and closing deformation."
+members = ["animation/wobbly-lifecycle", "animation/wobbly-move"]
+tags = ["playful"]

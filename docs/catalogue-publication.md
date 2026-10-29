@@ -1,8 +1,8 @@
 # Catalogue publication and review
 
 Contributors can keep experiments in this repository and submit them through
-ordinary pull requests. Start an effect's `metadata.toml`, or a family's
-`family.toml`, with:
+ordinary pull requests. Set this flag in an effect's `metadata.toml`, or inside
+a `[families.<id>]` table in root `families.toml`:
 
 ```toml
 publish = false

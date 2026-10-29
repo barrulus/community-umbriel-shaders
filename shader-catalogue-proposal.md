@@ -39,24 +39,27 @@ cursor/<effect>/
 
 Add a small catalogue metadata file beside each effect. Keep `effect.toml` responsible for Umbriel's runtime preset definition.
 
-Introduce a `families/` area to describe coordinated collections of effects, referencing effects in their original directories. This is a proposed addition to the repository:
+Describe families purely through root `families.toml`. Each table names an
+existing set of effect IDs; no family directories, copied previews, README pages
+or activation files are created. The plugin composes family views from member
+metadata and previews, and derives apply settings from selected members.
 
-```text
-animation/blood-in/
-  shader.glsl
-  effect.toml
-  metadata.toml
-  config.toml
-  preview.png
-  README.md             # effect-specific notes, where needed
+```toml
+[families.vampire]
+publish = true
+name = "Vampire"
+description = "Blood-themed transitions, border and cursor effects."
+members = ["animation/blood-in", "animation/blood-out", "border/heartbeat"]
+tags = ["horror", "blood"]
 
-families/vampire/
-  family.toml
-  preview.png
-  config.toml           # optional coordinated activation example
+[families.vampire.defaults]
+"animation.windows_in" = "animation/blood-in"
+"animation.windows_out" = "animation/blood-out"
+"effects.border" = "border/heartbeat"
 ```
 
-Use “family” consistently in directory names, metadata, and catalogue descriptions. The filenames are proposed conventions. Shader paths and existing preset names remain unchanged. Membership in a family does not require moving or duplicating files.
+Optional defaults select member IDs, not another copy of their runtime settings.
+Shader paths and existing preset names remain unchanged.
 
 ## 2. Describe suitability explicitly
 
@@ -90,7 +93,7 @@ Use capability labels as compatibility tags, separate from visual tags. A rare b
 
 ## 3. Give families their own catalogue entries
 
-A family should have a stable identifier, display name, description, credits, and member list. Its page should group members by purpose and allow access to each effect independently. A combined preview is useful but optional; member previews can provide the initial presentation.
+A family should have a stable identifier, display name, description, credits, and member list. Its page should group members by purpose and allow access to each effect independently. Family previews are composed from existing member previews, without copied artwork.
 
 Searching for **Vampire**, for example, would return a family card containing:
 
@@ -102,7 +105,7 @@ Each member's page would link back to the family. Declare membership once in the
 
 Family definitions are optional and may be supplied by contributors or maintainers. One contribution can be an individual effect, a complete family spanning several kinds, or an extension to an existing family. Maintainers can help with packaging; they are not the exclusive authors of families.
 
-A family may also provide a recommended configuration. This is optional: a family might contain several alternative opening animations, so membership alone cannot mean “activate everything”. A recommended configuration selects at most one effect for each slot.
+A family may provide optional default selections in metadata: a family might contain several alternative opening animations, so membership alone cannot mean “activate everything”. Defaults select at most one member per slot. Apply settings come from that member’s existing configuration example.
 
 Required companion effects remain a separate relationship. Installing a border includes its required overlay; it does not automatically install matching animations from the same family. Companion components should be labelled clearly in the catalogue.
 
@@ -257,7 +260,7 @@ Shared documentation should explain how to preserve and restore the previous con
 
 - Retain kind-based shader storage and existing paths.
 - Adopt explicit supported-use and requirement metadata, separate from descriptive tags.
-- Make families first-class catalogue entries, with optional coordinated configurations.
+- Make families first-class catalogue entries, with optional default member selections.
 - Provide selective website downloads and manual installation guidance without requiring a full-repository download.
 - Use one generated catalogue for repository navigation, the public website, and the Noctalia Shaders plugin.
 - Add plugin application and shader-specific window rules, with explicit family scope and reversible configuration changes.

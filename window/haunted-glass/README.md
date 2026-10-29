@@ -13,7 +13,7 @@ Umbriel session over synthetic light/dark content. The GIF samples a twelve-seco
 cycle at 20 fps. It may begin partway through an attack because the shader uses
 the continuous compositor clock.
 
-Part of [Umbriel After Dark](../../families/after-dark/). This replaces Ghost Scratch
+Part of [Umbriel After Dark](../../families.toml). This replaces Ghost Scratch
 while retaining the `after-dark.haunted-glass` preset name and installation paths.
 
 ## Use

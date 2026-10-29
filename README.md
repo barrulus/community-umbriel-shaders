@@ -16,14 +16,12 @@ Ten new [paired window transitions](animation/) include Shattered Glass, Wet Pai
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 Use the [interactive preview](preview/) to play or scrub both directions locally.
 
-[**Umbriel After Dark — Halloween Family**](families/after-dark/) adds six coordinated
-cursor, border, window, screen, opening and closing effects, with a single
-[activation example](families/after-dark/config.toml).
-
-[**Psychedelic**](families/psychedelic/) adds an unfolding fractal workspace iris,
-a rolling fractal border with an inward overlay, a subtle moving window veil
-and fractal opening/closing animations. Use its
-[combined configuration](families/psychedelic/config.toml).
+**Umbriel After Dark** groups coordinated cursor, border, window, screen,
+opening and closing effects. **Psychedelic** groups a fractal workspace iris,
+a rolling border with its inward overlay, a subtle window veil and
+opening/closing animations. Choose either family in the plugin to select its
+members and **Apply family**. Membership and defaults are declared in
+[families.toml](families.toml); each shader keeps its own files and settings.
 
 [**Witching Hour**](animation/witching-hour/) adds a Halloween workspace reveal:
 a ragged orange-and-green fire portal unveils the next workspace in place.
@@ -467,12 +465,13 @@ bioluminescence deliberately stays blue-green, controlled by `BIO_COLOUR`.
 
 The local catalogue covers 142 licensed presets and ten families. Each effect's
 `metadata.toml` supplies its display name, description, contributor, licence
-notices, tags and supported uses. `families/<name>/family.toml` groups related
-members; each member can still be applied independently. Existing presets and
+notices, tags and supported uses. `families.toml` groups related
+members; each member can still be applied independently. Families have no folders,
+copied assets or separate activation configs. Existing presets and
 shader files remain the source of installation dependencies.
 
 Only entries with `publish = true` in `metadata.toml` appear in generated
-catalogues. Families opt in separately with the same field in `family.toml`.
+catalogues. Families opt in separately with the same field in each `[families.<id>]` definition.
 Omitting it means `false`. Tags describe the shader; they do not publish it.
 The existing 142 entries and ten families are explicitly opted in. Experimental
 folders can remain in the repository without appearing in the catalogue.

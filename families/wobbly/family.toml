@@ -1,5 +1,0 @@
-publish = true
-name = "Wobbly"
-description = "Elastic window movement with matching opening and closing deformation."
-members = ["animation/wobbly-lifecycle", "animation/wobbly-move"]
-tags = ["playful"]

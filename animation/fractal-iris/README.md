@@ -14,8 +14,7 @@ frames backwards to show how the folds close when progress reverses.
 Install the collection at `~/.config/umbriel/shaders/community/` and merge
 [config.toml](config.toml) into your existing configuration tables, appending
 its include paths. Do not include the activation example as a preset or repeat
-existing TOML tables. See the [Psychedelic family](../../families/psychedelic/) for
-all four effects together.
+existing TOML tables. Choose **Psychedelic → Apply family** in the plugin to apply the coordinated effects.
 
 ## Tuning
 
@@ -48,7 +47,7 @@ alpha. An additional mask check confirmed detached openings appearing and
 merging across the transition. The native preview contains 26 compositor frames.
 
 The preview is a real headless compositor capture over synthetic content.
-See [family validation](../../families/psychedelic/README.md#validation) for tested
+See [family validation](../../VALIDATION.md#psychedelic-effects-2026-10-25) for tested
 versions and limitations. Still images do not demonstrate motion quality.
 
 Original procedural shader by Barrulus. [MIT licensed](../../LICENSES/Barrulus-MIT.txt).

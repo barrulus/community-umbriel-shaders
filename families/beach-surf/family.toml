@@ -1,5 +1,0 @@
-publish = true
-name = "Beach Surf"
-description = "Coordinated surf and foam around windows and through their transitions."
-members = ["animation/beach-surf-animation", "border/beach-surf", "window/beach-surf-overlay"]
-tags = ["water", "nature"]

@@ -1,5 +1,0 @@
-publish = true
-name = "Vampire"
-description = "Blood-washed transitions, a heartbeat border and a bat-filled cursor trail."
-members = ["animation/blood-in", "animation/blood-out", "border/heartbeat", "animation/vampire-blood-wash", "animation/blood-sweep", "cursor/vampire-wake"]
-tags = ["horror", "blood"]

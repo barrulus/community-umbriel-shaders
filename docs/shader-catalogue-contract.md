@@ -1,7 +1,7 @@
 # Draft: community shader metadata and catalogue API
 
-**Status:** Contract under review; generator, validator and a local Noctalia plugin consumer cover 138 licensed effects and ten families. API publication and website delivery remain unimplemented.  
-**Audience:** Lemmy and Lysec, repository contributors/maintainers, and Noctalia website and Shaders plugin maintainers.  
+**Status:** Contract under review; generator, validator and a local Noctalia plugin consumer cover 142 licensed effects and ten families. API publication and website delivery remain unimplemented.
+**Audience:** Lemmy and Lysec, repository contributors/maintainers, and Noctalia website and Shaders plugin maintainers.
 **Related:** [Overall proposal](../shader-catalogue-proposal.md).
 
 This contract covers a small authoring format, generated JSON, publication to Noctalia infrastructure, website discovery, and selective installation and configuration through a Noctalia Shaders plugin. Manual downloads and configuration guidance remain available. It requires no compositor changes or access to Noctalia's private API implementation. Endpoint names and field choices below are proposed for review.
@@ -12,7 +12,7 @@ This contract covers a small authoring format, generated JSON, publication to No
 
 **One contribution per PR can be one effect or a complete family.** A contributor can supply ready-to-use metadata or simply explain what they made, where it should apply, what files belong to it, and its authorship/provenance. Tooling and maintainers help prepare the publication format. Using an LLM does not change the review requirements.
 
-Metadata required for publication is not a prerequisite for asking for help with a submission. Family definitions can be authored by contributors or maintainers. Tags, family membership, and bespoke family artwork are optional; verified uses and licence permission cannot be guessed.
+Metadata required for publication is not a prerequisite for asking for help with a submission. Family definitions can be authored by contributors or maintainers. Tags and family membership are optional; verified uses and licence permission cannot be guessed.
 
 | Owner | Responsibility |
 | --- | --- |
@@ -99,13 +99,22 @@ Combine requirements from every selected effect and its transitive dependencies,
 
 ### Families
 
-`families/<slug>/family.toml` needs `name`, `description`, and a nonempty `members` array of effect IDs. `tags` is optional. `publish` is a boolean defaulting to `false`, just as for effects. The family ID is the folder slug, in a separate namespace from effect IDs.
+Root `families.toml` contains `[families.<id>]` tables with `name`,
+`description` and a nonempty `members` array of effect IDs. `tags` is optional;
+`publish` is boolean and defaults to `false`. IDs are stable lowercase slugs in
+a separate namespace from effect IDs. There are no family directories or copied
+files. Metadata is never included in Umbriel configuration.
 
 Only explicitly published effects and families enter the generated registry. Filtering happens before reading their presets, media or notices, so unpublished entries add no files or backlinks. Published effects cannot depend on unpublished effects, and published families cannot include unpublished members; these are generation errors rather than silent omissions. `--draft --include-unpublished` is an explicit local authoring mode and cannot be used for production generation. Maintainer approval is enforced by repository review rules, not inferred from a contributor-supplied field; see [publication and review](catalogue-publication.md).
 
-Member order is display order. Membership is declared only here; the generator adds reverse links to effects. Credits and installation requirements come from selected members and dependencies. A family may contain alternatives for one slot. It need not have a bespoke preview: a page can show its member previews.
+Member order is display order. Membership is declared only here; the generator adds reverse links to effects. Credits and installation requirements come from selected members and dependencies. A family may contain alternatives for one slot. Family views compose existing member previews.
 
-An optional adjacent `config.toml` describes a coordinated selection, as illustrated by the draft Vampire family below. The proposed `families/` area is not yet part of the committed repository. A family configuration does not have to select every member. Its selections must refer to members with the appropriate supported uses. Dependencies can supply preset definitions but are not automatically selected as independent effects.
+Optional `[families.<id>.defaults]` maps supported slots to member IDs.
+Each selection must belong to the family and declare that use. The generator
+builds recommendations from the selected members' existing activation recipes;
+it does not accept family-specific runtime settings. Missing defaults leave
+alternatives for the user to choose. Previews are composed from member previews.
+No family README, preview or configuration is copied into the download manifest.
 
 ## 4. Review examples
 
@@ -115,10 +124,13 @@ The [example directory](catalogue-examples/) mirrors the intended metadata locat
 | --- | --- |
 | [Glow](catalogue-examples/cursor/glow/metadata.toml) | Standalone effect; inferred persistent use; existing upstream attribution. |
 | [Workspace Iris](catalogue-examples/animation/workspace-iris/metadata.toml) | Explicit workspace use, required reveal mode, two notices. |
-| [Vampire](catalogue-examples/families/vampire/family.toml) | Contributor-authored family spanning opening, closing, border, workspace, and cursor effects. |
+| [Vampire](catalogue-examples/families.toml) | Contributor-authored family spanning opening, closing, border, workspace, and cursor effects. |
 | [Flowering Vine](catalogue-examples/border/flowering-vine/metadata.toml) | A required overlay stored under a different kind. |
 
-Vampire includes Blood In, Blood Out, Heartbeat, Vampire Blood Wash, and Vampire Wake, all present in the current checkout. The [draft coordinated configuration](catalogue-examples/families/vampire/config.toml) combines their current examples. This is an illustrative membership/configuration for review, not a new published family or claim that the complete combination has been visually tested.
+Vampire includes Blood In, Blood Out, Heartbeat, Vampire Blood Wash and Vampire
+Wake. The [draft family metadata](catalogue-examples/families.toml) recommends
+member selections. Their settings are derived from the actual shader examples;
+there is no separate family configuration.
 
 [registry.example.json](catalogue-examples/registry.example.json) shows the corresponding generated output, including real file sizes and SHA-256 values from the current checkout. It is a nine-effect subset, not the full repository.
 
@@ -152,7 +164,12 @@ Each effect record contains:
 - `preview`: `{image, animation}`, each a path or `null`; `readme` and `config_example`, each a path or `null`.
 - `activation`: a generated, restricted recipe as defined below, or `null` when the example cannot be represented safely.
 
-Family records contain `id`, `path`, `name`, `description`, `members`, `tags`, derived `authors`, `preview`, `activation` (recipe or `null`), and optional `readme` and `config_example`. They do not copy their members' effect records. The draft Vampire record has no live family README, preview, or configuration path; its example recipe is derived from the separately supplied draft configuration, not from a published family file.
+Family records contain `id`, `name`, `description`, `members`, `tags`, derived
+`authors` and `activation` (derived recommendations or `null`). For the shared
+presentation interface, `preview.image`, `preview.animation`, `readme` and
+`config_example` are null; clients compose member previews and metadata. There
+is no family filesystem `path`. Members' effect records and assets are referenced,
+never copied.
 
 All arrays use stable ordering. Missing authoring options become explicit empty arrays/maps or the documented defaults in generated JSON. File sizes are integer byte counts; checksums are lowercase SHA-256 hex strings. They detect mismatched bytes, not trustworthiness of the author or server.
 
@@ -175,7 +192,7 @@ For v1, approved recipe settings are the four persistent selectors and the suppo
 
 Required conditions cannot select additional effects. The initial generator rejects effect selectors in `required_settings`. Its selection helper reports requirements outside the chosen slots separately as prerequisites for review, rather than silently adding settings for another slot. The first manual-only example settings supported by the validator are `effects.max_fps` and `effects.in_capture`; these produce a diagnostic and `activation: null`. Further settings require explicit policy review.
 
-A family recipe can recommend one preset per slot; membership alone does not choose among alternatives. For every application, whether an individual effect or a family, resolve includes from the chosen effects and dependencies, keep only the settings for the chosen slots, and review their shared prerequisites. Never apply the full recipe merely because one effect or member was selected. For example, selecting Wobbly Lifecycle for window opening applies its opening settings but leaves the closing selection and timing unchanged, even though its example configures both. Competing selections for one slot require a choice.
+Family defaults can recommend one member per slot; membership alone does not choose among alternatives. For every application, whether an individual effect or a family, resolve includes from the chosen effects and dependencies, keep only the settings for the chosen slots, and review their shared prerequisites. Never apply the full recipe merely because one effect or member was selected. For example, selecting Wobbly Lifecycle for window opening applies its opening settings but leaves the closing selection and timing unchanged, even though its example configures both. Competing selections for one slot require a choice.
 
 ### Application scope and local window rules
 
@@ -341,17 +358,16 @@ manual variants; they are not separately packaged presets in this catalogue.
 
 Ten families are represented: After Dark, Beach Surf, Diwali, Flowering Vine,
 Ghostly Tear, kzzzt, Paper, Psychedelic, Vampire and Wobbly. Membership follows
-documented groupings, pairings and related-effects sections. Family documentation,
-previews and recipes live under `families/`, with no duplicate `packs/` tree.
-After Dark and Psychedelic retain their combined previews and recipes; other family
-cards compose member previews. Family pages group members by declared use,
+documented groupings, pairings and related-effects sections. All definitions live
+in root `families.toml`; family cards compose existing member previews. Default
+selections reference member IDs and reuse their activation settings. Family pages group members by declared use,
 preserve a route back from each member, and expose a fixed **Apply family** action.
 The selected uses are prepared and validated as one transaction. Uses with one
 member or an explicit family recommendation are preselected; competing members
 require a choice or **Keep current**. Skipped uses and unrelated runtime overrides
 remain untouched. Companion overlays are resolved by their border, not selected
 as global window effects. One Undo restores the whole previous combination;
-partial failure rolls back all affected uses. Family-specific settings remain
+partial failure rolls back all affected uses. Selected member settings remain
 in effect when a later action changes an unrelated use.
 Three overlays (Diya Glow, Fractal Flow and Something’s Watching) remain
 companion-only; their examples select the parent border and are not standalone
