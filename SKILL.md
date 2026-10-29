@@ -16,6 +16,7 @@ nearby preset of the requested kind. Follow their directory, naming, licensing,
 attribution, preview, and catalog conventions; do not invent a repository
 manifest format.
 When adapting someone else's shader, retain required attribution and license.
+Do not add Codex or other AI-assistance attribution to shaders or their documentation.
 
 Choose the kind by where the effect must run. Infer it from the request when
 clear; clarify when the choice would change the result. Keep the work within
@@ -59,6 +60,13 @@ Use a top-level kind directory and a lowercase kebab-case effect directory:
 `<kind>/<name>/`. Include `shader.glsl`, `effect.toml`, a copyable `config.toml`,
 and a README with a preview, compatibility, tuning, cost, attribution, and
 license. Update the relevant category page when adding a preset.
+
+Add catalogue `metadata.toml` with `publish = false` for new submissions.
+Maintainers approve `publish = true` after review and testing; tags do not control
+publication. Families use the same flag in `family.toml`. To validate unpublished
+metadata locally, run `python3 tools/catalogue.py --draft --include-unpublished
+--output /tmp/catalogue-development.json` (as one command). See
+[publication and review](docs/catalogue-publication.md).
 
 Choose a distinctive preset name: names are shared across all included files
 and kinds, duplicate definitions are errors, and `off` is reserved. Quote TOML
@@ -251,6 +259,13 @@ run per window, while screen and cursor effects also prevent direct scanout
 on affected outputs.
 
 ## Validate and deliver
+
+For a contributor preview of one preset, use the installed compositor through
+`python3 tools/render-preview.py <kind>/<name>`. Read [the tool instructions](tools/README.md)
+for dependencies and animation options. This writes `<kind>/<name>/preview.png`
+using synthetic content in a private headless session. Inspect the image and
+describe it accurately; it is a real compositor capture rather than the older
+offscreen preview format. No batch generation or personal-config changes are needed.
 
 1. Check the TOML, unique preset name, matching kind/entry point, relative file
    paths, source size, and absence of unsupported keys or foreign shader inputs.

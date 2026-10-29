@@ -1,0 +1,9 @@
+publish = true
+name = "Rainbow Overlay"
+description = "The inner-window half of the rainbow border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/rainbow-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["colourful"]
+role = "companion"

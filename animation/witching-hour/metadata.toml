@@ -1,0 +1,14 @@
+publish = true
+name = "Witching Hour"
+description = "A ragged portal burns through the entire outgoing scene, revealing the next one in place, including wallpaper, windows, decorations and shell surfaces."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/witching-hour/README.md"]
+uses = ["animation.workspaces"]
+tags = ["fire", "horror", "fantasy"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

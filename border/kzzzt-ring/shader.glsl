@@ -47,14 +47,19 @@ float sr_sq(float x) {
     return x * x;
 }
 
-float audio_live() {
-    return umbriel_audio_available() * smoothstep(SILENCE_LOW, SILENCE_HIGH, umbriel_audio_level());
+// Sample low, middle and high spectrum positions for a simple activity estimate.
+float audio_level() {
+    return max(umbriel_audio_spectrum(0.08),
+        max(umbriel_audio_spectrum(0.4), umbriel_audio_spectrum(0.7)));
 }
 
-// One level and no spectrum, so each band is the level with its own flutter: steadier low, spikier high.
+float audio_live() {
+    return umbriel_audio_available() * smoothstep(SILENCE_LOW, SILENCE_HIGH, audio_level());
+}
+
+// Read the real spectrum: low positions drive bass, high positions drive treble.
 float au_band(float pos) {
-    float flutter = sr_hash(vec2(floor(pos * 16.0), floor(umbriel_time * 12.0)));
-    return audio_live() * umbriel_audio_level() * mix(1.0, flutter, 0.35 + 0.65 * pos);
+    return audio_live() * umbriel_audio_spectrum(pos);
 }
 
 vec2 sr_segment(vec2 p, vec2 a, vec2 b) {
@@ -156,7 +161,7 @@ vec4 border(vec2 uv) {
         && sr_hash(vec2(slot, 13.7 + seed)) < FLINCH_CHANCE) ? 1.0 : 0.0;
     // Audio drives it: level lifts the glow, bass pulses the current, treble widens the split. The flinch stays on its timer.
     float au = audio_live();
-    float lvl = au * umbriel_audio_level();
+    float lvl = au * audio_level();
     float bass = au_band(0.08);
     float treble = au_band(0.7);
     float ttick = tick + 13.0 * floor(bass * 5.0 + treble * 3.0);

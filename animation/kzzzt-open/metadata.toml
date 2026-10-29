@@ -1,0 +1,8 @@
+publish = true
+name = "kzzzt Open"
+description = "Opening strikes the window into being with one overexposed, torn frame, then it stutters in through displaced bands and phosphor bloom while circuit traces flare at its edges and settle."
+author = "weegs710"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/weegs710-MIT.txt", "animation/kzzzt-open/README.md"]
+uses = ["animation.windows_in"]
+tags = ["glitch", "circuit"]

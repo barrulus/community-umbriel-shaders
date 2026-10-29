@@ -1,0 +1,6 @@
+# Activate the border; it includes and selects this overlay automatically.
+[include]
+files = ["shaders/community/border/fractal-flow/effect.toml"]
+
+[effects]
+border = "psychedelic.fractal-flow"

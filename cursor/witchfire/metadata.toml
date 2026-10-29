@@ -1,0 +1,11 @@
+publish = true
+name = "Witchfire"
+description = "A long green witchfire ribbon follows a time-weighted Catmull–Rom curve."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/witchfire/README.md"]
+uses = ["effects.cursor"]
+tags = ["fire", "horror", "fantasy"]
+
+[requirements]
+features = ["cursor-pointer-history"]

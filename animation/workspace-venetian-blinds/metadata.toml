@@ -1,0 +1,14 @@
+publish = true
+name = "Workspace Venetian Blinds"
+description = "Horizontal slats turn in perspective and cascade to edge-on, revealing the destination between them."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/workspace-venetian-blinds/README.md"]
+uses = ["animation.workspaces"]
+tags = ["geometric"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

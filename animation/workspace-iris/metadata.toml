@@ -1,0 +1,15 @@
+publish = true
+tested_on = ["0.1.0 (2145668)"]
+name = "Workspace Iris"
+description = "A clean circular aperture opens from the centre, revealing the incoming scene without moving either image."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "animation/workspace-iris/README.md"]
+uses = ["animation.workspaces"]
+tags = ["geometric", "minimal"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

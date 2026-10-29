@@ -1,0 +1,14 @@
+publish = true
+name = "Workspace Burn"
+description = "A noisy advancing burn front consumes the outgoing scene, with a narrow orange hot rim and a broader charred edge."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/workspace-burn/README.md"]
+uses = ["animation.workspaces"]
+tags = ["fire"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

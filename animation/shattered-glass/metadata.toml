@@ -1,0 +1,8 @@
+publish = true
+name = "Shattered Glass"
+description = "Opening reassembles an irregular fracture map."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/shattered-glass/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["particles"]

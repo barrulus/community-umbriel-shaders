@@ -1,0 +1,5 @@
+publish = true
+name = "After Dark"
+description = "Pumpkin vines, witchfire, haunted glass and fog for a Halloween desktop."
+members = ["cursor/witchfire", "border/somethings-watching", "window/somethings-watching-overlay", "window/haunted-glass", "screen/midnight-fog", "animation/crescent-reveal", "animation/candle-snuff"]
+tags = ["horror", "fire"]

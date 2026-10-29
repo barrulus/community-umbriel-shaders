@@ -1,0 +1,8 @@
+publish = true
+name = "Cursor Sparkle"
+description = "Five theme-coloured dots orbit the pointer at a wavering distance."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/cursor-sparkle/README.md"]
+uses = ["effects.cursor"]
+tags = ["glow", "colourful"]

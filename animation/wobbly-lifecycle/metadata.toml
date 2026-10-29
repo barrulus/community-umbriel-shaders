@@ -1,0 +1,8 @@
+publish = true
+name = "Wobbly Lifecycle"
+description = "Elastic-sheet deformation for opening and closing windows."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/wobbly-lifecycle/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["playful"]

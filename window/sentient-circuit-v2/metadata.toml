@@ -1,0 +1,8 @@
+publish = true
+name = "Sentient Circuit V2"
+description = "Growing, pulsing, and decaying circuit colonies in copper and pollen tones."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/sentient-circuit-v2/README.md"]
+uses = ["effects.window"]
+tags = ["circuit"]

@@ -1,0 +1,8 @@
+publish = true
+name = "RGB Border"
+description = "An RGB-coloured edge treatment inside the window content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/rgb-border/README.md"]
+uses = ["effects.window"]
+tags = ["colourful"]

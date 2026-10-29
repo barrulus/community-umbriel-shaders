@@ -1,0 +1,8 @@
+publish = true
+name = "Old TV"
+description = "Closing collapses the picture into a horizontal phosphor line, then a brighter central blink that lingers before winking out."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/old-tv/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["retro"]

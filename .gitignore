@@ -1,0 +1,5 @@
+# Local shader experiments, future plans, and generated previews.
+/experimental-future/
+
+# Local packaging archive; source scripts are tracked individually.
+/tools/tools.tar.gz

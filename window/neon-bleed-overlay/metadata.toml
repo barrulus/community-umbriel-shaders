@@ -1,0 +1,9 @@
+publish = true
+name = "Neon Bleed Overlay"
+description = "The inner-window half of the neon-bleed border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/neon-bleed-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["glow"]
+role = "companion"

@@ -1,0 +1,8 @@
+publish = true
+name = "TV Glitch"
+description = "An old CRT switching on and off: the picture tears into horizontally displaced, tinted noise bands, then collapses into a bright line and a dot."
+author = "Simon Schneegans; port by Barrulus"
+license = "GPL-3.0-or-later"
+notice_files = ["LICENSES/BurnMyWindows-GPL-3.0-or-later.txt", "animation/tv-glitch/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["glitch", "retro"]

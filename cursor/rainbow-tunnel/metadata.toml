@@ -1,0 +1,8 @@
+publish = true
+name = "Rainbow Tunnel"
+description = "A colourful tunnel centred on the pointer, with a surrounding ring."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/rainbow-tunnel/README.md"]
+uses = ["effects.cursor"]
+tags = ["geometric", "psychedelic", "colourful"]

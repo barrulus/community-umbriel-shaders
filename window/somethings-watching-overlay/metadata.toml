@@ -1,0 +1,9 @@
+publish = true
+name = "Something’s Watching Overlay"
+description = "The inward portion of the Pumpkin Parade border: twisting vines, growing jack-o’-lanterns, blinking cat eyes and marching skeletons."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/somethings-watching-overlay/README.md"]
+uses = []
+tags = ["horror"]
+role = "companion"

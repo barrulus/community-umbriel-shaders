@@ -1,0 +1,6 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = ["shaders/community/cursor/witchfire/effect.toml"]
+
+[effects]
+cursor = "after-dark.witchfire"

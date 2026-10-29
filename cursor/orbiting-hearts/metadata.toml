@@ -1,0 +1,8 @@
+publish = true
+name = "Orbiting Hearts"
+description = "Six small hearts share an evenly spaced orbit around the pointer."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/orbiting-hearts/README.md"]
+uses = ["effects.cursor"]
+tags = ["playful", "romantic"]

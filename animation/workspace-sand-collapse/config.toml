@@ -1,0 +1,13 @@
+# Merge into existing tables; append the include path.
+[include]
+files = ["shaders/community/animation/workspace-sand-collapse/effect.toml"]
+
+[animation]
+enabled = true
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "workspace-sand-collapse"
+duration_ms = 1400
+curve = "linear"

@@ -1,6 +1,6 @@
 # kzzzt Ring
 
-A glitching circuit-trace ring around the focused window, with travelling arcs, dashes, and hollow tendrils, colour-split glitches, scanlines, and a slow roll. It reacts to sound when something feeds Umbriel an audio level and has a steady idle look when nothing does.
+A glitching circuit-trace ring around the focused window, with travelling arcs, dashes, and hollow tendrils, colour-split glitches, scanlines, and a slow roll. It reacts to sound when something feeds Umbriel an audio spectrum and has a steady idle look when nothing does.
 
 ![Frame of kzzzt Ring](preview.png)
 
@@ -28,7 +28,19 @@ Borders apply to the focused, decorated window. Fullscreen and urgent windows do
 
 ## Audio
 
-Audio is optional. Umbriel can hand effects one level from 0 to 1 that a program of your choice sends it; see [Audio input](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/ipc.md#audio-input) for how a program does that. This collection does not include such a program.
+Audio is optional. Current Umbriel supplies a 64-band spectrum through
+`umbriel_audio_spectrum(position)`, replacing the old `umbriel_audio_level()`
+helper. This shader estimates overall activity from three low/middle/high
+positions and reads bass and treble separately. Positions run from low to high;
+they do not promise particular frequency centers.
+
+In Noctalia, enable **Settings → Umbriel → Audio → Provide Audio to Umbriel**
+(disabled by default), or set `umbriel_audio_provider_enabled = true`
+in Noctalia's existing `[shell]` configuration table. See [provider setup](../../border/accent-pulse/README.md#optional-audio-response)
+for the copyable TOML and troubleshooting. Older Noctalia and other shells can
+use the [standalone Python analyser](../../tools/README.md#standalone-audio-analyser).
+Other providers must use the current
+[spectrum IPC](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/ipc.md#audio-input).
 
 - With nothing feeding Umbriel, or a program that is running while nothing plays, kzzzt Ring shows its idle look: a steady ring with its tendrils. Silence below a level of about 0.02 counts as nothing playing.
 - With a program feeding it sound, the current and tendrils follow the level, bass pulses the current, and treble widens the colour split.
@@ -91,7 +103,7 @@ Save and reload; see [reloading edits](../../README.md#reloading-edits).
 
 ## Compatibility and cost
 
-Requires an Umbriel build that includes [`105e1bc8`](https://github.com/noctalia-dev/umbriel/commit/105e1bc8), which added the audio level the shader reads; older builds were not tested. See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. The shader reads `umbriel_time`, so it keeps requesting frames while a window is focused. It takes no samples of the window and evaluates its ring shape three times per border fragment, with bounded loops. This adds a focused-border pass plus compositor light and blur. No performance benchmark is claimed.
+Requires the spectrum audio API, verified with Umbriel [`76477c29`](https://github.com/noctalia-dev/umbriel/commit/76477c29). Builds exposing only the old scalar audio helper cannot compile this version. See [validation and limitations](../../VALIDATION.md). No previous-frame feedback buffers are used. The shader reads `umbriel_time`, so it keeps requesting frames while a window is focused. It takes no samples of the window and evaluates its ring shape three times per border fragment, with bounded loops. This adds a focused-border pass plus compositor light and blur. No performance benchmark is claimed.
 
 ## Attribution
 

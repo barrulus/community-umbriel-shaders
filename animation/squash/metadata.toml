@@ -1,0 +1,8 @@
+publish = true
+name = "Squash"
+description = "A bundled squash deformation for window movement."
+author = "Noctalia"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "animation/squash/README.md"]
+uses = ["animation.windows_move"]
+tags = ["minimal", "playful"]

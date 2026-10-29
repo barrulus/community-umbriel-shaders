@@ -1,0 +1,5 @@
+publish = true
+name = "Flowering Vine"
+description = "A flowering vine border and its matching inward decoration."
+members = ["border/flowering-vine", "window/flowering-vine-overlay"]
+tags = ["nature"]

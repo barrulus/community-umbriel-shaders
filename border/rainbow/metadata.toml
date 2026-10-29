@@ -1,0 +1,8 @@
+publish = true
+name = "Rainbow"
+description = "A glossy rainbow ripple around the window edge."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/rainbow/README.md"]
+uses = ["effects.border"]
+tags = ["colourful"]

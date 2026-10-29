@@ -1,0 +1,8 @@
+publish = true
+name = "Paper Content"
+description = "Neutral white crumpled stationery, with static fibres and folds behind the content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/paper-content/README.md"]
+uses = ["effects.window"]
+tags = ["texture"]

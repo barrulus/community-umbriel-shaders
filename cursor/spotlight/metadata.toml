@@ -1,0 +1,8 @@
+publish = true
+name = "Spotlight"
+description = "A spotlight centred on the pointer shades the rest of the output."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/spotlight/README.md"]
+uses = ["effects.cursor"]
+tags = ["minimal"]

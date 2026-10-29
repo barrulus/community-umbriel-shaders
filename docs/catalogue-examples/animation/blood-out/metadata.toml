@@ -1,0 +1,10 @@
+publish = true
+# Review example; intended location: animation/blood-out/metadata.toml
+name = "Blood Out"
+description = "The window drains away in a wave of blood."
+author = "WinterMyst"
+license = "MIT"
+notice_files = ["animation/blood-out/README.md"]
+uses = ["animation.windows_out"]
+tags = ["horror", "blood"]
+tested_on = ["6adcbc043c74"]

@@ -1,0 +1,31 @@
+# Merge into ~/.config/umbriel/config.toml; append includes and merge existing tables.
+[include]
+files = [
+  "shaders/community/cursor/witchfire/effect.toml",
+  "shaders/community/border/somethings-watching/effect.toml",
+  "shaders/community/window/haunted-glass/effect.toml",
+  "shaders/community/screen/midnight-fog/effect.toml",
+  "shaders/community/animation/crescent-reveal/effect.toml",
+  "shaders/community/animation/candle-snuff/effect.toml",
+]
+
+[effects]
+cursor = "after-dark.witchfire"
+border = "after-dark.somethings-watching"
+window = "after-dark.haunted-glass"
+screen = "after-dark.midnight-fog"
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "after-dark.crescent-reveal"
+duration_ms = 1300
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "after-dark.candle-snuff"
+duration_ms = 240
+curve = "linear"

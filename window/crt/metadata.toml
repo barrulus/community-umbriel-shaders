@@ -1,0 +1,8 @@
+publish = true
+name = "CRT"
+description = "A CRT-style treatment of the window image."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/crt/README.md"]
+uses = ["effects.window"]
+tags = ["retro"]

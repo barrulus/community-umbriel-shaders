@@ -1,0 +1,11 @@
+publish = true
+name = "Starlight"
+description = "A subtle version of Pond Wake: softly refracted desktop content and sparse white sparkles that drift, curl and flash behind the pointer."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/starlight/README.md"]
+uses = ["effects.cursor"]
+tags = ["minimal", "glow", "space"]
+
+[requirements]
+features = ["cursor-pointer-history"]

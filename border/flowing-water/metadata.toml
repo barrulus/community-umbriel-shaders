@@ -1,0 +1,8 @@
+publish = true
+name = "Flowing Water"
+description = "Circulating swells, curling crests, and airborne spray around the window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/flowing-water/README.md"]
+uses = ["effects.border"]
+tags = ["water"]

@@ -1,0 +1,9 @@
+publish = true
+name = "Cartoon Chase Overlay"
+description = "The inner-window half of the cartoon-chase border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/cartoon-chase-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["playful"]
+role = "companion"

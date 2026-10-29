@@ -1,0 +1,8 @@
+publish = true
+name = "Water Splash"
+description = "A water-drop impact seen from above, intended for closing windows."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/water-splash/README.md"]
+uses = ["animation.windows_out"]
+tags = ["water"]

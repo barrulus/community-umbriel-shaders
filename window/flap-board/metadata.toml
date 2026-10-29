@@ -1,0 +1,8 @@
+publish = true
+name = "Flap Board"
+description = "Rectangular flaps turn in travelling waves, revealing inverted live content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/flap-board/README.md"]
+uses = ["effects.window"]
+tags = ["retro", "geometric"]

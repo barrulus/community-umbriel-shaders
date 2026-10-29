@@ -1,0 +1,8 @@
+publish = true
+name = "Dual Orbit"
+description = "A steady accent border with two brighter highlights travelling clockwise, half a perimeter apart."
+author = "neonvoidx"
+license = "MIT"
+notice_files = ["LICENSES/neonvoidx-MIT.txt", "border/dual-orbit/README.md"]
+uses = ["effects.border"]
+tags = ["minimal", "glow"]

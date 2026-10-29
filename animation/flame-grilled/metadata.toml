@@ -1,0 +1,8 @@
+publish = true
+name = "Flame Grilled"
+description = "Opening sweeps tall, rolling flames downward and leaves the window behind."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/flame-grilled/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["fire"]

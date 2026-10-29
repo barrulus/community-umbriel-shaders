@@ -1,0 +1,9 @@
+publish = true
+tested_on = ["6adcbc043c74"]
+name = "Blood In"
+description = "Wave of blood reveals the window top to bottom."
+author = "WinterMyst"
+license = "MIT"
+notice_files = ["animation/blood-in/README.md"]
+uses = ["animation.windows_in"]
+tags = ["horror", "blood"]

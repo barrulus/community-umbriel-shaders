@@ -1,0 +1,8 @@
+publish = true
+name = "Fractal Veil"
+description = "Small kaleidoscopic rosettes fill the window with fine moving detail."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/fractal-veil/README.md"]
+uses = ["effects.window"]
+tags = ["geometric", "psychedelic"]

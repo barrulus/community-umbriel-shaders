@@ -1,0 +1,8 @@
+publish = true
+name = "Seeing Stars"
+description = "Cartoon birds and tumbling stars circle the pointer."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/seeing-stars/README.md"]
+uses = ["effects.cursor"]
+tags = ["colourful", "space", "playful"]

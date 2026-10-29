@@ -1,0 +1,5 @@
+[include]
+files = ["shaders/community/window/speaker-ripple/effect.toml"]
+
+[effects]
+window = "window.speaker-ripple"

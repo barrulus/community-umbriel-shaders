@@ -1,0 +1,12 @@
+publish = true
+# Review example; intended location: cursor/vampire-wake/metadata.toml
+name = "Vampire Wake"
+description = "A crimson cursor ribbon with wisps, falling sparks, and bat silhouettes."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/vampire-wake/README.md"]
+tags = ["horror", "blood"]
+tested_on = ["0.1.0 (2145668)"]
+
+[requirements]
+features = ["cursor-pointer-history"]

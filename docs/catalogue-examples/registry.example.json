@@ -1,0 +1,779 @@
+{
+  "schema_version": 1,
+  "draft": true,
+  "source": {
+    "repository": "https://github.com/noctalia-dev/community-umbriel-shaders",
+    "revision": null
+  },
+  "feature_definitions": {
+    "preset-effects": "Umbriel named effect presets and selectors; the original preset API was introduced at 512e2fb3.",
+    "workspace-reveal-full-scene": "Full-scene workspace reveal: outgoing and incoming scene sampling, including umbriel_sample_incoming, with reveal mode. Older root-mask and scene-v1 interfaces are incompatible.",
+    "cursor-pointer-history": "Cursor pointer history via umbriel_pointer_count and umbriel_pointer_path[64]."
+  },
+  "effects": [
+    {
+      "id": "animation/blood-in",
+      "path": "animation/blood-in",
+      "name": "Blood In",
+      "description": "A descending wave of blood reveals the window.",
+      "author": "WinterMyst",
+      "license": "MIT",
+      "notice_files": [
+        "animation/blood-in/README.md"
+      ],
+      "tags": [
+        "horror",
+        "blood"
+      ],
+      "role": "effect",
+      "kind": "animation",
+      "preset": "blood-drip-in",
+      "uses": [
+        "animation.windows_in"
+      ],
+      "dependencies": [],
+      "families": [
+        "vampire"
+      ],
+      "requirements": {
+        "features": [
+          "preset-effects"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [
+        "6adcbc043c74"
+      ],
+      "install_files": [
+        "animation/blood-in/README.md",
+        "animation/blood-in/effect.toml",
+        "animation/blood-in/shader.glsl"
+      ],
+      "preview": {
+        "image": "animation/blood-in/preview.png",
+        "animation": null
+      },
+      "readme": "animation/blood-in/README.md",
+      "config_example": "animation/blood-in/config.toml",
+      "activation": {
+        "include": [
+          "animation/blood-in/effect.toml"
+        ],
+        "settings": {
+          "animation.enabled": true,
+          "animation.windows_in.curve": "linear",
+          "animation.windows_in.duration_ms": 700,
+          "animation.windows_in.effect": "blood-drip-in",
+          "animation.windows_in.enabled": true
+        }
+      }
+    },
+    {
+      "id": "animation/blood-out",
+      "path": "animation/blood-out",
+      "name": "Blood Out",
+      "description": "The window drains away in a wave of blood.",
+      "author": "WinterMyst",
+      "license": "MIT",
+      "notice_files": [
+        "animation/blood-out/README.md"
+      ],
+      "tags": [
+        "horror",
+        "blood"
+      ],
+      "role": "effect",
+      "kind": "animation",
+      "preset": "blood-drain-out",
+      "uses": [
+        "animation.windows_out"
+      ],
+      "dependencies": [],
+      "families": [
+        "vampire"
+      ],
+      "requirements": {
+        "features": [
+          "preset-effects"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [
+        "6adcbc043c74"
+      ],
+      "install_files": [
+        "animation/blood-out/README.md",
+        "animation/blood-out/effect.toml",
+        "animation/blood-out/shader.glsl"
+      ],
+      "preview": {
+        "image": "animation/blood-out/preview.png",
+        "animation": null
+      },
+      "readme": "animation/blood-out/README.md",
+      "config_example": "animation/blood-out/config.toml",
+      "activation": {
+        "include": [
+          "animation/blood-out/effect.toml"
+        ],
+        "settings": {
+          "animation.enabled": true,
+          "animation.windows_out.curve": "linear",
+          "animation.windows_out.duration_ms": 700,
+          "animation.windows_out.effect": "blood-drain-out",
+          "animation.windows_out.enabled": true
+        }
+      }
+    },
+    {
+      "id": "animation/vampire-blood-wash",
+      "path": "animation/vampire-blood-wash",
+      "name": "Vampire Blood Wash",
+      "description": "A glossy diagonal blood wash reveals the next workspace.",
+      "author": "Barrulus",
+      "license": "MIT",
+      "notice_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "animation/vampire-blood-wash/README.md"
+      ],
+      "tags": [
+        "horror",
+        "blood"
+      ],
+      "role": "effect",
+      "kind": "animation",
+      "preset": "vampire-blood-wash",
+      "uses": [
+        "animation.workspaces"
+      ],
+      "dependencies": [],
+      "families": [
+        "vampire"
+      ],
+      "requirements": {
+        "features": [
+          "preset-effects",
+          "workspace-reveal-full-scene"
+        ]
+      },
+      "required_settings": {
+        "animation.workspaces.style": "reveal"
+      },
+      "tested_on": [
+        "0.1.0 (2145668)"
+      ],
+      "install_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "animation/vampire-blood-wash/README.md",
+        "animation/vampire-blood-wash/effect.toml",
+        "animation/vampire-blood-wash/shader.glsl"
+      ],
+      "preview": {
+        "image": "animation/vampire-blood-wash/preview.png",
+        "animation": "animation/vampire-blood-wash/preview.gif"
+      },
+      "readme": "animation/vampire-blood-wash/README.md",
+      "config_example": "animation/vampire-blood-wash/config.toml",
+      "activation": {
+        "include": [
+          "animation/vampire-blood-wash/effect.toml"
+        ],
+        "settings": {
+          "animation.enabled": true,
+          "animation.workspaces.curve": "linear",
+          "animation.workspaces.duration_ms": 1400,
+          "animation.workspaces.effect": "vampire-blood-wash",
+          "animation.workspaces.enabled": true,
+          "animation.workspaces.style": "reveal"
+        }
+      }
+    },
+    {
+      "id": "animation/workspace-iris",
+      "path": "animation/workspace-iris",
+      "name": "Workspace Iris",
+      "description": "A circular aperture reveals the incoming workspace without moving either scene.",
+      "author": "Barrulus",
+      "license": "MIT",
+      "notice_files": [
+        "LICENSES/Noctalia-MIT.txt",
+        "LICENSES/Barrulus-MIT.txt",
+        "animation/workspace-iris/README.md"
+      ],
+      "tags": [
+        "geometric",
+        "minimal"
+      ],
+      "role": "effect",
+      "kind": "animation",
+      "preset": "workspace-iris",
+      "uses": [
+        "animation.workspaces"
+      ],
+      "dependencies": [],
+      "families": [],
+      "requirements": {
+        "features": [
+          "preset-effects",
+          "workspace-reveal-full-scene"
+        ]
+      },
+      "required_settings": {
+        "animation.workspaces.style": "reveal"
+      },
+      "tested_on": [
+        "0.1.0 (2145668)"
+      ],
+      "install_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "LICENSES/Noctalia-MIT.txt",
+        "animation/workspace-iris/README.md",
+        "animation/workspace-iris/effect.toml",
+        "animation/workspace-iris/shader.glsl"
+      ],
+      "preview": {
+        "image": "animation/workspace-iris/preview.png",
+        "animation": "animation/workspace-iris/preview.gif"
+      },
+      "readme": "animation/workspace-iris/README.md",
+      "config_example": "animation/workspace-iris/config.toml",
+      "activation": {
+        "include": [
+          "animation/workspace-iris/effect.toml"
+        ],
+        "settings": {
+          "animation.enabled": true,
+          "animation.workspaces.curve": "linear",
+          "animation.workspaces.duration_ms": 1800,
+          "animation.workspaces.effect": "workspace-iris",
+          "animation.workspaces.enabled": true,
+          "animation.workspaces.style": "reveal"
+        }
+      }
+    },
+    {
+      "id": "border/flowering-vine",
+      "path": "border/flowering-vine",
+      "name": "Flowering Vine",
+      "description": "A flowering vine border with a matching inward overlay.",
+      "author": "Barrulus",
+      "license": "MIT",
+      "notice_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "border/flowering-vine/README.md"
+      ],
+      "tags": [
+        "nature"
+      ],
+      "role": "effect",
+      "kind": "border",
+      "preset": "flowering-vine",
+      "uses": [
+        "effects.border"
+      ],
+      "dependencies": [
+        "window/flowering-vine-overlay"
+      ],
+      "families": [],
+      "requirements": {
+        "features": [
+          "preset-effects"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [],
+      "install_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "border/flowering-vine/README.md",
+        "border/flowering-vine/effect.toml",
+        "border/flowering-vine/shader.glsl"
+      ],
+      "preview": {
+        "image": "border/flowering-vine/preview.png",
+        "animation": null
+      },
+      "readme": "border/flowering-vine/README.md",
+      "config_example": "border/flowering-vine/config.toml",
+      "activation": {
+        "include": [
+          "border/flowering-vine/effect.toml"
+        ],
+        "settings": {
+          "effects.border": "flowering-vine"
+        }
+      }
+    },
+    {
+      "id": "border/heartbeat",
+      "path": "border/heartbeat",
+      "name": "Heartbeat",
+      "description": "A viscous red border with a heartbeat pulse.",
+      "author": "WinterMyst",
+      "license": "MIT",
+      "notice_files": [
+        "border/heartbeat/README.md",
+        "LICENSES/Barrulus-MIT.txt"
+      ],
+      "tags": [
+        "horror",
+        "blood"
+      ],
+      "role": "effect",
+      "kind": "border",
+      "preset": "heartbeat",
+      "uses": [
+        "effects.border"
+      ],
+      "dependencies": [],
+      "families": [
+        "vampire"
+      ],
+      "requirements": {
+        "features": [
+          "preset-effects"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [
+        "6adcbc043c74"
+      ],
+      "install_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "border/heartbeat/README.md",
+        "border/heartbeat/effect.toml",
+        "border/heartbeat/shader.glsl"
+      ],
+      "preview": {
+        "image": "border/heartbeat/preview.png",
+        "animation": null
+      },
+      "readme": "border/heartbeat/README.md",
+      "config_example": "border/heartbeat/config.toml",
+      "activation": {
+        "include": [
+          "border/heartbeat/effect.toml"
+        ],
+        "settings": {
+          "effects.border": "heartbeat"
+        }
+      }
+    },
+    {
+      "id": "cursor/glow",
+      "path": "cursor/glow",
+      "name": "Glow",
+      "description": "A soft theme-accent halo around the pointer.",
+      "author": "Noctalia",
+      "license": "MIT",
+      "notice_files": [
+        "LICENSES/Noctalia-MIT.txt",
+        "cursor/glow/README.md"
+      ],
+      "tags": [
+        "minimal",
+        "glow"
+      ],
+      "role": "effect",
+      "kind": "cursor",
+      "preset": "glow",
+      "uses": [
+        "effects.cursor"
+      ],
+      "dependencies": [],
+      "families": [],
+      "requirements": {
+        "features": [
+          "preset-effects"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [],
+      "install_files": [
+        "LICENSES/Noctalia-MIT.txt",
+        "cursor/glow/README.md",
+        "cursor/glow/effect.toml",
+        "cursor/glow/shader.glsl"
+      ],
+      "preview": {
+        "image": "cursor/glow/preview.png",
+        "animation": null
+      },
+      "readme": "cursor/glow/README.md",
+      "config_example": "cursor/glow/config.toml",
+      "activation": {
+        "include": [
+          "cursor/glow/effect.toml"
+        ],
+        "settings": {
+          "effects.cursor": "glow"
+        }
+      }
+    },
+    {
+      "id": "cursor/vampire-wake",
+      "path": "cursor/vampire-wake",
+      "name": "Vampire Wake",
+      "description": "A crimson cursor ribbon with wisps, falling sparks, and bat silhouettes.",
+      "author": "Barrulus",
+      "license": "MIT",
+      "notice_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "LICENSES/Noctalia-MIT.txt",
+        "cursor/vampire-wake/README.md"
+      ],
+      "tags": [
+        "horror",
+        "blood"
+      ],
+      "role": "effect",
+      "kind": "cursor",
+      "preset": "vampire-wake",
+      "uses": [
+        "effects.cursor"
+      ],
+      "dependencies": [],
+      "families": [
+        "vampire"
+      ],
+      "requirements": {
+        "features": [
+          "preset-effects",
+          "cursor-pointer-history"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [
+        "0.1.0 (2145668)"
+      ],
+      "install_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "LICENSES/Noctalia-MIT.txt",
+        "cursor/vampire-wake/README.md",
+        "cursor/vampire-wake/effect.toml",
+        "cursor/vampire-wake/shader.glsl"
+      ],
+      "preview": {
+        "image": "cursor/vampire-wake/preview.png",
+        "animation": "cursor/vampire-wake/preview.gif"
+      },
+      "readme": "cursor/vampire-wake/README.md",
+      "config_example": "cursor/vampire-wake/config.toml",
+      "activation": {
+        "include": [
+          "cursor/vampire-wake/effect.toml"
+        ],
+        "settings": {
+          "effects.cursor": "vampire-wake"
+        }
+      }
+    },
+    {
+      "id": "window/flowering-vine-overlay",
+      "path": "window/flowering-vine-overlay",
+      "name": "Flowering Vine Overlay",
+      "description": "The inward window pass used by the Flowering Vine border.",
+      "author": "Barrulus",
+      "license": "MIT",
+      "notice_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "window/flowering-vine-overlay/README.md"
+      ],
+      "tags": [
+        "nature"
+      ],
+      "role": "companion",
+      "kind": "window",
+      "preset": "flowering-vine-overlay",
+      "uses": [
+        "effects.window"
+      ],
+      "dependencies": [],
+      "families": [],
+      "requirements": {
+        "features": [
+          "preset-effects"
+        ]
+      },
+      "required_settings": {},
+      "tested_on": [],
+      "install_files": [
+        "LICENSES/Barrulus-MIT.txt",
+        "window/flowering-vine-overlay/README.md",
+        "window/flowering-vine-overlay/effect.toml",
+        "window/flowering-vine-overlay/shader.glsl"
+      ],
+      "preview": {
+        "image": "window/flowering-vine-overlay/preview.png",
+        "animation": null
+      },
+      "readme": "window/flowering-vine-overlay/README.md",
+      "config_example": "window/flowering-vine-overlay/config.toml",
+      "activation": {
+        "include": [
+          "window/flowering-vine-overlay/effect.toml"
+        ],
+        "settings": {
+          "effects.window": "flowering-vine-overlay"
+        }
+      }
+    }
+  ],
+  "families": [
+    {
+      "id": "vampire",
+      "path": "families/vampire",
+      "name": "Vampire",
+      "description": "Coordinated blood, heartbeat, and bat effects across the desktop.",
+      "members": [
+        "animation/blood-in",
+        "animation/blood-out",
+        "border/heartbeat",
+        "animation/vampire-blood-wash",
+        "cursor/vampire-wake"
+      ],
+      "tags": [
+        "horror",
+        "blood"
+      ],
+      "authors": [
+        "Barrulus",
+        "WinterMyst"
+      ],
+      "preview": {
+        "image": null,
+        "animation": null
+      },
+      "readme": null,
+      "config_example": null,
+      "activation": {
+        "include": [
+          "animation/blood-in/effect.toml",
+          "animation/blood-out/effect.toml",
+          "animation/vampire-blood-wash/effect.toml",
+          "border/heartbeat/effect.toml",
+          "cursor/vampire-wake/effect.toml"
+        ],
+        "settings": {
+          "animation.enabled": true,
+          "animation.windows_in.curve": "linear",
+          "animation.windows_in.duration_ms": 700,
+          "animation.windows_in.effect": "blood-drip-in",
+          "animation.windows_in.enabled": true,
+          "animation.windows_out.curve": "linear",
+          "animation.windows_out.duration_ms": 700,
+          "animation.windows_out.effect": "blood-drain-out",
+          "animation.windows_out.enabled": true,
+          "animation.workspaces.curve": "linear",
+          "animation.workspaces.duration_ms": 1400,
+          "animation.workspaces.effect": "vampire-blood-wash",
+          "animation.workspaces.enabled": true,
+          "animation.workspaces.style": "reveal",
+          "effects.border": "heartbeat",
+          "effects.cursor": "vampire-wake"
+        }
+      }
+    }
+  ],
+  "files": {
+    "LICENSES/Barrulus-MIT.txt": {
+      "bytes": 1065,
+      "sha256": "ed107d82f41aa60e61100e2226511e9f4070e7a68bd574627845f5c10b9748f6"
+    },
+    "LICENSES/Noctalia-MIT.txt": {
+      "bytes": 1065,
+      "sha256": "7edc1a7c9516614978b05f9c35379129996f2f92136f309defc6a863e70635e2"
+    },
+    "animation/blood-in/README.md": {
+      "bytes": 2922,
+      "sha256": "fdf4e387cda610295ad0e98e9de4e5ba68b10cff532ffc6da0b4f322f2c23cf7"
+    },
+    "animation/blood-in/config.toml": {
+      "bytes": 276,
+      "sha256": "5db6d2a4f463df47ea4e99a24c9bcc3d89b65ac5dc0568562bdcde3472c0ee4f"
+    },
+    "animation/blood-in/effect.toml": {
+      "bytes": 75,
+      "sha256": "5171eaf431f0fced2cf37bd674c08564301ce9fcfc8cff8a558e336a3dd24fac"
+    },
+    "animation/blood-in/preview.png": {
+      "bytes": 42342,
+      "sha256": "84028f259deb9d13ba67bcce1367087e91973b0c0b4dd62d6babcb3f4d1b9647"
+    },
+    "animation/blood-in/shader.glsl": {
+      "bytes": 2756,
+      "sha256": "80c94310663ca7e1cbeba1011453fe1c928e1d3ee27313086d3a41fb7715b042"
+    },
+    "animation/blood-out/README.md": {
+      "bytes": 2937,
+      "sha256": "cc3fe01a39908addaa72e7deb507bc4411bb84e9b719cb01dd2cc4d8255d1be1"
+    },
+    "animation/blood-out/config.toml": {
+      "bytes": 280,
+      "sha256": "7433ce185e6ba0bd5563edb9b40ce84fd3ed784987320ddd43b3a6bb22c41209"
+    },
+    "animation/blood-out/effect.toml": {
+      "bytes": 77,
+      "sha256": "6f6606fa1dda6b24cd67470522bf65ed12bb1db5c5de1d3eea668f0119ca93cd"
+    },
+    "animation/blood-out/preview.png": {
+      "bytes": 33496,
+      "sha256": "5249ff4552d01e33d39a25fd1b26e0339d7c195a29dc46181d0221b29642c04a"
+    },
+    "animation/blood-out/shader.glsl": {
+      "bytes": 2303,
+      "sha256": "2de9f556fc0b196a086137f32d57226fd9856c3d18794124f347b21c88ff44ab"
+    },
+    "animation/vampire-blood-wash/README.md": {
+      "bytes": 2999,
+      "sha256": "6d55c9051f8969f48d9bbce683040867f1c81dba37fbdae40e4c1e23b9c6cc97"
+    },
+    "animation/vampire-blood-wash/config.toml": {
+      "bytes": 286,
+      "sha256": "9e244300e42d0ac088c12c9c41e104082a40a16143517d2d7b681d71fbdc99bb"
+    },
+    "animation/vampire-blood-wash/effect.toml": {
+      "bytes": 80,
+      "sha256": "3cd738dff54ecb8a7d7529aaeda9f111061548478c789c446154e1aef783f5a7"
+    },
+    "animation/vampire-blood-wash/preview.gif": {
+      "bytes": 785216,
+      "sha256": "05e41e57042bb91f657ff7317b96295c3d399da804ee5a20c5120f3e0da07211"
+    },
+    "animation/vampire-blood-wash/preview.png": {
+      "bytes": 69923,
+      "sha256": "1d5a245e8b9788e6e008d55bd8160a8a3f7b22b5c68209f2540d181c4c9f2562"
+    },
+    "animation/vampire-blood-wash/shader.glsl": {
+      "bytes": 3904,
+      "sha256": "2c1b62c12efbff093923569a0f72ffee72eb0373f5da504a8b29ecb4e25220cb"
+    },
+    "animation/workspace-iris/README.md": {
+      "bytes": 3335,
+      "sha256": "b565fb8709299098e71f12792e7f72fcf879126b49660819646b6091c45936da"
+    },
+    "animation/workspace-iris/config.toml": {
+      "bytes": 278,
+      "sha256": "2dacbb5d894b6b6055b755b54c0610f242a63e45f8d37d44647ebff77c69b0a4"
+    },
+    "animation/workspace-iris/effect.toml": {
+      "bytes": 76,
+      "sha256": "387fe4a0f62c021bd87f7ac493f93c45799f3ff12475ec6085b469b581401694"
+    },
+    "animation/workspace-iris/preview.gif": {
+      "bytes": 70583,
+      "sha256": "4bebc8791f03d6b9a6bb90af046136a018ba70e977fb2c7aaa0c23480a17e3ff"
+    },
+    "animation/workspace-iris/preview.png": {
+      "bytes": 7146,
+      "sha256": "5cc279dd118758ac63f0c8d40f2e8a3dc3a2d7fc4883aa5f8aa6d4e011ed8507"
+    },
+    "animation/workspace-iris/shader.glsl": {
+      "bytes": 861,
+      "sha256": "542d2090df4fa45cf07e9b16496aa083611f0a8c1baf001162726d12dc492b98"
+    },
+    "border/flowering-vine/README.md": {
+      "bytes": 6432,
+      "sha256": "7eac9c81c44657c64877faffceed011accccd60b8f84c8d802009c6ccb765393"
+    },
+    "border/flowering-vine/config.toml": {
+      "bytes": 189,
+      "sha256": "5a295ceb94a36336fc15c166391e92db0f741bd4be3327188be911469fa74fba"
+    },
+    "border/flowering-vine/effect.toml": {
+      "bytes": 319,
+      "sha256": "03be12091349067e1c059a479763b7b26fef85a2fd4613b1e3e98a579e2bf651"
+    },
+    "border/flowering-vine/preview.png": {
+      "bytes": 21879,
+      "sha256": "41a53ee33c8ac5f05ff123547d21fee8e9508a6e79e82590a1c85fe346ee7ae6"
+    },
+    "border/flowering-vine/shader.glsl": {
+      "bytes": 13107,
+      "sha256": "439bfb0983a1d93e3a91567315f5046c83bda86d9e4b653f94cff90c40330ed3"
+    },
+    "border/heartbeat/README.md": {
+      "bytes": 2866,
+      "sha256": "fc210d9d8368ea86f7085b092b1349efbb9ab7d2648e647c2a68390c442c4383"
+    },
+    "border/heartbeat/config.toml": {
+      "bytes": 179,
+      "sha256": "e7240530e06be6d0cba06dd07557f1860fae14177075531109c81cb3850d025a"
+    },
+    "border/heartbeat/effect.toml": {
+      "bytes": 81,
+      "sha256": "b063d3067f3f028f26907e3be684bf38bb674ceae5252ebf53b7f8ee19bd197c"
+    },
+    "border/heartbeat/preview.png": {
+      "bytes": 11853,
+      "sha256": "43ec122cc8a370c84d3c6054a0dd630097ca1e7883e6e6634033214b49d11188"
+    },
+    "border/heartbeat/shader.glsl": {
+      "bytes": 5337,
+      "sha256": "2a3c092fb9feda20360c5af6878faffb2f654679c824673d6eb8f0e2ec7712c8"
+    },
+    "cursor/glow/README.md": {
+      "bytes": 3741,
+      "sha256": "c1ac6b2e80089b4a298d09b58f531dcecad11e73e8a0b1f0f323b598c99ae667"
+    },
+    "cursor/glow/config.toml": {
+      "bytes": 169,
+      "sha256": "3b8f9f563adbccb5203501c720e6660bd35ae82a3f851afb7a97b6af64cfb442"
+    },
+    "cursor/glow/effect.toml": {
+      "bytes": 90,
+      "sha256": "cf4541cbdd3d37879efe36edd4677bf43a1badb6a4c55e3ad6af1ab037042353"
+    },
+    "cursor/glow/preview.png": {
+      "bytes": 31576,
+      "sha256": "4032abce99005c6c098c203d1f0f9607179ff8fc5671b8523ff40c666142408c"
+    },
+    "cursor/glow/shader.glsl": {
+      "bytes": 359,
+      "sha256": "72ec7c53998d1901e755b61c3339d1e56b393b9832dcbc18a8f41481d2e4b944"
+    },
+    "cursor/vampire-wake/README.md": {
+      "bytes": 2965,
+      "sha256": "eb5fb4eeb9e59db1b30ea3dde3d2a6eb018f1988c7c1bc8ce3c40af10803bd7f"
+    },
+    "cursor/vampire-wake/config.toml": {
+      "bytes": 173,
+      "sha256": "6b19f3b79d72e53eb346354b28bc1971baedd831e2a029ac3f0c5be5486fb0f0"
+    },
+    "cursor/vampire-wake/effect.toml": {
+      "bytes": 84,
+      "sha256": "5e150b45cee1b2dd5bd5834716510401889f65dddb7d3e20d02f82e9f65d545b"
+    },
+    "cursor/vampire-wake/preview.gif": {
+      "bytes": 417848,
+      "sha256": "b4e9b3296f4a2e2cd48d9731979de0467e0c0dadb56c1a65bb5468c16af1776d"
+    },
+    "cursor/vampire-wake/preview.png": {
+      "bytes": 26975,
+      "sha256": "c0e54efb11851b6cead135b1ed81681ea44f03902a794df028f0836fc576ec93"
+    },
+    "cursor/vampire-wake/shader.glsl": {
+      "bytes": 6066,
+      "sha256": "67d6a5a8b2517a418e01bacd2184d5bcd283a540252c08bafe23f41aa19ce772"
+    },
+    "window/flowering-vine-overlay/README.md": {
+      "bytes": 5644,
+      "sha256": "807111e2b3d03c446383211e4d793fd02127d7e887e4160bf4d060a6e980be48"
+    },
+    "window/flowering-vine-overlay/config.toml": {
+      "bytes": 205,
+      "sha256": "3f15fa434cf7bad5994faab684035ac2e030d0dc60f3a445b21615b7e68ca702"
+    },
+    "window/flowering-vine-overlay/effect.toml": {
+      "bytes": 96,
+      "sha256": "7af5547edcc56873ac9d5d8ad66bebfff8df9b67dd9f2c736e4d58015d2bb6ba"
+    },
+    "window/flowering-vine-overlay/preview.png": {
+      "bytes": 6452,
+      "sha256": "ccfa0d26ceb560834fbf217196c20b6af2bf562fe61649d9f0c56ab64c51b52f"
+    },
+    "window/flowering-vine-overlay/shader.glsl": {
+      "bytes": 13789,
+      "sha256": "472a3c0f6cec9716c0f431f8aaaa6cbbbe36384ade6db4e2cf0781cb5bf07575"
+    }
+  }
+}

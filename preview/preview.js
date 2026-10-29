@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
 export const effects = [
+  ['fractal-bloom', 'Fractal Bloom', 'A mirrored fractal mandala opens and closes with rotating kaleidoscopic ornament.'],
+  ['cloud-puff', 'Cloud Puff', 'Bright gold, magenta and cyan backlight illuminates a brief billowing cloud puff as the window appears or disappears.'],
+  ['crescent-reveal', 'Crescent Reveal · After Dark', 'Pumpkin fire burns diagonally from bottom-left to top-right, with flame tongues and embers. Designed for opening.'],
+  ['candle-snuff', 'Candle Snuff · After Dark', 'A quick dim and fade with a brief orange-to-green edge flicker. Designed for closing.'],
   ['shattered-glass', 'Shattered Glass', 'Unequal polygonal shards break loose at different times, spinning and falling independently. Opening reassembles them.'],
   ['wet-paint', 'Wet Paint', 'Long, uneven paint streams pour down to form the window and melt down to remove it.'],
   ['flame-grilled', 'Flame Grilled', 'Tall, rolling flames sweep down to reveal the window and burn upward to consume it.'],
@@ -21,6 +25,7 @@ const header = `precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D umbriel_texture;
 uniform vec2 umbriel_size;
+uniform float umbriel_scale;
 uniform float umbriel_progress;
 uniform float umbriel_linear_progress;
 uniform float umbriel_direction;
@@ -126,6 +131,7 @@ function draw(p, progress, direction, size = [canvas.width, canvas.height], rand
   gl.uniform1i(gl.getUniformLocation(p, 'umbriel_texture'), 0);
   gl.uniform1i(gl.getUniformLocation(p, 'umbriel_palette_count'), $('palette').checked ? 4 : 0);
   gl.uniform2fv(gl.getUniformLocation(p, 'umbriel_size'), size);
+  gl.uniform1f(gl.getUniformLocation(p, 'umbriel_scale'), 1);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_progress'), progress);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_linear_progress'), progress);
   gl.uniform1f(gl.getUniformLocation(p, 'umbriel_direction'), direction);
@@ -154,9 +160,12 @@ async function select() {
     for (const [event, direction] of [['windows_in', 1], ['windows_out', -1]]) {
       const section = config.split(`[animation.${event}]`)[1]?.split('[')[0];
       const duration = section?.match(/duration_ms\s*=\s*(\d+)/)?.[1];
-      if (!duration) throw new Error(`Missing ${event} duration for ${id}`);
-      durations[direction] = Number(duration);
+      if (duration) durations[direction] = Number(duration);
     }
+    const fallback = durations[1] ?? durations[-1];
+    if (!fallback) throw new Error(`Missing animation duration for ${id}`);
+    durations[1] ??= fallback;
+    durations[-1] ??= fallback;
     timings.set(id, durations);
   }
   if (!programs.has(id)) {

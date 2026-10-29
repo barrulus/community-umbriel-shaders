@@ -1,0 +1,8 @@
+publish = true
+name = "kzzzt"
+description = "Hard-edged circuit traces creep in from the window edges and carry current, with colour-split glitches, scanlines, and a slow roll over the picture."
+author = "weegs710"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/weegs710-MIT.txt", "window/kzzzt/README.md"]
+uses = ["effects.window"]
+tags = ["glitch", "audio-reactive", "circuit"]

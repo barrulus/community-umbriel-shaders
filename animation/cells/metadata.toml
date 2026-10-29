@@ -1,0 +1,8 @@
+publish = true
+name = "Cells"
+description = "Opening traces glowing pentagonal lines outward from the centre, fills the cells with the window, then withdraws the lines from the perimeter back to the centre."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/cells/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["geometric"]

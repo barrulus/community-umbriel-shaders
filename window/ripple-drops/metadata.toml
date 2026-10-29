@@ -1,0 +1,8 @@
+publish = true
+name = "Ripple Drops"
+description = "Animated drop ripples distort the window image."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/ripple-drops/README.md"]
+uses = ["effects.window"]
+tags = ["water"]

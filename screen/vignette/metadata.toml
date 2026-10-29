@@ -1,0 +1,8 @@
+publish = true
+name = "Vignette"
+description = "Darkened edges around the whole output."
+author = "Noctalia"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "screen/vignette/README.md"]
+uses = ["effects.screen"]
+tags = ["minimal"]

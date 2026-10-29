@@ -2,7 +2,7 @@
 
 A collection of reusable GLSL effects for the [Umbriel Wayland compositor](https://github.com/noctalia-dev/umbriel), organised by kind.
 
-This collection includes 79 community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, six bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
+This collection includes community presets by Barrulus, Dual Orbit by neonvoidx, the four kzzzt presets by weegs710, bundled Umbriel examples, and the original minimal animation example. Browse the categories for descriptions, previews, and copyable settings:
 
 | Kind | What it affects |
 | --- | --- |
@@ -16,11 +16,40 @@ Ten new [paired window transitions](animation/) include Shattered Glass, Wet Pai
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 Use the [interactive preview](preview/) to play or scrub both directions locally.
 
+[**Umbriel After Dark — Halloween Pack 1**](packs/after-dark/) adds six coordinated
+cursor, border, window, screen, opening and closing effects, with a single
+[activation example](packs/after-dark/config.toml).
+
+[**Psychedelic**](packs/psychedelic/) adds a fractal workspace iris, a moving
+fractal border with an inward overlay, a subtle full-window veil and fractal
+opening/closing animations. Use its [combined configuration](packs/psychedelic/config.toml).
+
+[**Witching Hour**](animation/witching-hour/) adds a Halloween workspace reveal:
+a ragged orange-and-green fire portal unveils the next workspace in place.
+It requires the newer workspace `style = "reveal"` API.
+
 For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.
 
+Thirteen recovered [full-scene workspace transitions](animation/) include
+[Iris](animation/workspace-iris/), [Burn](animation/workspace-burn/), Shatter,
+Tile Gravity, Venetian Blinds, Sand Collapse, CRT Scanline, Melt, Dust Cloud,
+Glitch Phase, Noctalia Wave, Transporter and Wipe. They animate complete scenes,
+including wallpaper and shell surfaces, using Umbriel’s current reveal API.
+Each includes a standalone preset, activation example and animated preview.
+
+[**Vampire Blood Wash**](animation/vampire-blood-wash/) reveals the full workspace
+through a glossy diagonal crimson wash, with distinct upward and downward sweeps.
+Pair it with [**Vampire Wake**](cursor/vampire-wake/), a crimson cursor trail with
+blood-red sparks and fluttering bats.
+
 ## Compatibility
+
+[Spectrum](border/spectrum/) and [Music Radiance](cursor/music-radiance/) port
+bumbriel's audio halo and rainbow cursor to the current 64-band spectrum API,
+tested with Umbriel `76477c2`. They need Noctalia's audio provider or the
+[standalone Python analyser](tools/README.md#standalone-audio-analyser).
 
 Use Umbriel with the preset effects API introduced in [commit `512e2fb3`](https://github.com/noctalia-dev/umbriel/commit/512e2fb3). The `0.1.0` version number alone does not distinguish older builds; check the commit printed by `umbriel --version` when available.
 
@@ -377,12 +406,15 @@ applies to the shipped presets.
 
 ## Theme colours
 
-All 69 presets that draw coloured artwork now enable `palette = true` and read
+Most presets that draw coloured artwork enable `palette = true` and read
 `accent_primary`, `accent_secondary`, `warning`, and `error` from `[colors]`.
 `glow`, `accent-pulse`, and `tv-glitch` use the primary accent; cycling rainbow
 effects interpolate through the four colours. Other artwork uses palette stops
 with its original dark shading and pale highlights. Sampled window content is
 only tinted where the effect already applies a colour treatment.
+
+[Music Radiance](cursor/music-radiance/) retains its original rainbow cycle
+and does not read the palette.
 
 ```toml
 [colors]
@@ -419,6 +451,43 @@ bioluminescence deliberately stays blue-green, controlled by `BIO_COLOUR`.
 - **GLSL compile failure:** inspect Umbriel’s logs for the preset name and driver message. `umbriel validate` checks configuration, not GPU compilation.
 - **Effects missing from capture:** window, screen, and cursor effects are excluded from screencopy/image-copy captures by default. Set `[effects] in_capture = true` to include them; this can increase capture cost. Border effects already appear.
 
+## Catalogue metadata and families
+
+The local catalogue covers 138 licensed presets and ten families. Each effect's
+`metadata.toml` supplies its display name, description, contributor, licence
+notices, tags and supported uses. `families/<name>/family.toml` groups related
+members; each member can still be applied independently. Existing presets and
+shader files remain the source of installation dependencies.
+
+Only entries with `publish = true` in `metadata.toml` appear in generated
+catalogues. Families opt in separately with the same field in `family.toml`.
+Omitting it means `false`. Tags describe the shader; they do not publish it.
+The existing 138 entries and ten families are explicitly opted in. Experimental
+folders can remain in the repository without appearing in the catalogue.
+Published effects must have published dependencies, and published families must
+contain only published members.
+
+`animation/example` is excluded from automatic catalogue installation until its
+original licensing is clarified. The audio variants of Accent Pulse and Pulse
+remain manual alternatives described in their READMEs.
+
+Validate the complete catalogue with:
+
+```sh
+python3 tools/catalogue.py --draft --output /tmp/community-shader-catalogue.json
+python3 -m unittest discover -s tools -p test_catalogue.py
+```
+
+This generates a working-tree draft, not a published API snapshot. See the
+[catalogue contract](docs/shader-catalogue-contract.md) for publication and
+metadata requirements. Community shaders target latest Umbriel; incompatible
+shaders are updated or withdrawn.
+
+To validate and preview unpublished metadata too, use
+`--draft --include-unpublished`. This produces a non-installable development
+snapshot; production generation rejects that option. The plugin's explicitly
+configured local-checkout mode includes experiments for contributor testing.
+
 ## Contributing
 
 For assistant-guided shader creation, use [SKILL.md](SKILL.md). It provides
@@ -434,7 +503,25 @@ screen/<name>/
 cursor/<name>/
 ```
 
-Include `shader.glsl`, `effect.toml`, a copyable `config.toml`, and a README with a preview, compatibility, tuning, cost, attribution, and license. A preset definition should not enable itself. Document any companion effects and use relative paths. Do not include personal keybinds, app assignments, machine paths, or binaries.
+Include `metadata.toml`, `shader.glsl`, `effect.toml`, a copyable `config.toml`, and a README with a preview, compatibility, tuning, cost, attribution, and license. A preset definition should not enable itself. Document any companion effects and use relative paths. Do not include personal keybinds, app assignments, machine paths, or binaries.
+
+Submit new shaders and families with `publish = false`. Maintainers review and
+test them before approving `publish = true`. Unpublished files in this public
+repository are still public; the flag controls catalogue inclusion, not access.
+See [publication and review](docs/catalogue-publication.md) for the CI checks and
+required GitHub review settings. The metadata flag alone is not a permission check.
+
+Generate the preview for your new preset using your installed Umbriel:
+
+```sh
+python3 tools/render-preview.py cursor/your-effect
+```
+
+This writes that preset's `preview.png` using an isolated headless compositor
+and synthetic sample content. It requires Python 3.11+, Umbriel, grim and an
+accessible graphics render device. Inspect the PNG and include it in your PR.
+See [preview-tool instructions](tools/README.md) for setup, animation options
+and limitations. The tool renders one preset per invocation.
 
 Shaders use GLSL ES 1.00 and the entry point for their kind: `vec4 animation(vec2 uv)`, `border`, `window`, `screen`, or `cursor`. Do not supply `#version`, `main`, or precision declarations. Return premultiplied RGBA. See the [Umbriel effect API](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for uniforms and sampling semantics.
 
@@ -442,7 +529,7 @@ Check config paths and GLSL compilation, then test the effect in a compositor, i
 
 ## Attribution and licensing
 
-Barrulus’s 74 contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
+Barrulus’s contributed presets are [MIT licensed](LICENSES/Barrulus-MIT.txt). The six bundled Umbriel examples retain [Noctalia’s MIT notice](LICENSES/Noctalia-MIT.txt). Each effect README identifies its source. Keep the appropriate notice when redistributing those shaders.
 
 Dual Orbit is [MIT licensed by neonvoidx](LICENSES/neonvoidx-MIT.txt).
 

@@ -1,0 +1,37 @@
+# Draft coordinated example, assembled from the members' existing examples.
+# These files live under docs for review; this is not an installed family.
+# Merge selected settings into existing tables; do not include this file.
+[include]
+files = [
+  "shaders/community/animation/blood-in/effect.toml",
+  "shaders/community/animation/blood-out/effect.toml",
+  "shaders/community/border/heartbeat/effect.toml",
+  "shaders/community/animation/vampire-blood-wash/effect.toml",
+  "shaders/community/cursor/vampire-wake/effect.toml",
+]
+
+[effects]
+border = "heartbeat"
+cursor = "vampire-wake"
+
+[animation]
+enabled = true
+
+[animation.windows_in]
+enabled = true
+effect = "blood-drip-in"
+duration_ms = 700
+curve = "linear"
+
+[animation.windows_out]
+enabled = true
+effect = "blood-drain-out"
+duration_ms = 700
+curve = "linear"
+
+[animation.workspaces]
+enabled = true
+style = "reveal"
+effect = "vampire-blood-wash"
+duration_ms = 1400
+curve = "linear"
