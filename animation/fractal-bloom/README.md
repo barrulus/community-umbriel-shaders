@@ -12,7 +12,8 @@ Native compositor frames sampled every 50 ms at the recommended 700/450 ms durat
 Install the collection at `~/.config/umbriel/shaders/community/` and merge
 [config.toml](config.toml) into your existing configuration tables, appending
 its include paths. Do not include the activation example as a preset or repeat
-existing TOML tables. Choose **Psychedelic → Apply family** in the plugin to apply the coordinated effects.
+existing TOML tables. The [Psychedelic family](../../families.toml) groups the coordinated effects
+and their recommended selections.
 
 ## Tuning
 
@@ -27,7 +28,7 @@ do not use the theme palette. No external textures are required.
 One source sample and two six-iteration fractal evaluations per pixel during transitions. A stable per-event seed rotates the mandala without breaking its symmetry. Visibility uses a fixed field while the ornament turns. Opening and closing use the same shader; exact visible endpoints return the source and invisible endpoints return transparent black.
 
 The preview is a real headless compositor capture over synthetic content.
- Still images do not demonstrate motion quality.
+Still images do not demonstrate motion quality.
 
 Tested in private Umbriel 0.1.0 (`28fa214`) sessions over synthetic content.
 Native HDR, rotated or fractional-scale outputs, interrupted transitions and

@@ -14,7 +14,8 @@ frames backwards to show how the folds close when progress reverses.
 Install the collection at `~/.config/umbriel/shaders/community/` and merge
 [config.toml](config.toml) into your existing configuration tables, appending
 its include paths. Do not include the activation example as a preset or repeat
-existing TOML tables. Choose **Psychedelic → Apply family** in the plugin to apply the coordinated effects.
+existing TOML tables. The [Psychedelic family](../../families.toml) groups the coordinated effects
+and their recommended selections.
 
 ## Tuning
 
@@ -47,7 +48,7 @@ alpha. An additional mask check confirmed detached openings appearing and
 merging across the transition. The native preview contains 26 compositor frames.
 
 The preview is a real headless compositor capture over synthetic content.
- Still images do not demonstrate motion quality.
+Still images do not demonstrate motion quality.
 
 Tested in private Umbriel 0.1.0 (`28fa214`) sessions over synthetic content.
 Native HDR, rotated or fractional-scale outputs, interrupted transitions and

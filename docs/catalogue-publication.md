@@ -14,8 +14,8 @@ effects require published dependencies; published families require published
 members. To withdraw an entry, set it back to `false` and update any published
 dependants or families in the same change.
 
-The initial migration marks the existing 138 catalogue effects and ten families
-as eligible. It does not publish a remote endpoint or claim new visual testing.
+The upstream migration marks 136 catalogue effects and ten families as eligible.
+This fork also retains six additional effects and their family memberships. It does not publish a remote endpoint or claim new visual testing.
 
 ## Contributor checks
 
