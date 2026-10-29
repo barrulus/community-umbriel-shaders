@@ -16,7 +16,7 @@ all four effects together.
 
 ## Tuning
 
-INTENSITY = 0.055 controls maximum tint opacity (0.02–0.15 recommended); PATTERN_SCALE = 56.0 sets logical pixels per kaleidoscope tile (previously a 260-pixel fractal scale); SPEED = 0.18 controls motion phase per second. Each rosette rotates at 0.55 times that phase speed.
+INTENSITY = 0.055 controls maximum tint opacity (0.02–0.15 recommended); PATTERN_SCALE = 56.0 sets logical pixels per kaleidoscope tile; SPEED = 0.18 controls motion phase per second. Each rosette rotates at 0.55 times that phase speed.
 
 Controls are constants in [shader.glsl](shader.glsl), except border speed,
 padding and event durations, which belong in TOML. Colours are procedural and

@@ -39,25 +39,17 @@ workspace style to return to native workspace transitions.
 
 ## Validation
 
-The border was subsequently revised to use a continuously rolling fractal
-contour, matching the unfolding iris. Its fading reach is eight pixels per side
-with nine pixels of padding. See its README for motion previews, controls and
-updated rendering cost. Its previous fixed diamond pattern has been removed.
-
-Revised on **2026-10-25** for stronger kaleidoscope symmetry, a compact rolling
-border (eight-pixel reach, down from the original 22) and moving 56-pixel window tiles.
-The window tint ceiling is now 5.5%, down from 6.5%. All checks below were
-rerun on the revision, including central symmetry of both animations.
-The iris was subsequently reworked into an unfolding arrival-time front with
-advance tears; its shape changes as new contours open rather than scaling a
-fixed silhouette. See its README for updated controls and rendering cost.
+Checked on **2026-10-25**. The rolling border fades within eight logical
+pixels on each side of the client edge, with nine pixels of padding. The iris
+unfolds into new fractal contours with advance tears that widen and merge.
+The veil uses moving 56-pixel kaleidoscope tiles with a 5.5% tint ceiling.
 The [window motion preview](../../window/fractal-veil/preview.gif) contains
 61 native frames over six seconds.
 
 Tested with **Umbriel 0.1.0 (`28fa214`)**. All five presets compiled and
 rendered in private headless compositor sessions. The border, overlay and
 window veil also compiled and rendered together in the preview above.
-The combined pack configuration, all 136 installation examples and the combined
+The combined pack configuration, all installation examples and the combined
 preset library passed configuration validation.
 
 The [iris GIF](../../animation/fractal-iris/preview.gif) contains 26 native
@@ -75,7 +67,7 @@ window alpha preservation and SDR premultiplication pass. These checks do not
 substitute for native fractional-scale or HDR testing.
 
 Native output rotation, HDR, interrupted transitions, desktop motion and GPU
-performance remain unverified. The cycle entries retain their existing names.
+performance remain unverified.
 
 ## Attribution
 

@@ -1,0 +1,5 @@
+[include]
+files = ["shaders/community/window/music-smoke/effect.toml"]
+
+[effects]
+window = "window.music-smoke"

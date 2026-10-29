@@ -378,8 +378,10 @@ erosion, detached holes and pearl/mint/lavender edge haze.
   the incoming mask never decreases as progress advances. At progress 0.3,
   all six aspect/seed combinations contain detached holes as well as the main
   portal, with 39 satellite holes of at least two test pixels in total.
-- All 119 installation examples and the combined library pass configuration
-  validation. The user configuration was not changed.
+- All 119 installation examples and the combined library in the development
+  checkout pass configuration validation. All 88 installation examples in the
+  fork publication and all 117 in the upstream publication, including their
+  combined libraries, also pass. Validation uses temporary configurations.
 
 Hardware performance, HDR, native fractional-scale output composition and
 output rotation remain unverified. Offscreen tests simulate logical size and
@@ -859,3 +861,101 @@ activation example. The preset name retains the requested `transation` spelling.
 
 Interrupted switches, fractional scaling, rotated outputs, HDR fidelity, and
 hardware performance have not been separately validated for this preset.
+
+## Music Smoke port (2026-10-26)
+
+Ported bumbriel's `window.music-smoke` from `1dafcac5` to the 64-band spectrum
+API. Overall activity scans all bands, bass controls billow shape and treble
+shifts colour. Removed named-source configuration and the old RMS/level/band
+helpers, and retuned gains for normalized intensities.
+
+Validated with Umbriel 0.1.0 (`76477c2`) in private headless sessions using
+Mesa software rendering and an acknowledged version-2 spectrum feed:
+
+- All 134 installation examples and the combined library pass configuration
+  validation. Music Smoke compiles and renders in the native compositor.
+- 36 captures cover 640×400 and 400×640 outputs. Missing feed, zero spectrum,
+  sub-threshold input, return to silence and disconnect produce identical
+  baseline images at each size.
+- Uniform inputs of 0.02, 0.1, 0.4 and 0.8 produce progressively larger mean
+  RGB differences from baseline. Isolated peaks at bands 0, 7, 31 and 63 remain
+  visible. Equal-energy bass and treble profiles produce different images.
+- Held audio produces identical captures with the clock frozen; advancing
+  the clock animates the smoke. The synthetic-audio preview was inspected.
+
+Real playback appearance, transparent-input alpha, HDR, fractional scaling,
+rotation and hardware performance have not been separately tested. The shader
+retains sampled alpha by construction. Its time input can keep frames running
+during silence, and the cost scales with the number and size of selected windows.
+
+## Kzzzt spectrum compatibility (2026-10-26)
+
+Updated kzzzt and kzzzt Ring from the removed `umbriel_audio_level()` helper
+to `umbriel_audio_spectrum(position)`. Their activity estimate samples three
+low/middle/high positions; bass and treble now read the real spectrum.
+The READMEs document Noctalia's disabled-by-default audio provider and the
+difference between a fresh feed and audible activity.
+
+Validated with installed Umbriel 0.1.0 (`76477c2`), matching upstream
+`76477c29d864fa64069e443c350cf671f65bdc31`, in private headless sessions using
+Mesa software rendering and a synthetic version-2 spectrum producer:
+
+- Both selected shaders pass configuration loading, compile and render.
+  Eight captures each cover missing feed, idle motion, silence, quiet input,
+  bass, treble, loud input and disconnection; all audio packets are accepted.
+- Fixed-time copies at two seconds produce byte-identical PNGs to the original
+  idle shaders with missing, silent, quiet and disconnected feeds. The old
+  kzzzt baseline has its obsolete level helper replaced with zero for this
+  comparison. Bass, treble and loud input each differ from the idle baseline;
+  bass and treble also produce distinct kzzzt results.
+- Representative silence and loud-input captures were visually inspected.
+
+These checks use synthetic audio, not real playback through Noctalia. Hardware
+performance, HDR, rotation and fractional-scale composition remain unverified.
+The three-position activity estimate can miss energy confined to other bands.
+
+## Psychedelic effects (2026-10-25)
+
+Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),
+[Fractal Flow](border/fractal-flow/) with its [inward overlay](window/fractal-flow-overlay/),
+and [Fractal Veil](window/fractal-veil/). The [combined configuration](packs/psychedelic/)
+selects the coordinated set; individual READMEs include controls and motion previews.
+
+Tested with **Umbriel 0.1.0 (`28fa214`)**. All five presets compiled and rendered
+in private native compositor sessions. The border, overlay and veil also rendered
+together. Supplemental software GLES checks using local Umbriel wrappers at
+`4531d927` covered 624 frames per preset: four aspect ratios, scales 1/1.5,
+source transparency, both animation directions and out-of-range progress.
+Animation endpoints, monotonic visibility, window alpha preservation and SDR
+premultiplication passed. Another 54 border/overlay checks covered seam alignment
+and the eight-pixel reach at three sizes and scales. All installation examples,
+the combined preset library and the pack configuration pass configuration validation.
+
+Native HDR, output rotation, native fractional scaling, interrupted transitions
+and hardware performance remain unverified.
+
+## Pond Wake and Starlight publication (2026-10-09)
+
+Both cursor presets compile and render in private headless sessions with
+installed Umbriel `0.1.0 (d083f24)`. Fresh synthetic captures were visually
+inspected. The published files retain their original synthetic catalog previews
+and match the locally validated versions below. All 99 installation examples
+and the combined library pass configuration validation; the two preset READMEs'
+relative file links resolve. No hardware performance benchmark was performed.
+
+## Halloween presets (2026-10-09)
+
+Published Witching Hour, Witchfire, Pumpkin Parade (including its required
+inward overlay), and Midnight Fog. Shader and preset files match the user's
+installed versions byte for byte at publication preparation. All five presets
+report `compiled` in the running Umbriel `0.1.0 (d083f24)` session. All 97
+installation examples and the combined library pass configuration validation
+in the publication checkout; the new README file links also resolve.
+
+Witchfire, the border with its overlay, and Midnight Fog were previously
+compiled, rendered and visually inspected in private headless sessions with
+Umbriel `0.1.0 (1d01b3a)`. Supplemental software-GLES checks covered 72 cursor
+history/alpha cases and 192 border/overlay cases for growth phases, aspect
+ratios, scale, alpha, clear centres and shared geometry. Hardware performance,
+HDR and rotated-output composition remain unverified.
+

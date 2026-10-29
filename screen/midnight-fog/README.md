@@ -19,9 +19,8 @@ For all six effects, use the [pack configuration](../../packs/after-dark/config.
 
 Edit the named constants at the top of `shader.glsl`. INTENSITY = 0.68 (0–1); FOG_HEIGHT = 0.32 of output height (0.15–0.45).
 
-Colours use the pack's fixed pumpkin orange, witch green and charcoal purple;
-they are independent of the desktop theme. Intensity zero removes the decorative
-colour; animation visibility still follows its timeline. Save edits to reload.
+Colours use fixed purple hues, independent of the desktop theme.
+Intensity zero removes the fog. Save edits to reload.
 
 ## Compatibility and cost
 

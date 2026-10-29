@@ -34,8 +34,15 @@ they do not promise particular frequency centers.
 
 In Noctalia, enable **Settings → Umbriel → Audio → Provide Audio to Umbriel**
 (disabled by default), or set `umbriel_audio_provider_enabled = true`
-in Noctalia's existing `[shell]` configuration table. See [provider setup](../../border/accent-pulse/README.md#optional-audio-response)
-for the copyable TOML and troubleshooting. Older Noctalia and other shells can
+in Noctalia's existing `[shell]` configuration table:
+
+```toml
+[shell]
+umbriel_audio_provider_enabled = true
+```
+
+A connected feed can still contain silence. Check that playback produces nonzero
+spectrum values if the effect stays idle. Older Noctalia and other shells can
 use the [standalone Python analyser](../../tools/README.md#standalone-audio-analyser).
 Other providers must use the current
 [spectrum IPC](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/ipc.md#audio-input).

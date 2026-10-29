@@ -47,3 +47,4 @@
 | <img src="snowfall/preview.png" width="160" alt="snowfall preview"> | [snowfall](snowfall/) | Snow falling over window content. |
 | <img src="haunted-glass/preview.png" width="160" alt="Haunted Glass preview"> | [haunted-glass](haunted-glass/) | Three hooked talons dent and rake the glass, leaving grooves and branching fractures that heal. |
 | <img src="somethings-watching-overlay/preview.png" width="160" alt="Inward fire and eyes"> | [somethings-watching-overlay](somethings-watching-overlay/) | Inward vines, growing pumpkins, cat eyes and skeletons, selected by the After Dark border. |
+| <img src="music-smoke/preview.png" width="160" alt="Music Smoke preview"> | [music-smoke](music-smoke/) | Audio-reactive rising smoke; silence restores the sampled window. |

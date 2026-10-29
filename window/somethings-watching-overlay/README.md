@@ -22,8 +22,8 @@ in the [border README](../../border/somethings-watching/). The overlay preserves
 source alpha and returns the centre unchanged beyond its 70-pixel edge band.
 It uses one source texture sample and bounded procedural drawing with no feedback.
 
-The companion follows border focus. The pack’s separate Ghost Scratch window
-shader remains independent and can still appear on unfocused windows.
+The companion follows border focus and works alongside an independently
+selected window effect.
 
 ## Attribution
 

@@ -20,9 +20,10 @@ Use the [interactive preview](preview/) to play or scrub both directions locally
 cursor, border, window, screen, opening and closing effects, with a single
 [activation example](packs/after-dark/config.toml).
 
-[**Psychedelic**](packs/psychedelic/) adds a fractal workspace iris, a moving
-fractal border with an inward overlay, a subtle full-window veil and fractal
-opening/closing animations. Use its [combined configuration](packs/psychedelic/config.toml).
+[**Psychedelic**](packs/psychedelic/) adds an unfolding fractal workspace iris,
+a rolling fractal border with an inward overlay, a subtle moving window veil
+and fractal opening/closing animations. Use its
+[combined configuration](packs/psychedelic/config.toml).
 
 [**Witching Hour**](animation/witching-hour/) adds a Halloween workspace reveal:
 a ragged orange-and-green fire portal unveils the next workspace in place.
@@ -46,8 +47,9 @@ blood-red sparks and fluttering bats.
 
 ## Compatibility
 
-[Spectrum](border/spectrum/) and [Music Radiance](cursor/music-radiance/) port
-bumbriel's audio halo and rainbow cursor to the current 64-band spectrum API,
+[Spectrum](border/spectrum/), [Music Radiance](cursor/music-radiance/) and
+[Music Smoke](window/music-smoke/) port bumbriel's audio halo, rainbow cursor
+and rising window smoke to the current 64-band spectrum API,
 tested with Umbriel `76477c2`. They need Noctalia's audio provider or the
 [standalone Python analyser](tools/README.md#standalone-audio-analyser).
 
