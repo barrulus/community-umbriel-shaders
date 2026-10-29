@@ -1,5 +1,34 @@
 # Validation and limitations
 
+## Catalogue reconciliation (2026-10-29)
+
+Merged the local development tree with fork `dd608f8` and upstream `3d4b18c`,
+preserving local-only presets, metadata, families and contributor tools.
+Upstream Blood In and Heartbeat fixes are retained. Added catalogue metadata
+for Blood Sweep, Music Smoke, Shake Locator and Shake Grow; Blood Sweep also
+appears in the Vampire family. The catalogue now contains 142 licensed effects,
+ten families and 755 downloadable files. The unlicensed animation example
+remains excluded. Experimental files and the local tools archive are not published.
+
+Validation of the reconciled tree:
+
+- All 60 tools tests pass, including 48 catalogue tests. Audio socket checks
+  ran with local sockets enabled outside the restricted sandbox.
+- Installed Umbriel accepts all 143 installation examples and the combined library.
+- Draft and committed-source catalogue generation agree on entries and file hashes;
+  the nine-effect review fixture was regenerated after upstream shader changes.
+- The committed plugin integration runner applies every supported catalogue use,
+  verifies GPU compilation and restores the base in a private headless compositor.
+  All ten families apply atomically and Undo restores the previous configuration.
+- Existing customised local presets are reused without duplicate imports or edits
+  to their shader/configuration bytes. Runtime override recovery, failure rollback,
+  interrupted-operation recovery and preservation of original configuration edits pass.
+
+Integration artifacts: `/tmp/us-test-w0x_wpbs`; test output:
+`/tmp/community-reconciliation-plugin-test.log`. These checks do not establish
+visual quality on every GPU, native HDR or fractional-scale rendering. No live
+desktop configuration was changed and no online catalogue was published.
+
 ## Shake-reactive cursors (2026-10-27)
 
 Added `cursor.shake-locator` and `cursor.shake-grow`. Both detect repeated,
