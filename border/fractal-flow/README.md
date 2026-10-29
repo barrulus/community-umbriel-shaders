@@ -12,7 +12,7 @@ Native compositor frames at 100 ms intervals; the detail crop is enlarged 2×.
 Install the collection at `~/.config/umbriel/shaders/community/` and merge
 [config.toml](config.toml) into your existing configuration tables, appending
 its include paths. Do not include the activation example as a preset or repeat
-existing TOML tables. See the [Psychedelic pack](../../packs/psychedelic/) for
+existing TOML tables. See the [Psychedelic family](../../families/psychedelic/) for
 all four effects together.
 
 ## Tuning
@@ -50,7 +50,7 @@ seam difference was 4/255 per channel across points 0.0002 logical pixels apart.
 The border and companion use identical material helpers.
 
 The preview is a real headless compositor capture over synthetic content.
-See [pack validation](../../packs/psychedelic/README.md#validation) for tested
+See [family validation](../../families/psychedelic/README.md#validation) for tested
 versions and limitations. Still images do not demonstrate motion quality.
 
 Original procedural shader by Barrulus. [MIT licensed](../../LICENSES/Barrulus-MIT.txt).

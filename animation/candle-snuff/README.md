@@ -1,11 +1,11 @@
 # Candle Snuff
 
-A quick dim and fade with a small orange-to-green edge flicker, confined to the departing window. Part of [Umbriel After Dark](../../packs/after-dark/).
+A quick dim and fade with a small orange-to-green edge flicker, confined to the departing window. Part of [Umbriel After Dark](../../families/after-dark/).
 
 ![Candle Snuff headless preview](preview.png)
 
 Preview: private headless Umbriel capture over synthetic light/dark content.
-A still frame cannot demonstrate the motion or the complete pack together.
+A still frame cannot demonstrate the motion or the complete family together.
 
 [Animated compositor preview at the configured speed](preview.gif)
 
@@ -15,20 +15,20 @@ Save [effect.toml](effect.toml) and [shader.glsl](shader.glsl) in
 `~/.config/umbriel/shaders/community/animation/candle-snuff/`. Merge [config.toml](config.toml)
 into your main configuration, appending includes and merging existing tables.
 Selects `after-dark.candle-snuff`. Including a preset only registers it.
-For all six effects, use the [pack configuration](../../packs/after-dark/config.toml).
+For all six effects, use the [family configuration](../../families/after-dark/config.toml).
 
 ## Configuration options
 
 Edit the named constants at the top of `shader.glsl`. INTENSITY = 0.95 (0–1); EDGE_WIDTH = 8 logical pixels (3–12). Closing duration = 240 ms; try 180–300 ms.
 
-Colours use the pack's fixed pumpkin orange, witch green and charcoal purple;
+Colours use the family's fixed pumpkin orange, witch green and charcoal purple;
 they are independent of the desktop theme. Intensity zero removes the decorative
 colour; animation visibility still follows its timeline. Save edits to reload.
 
 ## Compatibility and cost
 
 Requires Umbriel's preset-effects API. Designed for windows_out and a busy workspace: content fades by 78% of the timeline and the edge flicker ends by 95%. No particles, geometry changes or afterimage. Five source samples (including silhouette detection), linear event progress, no feedback. Exact endpoints are unchanged source and transparent; reverse selection also has valid endpoints.
-See the [pack validation notes](../../packs/after-dark/#validation) for tested
+See the [family validation notes](../../families/after-dark/#validation) for tested
 versions and remaining limitations. Hardware performance is not benchmarked.
 
 ## Attribution

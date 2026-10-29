@@ -3,7 +3,7 @@
 Twisting green vines braid around the frame, with leaves and curling tendrils.
 Jack-o’-lanterns grow on stalks extending into the window. Cat eyes blink between
 the leaves, while three tiny skeletons march around the perimeter with swinging
-arms and stepping legs. This replaces the pack’s previous fire border and keeps
+arms and stepping legs. This replaces the family’s previous fire border and keeps
 the existing `after-dark.somethings-watching` selector.
 
 ![Pumpkin vines and marching skeletons](preview.png)
@@ -21,7 +21,7 @@ need `effect.toml` and `shader.glsl`. The border includes its overlay automatica
 do not include or select the overlay separately.
 
 Merge [config.toml](config.toml) into your configuration, appending include paths
-and merging existing tables. See the [full pack configuration](../../packs/after-dark/config.toml).
+and merging existing tables. See the [full family configuration](../../families/after-dark/config.toml).
 
 ## Configuration options
 

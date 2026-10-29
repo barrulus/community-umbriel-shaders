@@ -341,8 +341,9 @@ manual variants; they are not separately packaged presets in this catalogue.
 
 Ten families are represented: After Dark, Beach Surf, Diwali, Flowering Vine,
 Ghostly Tear, kzzzt, Paper, Psychedelic, Vampire and Wobbly. Membership follows
-existing packs, documented pairings and related-effects sections. Existing pack
-previews and recipes are retained for After Dark and Psychedelic; other family
+documented groupings, pairings and related-effects sections. Family documentation,
+previews and recipes live under `families/`, with no duplicate `packs/` tree.
+After Dark and Psychedelic retain their combined previews and recipes; other family
 cards compose member previews. Family pages group members by declared use,
 preserve a route back from each member, and expose a fixed **Apply family** action.
 The selected uses are prepared and validated as one transaction. Uses with one

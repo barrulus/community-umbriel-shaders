@@ -12,7 +12,7 @@ Native compositor frames sampled every 50 ms at the recommended 700/450 ms durat
 Install the collection at `~/.config/umbriel/shaders/community/` and merge
 [config.toml](config.toml) into your existing configuration tables, appending
 its include paths. Do not include the activation example as a preset or repeat
-existing TOML tables. See the [Psychedelic pack](../../packs/psychedelic/) for
+existing TOML tables. See the [Psychedelic family](../../families/psychedelic/) for
 all four effects together.
 
 ## Tuning
@@ -28,7 +28,7 @@ do not use the theme palette. No external textures are required.
 One source sample and two six-iteration fractal evaluations per pixel during transitions. A stable per-event seed rotates the mandala without breaking its symmetry. Visibility uses a fixed field while the ornament turns. Opening and closing use the same shader; exact visible endpoints return the source and invisible endpoints return transparent black.
 
 The preview is a real headless compositor capture over synthetic content.
-See [pack validation](../../packs/psychedelic/README.md#validation) for tested
+See [family validation](../../families/psychedelic/README.md#validation) for tested
 versions and limitations. Still images do not demonstrate motion quality.
 
 Original procedural shader by Barrulus. [MIT licensed](../../LICENSES/Barrulus-MIT.txt).

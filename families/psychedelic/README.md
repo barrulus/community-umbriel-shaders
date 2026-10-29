@@ -49,7 +49,7 @@ The [window motion preview](../../window/fractal-veil/preview.gif) contains
 Tested with **Umbriel 0.1.0 (`28fa214`)**. All five presets compiled and
 rendered in private headless compositor sessions. The border, overlay and
 window veil also compiled and rendered together in the preview above.
-The combined pack configuration, all installation examples and the combined
+The combined family configuration, all installation examples and the combined
 preset library passed configuration validation.
 
 The [iris GIF](../../animation/fractal-iris/preview.gif) contains 26 native

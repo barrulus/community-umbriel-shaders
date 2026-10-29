@@ -16,14 +16,14 @@ Ten new [paired window transitions](animation/) include Shattered Glass, Wet Pai
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 Use the [interactive preview](preview/) to play or scrub both directions locally.
 
-[**Umbriel After Dark — Halloween Pack 1**](packs/after-dark/) adds six coordinated
+[**Umbriel After Dark — Halloween Family**](families/after-dark/) adds six coordinated
 cursor, border, window, screen, opening and closing effects, with a single
-[activation example](packs/after-dark/config.toml).
+[activation example](families/after-dark/config.toml).
 
-[**Psychedelic**](packs/psychedelic/) adds an unfolding fractal workspace iris,
+[**Psychedelic**](families/psychedelic/) adds an unfolding fractal workspace iris,
 a rolling fractal border with an inward overlay, a subtle moving window veil
 and fractal opening/closing animations. Use its
-[combined configuration](packs/psychedelic/config.toml).
+[combined configuration](families/psychedelic/config.toml).
 
 [**Witching Hour**](animation/witching-hour/) adds a Halloween workspace reveal:
 a ragged orange-and-green fire portal unveils the next workspace in place.

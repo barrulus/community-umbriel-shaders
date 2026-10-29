@@ -609,9 +609,8 @@ class RepositoryMetadataTests(unittest.TestCase):
             for family in effect["families"]:
                 self.assertIn(effect["id"], families[family]["members"])
         for family in ("after-dark", "psychedelic"):
-            for asset in ("config.toml", "preview.png"):
-                self.assertEqual((ROOT / "families" / family / asset).read_bytes(),
-                                 (ROOT / "packs" / family / asset).read_bytes())
+            for asset in ("config.toml", "preview.png", "README.md"):
+                self.assertIn(f"families/{family}/{asset}", self.registry["files"])
         self.assertEqual(self.effects["window/diya-glow-overlay"]["uses"], [])
         self.assertIsNone(self.effects["window/diya-glow-overlay"]["activation"])
 

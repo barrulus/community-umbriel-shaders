@@ -286,7 +286,7 @@ fractional-scaling, interruption and GPU-performance limitations apply.
 
 Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),
 [Fractal Flow](border/fractal-flow/) with its [overlay](window/fractal-flow-overlay/)
-and [Fractal Veil](window/fractal-veil/). The [pack](packs/psychedelic/) includes a
+and [Fractal Veil](window/fractal-veil/). The [family](families/psychedelic/) includes a
 combined activation example, native PNG previews and animation GIFs.
 
 All five presets compiled and rendered on Umbriel 0.1.0 (`28fa214`), with the
@@ -295,7 +295,7 @@ checks passed 624 frames per preset using local source wrappers at `4531d927`,
 covering endpoints, monotonic animation visibility, alpha preservation and SDR
 premultiplication across aspect ratios, scale values and source opacity.
 Native HDR, rotation, fractional scaling, interrupted transitions and GPU
-performance remain unverified. See the pack README for capture details.
+performance remain unverified. See the family README for capture details.
 
 ## Diwali effects (2026-10-24)
 
@@ -983,7 +983,7 @@ The three-position activity estimate can miss energy confined to other bands.
 
 Added [Fractal Iris](animation/fractal-iris/), [Fractal Bloom](animation/fractal-bloom/),
 [Fractal Flow](border/fractal-flow/) with its [inward overlay](window/fractal-flow-overlay/),
-and [Fractal Veil](window/fractal-veil/). The [combined configuration](packs/psychedelic/)
+and [Fractal Veil](window/fractal-veil/). The [combined configuration](families/psychedelic/)
 selects the coordinated set; individual READMEs include controls and motion previews.
 
 Tested with **Umbriel 0.1.0 (`28fa214`)**. All five presets compiled and rendered
@@ -994,7 +994,7 @@ source transparency, both animation directions and out-of-range progress.
 Animation endpoints, monotonic visibility, window alpha preservation and SDR
 premultiplication passed. Another 54 border/overlay checks covered seam alignment
 and the eight-pixel reach at three sizes and scales. All installation examples,
-the combined preset library and the pack configuration pass configuration validation.
+the combined preset library and the family configuration pass configuration validation.
 
 Native HDR, output rotation, native fractional scaling, interrupted transitions
 and hardware performance remain unverified.
