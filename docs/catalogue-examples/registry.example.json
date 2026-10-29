@@ -584,8 +584,8 @@
       "sha256": "7edc1a7c9516614978b05f9c35379129996f2f92136f309defc6a863e70635e2"
     },
     "animation/blood-in/README.md": {
-      "bytes": 2922,
-      "sha256": "fdf4e387cda610295ad0e98e9de4e5ba68b10cff532ffc6da0b4f322f2c23cf7"
+      "bytes": 3037,
+      "sha256": "cc8f2321cfb899e5ff79bd3199fa31a866b484c894579b593abaf88961ede13d"
     },
     "animation/blood-in/config.toml": {
       "bytes": 276,
@@ -600,12 +600,12 @@
       "sha256": "84028f259deb9d13ba67bcce1367087e91973b0c0b4dd62d6babcb3f4d1b9647"
     },
     "animation/blood-in/shader.glsl": {
-      "bytes": 2756,
-      "sha256": "80c94310663ca7e1cbeba1011453fe1c928e1d3ee27313086d3a41fb7715b042"
+      "bytes": 2314,
+      "sha256": "008411a5f4acf1ca7e9af4ebf431f85a752682a59d65aa4dc67df2cae525bdb6"
     },
     "animation/blood-out/README.md": {
-      "bytes": 2937,
-      "sha256": "cc3fe01a39908addaa72e7deb507bc4411bb84e9b719cb01dd2cc4d8255d1be1"
+      "bytes": 3052,
+      "sha256": "f0d52a99f3bff73228d6be362d2ccf6d58c426d4be8c93b2a55f889d50fed546"
     },
     "animation/blood-out/config.toml": {
       "bytes": 280,
@@ -692,8 +692,8 @@
       "sha256": "439bfb0983a1d93e3a91567315f5046c83bda86d9e4b653f94cff90c40330ed3"
     },
     "border/heartbeat/README.md": {
-      "bytes": 2866,
-      "sha256": "fc210d9d8368ea86f7085b092b1349efbb9ab7d2648e647c2a68390c442c4383"
+      "bytes": 2994,
+      "sha256": "68253d07fc767b92909ba955e972c7a5e6528ac7601ebf098d9ef80199398e4f"
     },
     "border/heartbeat/config.toml": {
       "bytes": 179,
@@ -708,8 +708,8 @@
       "sha256": "43ec122cc8a370c84d3c6054a0dd630097ca1e7883e6e6634033214b49d11188"
     },
     "border/heartbeat/shader.glsl": {
-      "bytes": 5337,
-      "sha256": "2a3c092fb9feda20360c5af6878faffb2f654679c824673d6eb8f0e2ec7712c8"
+      "bytes": 6905,
+      "sha256": "6f5764d2cb8ab509d2ba456d89005adb8a50151ebeeecbcb6164867f8bacb3cb"
     },
     "cursor/glow/README.md": {
       "bytes": 3741,

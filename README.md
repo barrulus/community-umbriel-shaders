@@ -465,7 +465,7 @@ bioluminescence deliberately stays blue-green, controlled by `BIO_COLOUR`.
 
 ## Catalogue metadata and families
 
-The local catalogue covers 138 licensed presets and ten families. Each effect's
+The local catalogue covers 142 licensed presets and ten families. Each effect's
 `metadata.toml` supplies its display name, description, contributor, licence
 notices, tags and supported uses. `families/<name>/family.toml` groups related
 members; each member can still be applied independently. Existing presets and
@@ -474,7 +474,7 @@ shader files remain the source of installation dependencies.
 Only entries with `publish = true` in `metadata.toml` appear in generated
 catalogues. Families opt in separately with the same field in `family.toml`.
 Omitting it means `false`. Tags describe the shader; they do not publish it.
-The existing 138 entries and ten families are explicitly opted in. Experimental
+The existing 142 entries and ten families are explicitly opted in. Experimental
 folders can remain in the repository without appearing in the catalogue.
 Published effects must have published dependencies, and published families must
 contain only published members.

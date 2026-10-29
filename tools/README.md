@@ -329,9 +329,8 @@ checks and their tested version are recorded in [VALIDATION.md](../VALIDATION.md
 
 Both preview scripts and their synthetic scene are original code by Barrulus, under the [MIT license](../LICENSES/Barrulus-MIT.txt).
 
-The complete working-tree catalogue now uses root metadata (138 licensed effects,
+The complete working-tree catalogue now uses root metadata (142 licensed effects,
 ten families), without `--metadata-root`. The nine records under
-`docs/catalogue-examples` remain historical fixtures. `test_catalogue.py` checks
-coverage against every preset directory, with the documented unlicensed example
-as its single exception. Companion-only configuration examples are documentation,
+`docs/catalogue-examples` remain historical fixtures. `test_catalogue.py` checks published metadata and its dependency graph.
+Unpublished experiments are allowed; the unlicensed example stays excluded. Companion-only configuration examples are documentation,
 not independent activation recipes.

@@ -1,0 +1,12 @@
+publish = true
+name = "Shake Grow"
+description = "Repeated mouse shakes grow a large arrow beneath the pointer; it shrinks away when movement settles."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/shake-grow/README.md"]
+uses = ["effects.cursor"]
+tags = ["playful"]
+tested_on = ["3667399"]
+
+[requirements]
+features = ["cursor-pointer-history"]

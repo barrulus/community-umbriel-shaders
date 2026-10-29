@@ -1,0 +1,9 @@
+publish = true
+name = "Music Smoke"
+description = "Audio-reactive smoke rises over the window, clearing when the music stops."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/music-smoke/README.md"]
+uses = ["effects.window"]
+tags = ["audio-reactive"]
+tested_on = ["76477c2"]
