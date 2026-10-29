@@ -1,0 +1,8 @@
+publish = true
+name = "Void"
+description = "Opening grows a broad violet vortex around a black core and releases the twisting window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/void/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["space", "fantasy"]

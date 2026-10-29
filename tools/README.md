@@ -77,3 +77,48 @@ compile and inspect selected shaders in a compositor session separately.
 Include relevant commands and results in the PR description, and retain lasting
 limitations in the shader's README. Local development logs, browser tooling and
 audio-analyser tests are excluded from the tracked repository and checked by CI.
+
+## Catalogue generation
+
+Requires Python 3.11+; committed-source generation also needs Git. The generator
+reads effect `metadata.toml` files and root `families.toml`. Families reference
+existing shaders and optional default member IDs; they have no asset folders.
+
+```sh
+# Validate the working tree and write a non-installable draft.
+python3 tools/catalogue.py --draft --output /tmp/catalogue.json
+
+# Include unpublished entries for contributor testing.
+python3 tools/catalogue.py --draft --include-unpublished --output /tmp/catalogue-development.json
+
+# Generate from an immutable source commit.
+python3 tools/catalogue.py --revision FULL_SOURCE_COMMIT_SHA --output /tmp/catalogue.json
+```
+
+Only explicit boolean `publish = true` entries appear by default. Published
+effects and families require published dependencies and members. Committed mode
+reads only the specified full commit, rejects development overlays and
+`--include-unpublished`, and ignores working-tree changes. `--root PATH` selects
+another repository; `--check FILE` compares output without replacing the file.
+
+The generator validates metadata, paths, dependencies, family membership and
+restricted activation recipes, then records file sizes and hashes. Output is
+deterministic and replaced only after validation succeeds. It does not compile
+GLSL, establish licence permission, publish an API, install shaders or change
+compositor configuration. See the [contract](../docs/shader-catalogue-contract.md)
+and [publication rules](../docs/catalogue-publication.md).
+
+## Contributor checks
+
+```sh
+python3 -m unittest discover -s tools -p test_catalogue.py
+python3 tools/catalogue.py --draft --metadata-root docs/catalogue-examples \
+  --check docs/catalogue-examples/registry.example.json
+```
+
+If a documented source change makes the review fixture stale, regenerate it with
+`--output docs/catalogue-examples/registry.example.json` instead of `--check`.
+Run only the checks relevant to the changed tool, and include the commands and
+results in the PR description. Shader READMEs should retain relevant limitations.
+Local development logs, browser tooling and audio-analyser tests are excluded
+from the tracked repository and checked by CI.

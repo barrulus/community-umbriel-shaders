@@ -1,0 +1,8 @@
+publish = true
+name = "Autumn Leaves"
+description = "Animated autumn leaves over window content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/autumn-leaves/README.md"]
+uses = ["effects.window"]
+tags = ["nature"]

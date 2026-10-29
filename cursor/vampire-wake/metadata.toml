@@ -1,0 +1,12 @@
+publish = true
+tested_on = ["0.1.0 (2145668)"]
+name = "Vampire Wake"
+description = "A vampire companion to Witchfire: a curved crimson ribbon fades into burgundy wisps, with falling blood-red sparks and small fluttering bats peeling away from the pointer's path."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/vampire-wake/README.md"]
+uses = ["effects.cursor"]
+tags = ["horror", "blood"]
+
+[requirements]
+features = ["cursor-pointer-history"]

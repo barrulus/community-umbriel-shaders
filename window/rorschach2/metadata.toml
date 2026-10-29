@@ -1,0 +1,8 @@
+publish = true
+name = "Rorschach II"
+description = "An animated inkblot-like treatment of the window image."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/rorschach2/README.md"]
+uses = ["effects.window"]
+tags = ["geometric", "psychedelic"]

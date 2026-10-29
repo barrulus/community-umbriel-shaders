@@ -1,0 +1,8 @@
+publish = true
+name = "Water Conjure"
+description = "A drop lands, a water column rises, and a foamy frame fills inward; closing reverses into a puddle."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/water-conjure/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["water"]

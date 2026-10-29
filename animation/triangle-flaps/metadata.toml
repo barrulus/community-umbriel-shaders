@@ -1,0 +1,8 @@
+publish = true
+name = "Triangle Flaps"
+description = "Equilateral triangles point alternately up and down."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/triangle-flaps/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["geometric", "playful"]

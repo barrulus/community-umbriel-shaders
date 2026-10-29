@@ -1,0 +1,8 @@
+publish = true
+name = "Paper Animation"
+description = "A sheet falls and unfurls on opening, then scrunches and falls away on closing."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/paper-animation/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["texture"]

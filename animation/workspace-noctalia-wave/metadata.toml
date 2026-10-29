@@ -1,0 +1,14 @@
+publish = true
+name = "Workspace Noctalia Wave"
+description = "An irregular diagonal wave turns the scene into dark purple mosaic tiles, then flips the tiles into the destination."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/workspace-noctalia-wave/README.md"]
+uses = ["animation.workspaces"]
+tags = ["geometric"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

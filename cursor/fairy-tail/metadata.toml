@@ -1,0 +1,11 @@
+publish = true
+name = "Fairy Tail"
+description = "A long multicolour cloud with drifting grains and tiny twinkling stars."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/fairy-tail/README.md"]
+uses = ["effects.cursor"]
+tags = ["glow", "colourful", "fantasy"]
+
+[requirements]
+features = ["cursor-pointer-history"]

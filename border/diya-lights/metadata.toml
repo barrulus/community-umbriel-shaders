@@ -1,0 +1,8 @@
+publish = true
+name = "Diya Lights"
+description = "Small terracotta oil lamps straddle the focused window's edge, approximately half inside and half outside."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/diya-lights/README.md"]
+uses = ["effects.border"]
+tags = ["glow", "festival"]

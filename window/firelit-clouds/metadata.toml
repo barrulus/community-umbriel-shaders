@@ -1,0 +1,8 @@
+publish = true
+name = "Firelit Clouds"
+description = "Gentle cloud banks billow across the window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/firelit-clouds/README.md"]
+uses = ["effects.window"]
+tags = ["nature", "festival"]

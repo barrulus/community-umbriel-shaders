@@ -1,0 +1,8 @@
+publish = true
+name = "Rainbow Tunnel Bare"
+description = "The colourful pointer-centred tunnel without the surrounding ring."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/rainbow-tunnel-bare/README.md"]
+uses = ["effects.cursor"]
+tags = ["geometric", "psychedelic", "colourful"]

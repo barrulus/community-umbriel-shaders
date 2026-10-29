@@ -1,0 +1,10 @@
+publish = true
+# Review example; intended location: window/flowering-vine-overlay/metadata.toml
+name = "Flowering Vine Overlay"
+description = "The inward window pass used by the Flowering Vine border."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/flowering-vine-overlay/README.md"]
+role = "companion"
+uses = ["effects.window"]
+tags = ["nature"]

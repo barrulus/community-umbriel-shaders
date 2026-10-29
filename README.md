@@ -15,10 +15,11 @@ This collection includes community presets by Barrulus, Dual Orbit by neonvoidx,
 Ten new [paired window transitions](animation/) include Shattered Glass, Wet Paint,
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 
-[**Psychedelic**](packs/psychedelic/) adds an unfolding fractal workspace iris,
-a rolling fractal border with an inward overlay, a subtle moving window veil
-and fractal opening/closing animations. Use its
-[combined configuration](packs/psychedelic/config.toml).
+**Psychedelic** groups an unfolding fractal workspace iris, a rolling border
+with an inward overlay, a subtle window veil and opening/closing animations.
+Its membership and recommended selections are declared in
+[families.toml](families.toml). Families reference the individual shaders;
+they have no copied files or separate configuration directories.
 
 [**Shake Locator**](cursor/shake-locator/) reveals rings when you shake the mouse.
 [**Shake Grow**](cursor/shake-grow/) builds a growing arrow beneath the pointer
@@ -461,6 +462,43 @@ channel separation, contrast, or darkening continues to use the source image.
 - **GLSL compile failure:** inspect Umbriel’s logs for the preset name and driver message. `umbriel validate` checks configuration, not GPU compilation.
 - **Effects missing from capture:** window, screen, and cursor effects are excluded from screencopy/image-copy captures by default. Set `[effects] in_capture = true` to include them; this can increase capture cost. Border effects already appear.
 
+## Catalogue metadata and families
+
+The local catalogue covers 136 licensed presets and ten families. Each effect's
+`metadata.toml` supplies its display name, description, contributor, licence
+notices, tags and supported uses. `families.toml` groups related
+members; each member can still be applied independently. Families have no folders,
+copied assets or separate activation configs. Existing presets and
+shader files remain the source of installation dependencies.
+
+Only entries with `publish = true` in `metadata.toml` appear in generated
+catalogues. Families opt in separately with the same field in each `[families.<id>]` definition.
+Omitting it means `false`. Tags describe the shader; they do not publish it.
+The existing 136 entries and ten families are explicitly opted in. Experimental
+folders can remain in the repository without appearing in the catalogue.
+Published effects must have published dependencies, and published families must
+contain only published members.
+
+`animation/example` is excluded from automatic catalogue installation until its
+original licensing is clarified.
+
+Validate the complete catalogue with:
+
+```sh
+python3 tools/catalogue.py --draft --output /tmp/community-shader-catalogue.json
+python3 -m unittest discover -s tools -p test_catalogue.py
+```
+
+This generates a working-tree draft, not a published API snapshot. See the
+[catalogue contract](docs/shader-catalogue-contract.md) for publication and
+metadata requirements. Community shaders target latest Umbriel; incompatible
+shaders are updated or withdrawn.
+
+To validate and preview unpublished metadata too, use
+`--draft --include-unpublished`. This produces a non-installable development
+snapshot; production generation rejects that option. The plugin's explicitly
+configured local-checkout mode includes experiments for contributor testing.
+
 ## Contributing
 
 For assistant-guided shader creation, use [SKILL.md](SKILL.md). It provides
@@ -476,7 +514,13 @@ screen/<name>/
 cursor/<name>/
 ```
 
-Include `shader.glsl`, `effect.toml`, a copyable `config.toml`, and a README with a preview, compatibility, tuning, cost, attribution, and license. A preset definition should not enable itself. Document any companion effects and use relative paths. Do not include personal keybinds, app assignments, machine paths, or binaries.
+Include `metadata.toml`, `shader.glsl`, `effect.toml`, a copyable `config.toml`, and a README with a preview, compatibility, tuning, cost, attribution, and license. A preset definition should not enable itself. Document any companion effects and use relative paths. Do not include personal keybinds, app assignments, machine paths, or binaries.
+
+Submit new shaders and families with `publish = false`. Maintainers review and
+test them before approving `publish = true`. Unpublished files in this public
+repository are still public; the flag controls catalogue inclusion, not access.
+See [publication and review](docs/catalogue-publication.md) for the CI checks and
+required GitHub review settings. The metadata flag alone is not a permission check.
 
 Shaders use GLSL ES 1.00 and the entry point for their kind: `vec4 animation(vec2 uv)`, `border`, `window`, `screen`, or `cursor`. Do not supply `#version`, `main`, or precision declarations. Return premultiplied RGBA. See the [Umbriel effect API](https://github.com/noctalia-dev/umbriel/blob/main/docs/user/effects.md) for uniforms and sampling semantics.
 

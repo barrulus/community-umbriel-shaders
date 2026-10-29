@@ -1,0 +1,8 @@
+publish = true
+name = "Fire Tendrils"
+description = "Moving fire tendrils over the window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/fire-tendrils/README.md"]
+uses = ["effects.window"]
+tags = ["fire"]

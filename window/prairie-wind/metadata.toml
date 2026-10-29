@@ -1,0 +1,8 @@
+publish = true
+name = "Prairie Wind"
+description = "An animated prairie-wind treatment of the window image."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/prairie-wind/README.md"]
+uses = ["effects.window"]
+tags = ["nature"]

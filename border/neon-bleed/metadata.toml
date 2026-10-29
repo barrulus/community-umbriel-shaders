@@ -1,0 +1,8 @@
+publish = true
+name = "Neon Bleed"
+description = "A compact rainbow wax band that drips inward from the window edge."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/neon-bleed/README.md"]
+uses = ["effects.border"]
+tags = ["glow"]

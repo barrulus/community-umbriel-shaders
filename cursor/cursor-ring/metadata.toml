@@ -1,0 +1,8 @@
+publish = true
+name = "Cursor Ring"
+description = "A thin blue ring around the pointer breathes in radius and brightness."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/cursor-ring/README.md"]
+uses = ["effects.cursor"]
+tags = ["minimal", "glow"]

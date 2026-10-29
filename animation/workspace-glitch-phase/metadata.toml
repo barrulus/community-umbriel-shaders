@@ -1,0 +1,14 @@
+publish = true
+name = "Workspace Glitch Phase"
+description = "Video tears and misregistered colour channels accompany staggered block replacement across the whole scene."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/workspace-glitch-phase/README.md"]
+uses = ["animation.workspaces"]
+tags = ["glitch"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

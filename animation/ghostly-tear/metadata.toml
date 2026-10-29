@@ -1,0 +1,14 @@
+publish = true
+name = "Ghostly Tear"
+description = "A ghost-lit hole opens at the exact centre of the screen and rips outwards through the outgoing workspace."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/ghostly-tear/README.md"]
+uses = ["animation.workspaces"]
+tags = ["horror"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

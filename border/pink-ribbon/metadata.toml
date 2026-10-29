@@ -1,0 +1,8 @@
+publish = true
+name = "Pink Ribbon"
+description = "A flowing satin-pink ribbon carrying small beating hearts."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/pink-ribbon/README.md"]
+uses = ["effects.border"]
+tags = ["romantic"]

@@ -1,0 +1,8 @@
+publish = true
+name = "Magic"
+description = "Opening reveals the window from a violet puff surrounded by drifting golden four-point sparkles."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/magic/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["colourful", "fantasy"]

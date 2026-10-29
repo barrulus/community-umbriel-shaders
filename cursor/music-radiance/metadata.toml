@@ -1,0 +1,8 @@
+publish = true
+name = "Music Radiance"
+description = "Expanding rainbow waves and rotating rays around the pointer, with brightness and reach driven by audio."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/music-radiance/README.md"]
+uses = ["effects.cursor"]
+tags = ["colourful", "audio-reactive"]

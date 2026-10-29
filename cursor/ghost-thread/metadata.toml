@@ -1,0 +1,11 @@
+publish = true
+name = "Ghost Thread"
+description = "A thin, broken pearl filament follows the pointer, with pale mint and lavender wisps peeling sideways."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/ghost-thread/README.md"]
+uses = ["effects.cursor"]
+tags = ["horror"]
+
+[requirements]
+features = ["cursor-pointer-history"]

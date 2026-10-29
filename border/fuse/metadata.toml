@@ -1,0 +1,8 @@
+publish = true
+name = "Fuse"
+description = "A braided fuse with travelling embers, ash, and sparks."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/fuse/README.md"]
+uses = ["effects.border"]
+tags = ["glow"]

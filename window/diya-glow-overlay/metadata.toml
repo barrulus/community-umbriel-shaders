@@ -1,0 +1,9 @@
+publish = true
+name = "Diya Glow Overlay"
+description = "The inward half of the Diya Lights border: small terracotta lamps and multicoloured sparkling lights, plus their soft glow."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/diya-glow-overlay/README.md"]
+uses = []
+tags = ["glow", "festival"]
+role = "companion"

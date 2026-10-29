@@ -1,0 +1,8 @@
+publish = true
+name = "Accent Pulse"
+description = "A soft pulse travels around the focused border, tinted by the theme accent."
+author = "Noctalia"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "border/accent-pulse/README.md"]
+uses = ["effects.border"]
+tags = ["minimal", "glow"]

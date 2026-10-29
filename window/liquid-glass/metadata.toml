@@ -1,0 +1,8 @@
+publish = true
+name = "Liquid Glass"
+description = "Diffused content with a refractive bevel and soft reflection."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/liquid-glass/README.md"]
+uses = ["effects.window"]
+tags = ["minimal", "texture"]

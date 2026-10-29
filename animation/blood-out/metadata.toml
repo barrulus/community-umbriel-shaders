@@ -1,0 +1,9 @@
+publish = true
+tested_on = ["6adcbc043c74"]
+name = "Blood Out"
+description = "Drains out the bottom with same wave as Blood In."
+author = "WinterMyst"
+license = "MIT"
+notice_files = ["animation/blood-out/README.md"]
+uses = ["animation.windows_out"]
+tags = ["horror", "blood"]

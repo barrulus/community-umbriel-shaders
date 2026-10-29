@@ -1,0 +1,8 @@
+publish = true
+name = "Portal Lava"
+description = "Violet and orchid pools with sparse magical filaments around the edge."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/portal-lava/README.md"]
+uses = ["effects.border"]
+tags = ["fire"]

@@ -1,0 +1,8 @@
+publish = true
+name = "Something’s Watching — Pumpkin Parade"
+description = "Twisting green vines braid around the frame, with leaves and curling tendrils."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/somethings-watching/README.md"]
+uses = ["effects.border"]
+tags = ["horror"]

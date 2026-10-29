@@ -1,0 +1,12 @@
+publish = true
+name = "Shake Locator"
+description = "Shake the mouse to reveal rings around the pointer; they fade when movement settles."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/shake-locator/README.md"]
+uses = ["effects.cursor"]
+tags = ["minimal", "geometric"]
+tested_on = ["3667399"]
+
+[requirements]
+features = ["cursor-pointer-history"]

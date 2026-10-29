@@ -1,0 +1,8 @@
+publish = true
+name = "Fractal Bloom"
+description = "Windows appear and disappear through a mirrored kaleidoscope mandala."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/fractal-bloom/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["geometric", "psychedelic"]
