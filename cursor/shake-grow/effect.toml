@@ -1,0 +1,4 @@
+[effects.preset."cursor.shake-grow"]
+kind = "cursor"
+shader = "shader.glsl"
+radius = 632

@@ -29,6 +29,11 @@ and fractal opening/closing animations. Use its
 a ragged orange-and-green fire portal unveils the next workspace in place.
 It requires the newer workspace `style = "reveal"` API.
 
+[**Shake Locator**](cursor/shake-locator/) reveals rings when you shake the mouse.
+[**Shake Grow**](cursor/shake-grow/) builds a growing arrow beneath the pointer
+with continued shaking. Both disappear when movement settles and use cursor
+motion history without a continuously running animation clock.
+
 For adjustments, see the [configuration reference](#configuration-reference),
 [border width and overlays](#border-width-padding-and-overlays), and the
 **Configuration options** section in each effect's README.
@@ -46,6 +51,11 @@ Pair it with [**Vampire Wake**](cursor/vampire-wake/), a crimson cursor trail wi
 blood-red sparks and fluttering bats.
 
 ## Compatibility
+
+[**Speaker Ripple**](window/speaker-ripple/) adds an audio visualiser inside
+the window: pressure rings kick inward and recoil with the spectrum, with
+individual frequency bands bending different sections. It uses the same
+64-band audio feed as the presets below.
 
 [Spectrum](border/spectrum/), [Music Radiance](cursor/music-radiance/) and
 [Music Smoke](window/music-smoke/) port bumbriel's audio halo, rainbow cursor

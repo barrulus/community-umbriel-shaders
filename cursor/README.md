@@ -4,6 +4,8 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="shake-locator/preview.png" width="160" alt="Shake Locator preview"> | [Shake Locator](shake-locator/) | Quick back-and-forth movement reveals cyan-and-gold locator rings, which fade when shaking stops. |
+| <img src="shake-grow/preview.png" width="160" alt="Shake Grow preview"> | [Shake Grow](shake-grow/) | Shaking builds a large arrow beneath the real cursor, up to roughly 560 logical pixels tall; it shrinks and fades afterward. |
 | <img src="music-radiance/preview.png" width="160" alt="Music Radiance preview"> | [Music Radiance](music-radiance/) | Expanding rainbow waves and rotating rays around the pointer, driven by audio and invisible during silence. |
 | <img src="festival-sparks/preview.png" width="160" alt="Festival Sparks preview"> | [Festival Sparks](festival-sparks/) | Fine gold and rose sparks lift from the pointer trail and fade at rest. |
 | <img src="ghost-thread/preview.png" width="160" alt="Ghost Thread preview"> | [ghost-thread](ghost-thread/) | A long broken pearl filament with peeling mint/lavender wisps and two faint resting wisps. |
