@@ -1,0 +1,9 @@
+publish = true
+name = "Faerie Magic Overlay"
+description = "The inner-window half of the faerie-magic border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/faerie-magic-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["fantasy"]
+role = "companion"

@@ -1,0 +1,11 @@
+publish = true
+name = "Train Tracks"
+description = "Two steel rails and wooden sleepers follow the pointer's curves, as though a little train just passed through."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/train-tracks/README.md"]
+uses = ["effects.cursor"]
+tags = ["playful"]
+
+[requirements]
+features = ["cursor-pointer-history"]

@@ -1,0 +1,8 @@
+publish = true
+name = "Sentient Spark"
+description = "Independent emerald and white micro-discharges around the whole perimeter."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/sentient-spark/README.md"]
+uses = ["effects.border"]
+tags = ["circuit"]

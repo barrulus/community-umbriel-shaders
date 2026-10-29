@@ -1,0 +1,15 @@
+publish = true
+tested_on = ["0.1.0 (2145668)"]
+name = "Vampire Blood Wash"
+description = "A Vampire-family workspace reveal: a thick wine-red wash rolls over the entire scene with rounded rivulets, crimson streaks and a glossy wet edge."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/vampire-blood-wash/README.md"]
+uses = ["animation.workspaces"]
+tags = ["horror", "blood"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

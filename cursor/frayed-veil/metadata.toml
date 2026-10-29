@@ -1,0 +1,11 @@
+publish = true
+name = "Frayed Veil"
+description = "Three long pearl, mint and lavender fabric strips follow the pointer path."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/frayed-veil/README.md"]
+uses = ["effects.cursor"]
+tags = ["horror", "texture"]
+
+[requirements]
+features = ["cursor-pointer-history"]

@@ -1,0 +1,8 @@
+publish = true
+name = "Wobbly Move"
+description = "Elastic deformation during animated moves, resizes, and layout changes."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/wobbly-move/README.md"]
+uses = ["animation.windows_move"]
+tags = ["playful"]

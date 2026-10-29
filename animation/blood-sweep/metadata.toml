@@ -1,0 +1,15 @@
+publish = true
+name = "Blood Sweep"
+description = "A wave of blood covers the outgoing workspace and reveals the incoming scene."
+author = "WinterMyst"
+license = "MIT"
+notice_files = ["animation/blood-sweep/README.md"]
+uses = ["animation.workspaces"]
+tags = ["horror", "blood"]
+tested_on = ["21456686a8f2"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

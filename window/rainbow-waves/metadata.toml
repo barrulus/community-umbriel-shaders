@@ -1,0 +1,8 @@
+publish = true
+name = "Rainbow Waves"
+description = "Animated rainbow waves over window content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/rainbow-waves/README.md"]
+uses = ["effects.window"]
+tags = ["psychedelic", "colourful"]

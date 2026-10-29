@@ -60,6 +60,15 @@ Use a top-level kind directory and a lowercase kebab-case effect directory:
 and a README with a preview, compatibility, tuning, cost, attribution, and
 license. Update the relevant category page when adding a preset.
 
+Add catalogue `metadata.toml` with `publish = false` for new submissions.
+Maintainers approve `publish = true` after review and testing; tags do not control
+publication. Families use the same flag in `[families.<id>]` definitions in root
+`families.toml`. Declare member IDs and optional slot-to-member `defaults`;
+never create family folders, copied previews or separate family configs. To validate unpublished
+metadata locally, run `python3 tools/catalogue.py --draft --include-unpublished
+--output /tmp/catalogue-development.json` (as one command). See
+[publication and review](docs/catalogue-publication.md).
+
 Choose a distinctive preset name: names are shared across all included files
 and kinds, duplicate definitions are errors, and `off` is reserved. Quote TOML
 table keys when the preset name contains a literal dot, for example

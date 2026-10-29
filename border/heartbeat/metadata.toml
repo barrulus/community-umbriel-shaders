@@ -1,0 +1,9 @@
+publish = true
+tested_on = ["6adcbc043c74"]
+name = "Heartbeat"
+description = "Viscous red border with heartbeat."
+author = "WinterMyst"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/heartbeat/README.md"]
+uses = ["effects.border"]
+tags = ["horror", "blood"]

@@ -1,0 +1,8 @@
+publish = true
+# Review example; intended location: border/flowering-vine/metadata.toml
+name = "Flowering Vine"
+description = "A flowering vine border with a matching inward overlay."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/flowering-vine/README.md"]
+tags = ["nature"]

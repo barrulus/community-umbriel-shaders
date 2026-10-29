@@ -1,0 +1,8 @@
+publish = true
+name = "Paper"
+description = "Four pencils draw graphite around a paper-like window perimeter."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/paper/README.md"]
+uses = ["effects.border"]
+tags = ["texture"]

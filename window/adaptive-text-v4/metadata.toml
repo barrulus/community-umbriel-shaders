@@ -1,0 +1,8 @@
+publish = true
+name = "Adaptive Text V4"
+description = "An experimental content-adaptive contrast treatment."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/adaptive-text-v4/README.md"]
+uses = ["effects.window"]
+tags = ["minimal"]

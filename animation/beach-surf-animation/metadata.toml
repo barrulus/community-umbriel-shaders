@@ -1,0 +1,8 @@
+publish = true
+name = "Beach Surf Animation"
+description = "A water-and-foam window reveal and disappearance."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/beach-surf-animation/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["water", "nature"]

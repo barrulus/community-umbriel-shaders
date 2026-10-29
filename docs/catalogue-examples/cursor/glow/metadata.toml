@@ -1,0 +1,8 @@
+publish = true
+# Review example; intended location: cursor/glow/metadata.toml
+name = "Glow"
+description = "A soft theme-accent halo around the pointer."
+author = "Noctalia"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "cursor/glow/README.md"]
+tags = ["minimal", "glow"]

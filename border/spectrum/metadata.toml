@@ -1,0 +1,8 @@
+publish = true
+name = "Spectrum"
+description = "An audio-driven colour halo around the focused window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/spectrum/README.md"]
+uses = ["effects.border"]
+tags = ["glow", "audio-reactive"]

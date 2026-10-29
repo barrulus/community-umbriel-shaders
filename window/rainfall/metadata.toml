@@ -1,0 +1,8 @@
+publish = true
+name = "Rainfall"
+description = "Rain falling over the window image."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/rainfall/README.md"]
+uses = ["effects.window"]
+tags = ["water", "nature"]

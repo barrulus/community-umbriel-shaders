@@ -1,0 +1,9 @@
+publish = true
+name = "Pink Ribbon Overlay"
+description = "The inner-window half of the pink-ribbon border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/pink-ribbon-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["romantic"]
+role = "companion"

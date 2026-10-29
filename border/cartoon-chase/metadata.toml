@@ -1,0 +1,8 @@
+publish = true
+name = "Cartoon Chase"
+description = "A cartoon bird, a pursuing coyote, and a spinning devil race around the window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/cartoon-chase/README.md"]
+uses = ["effects.border"]
+tags = ["playful"]

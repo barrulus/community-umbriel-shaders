@@ -1,0 +1,8 @@
+publish = true
+name = "Cloud Puff"
+description = "A quick, outward-billowing cloud puff for window opening and closing."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/cloud-puff/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["nature", "particles"]

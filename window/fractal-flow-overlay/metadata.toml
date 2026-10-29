@@ -1,0 +1,9 @@
+publish = true
+name = "Fractal Flow Overlay"
+description = "The inward half of Fractal Flow, sharing its coordinates, colours and clock."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/fractal-flow-overlay/README.md"]
+uses = []
+tags = ["geometric", "psychedelic"]
+role = "companion"

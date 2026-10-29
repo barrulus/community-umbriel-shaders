@@ -1,0 +1,8 @@
+publish = true
+name = "Scanlines"
+description = "Subtle horizontal scanlines over window content."
+author = "Noctalia"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "window/scanlines/README.md"]
+uses = ["effects.window"]
+tags = ["retro", "minimal"]

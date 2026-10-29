@@ -1,0 +1,8 @@
+publish = true
+name = "Workspace VHS Ripple"
+description = "A ripple with strong VHS tracking bands, horizontal jitter, RGB separation, scanlines, and noise over the native workspace slide."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/workspace-transation-vhs-ripple/README.md"]
+uses = ["animation.workspaces"]
+tags = ["glitch", "retro"]

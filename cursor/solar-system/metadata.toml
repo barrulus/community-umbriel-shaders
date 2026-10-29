@@ -1,0 +1,8 @@
+publish = true
+name = "Solar System"
+description = "Five planets, rings, and orbiting moons surround a small sun at the pointer."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/solar-system/README.md"]
+uses = ["effects.cursor"]
+tags = ["space"]

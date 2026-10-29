@@ -1,0 +1,9 @@
+publish = true
+name = "Portal Lava Overlay"
+description = "The inner-window half of the portal-lava border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/portal-lava-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["fire"]
+role = "companion"

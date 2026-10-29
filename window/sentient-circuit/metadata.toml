@@ -1,0 +1,8 @@
+publish = true
+name = "Sentient Circuit"
+description = "Etched circuit buses, independent junctions, and light-reactive pulses."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/sentient-circuit/README.md"]
+uses = ["effects.window"]
+tags = ["circuit"]

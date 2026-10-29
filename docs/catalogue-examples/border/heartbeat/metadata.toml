@@ -1,0 +1,10 @@
+publish = true
+# Review example; intended location: border/heartbeat/metadata.toml
+name = "Heartbeat"
+description = "A viscous red border with a heartbeat pulse."
+author = "WinterMyst"
+license = "MIT"
+# Retain both the adaptation credit and the upstream notice.
+notice_files = ["border/heartbeat/README.md", "LICENSES/Barrulus-MIT.txt"]
+tags = ["horror", "blood"]
+tested_on = ["6adcbc043c74"]

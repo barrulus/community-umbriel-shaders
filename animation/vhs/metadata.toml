@@ -1,0 +1,8 @@
+publish = true
+name = "VHS"
+description = "Opening introduces the window through horizontal tape stretch, rolling tracking errors, scanlines, noise, and colour bleed."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/vhs/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["glitch", "retro"]

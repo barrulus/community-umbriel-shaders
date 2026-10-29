@@ -1,0 +1,8 @@
+publish = true
+name = "Mercury Sheen"
+description = "Flowing liquid-metal highlights give the content a chrome sheen."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/mercury-sheen/README.md"]
+uses = ["effects.window"]
+tags = ["texture"]

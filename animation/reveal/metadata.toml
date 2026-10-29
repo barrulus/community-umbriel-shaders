@@ -1,0 +1,8 @@
+publish = true
+name = "Reveal"
+description = "A bundled opening and closing reveal animation."
+author = "Noctalia"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "animation/reveal/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["minimal"]

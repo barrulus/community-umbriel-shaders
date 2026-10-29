@@ -1,0 +1,8 @@
+publish = true
+name = "Glitch"
+description = "Opening vibrates the window into existence through displaced digital bands, staggered blocks, and RGB separation."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/glitch/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["glitch"]

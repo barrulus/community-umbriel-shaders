@@ -1,0 +1,11 @@
+publish = true
+name = "Festival Sparks"
+description = "Fine gold sparks and occasional rose accents fan out from the pointer's recent path and lift gently."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/festival-sparks/README.md"]
+uses = ["effects.cursor"]
+tags = ["glow", "festival", "particles"]
+
+[requirements]
+features = ["cursor-pointer-history"]

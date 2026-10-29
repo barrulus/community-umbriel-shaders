@@ -1,0 +1,8 @@
+publish = true
+name = "Sentient Runner"
+description = "Green-and-gold circuit tracks with branching links and moving packets."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/sentient-runner/README.md"]
+uses = ["effects.border"]
+tags = ["circuit"]

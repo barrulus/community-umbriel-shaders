@@ -1,0 +1,11 @@
+publish = true
+name = "Comet"
+description = "A curved rainbow comet with a two-second fading tail and smoothly blended crossings."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/comet/README.md"]
+uses = ["effects.cursor"]
+tags = ["colourful", "space"]
+
+[requirements]
+features = ["cursor-pointer-history"]

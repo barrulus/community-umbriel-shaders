@@ -1,0 +1,8 @@
+publish = true
+name = "Snowfall"
+description = "Snow falling over window content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/snowfall/README.md"]
+uses = ["effects.window"]
+tags = ["nature", "particles"]

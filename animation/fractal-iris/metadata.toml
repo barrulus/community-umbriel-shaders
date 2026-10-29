@@ -1,0 +1,14 @@
+publish = true
+name = "Fractal Iris"
+description = "A rolling fractal front reveals the incoming workspace."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/fractal-iris/README.md"]
+uses = ["animation.workspaces"]
+tags = ["geometric", "psychedelic"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

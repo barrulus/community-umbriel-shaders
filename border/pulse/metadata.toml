@@ -1,0 +1,8 @@
+publish = true
+name = "Pulse"
+description = "A cyan border that gently brightens and fades."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/pulse/README.md"]
+uses = ["effects.border"]
+tags = ["glow"]

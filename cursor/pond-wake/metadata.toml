@@ -1,0 +1,11 @@
+publish = true
+name = "Pond Wake"
+description = "A finger drawn through a pond: a curved refractive wake spreads behind the pointer, stirring curling blue-green wisps and irregular fairy-like flashes."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/Noctalia-MIT.txt", "cursor/pond-wake/README.md"]
+uses = ["effects.cursor"]
+tags = ["water", "nature"]
+
+[requirements]
+features = ["cursor-pointer-history"]

@@ -1,0 +1,15 @@
+# Catalogue-only family definitions. Members reference existing shader IDs.
+
+[families.vampire]
+publish = true
+name = "Vampire"
+description = "Coordinated blood, heartbeat, and bat effects across the desktop."
+members = ["animation/blood-in", "animation/blood-out", "border/heartbeat", "animation/vampire-blood-wash", "cursor/vampire-wake"]
+tags = ["horror", "blood"]
+
+[families.vampire.defaults]
+"effects.border" = "border/heartbeat"
+"effects.cursor" = "cursor/vampire-wake"
+"animation.windows_in" = "animation/blood-in"
+"animation.windows_out" = "animation/blood-out"
+"animation.workspaces" = "animation/vampire-blood-wash"

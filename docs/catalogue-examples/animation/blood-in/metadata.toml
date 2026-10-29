@@ -1,0 +1,11 @@
+publish = true
+# Review example; intended location: animation/blood-in/metadata.toml
+name = "Blood In"
+description = "A descending wave of blood reveals the window."
+author = "WinterMyst"
+license = "MIT"
+# This README currently contains the contributor's full MIT notice.
+notice_files = ["animation/blood-in/README.md"]
+uses = ["animation.windows_in"]
+tags = ["horror", "blood"]
+tested_on = ["6adcbc043c74"]

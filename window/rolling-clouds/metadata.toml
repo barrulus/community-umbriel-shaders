@@ -1,0 +1,8 @@
+publish = true
+name = "Rolling Clouds"
+description = "Rolling clouds over window content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/rolling-clouds/README.md"]
+uses = ["effects.window"]
+tags = ["nature"]

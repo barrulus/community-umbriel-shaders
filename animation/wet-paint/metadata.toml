@@ -1,0 +1,8 @@
+publish = true
+name = "Wet Paint"
+description = "Opening pours long, uneven paint streams down the window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/wet-paint/README.md"]
+uses = ["animation.windows_in", "animation.windows_out"]
+tags = ["colourful", "texture"]

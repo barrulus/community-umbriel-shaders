@@ -1,0 +1,16 @@
+publish = true
+# Review example; intended location: animation/workspace-iris/metadata.toml
+name = "Workspace Iris"
+description = "A circular aperture reveals the incoming workspace without moving either scene."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Noctalia-MIT.txt", "LICENSES/Barrulus-MIT.txt", "animation/workspace-iris/README.md"]
+uses = ["animation.workspaces"]
+tags = ["geometric", "minimal"]
+tested_on = ["0.1.0 (2145668)"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

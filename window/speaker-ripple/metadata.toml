@@ -1,0 +1,8 @@
+publish = true
+name = "Speaker Ripple"
+description = "Audio-reactive pressure rings kick inward and recoil from all four window edges, like a vibrating speaker surround."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/speaker-ripple/README.md"]
+uses = ["effects.window"]
+tags = ["audio-reactive"]

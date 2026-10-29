@@ -1,0 +1,8 @@
+publish = true
+name = "Midnight Fog"
+description = "Low, translucent purple mist drifts along the bottom of the output."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "screen/midnight-fog/README.md"]
+uses = ["effects.screen"]
+tags = ["horror"]

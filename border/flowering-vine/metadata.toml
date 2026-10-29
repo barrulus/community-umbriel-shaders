@@ -1,0 +1,8 @@
+publish = true
+name = "Flowering Vine"
+description = "Intertwined vines, opening flowers, and drifting blooms around the focused window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/flowering-vine/README.md"]
+uses = ["effects.border"]
+tags = ["nature"]

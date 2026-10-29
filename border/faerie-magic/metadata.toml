@@ -1,0 +1,8 @@
+publish = true
+name = "Faerie Magic"
+description = "Iridescent threads, wand-light, and fairy dust around the focused window."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "border/faerie-magic/README.md"]
+uses = ["effects.border"]
+tags = ["fantasy"]

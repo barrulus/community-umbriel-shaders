@@ -1,0 +1,8 @@
+publish = true
+name = "kzzzt Ring"
+description = "A glitching circuit-trace ring around the focused window, with travelling arcs, dashes, and hollow tendrils, colour-split glitches, scanlines, and a slow roll."
+author = "weegs710"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "LICENSES/weegs710-MIT.txt", "border/kzzzt-ring/README.md"]
+uses = ["effects.border"]
+tags = ["glitch", "audio-reactive", "circuit"]

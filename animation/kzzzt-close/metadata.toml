@@ -1,0 +1,8 @@
+publish = true
+name = "kzzzt Close"
+description = "Closing overdrives the window's own colours into phosphor and tears it into bands, then blows it out like a fuse, with one overexposed pop and a short fading afterglow of its brightest pixels."
+author = "weegs710"
+license = "MIT"
+notice_files = ["LICENSES/weegs710-MIT.txt", "animation/kzzzt-close/README.md"]
+uses = ["animation.windows_out"]
+tags = ["glitch", "circuit"]

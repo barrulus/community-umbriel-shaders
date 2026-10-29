@@ -1,0 +1,14 @@
+publish = true
+name = "Workspace Sand Collapse"
+description = "The outgoing scene breaks into tiny rigid grains that lose support in irregular pockets and accelerate downward."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "animation/workspace-sand-collapse/README.md"]
+uses = ["animation.workspaces"]
+tags = ["particles"]
+
+[requirements]
+features = ["workspace-reveal-full-scene"]
+
+[required_settings]
+"animation.workspaces.style" = "reveal"

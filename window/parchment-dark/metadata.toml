@@ -1,0 +1,8 @@
+publish = true
+name = "Parchment Dark"
+description = "A dark parchment treatment of window content."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/parchment-dark/README.md"]
+uses = ["effects.window"]
+tags = ["texture"]

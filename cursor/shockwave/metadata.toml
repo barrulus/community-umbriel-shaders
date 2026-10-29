@@ -1,0 +1,8 @@
+publish = true
+name = "Shockwave"
+description = "A pulsing shockwave centred on the pointer."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "cursor/shockwave/README.md"]
+uses = ["effects.cursor"]
+tags = ["glow"]

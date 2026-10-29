@@ -1,0 +1,9 @@
+publish = true
+name = "Paper Overlay"
+description = "The inner-window half of the paper border effect; keeps inward decoration visible."
+author = "Barrulus"
+license = "MIT"
+notice_files = ["LICENSES/Barrulus-MIT.txt", "window/paper-overlay/README.md"]
+uses = ["effects.window"]
+tags = ["texture"]
+role = "companion"
