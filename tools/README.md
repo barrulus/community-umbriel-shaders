@@ -150,7 +150,7 @@ and [publication rules](../docs/catalogue-publication.md).
 ## Contributor checks
 
 ```sh
-python3 -m unittest discover -s tools -p test_catalogue.py
+python3 -m unittest discover -s tools -p 'test*catalogue.py'
 python3 -m unittest discover -s tools -p test_render_preview.py
 python3 tools/catalogue.py --draft --metadata-root docs/catalogue-examples \
   --check docs/catalogue-examples/registry.example.json
@@ -162,3 +162,17 @@ Run only the checks relevant to the changed tool, and include the commands and
 results in the PR description. Shader READMEs should retain relevant limitations.
 Local development logs, browser tooling and audio-analyser tests are excluded
 from the tracked repository and checked by CI.
+
+## Catalogue publication
+
+`publish_catalogue.py` generates from a full upstream `main` commit and writes
+only `catalogue.json` to upstream's `catalogue` branch. Git write credentials and
+full source history are required. It checks remote identity, current source SHA,
+previously published source ancestry and fast-forward publication; failed
+validation preserves the previous catalogue. It does not change the source
+checkout or use working-tree shader bytes.
+
+The **Publish catalogue** workflow invokes it after its validation job passes.
+See [publication instructions](../docs/catalogue-publication.md) for the public
+URL, manual invocation and recovery. `test_publish_catalogue.py` exercises this
+behaviour using local Git repositories, with no network or compositor.
