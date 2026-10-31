@@ -4,6 +4,9 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="petal-scatter/preview.png" width="160" alt="Petal Scatter preview"> | [Petal Scatter](petal-scatter/) | A gust peels flower petals away as the window clears. |
+| <img src="petal-gather/preview.png" width="160" alt="Petal Gather preview"> | [Petal Gather](petal-gather/) | A curling breeze gathers flower petals along the opening window edge. |
+| <img src="vine-plait/preview.png" width="160" alt="Vine Plait preview"> | [Vine Plait](vine-plait/) | A horizontal plait of flowering vines rolls up or down across two complete workspace scenes. |
 | <img src="fractal-iris/preview.png" width="160" alt="Fractal Iris preview"> | [Fractal Iris](fractal-iris/) | An unfolding fractal front reveals the incoming workspace, with advance tears that widen and merge. |
 | <img src="fractal-bloom/preview.png" width="160" alt="Fractal Bloom preview"> | [Fractal Bloom](fractal-bloom/) | Windows open and close through a mirrored fractal mandala. |
 | <img src="cloud-puff/preview.png" width="160" alt="Cloud Puff preview"> | [Cloud Puff](cloud-puff/) | Bright gold, magenta and cyan cloud puffs for window opening and closing. |
@@ -13,6 +16,7 @@
 | <img src="ghostly-tear/preview.png" width="160" alt="Ghostly Tear workspace reveal"> | [ghostly-tear](ghostly-tear/) | A pale mint, lavender and pearl portal tears outwards from the centre; scattered holes merge into its ragged opening. Requires full-scene workspace reveal. |
 | <img src="crescent-reveal/preview.png" width="160" alt="Crescent Reveal preview"> | [crescent-reveal](crescent-reveal/) | Pumpkin fire burns the window into existence diagonally from bottom-left to top-right, with a curved flame front and embers. |
 | <img src="candle-snuff/preview.png" width="160" alt="Candle Snuff preview"> | [candle-snuff](candle-snuff/) | A quick dim and fade with a small orange-to-green edge flicker, confined to the departing window. |
+| <img src="spooky-move/preview.png" width="160" alt="Spooky Move preview"> | [Spooky Move](spooky-move/) | After Dark's slow, deeply stretching variation of Wobbly Move for moves, resizes and layout changes. |
 | <img src="beach-surf-animation/preview.png" width="160" alt="beach-surf-animation preview"> | [beach-surf-animation](beach-surf-animation/) | A water-and-foam window reveal and disappearance. |
 | <img src="example/preview.png" width="160" alt="example preview"> | [example](example/) | A minimal opening effect that fades the window in while scaling from 96% to full size. |
 | <img src="paper-animation/preview.png" width="160" alt="paper-animation preview"> | [paper-animation](paper-animation/) | A sheet falls and unfurls on opening, then scrunches and falls away on closing. |

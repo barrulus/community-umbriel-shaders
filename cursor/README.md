@@ -4,6 +4,10 @@
 
 | Preview | Effect | Description |
 | --- | --- | --- |
+| <img src="ink-drip/preview.png" width="160" alt="Ink Drip preview"> | [Ink Drip](ink-drip/) | A short wet-ink stroke with falling droplets, ragged splotches and tiny satellite spots. |
+| <img src="fractal-trail/preview.png" width="160" alt="Fractal Trail preview"> | [Fractal Trail](fractal-trail/) | Sharp, brightly coloured nested fractal contours in a short-lived cursor trail. |
+| <img src="kzzzt-trail/preview.png" width="160" alt="kzzzt Trail preview"> | [kzzzt Trail](kzzzt-trail/) | Short circuitry with angular branches, terminal pads and brief electric zap sparks. |
+| <img src="blossom-trail/preview.png" width="160" alt="Blossom Trail preview"> | [Blossom Trail](blossom-trail/) | Two twisting vines follow the pointer, with flowers and petals falling away. |
 | <img src="shake-locator/preview.png" width="160" alt="Shake Locator preview"> | [Shake Locator](shake-locator/) | Quick back-and-forth movement reveals cyan-and-gold locator rings, which fade when shaking stops. |
 | <img src="shake-grow/preview.png" width="160" alt="Shake Grow preview"> | [Shake Grow](shake-grow/) | Shaking builds a large arrow beneath the real cursor, up to roughly 560 logical pixels tall; it shrinks and fades afterward. |
 | <img src="music-radiance/preview.png" width="160" alt="Music Radiance preview"> | [Music Radiance](music-radiance/) | Expanding rainbow waves and rotating rays around the pointer, driven by audio and invisible during silence. |

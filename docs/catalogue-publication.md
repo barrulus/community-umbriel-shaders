@@ -15,7 +15,8 @@ members. To withdraw an entry, set it back to `false` and update any published
 dependants or families in the same change.
 
 The upstream migration marks 136 catalogue effects and ten families as eligible.
-This fork also retains six additional effects and their family memberships. It does not publish a remote endpoint or claim new visual testing.
+This fork also includes fifteen additional effects and their family memberships.
+It does not publish a remote endpoint. Per-effect READMEs record their validation.
 
 ## Contributor checks
 

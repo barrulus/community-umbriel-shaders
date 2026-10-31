@@ -16,11 +16,20 @@ Ten new [paired window transitions](animation/) include Shattered Glass, Wet Pai
 Flame Grilled, Glitch, Cells, Void, Old TV, VHS, Magic, and Triangle Flaps.
 
 **Umbriel After Dark** groups coordinated cursor, border, window, screen,
-opening and closing effects. **Psychedelic** groups a fractal workspace iris,
-a rolling border with its inward overlay, a subtle window veil and
+opening and closing effects, the Witching Hour workspace transition and
+[Spooky Move](animation/spooky-move/), a slower, stretchier movement animation.
+**Psychedelic** groups a fractal workspace iris,
+a rolling border with its inward overlay, a subtle window veil, a short
+[Fractal Trail](cursor/fractal-trail/) cursor and
 opening/closing animations. Choose either family in the plugin to select its
 members and **Apply family**. Membership and defaults are declared in
 [families.toml](families.toml); each shader keeps its own files and settings.
+
+**Flowering Vine** pairs its border and inward overlay with
+[Blossom Trail](cursor/blossom-trail/), [Dappled Light](window/dappled-light/),
+the rolling [Vine Plait](animation/vine-plait/) workspace transition, and
+[Petal Gather](animation/petal-gather/)/[Petal Scatter](animation/petal-scatter/)
+opening and closing animations. It has no screen or movement default.
 
 [**Witching Hour**](animation/witching-hour/) adds a Halloween workspace reveal:
 a ragged orange-and-green fire portal unveils the next workspace in place.
@@ -441,11 +450,11 @@ Set `palette = false` in an installed preset's `effect.toml` to restore its
 original colours (shown in the static previews). For paired borders and window
 overlays, set it in both presets; the setting is independent for each half.
 
-Thirteen effects remain palette-neutral because they transform existing content
+Fifteen effects remain palette-neutral because they transform existing content
 without a separate coloured artwork layer: animation `example`, `reveal`,
-`squash`, `vhs`, `wobbly-lifecycle`, `wobbly-move`, and
+`squash`, `vhs`, `wobbly-lifecycle`, `wobbly-move`, `spooky-move`, and
 `workspace-transation-vhs-ripple`; cursor `spotlight`; screen `vignette`; and
-window `adaptive-text-v4`, `crt`, `flap-board`, and `scanlines`. Their distortion,
+window `adaptive-text-v4`, `crt`, `dappled-light`, `flap-board`, and `scanlines`. Their distortion,
 channel separation, contrast, or darkening continues to use the source image.
 
 [Pond Wake](cursor/pond-wake/) also ignores the theme palette: its stirred
@@ -464,7 +473,7 @@ bioluminescence deliberately stays blue-green, controlled by `BIO_COLOUR`.
 
 ## Catalogue metadata and families
 
-The local catalogue covers 142 licensed presets and ten families. Each effect's
+The local catalogue covers 151 licensed presets and ten families. Each effect's
 `metadata.toml` supplies its display name, description, contributor, licence
 notices, tags and supported uses. `families.toml` groups related
 members; each member can still be applied independently. Families have no folders,
@@ -474,7 +483,7 @@ shader files remain the source of installation dependencies.
 Only entries with `publish = true` in `metadata.toml` appear in generated
 catalogues. Families opt in separately with the same field in each `[families.<id>]` definition.
 Omitting it means `false`. Tags describe the shader; they do not publish it.
-The existing 142 entries and ten families are explicitly opted in. Experimental
+The existing 151 entries and ten families are explicitly opted in. Experimental
 folders can remain in the repository without appearing in the catalogue.
 Published effects must have published dependencies, and published families must
 contain only published members.

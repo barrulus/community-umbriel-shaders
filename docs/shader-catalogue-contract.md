@@ -205,7 +205,7 @@ See [tool commands](../tools/README.md#catalogue-generation) and the reproducibl
 is explicitly a draft and hashes the source files in this checkout.
 
 The upstream migration covers 136 presets and ten families. This fork retains
-six additional presets, for 142 total, with their additional family memberships
+fifteen additional presets, for 151 total, with their additional family memberships
 and defaults. `animation/example` is excluded pending clarification of its original
 licence. The generator preserves existing contributor credits and notice files;
 it cannot establish licence permission itself.
